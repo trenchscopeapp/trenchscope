@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dexterm/claude-layer/larp",
+  "title": "LARP detector verdict (larp-check)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill", "skill_version", "mint", "verdict", "confidence", "claims", "missing_data", "facts", "flags", "injection_detected", "sources_used", "summary"],
+  "properties": {
+    "skill": { "type": "string", "enum": ["larp-check"] },
+    "skill_version": { "type": "string" },
+    "mint": { "type": "string", "description": "The mint analysed, or empty string when AMBIGUOUS before resolution" },
+    "verdict": { "type": "string", "enum": ["REAL_PRODUCT", "EARLY_BUT_REAL", "NO_PRODUCT_CLAIMED", "LARP", "UNVERIFIABLE", "AMBIGUOUS"], "description": "NO_PRODUCT_CLAIMED = a meme/community coin whose site and socials claim no product: not a LARP, and not a real product" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "summary": { "type": "string", "maxLength": 600, "description": "Two to four short lines for a 40-column panel: the verdict in plain words and the strongest evidence. Never a disclaimer line" },
+    "claims": {
+      "type": "array",
+      "description": "Each product claim the site/socials make, with the evidence for or against it.",
+      "minItems": 0,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim", "status", "evidence"],
+        "properties": {
+          "claim": { "type": "string", "maxLength": 160, "description": "What the project claims exists (a live app, a demo, a GitHub, a team, docs…)" },
+          "status": { "type": "string", "enum": ["supported", "contradicted", "unverifiable"] },
+          "evidence": { "type": "string", "maxLength": 240, "description": "The tool result that supports/contradicts it (tool + field + value), or why it is unverifiable" }
+        }
+      }
+    },
+    "links_checked": {
+      "type": "array",
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url", "kind", "reachable"],
+        "properties": {
+          "url": { "type": "string" },
+          "kind": { "type": "string" },
+          "reachable": { "type": "boolean" },
+          "status": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "domain": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "domain": { "type": ["string", "null"] },
+        "age_days": { "type": ["number", "null"] },
+        "registrar": { "type": ["string", "null"] },
+        "privacy": { "type": ["boolean", "null"] }
+      }
+    },
+    "github": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "repo": { "type": ["string", "null"] },
+        "days_since_push": { "type": ["number", "null"] },
+        "stars": { "type": ["number", "null"] },
+        "archived": { "type": ["boolean", "null"] }
+      }
+    },
+    "missing_data": {
+      "type": "array",
+      "description": "What could not be fetched keyless (e.g. X is login-walled, site timed out). Be honest here.",
+      "items": { "type": "string", "maxLength": 160 },
+      "maxItems": 20
+    },
+    "facts": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim", "tool", "field", "value"],
+        "properties": {
+          "claim": { "type": "string", "maxLength": 160 },
+          "tool": { "type": "string" },
+          "field": { "type": "string" },
+          "value": { "type": ["number", "string", "boolean", "null"] },
+          "age_sec": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "flags": { "type": "array", "items": { "type": "string" }, "maxItems": 20 },
+    "invalidation": { "type": "string", "maxLength": 240 },
+    "proposals": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "text"],
+        "properties": {
+          "type": { "type": "string", "enum": ["alert", "note", "watchlist"] },
+          "text": { "type": "string", "maxLength": 200 },
+          "condition": { "type": "string", "maxLength": 120 }
+        }
+      }
+    },
+    "injection_detected": { "type": "boolean" },
+    "candidates": {
+      "type": "array",
+      "description": "AMBIGUOUS only: the mints the symbol could mean",
+      "items": { "type": "object", "additionalProperties": false, "required": ["mint"], "properties": { "mint": { "type": "string" }, "launchpad": { "type": "string" }, "mcap": { "type": ["number", "null"] }, "ageSec": { "type": ["number", "null"] } } }
+    },
+    "sources_used": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["tool"], "properties": { "tool": { "type": "string" }, "source": { "type": "string" }, "age_sec": { "type": ["number", "null"] } } }
+    },
+    "kb_entries_cited": { "type": "array", "items": { "type": "string" } }
+  }
+}

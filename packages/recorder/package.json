@@ -1,0 +1,25 @@
+{
+  "name": "@dexterm/recorder",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm history recorder (AI-SUITE-DESIGN §4, lane R-01): snapshot-on-change from the data layer, feed membership, outcome sweeps, code-only labels, retention, export for the eval",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "bin": {
+    "dexterm-recorder": "./bin/dexterm-recorder.mjs"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 \"test/*.test.ts\"",
+    "typecheck": "tsc -p ../../tsconfig.json"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "@dexterm/data": "0.0.1"
+  }
+}

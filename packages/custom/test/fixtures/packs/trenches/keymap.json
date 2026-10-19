@@ -1,0 +1,4 @@
+{
+  "global": { "screen.watchlist": ["3", "W"], "workspace.next": ["ctrl+w right"] },
+  "screens": { "screener": { "preset.next": ["]", "l"] } }
+}

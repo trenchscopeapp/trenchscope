@@ -1,0 +1,17 @@
+{
+  "mint": "RuG11111111111111111111111111111111111111",
+  "interval": "1h",
+  "now": 1760000000000,
+  "market": {
+    "token": { "mint": "RuG11111111111111111111111111111111111111", "symbol": "<untrusted source=\"jupiter:symbol\" kind=\"symbol\">KLOP</untrusted>", "name": "<untrusted source=\"jupiter:name\" kind=\"name\">Klopcoin</untrusted>", "launchpad": "bonk", "createdAt": 1759996400000, "verified": false },
+    "pair": { "priceUsd": 0.00009, "mcap": 90000, "mcapResolved": 90000, "liquidityUsd": 6000, "volume": { "h1": 40000, "h24": 40000 }, "txns": { "h1": { "buys": 80, "sells": 95 } }, "priceChange": { "h1": -12.0, "h24": -12.0 }, "fetchedAt": 1759999998000, "ageSec": 2, "source": "dexscreener" },
+    "stats": { "holderCount": 140, "holders24hDelta": 20, "organicScore": 8, "perWindow": { "h1": { "numTraders": 60, "numNetBuyers": -4 } }, "fetchedAt": 1759999990000, "ageSec": 10, "source": "jupiter" },
+    "audit": { "mintAuthority": false, "freezeAuthority": true, "top10Pct": 62.0, "devPct": 18.0, "devMints": 3, "lpLockedPct": 40, "rugScore": 78, "fetchedAt": 1759999990000, "ageSec": 10, "source": "jupiter" }
+  },
+  "concentration": { "mint": "RuG11111111111111111111111111111111111111", "top10PctExLp": 58.0, "holderCount": 140, "ageSec": 11, "source": "helius" },
+  "security": { "mint": "RuG11111111111111111111111111111111111111", "scoreNormalised": 78, "lpLockedPct": 40, "tokenProgram": "Tokenkeg", "risks": [{ "name": "<untrusted source=\"rugcheck:risk.name\" kind=\"risk\">Freeze authority enabled</untrusted>", "level": "danger" }], "ageSec": 120, "source": "rugcheck" },
+  "candles": { "mint": "RuG11111111111111111111111111111111111111", "bars": 60, "summary": { "changePct": -40.0, "drawdownFromHighPct": -55.0 }, "ageSec": 18, "source": "geckoterminal" },
+  "tape": { "mint": "RuG11111111111111111111111111111111111111", "count": 70, "buys": 30, "sells": 40, "buyUsd": 12000, "sellUsd": 13000, "distinctWallets": 22, "top2WalletVolumeSharePct": 40.0, "ageSec": 9, "source": "geckoterminal" },
+  "creator": { "mint": "RuG11111111111111111111111111111111111111", "creator": "DevRug", "creators": ["DevRug"], "devHistory": { "launches": 5, "rugged": 3 }, "snipers": null, "bundledPct": 22, "tier": "tier1" },
+  "availability": { "hasPrice": true, "hasLiquidity": true, "canVerdict": true, "present": ["market", "security"], "missing": ["holders/concentration: partial"], "knownUnavailable": [] }
+}

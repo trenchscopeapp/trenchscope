@@ -1,0 +1,5 @@
+{
+  "name": "dexterm-paper-strategy",
+  "version": "0.1.0",
+  "description": "PAPER-only strategy playbook for an EXTERNAL agent driving `dexterm mcp` (task-1443). Never shipped to the in-app analyst."
+}

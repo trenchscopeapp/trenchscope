@@ -1,0 +1,19 @@
+{
+  "name": "@dexterm/custom",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm customization layer (task-1358, from the task-1288 design): versioned config.json (no secrets, ever), the layout solver + named workspaces, user themes, keymap overrides, the rules engine (parsed, never eval'd; alerts + PROPOSALS only), shareable packs (hash lock + ssh signature; never executes pack code) and the popup widget API. Zero runtime dependencies.",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 \"test/*.test.ts\"",
+    "typecheck": "tsc -p ../../tsconfig.json"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

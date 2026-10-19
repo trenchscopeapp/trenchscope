@@ -1,0 +1,5 @@
+*.webp.json
+og.png.json
+*.svg.json
+.vercel
+.env*

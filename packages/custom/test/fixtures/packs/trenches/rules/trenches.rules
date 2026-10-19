@@ -1,0 +1,5 @@
+# trenches pack rules — one per line; `#` comments. Parsed by the rules grammar, never eval'd.
+# Rules from an unsigned pack load DISABLED; the user enables each on the Rules screen.
+when vol5m.velocity > 3 and cluster < 20 and liq > 25K for 2 ticks then alert(up, "volume surge, clean holders") ask(token-dossier) popup(chart) cooldown 15m max 6/h name "surge-clean"
+when holders.delta > 150 and top10 < 30 and !flag:mint then alert(info, "holder velocity") tag("accum") cooldown 10m name "holder-velocity"
+when liq.delta < -40K or (dev > 8 and h1 < -25) then alert(down, "liquidity leaving or dev dumping") popup(token) scope watchlist cooldown 5m name "exit-warning"

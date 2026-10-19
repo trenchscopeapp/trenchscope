@@ -1,0 +1,24 @@
+{
+  "name": "@dexterm/packs",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm AI analysis suite (task-1356, AI-SUITE-DESIGN): analysis packs (token/wallet dossier), narrative board, watchlist/new-pair digests, rug-probability model + honest backtest, replay-based backtest harness. Facts come from tools or recorded history, never model memory; every model stage is labelled output with data ages; untrusted text is firewalled.",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./rug": "./src/rug-model.ts"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 \"test/*.test.ts\"",
+    "typecheck": "tsc -p ../../tsconfig.json"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "@dexterm/data": "0.0.1",
+    "@dexterm/recorder": "0.0.1"
+  }
+}

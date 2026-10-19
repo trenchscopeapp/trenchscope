@@ -1,0 +1,139 @@
+{
+  "generatedBy": "packages/agents/demo/worked-demo.ts",
+  "note": "capture-ready fixtures for the agents film (task-1344); offline, no wallets, no mainnet",
+  "scan": {
+    "skill": "trench-scan",
+    "scanned": 4,
+    "skipped": [
+      {
+        "mint": "FixtMintCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+        "reason": "mint/freeze authority live (rugcheck/audit)"
+      }
+    ],
+    "candidates": [
+      {
+        "mint": "FixtMintBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "symbol": "MOONER",
+        "verdict": "WATCH",
+        "strongest": "organicScore 71 (screener_query.organicScore), rugScore 8 (rugcheck.scoreNormalised), 0 risk flags"
+      },
+      {
+        "mint": "FixtMintDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+        "symbol": "GIGA",
+        "verdict": "WATCH",
+        "strongest": "organicScore 80 (screener_query.organicScore), rugScore 5 (rugcheck.scoreNormalised), 0 risk flags"
+      },
+      {
+        "mint": "FixtMintAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "symbol": "TROLL",
+        "verdict": "INSUFFICIENT_DATA",
+        "strongest": "organicScore 62 (screener_query.organicScore), rugScore 12 (rugcheck.scoreNormalised), 0 risk flags"
+      }
+    ],
+    "proposal": {
+      "id": "prop_1_hnomh7",
+      "agentId": "ef2b077c1f5a",
+      "agentName": "claude-code",
+      "kind": "alert",
+      "mint": "FixtMintBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+      "idempotencyKey": "trench-watch-best",
+      "createdAt": 1791688379662,
+      "status": "pending",
+      "summary": "alert FixtMi… when mcap crosses 10M",
+      "detail": {
+        "mint": "FixtMintBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "when": "mcap crosses 10M",
+        "note": "trench-scan WATCH: organicScore 71 (screener_query.organicScore), rugScore 8 (rugcheck.scoreNormalised), 0 risk flags"
+      },
+      "armed": false
+    }
+  },
+  "custom": {
+    "id": "prop_2_1u6s56",
+    "agentId": "eab272d48bb7",
+    "agentName": "scanbot",
+    "kind": "alert",
+    "mint": "FixtMintDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+    "idempotencyKey": "scanbot-giga-spike",
+    "createdAt": 1791688379727,
+    "status": "pending",
+    "summary": "alert FixtMi… when price +20% in 15m",
+    "detail": {
+      "mint": "FixtMintDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+      "when": "price +20% in 15m",
+      "note": "auto: reacted to a volume_spike stream event"
+    },
+    "armed": false
+  },
+  "malicious": [
+    {
+      "attempt": "arm_plan",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "sign_tx",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "raise_cap",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "set_tier",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "wallet_export",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "read_key",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "open_ticket",
+      "refused": true,
+      "code": "never"
+    },
+    {
+      "attempt": "screener_query",
+      "refused": true,
+      "code": "spoof"
+    }
+  ],
+  "roster": [
+    {
+      "name": "claude-code",
+      "tier": "propose",
+      "sessions": 1,
+      "client": "claude-code 2.1 (MCP)",
+      "reads": 4,
+      "proposals": 1,
+      "refused": 0
+    },
+    {
+      "name": "scanbot",
+      "tier": "propose",
+      "sessions": 1,
+      "client": "my-ts-bot 1.0",
+      "reads": 0,
+      "proposals": 1,
+      "refused": 0
+    }
+  ],
+  "mcp": {
+    "serverInfo": "dexterm@0.0.1",
+    "prompts": [
+      "rug-check",
+      "token-dossier",
+      "trench-scan"
+    ],
+    "resources": 30
+  }
+}

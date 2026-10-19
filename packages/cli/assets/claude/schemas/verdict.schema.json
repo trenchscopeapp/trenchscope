@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dexterm/claude-layer/verdict",
+  "title": "Analyst verdict (token-dossier, rug-check)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill", "skill_version", "mint", "verdict", "confidence", "facts", "flags", "invalidation", "proposals", "injection_detected", "sources_used", "summary", "missing_data"],
+  "properties": {
+    "product_assessment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["verdict", "confidence", "claims", "missing_data"],
+      "properties": {
+        "verdict": { "type": "string", "enum": ["REAL_PRODUCT", "EARLY_BUT_REAL", "NO_PRODUCT_CLAIMED", "LARP", "UNVERIFIABLE"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "claims": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["claim", "evidence"], "properties": { "claim": { "type": "string" }, "evidence": { "type": "string" } } } },
+        "missing_data": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "skill": { "type": "string", "enum": ["token-dossier", "rug-check"] },
+    "skill_version": { "type": "string" },
+    "mint": { "type": "string", "description": "The mint analysed, or empty string when AMBIGUOUS/INSUFFICIENT_DATA before resolution" },
+    "verdict": { "type": "string", "enum": ["WATCH", "SPECULATIVE", "AVOID", "INSUFFICIENT_DATA", "AMBIGUOUS"] },
+    "bias": { "type": "string", "enum": ["long", "short", "avoid", "wait"], "description": "The directional trading view; give one unless AMBIGUOUS/INSUFFICIENT_DATA" },
+    "setup_quality": { "type": "string", "enum": ["strong", "mixed", "weak"], "description": "How clean the setup is given liquidity, holders, tape and structure" },
+    "key_levels": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "Concrete levels from the candles and liquidity (support, resistance, VWAP, range high/low, invalidation level)",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label"],
+        "properties": {
+          "label": { "type": "string", "maxLength": 40 },
+          "value": { "type": ["number", "string", "null"] },
+          "note": { "type": "string", "maxLength": 80 }
+        }
+      }
+    },
+    "size_hint": { "type": "string", "maxLength": 160, "description": "Size framed as a fraction of risk capital with the stop (e.g. '0.5-1% risk, stop below the range low'); never a dollar amount or a token count" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "missing_data": { "type": "array", "items": { "type": "string", "maxLength": 160 }, "maxItems": 20, "description": "Sections or fields that were unavailable/null (copied from the dossier `availability.missing` and `knownUnavailable`). Empty array when everything was present. A non-empty list lowers confidence but — as long as price or liquidity exists — never forces INSUFFICIENT_DATA." },
+    "rug_probability": { "type": "number", "minimum": 0, "maximum": 1, "description": "rug-check only: model's probability that this token rugs within 72 h" },
+    "summary": { "type": "string", "maxLength": 600, "description": "Two to four short lines for a 40-column panel: the call in plain words and the deciding facts. Never repeats bias/levels/invalidation/size (rendered from their own fields), never a disclaimer line" },
+    "facts": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claim", "tool", "field", "value"],
+        "properties": {
+          "claim": { "type": "string", "maxLength": 160 },
+          "tool": { "type": "string" },
+          "field": { "type": "string" },
+          "value": { "type": ["number", "string", "boolean", "null"] },
+          "age_sec": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "flags": { "type": "array", "items": { "type": "string" }, "maxItems": 20 },
+    "invalidation": { "type": "string", "maxLength": 240 },
+    "proposals": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "text"],
+        "properties": {
+          "type": { "type": "string", "enum": ["alert", "note", "watchlist"] },
+          "text": { "type": "string", "maxLength": 200 },
+          "condition": { "type": "string", "maxLength": 120 }
+        }
+      }
+    },
+    "injection_detected": { "type": "boolean" },
+    "candidates": {
+      "type": "array",
+      "description": "AMBIGUOUS only: the mints the symbol could mean",
+      "items": { "type": "object", "additionalProperties": false, "required": ["mint"], "properties": { "mint": { "type": "string" }, "launchpad": { "type": "string" }, "mcap": { "type": ["number", "null"] }, "ageSec": { "type": ["number", "null"] } } }
+    },
+    "results": {
+      "type": "array",
+      "maxItems": 20,
+      "description": "When the answer is a LIST of coins (e.g. after a filter, or 'best setups right now'), put one entry per coin here by mint. The app renders a live table from these mints (prices/liq/vol come from its data layer, never your text); only mints already on screen or fetched via tools are shown. Give a one-line reason per row.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["mint", "reason"],
+        "properties": {
+          "mint": { "type": "string", "description": "base58 mint of a coin that is on screen or that a tool returned" },
+          "symbol": { "type": "string", "maxLength": 32 },
+          "reason": { "type": "string", "maxLength": 100, "description": "one short line on why this coin is in the list" }
+        }
+      }
+    },
+    "filter_applied": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "When you called show_in_screener for a plain-language request, echo the structured filter you applied here so the user sees (and can correct) the numbers you chose.",
+      "required": ["query"],
+      "properties": {
+        "query": { "type": "string", "maxLength": 120, "description": "the exact filter string you passed to show_in_screener, in dexterm grammar (e.g. 'mcap < 5M liq > 50K h24 > 0 flag:clean')" },
+        "notes": { "type": "string", "maxLength": 160, "description": "the numbers you chose for vague words, in words (e.g. 'low cap = mcap < 5M; liquid = liq > 50K; up on the day = h24 > 0; not a rug = flag:clean')" }
+      }
+    },
+    "sources_used": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["tool"], "properties": { "tool": { "type": "string" }, "source": { "type": "string" }, "age_sec": { "type": ["number", "null"] } } }
+    },
+    "kb_entries_cited": { "type": "array", "items": { "type": "string" } }
+  }
+}

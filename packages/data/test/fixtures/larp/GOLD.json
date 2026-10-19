@@ -1,0 +1,67 @@
+{
+ "tag": "GOLD",
+ "group": "claim",
+ "mint": "GoLdZWYNg9jg4z5SGCLJx69xag2vMjLaSQK5S7TUGoLd",
+ "symbol": "Gold",
+ "name": "Gold",
+ "createdAt": 1792328416000,
+ "capturedAt": "2026-10-18T23:16:38.730Z",
+ "label": {
+  "reviewer": "meme with a verifiable GLDx pair",
+  "acceptable": [
+   "NO_PRODUCT_CLAIMED",
+   "EARLY_BUT_REAL",
+   "UNVERIFIABLE"
+  ],
+  "note": "on-chain pair claim not checked by the review run"
+ },
+ "pairs": [
+  "DJBrnSDAFbDsmXu5mJLvX73PZByCCWEuZFWCUG9DnEzX"
+ ],
+ "links": {
+  "website": "https://gold.notrandom.fun/",
+  "all": [
+   {
+    "kind": "website",
+    "url": "https://gold.notrandom.fun/",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://x.com/GoldGoldCA",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://x.com/Frontrunnerman/status/2111804248513987035?s=20",
+    "source": "jupiter"
+   }
+  ]
+ },
+ "github": null,
+ "page": {
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://gold.notrandom.fun/",
+  "contentType": "text/html; charset=utf-8",
+  "body": "<!doctype html>\n<html lang=\"en\" style=\"background:#0c0a06\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">\n  <meta name=\"color-scheme\" content=\"dark light\">\n  <title>Gold ($Gold)</title>\n  <!-- A coin's own site at <slug>.notrandom.fun. The sites Worker\n       (workers/sites.ts) fills in the title, description, cards and the\n       site's data; src/studio/site-host.ts draws it. Built on its own to\n       dist-sites/ by vite.sites.config.ts. -->\n  <script type=\"module\" crossorigin src=\"/assets/coin-site-72qJ58JO.js\"></script>\n  <link rel=\"stylesheet\" crossorigin href=\"/assets/coin-site-sHZc2tWe.css\">\n<meta name=\"description\" content=\"You found the vault. $Gold is gold three times over. The CA starts and ends with GoLd, so you can check it at a glance. The coin trades against Gold xStock (GLDx), not SOL, and its rewards pay out in…\">\n<meta name=\"theme-color\" content=\"#0c0a06\">\n<link rel=\"canonical\" href=\"https://gold.notrandom.fun/\">\n<link rel=\"icon\" href=\"/pfp.webp\" type=\"image/webp\">\n<meta property=\"og:type\" content=\"website\">\n<meta property=\"og:site_name\" content=\"Gold ($Gold)\">\n<meta property=\"og:title\" content=\"Gold ($Gold)\">\n<meta property=\"og:description\" content=\"You found the vault. $Gold is gold three times over. The CA starts and ends with GoLd, so you can check it at a glance. The coin trades against Gold xStock (GLDx), not SOL, and its rewards pay out in…\">\n<meta property=\"og:url\" content=\"https://gold.notrandom.fun/\">\n<meta property=\"og:image\" content=\"https://gold.notrandom.fun/pfp.webp\">\n<meta property=\"og:image:alt\" content=\"Gold\">\n<meta name=\"twitter:card\" content=\"summary\">\n<meta name=\"twitter:title\" content=\"Gold ($Gold)\">\n<meta name=\"twitter:description\" content=\"You found the vault. $Gold is gold three times over. The CA starts and ends with GoLd, so you can check it at a glance. The coin trades against Gold xStock (GLDx), not SOL, and its rewards pay out in…\">\n<meta name=\"twitter:image\" content=\"https://gold.notrandom.fun/pfp.webp\">\n<meta name=\"twitter:site\" content=\"@Frontrunnerman\"></head>\n<body class=\"coin-site-page\">\n  <div data-coin-site><main class=\"cs-fallback\">\n<h1>Gold ($Gold)</h1>\n<p>Gold in the CA. Gold in the pair. Gold in the rewards.</p>\n<p>CA: <code>GoLdZWYNg9jg4z5SGCLJx69xag2vMjLaSQK5S7TUGoLd</code></p>\n<p><a href=\"https://pump.fun/coin/GoLdZWYNg9jg4z5SGCLJx69xag2vMjLaSQK5S7TUGoLd\">Buy on pump.fun</a></p>\n<p><a href=\"mailto:abuse@notrandom.fun?subject=Report%3A%20gold.notrandom.fun\">Report this site</a></p>\n</main></div>\n  <script type=\"application/json\" id=\"coin-site-data\"></script>\n<script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092\" integrity=\"sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==\" data-cf-beacon='{\"version\":\"2024.11.0\",\"token\":\"8fcd5ee2da9745c681d04454c2dd0df0\",\"r\":1,\"spa\":2}' crossorigin=\"anonymous\"></script>\n</body>\n</html>\n",
+  "bytes": 3025,
+  "truncated": false,
+  "redirects": [],
+  "blocked": null,
+  "elapsedMs": 2313,
+  "compacted": true
+ },
+ "sitemap": {
+  "status": 404,
+  "ok": false,
+  "body": "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<meta name=\"robots\" content=\"noindex\">\n<title>No coin site here</title>\n<style>\n  :root { color-scheme: dark; }\n  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0b0b0f; color: #f4f4f6;\n    font: 16px/1.5 system-ui, -apple-system, \"Segoe UI\", sans-serif; text-align: center; }\n  main { padding: 24px; max-width: 420px; }\n  h1 { font-size: 22px; margin: 0 0 8px; }\n  p { margin: 0 0 20px; color: #a3a3ad; }\n  a { color: #f4f4f6; }\n  .fine { margin: 28px 0 0; font-size: 13px; color: #8a8a94; }\n  .fine a { color: inherit; text-underline-offset: 3px; }\n</style>\n</head>\n<body>\n<main>\n<h1>No coin site here</h1>\n<p>Nothing lives at gold.notrandom.fun yet.</p>\n<a href=\"https://notrandom.fun/\">notrandom.fun</a>\n<p class=\"fine\">To report a coin site, email <a href=\"mailto:abuse@notrandom.fun?subject=Report%3A%20gold.notrandom.fun\">abuse@notrandom.fun</a>.</p>\n</main>\n<script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092\" integrity=\"sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==\" data-cf-beacon='{\"version\":\"2024.11.0\",\"token\":\"8fcd5ee2da9745c681d04454c2dd0df0\",\"r\":1,\"spa\":2}' crossorigin=\"anonymous\"></script>\n</body>\n</html>\n"
+ },
+ "http": {
+  "https://rdap.org/domain/gold.notrandom.fun": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"registration\",\"eventActor\":\"cloudflare\",\"eventDate\":\"2026-10-05T20:57:27.545Z\"},{\"eventAction\":\"expiration\",\"eventDate\":\"2027-10-05T20:57:27.545Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-10-10T20:58:00.642Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:38:00.415Z\"}],\"redacted\":[{\"name\":{\"type\":\"Registrant Contact\"},\"prePath\":\"$.entities[?(@.roles[0]=='registrant')]\",\"pathLang\":\"jsonpath\",\"method\":\"removal\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"Cloudflare, Inc.\"],[\"adr\",{\"cc\":\"US\"},\"text\",[\"\",\"\",\"101 Townsend St.  \",\"San Francisco\",\"California\",\"94107\",\"\"]],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+1.3057261890\"],[\"tel\",{\"type\":\"fax\"},\"uri\",\"tel:+1.5125678639\"],[\"email\",{},\"text\",\"registrar-notices@cloudflare.com\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"Cloudflare Inc.\"],[\"org\",{},\"text\",\"Cloudflare, Inc.\"],[\"adr\",{\"cc\":\"US\"},\"text\",[\"\",\"\",[\"101 Townsend St.\",\"\",\"\"],\"San Francisco\",\"California\",\"94107\",\"\"]],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+1.8889935273\"],[\"email\",{},\"text\",\"registrar-abuse@cloudflare.com\"]]]}]}]}"
+  }
+ }
+}

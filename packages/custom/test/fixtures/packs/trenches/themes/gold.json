@@ -1,0 +1,9 @@
+{
+  "extends": "cyberspace",
+  "tokens": {
+    "accent": "#ffb02e",
+    "borderFocus": "#ffd36e",
+    "rain": ["#2a2414", "#5a4a1a", "#a98a2a", "#ffe08a"],
+    "glow": "#4d3a0f"
+  }
+}

@@ -1,0 +1,4 @@
+# Rust build output for the wry shell (rebuild with `npm run build:shell`); Cargo.lock IS committed for
+# reproducible offline builds.
+shell/wry/target/
+node_modules/

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "trenchscope": {
+      "command": "npx",
+      "args": ["-y", "trenchscope", "mcp"]
+    }
+  }
+}

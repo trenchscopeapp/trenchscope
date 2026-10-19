@@ -1,0 +1,130 @@
+# dexterm CI: typecheck + tests from a clean checkout, workflow lint, secret scan of the full history,
+# vulnerability scan of the lockfiles. Every action is pinned to a commit SHA (Dependabot keeps them current).
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # The job names below are the public repo's REQUIRED status checks ("typecheck + tests (node 22)" and
+  # "(node 24)" in the main ruleset): renaming them leaves every PR waiting on a check that never reports.
+  test:
+    name: typecheck + tests (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: install (dev tooling only; dexterm has no third-party runtime dependencies)
+        run: npm ci
+      - name: typecheck
+        run: npm run typecheck
+      - name: "tests (offline: no live data source is contacted in CI)"
+        env:
+          DEXTERM_OFFLINE: '1'
+          # no NO_COLOR here: the effects tests (fx.test.ts) assert on colour output and fail under NO_COLOR
+        run: timeout 20m npm test
+      - name: install smoke (npm pack -> npm i -g temp prefix -> dexterm --version, dexterm doctor)
+        run: scripts/release/install-smoke.sh "$RUNNER_TEMP/install-smoke"
+
+  # Native platforms are truthful gates: any supported-suite failure fails its job.
+  # POSIX mode-bit subtests identify NTFS limitations explicitly; no suite-wide ignore.
+  platforms:
+    name: typecheck + tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+          - os: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: keep LF line endings on Windows (snapshot and checksum tests compare bytes)
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: runner facts
+        run: echo "$RUNNER_OS $RUNNER_ARCH $(uname -m) node $(node --version)"
+      - name: install (dev tooling only; dexterm has no third-party runtime dependencies)
+        run: npm ci
+      - name: typecheck
+        run: npm run typecheck
+      - name: "tests (offline: no live data source is contacted in CI)"
+        env:
+          DEXTERM_OFFLINE: '1'
+          DEXTERM_TEST_NO_RETRY: '1'
+        # no GNU `timeout` on macOS: the step timeout bounds the run instead
+        timeout-minutes: 25
+        run: npm test
+      - name: install smoke (npm pack -> npm i -g temp prefix -> dexterm --version, dexterm doctor)
+        run: scripts/release/install-smoke.sh "$RUNNER_TEMP/install-smoke"
+
+  lint-workflows:
+    name: actionlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - name: actionlint (pinned binary, checksum-verified)
+        run: |
+          bin="$(scripts/release/fetch-tool.sh actionlint "$RUNNER_TEMP/tools")"
+          "$bin" -color
+
+  secrets:
+    name: gitleaks (full history)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: gitleaks (pinned binary, checksum-verified)
+        run: |
+          bin="$(scripts/release/fetch-tool.sh gitleaks "$RUNNER_TEMP/tools")"
+          "$bin" git --log-opts=--all --config .gitleaks.toml --no-banner --redact --exit-code 1 .
+
+  vulnerabilities:
+    name: osv-scanner (lockfiles)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      # osv-scanner.toml lists the accepted advisories (each with a reason and an expiry); anything else fails.
+      # The release's scan-results.json still reports them (supply-chain.mjs does not read this file).
+      - name: osv-scanner (pinned binary, checksum-verified)
+        run: |
+          bin="$(scripts/release/fetch-tool.sh osv-scanner "$RUNNER_TEMP/tools")"
+          "$bin" scan source --config osv-scanner.toml --lockfile package-lock.json --lockfile packages/popup/shell/wry/Cargo.lock

@@ -1,0 +1,23 @@
+/* dexterm popup — bubble map page (task-1340). Same HUD chrome as the chart; the map is a canvas, the panels are text. */
+.hud.bubbles .stage { min-height: 260px; }
+.hud.bubbles #map { z-index: 1; cursor: crosshair; }
+.hud.bubbles .depth { font-size: 11px; color: var(--dim); white-space: nowrap; }
+.hud.bubbles .banner { padding: 6px 12px; font-size: 12px; color: var(--warn); border-bottom: 1px solid var(--border); background: rgba(245,255,45,.05); }
+.hud.bubbles .banner.bad { color: var(--down); background: rgba(255,59,107,.06); }
+.hud.bubbles .tip { position: absolute; z-index: 2; max-width: 360px; padding: 6px 9px; font-size: 11px; line-height: 1.35; color: var(--text);
+  background: rgba(3,9,12,.94); border: 1px solid var(--border); border-radius: 8px; pointer-events: none; white-space: pre-wrap; word-break: break-word; }
+.hud.bubbles .tip .k { color: var(--muted); }
+.hud.bubbles .insights { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 10px; padding: 5px 10px 3px; border-top: 1px solid var(--border); font-size: 11px; }
+.hud.bubbles .insights .cell .l { color: var(--dim); text-transform: uppercase; letter-spacing: .04em; font-size: 10px; }
+.hud.bubbles .insights .cell .v { color: var(--text); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud.bubbles .insights .cell .s { color: var(--muted); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud.bubbles .insights .sample { grid-column: 1 / -1; color: var(--dim); font-size: 10px; padding-top: 2px; }
+.hud.bubbles .why { padding: 4px 10px 6px; border-top: 1px solid var(--border); font-size: 11px; line-height: 1.35; max-height: 118px; overflow: auto; }
+.hud.bubbles .why .head { color: var(--borderFocus); font-weight: 700; }
+.hud.bubbles .why .label { display: flex; justify-content: space-between; color: var(--text); font-weight: 700; margin-top: 3px; }
+.hud.bubbles .why .label .conf { color: var(--dim); font-weight: 400; }
+.hud.bubbles .why .rule { color: var(--muted); padding-left: 12px; }
+.hud.bubbles .why .evidence { color: var(--dim); font-style: italic; padding-left: 8px; }
+.hud.bubbles .why .foot, .hud.bubbles .why .muted { color: var(--dim); }
+.hud.bubbles .legend span { display: inline-flex; align-items: center; gap: 5px; }
+.hud.bubbles .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }

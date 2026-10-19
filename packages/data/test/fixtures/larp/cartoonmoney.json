@@ -1,0 +1,61 @@
+{
+ "tag": "cartoonmoney",
+ "group": "claim",
+ "mint": "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump",
+ "symbol": "CBUCKS",
+ "name": "Cartoon Money",
+ "createdAt": 1791311383000,
+ "capturedAt": "2026-10-18T23:16:58.233Z",
+ "label": {
+  "reviewer": "early",
+  "acceptable": [
+   "EARLY_BUT_REAL",
+   "UNVERIFIABLE"
+  ],
+  "note": "launch UI behind JS"
+ },
+ "pairs": [
+  "B4Cp45PGifVM5FAXfh6AeV8QZ3eUNQnqGBw7KuC7MHnB"
+ ],
+ "links": {
+  "website": "https://cartoon-money.com/",
+  "all": [
+   {
+    "kind": "website",
+    "url": "https://cartoon-money.com/",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://x.com/cartoonmoney_ai",
+    "source": "dexscreener"
+   }
+  ]
+ },
+ "github": null,
+ "page": {
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://cartoon-money.com/",
+  "contentType": "text/html",
+  "body": "<!doctype html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta\r\n      name=\"viewport\"\r\n      content=\"width=device-width, initial-scale=1.0, viewport-fit=cover\"\r\n    />\r\n    <meta name=\"theme-color\" content=\"#081e71\" />\r\n    <script id=\"player-view-guard\">\r\n// Keep the hosting editor shortcut outside the player experience. Match only\r\n// the visible \"Edit site\" control, never the game root or wallet/auth dialogs.\r\n// Run before React so an asynchronously injected shortcut is hidden pre-paint.\r\n(function () {\r\n  var observed = new WeakSet();\r\n  var label = /^Edit site(?:\\s*[x×✕✖])?$/i;\r\n  function protectedElement(element) {\r\n    return element.matches('html, body, #root, dialog, [role=\"dialog\"], wallet-dialog, script, style, iframe') ||\r\n      !!element.closest('#root, dialog, [role=\"dialog\"], wallet-dialog') ||\r\n      !!element.querySelector('#root, dialog, [role=\"dialog\"], wallet-dialog, iframe');\r\n  }\r\n  function hideShortcut(element) {\r\n    if (protectedElement(element) || !label.test(element.textContent.trim())) return;\r\n    if (!element.closest('a, button, [role=\"button\"]') && !element.querySelector('a, button, [role=\"button\"]')) return;\r\n    var target = element;\r\n    while (target.parentElement && target.parentElement !== document.body && target.parentElement !== document.documentElement &&\r\n      !protectedElement(target.parentElement) && label.test(target.parentElement.textContent.trim())) target = target.parentElement;\r\n    var tree = target.getRootNode();\r\n    if (tree instanceof ShadowRoot && label.test(tree.textContent.trim()) && !tree.querySelector('dialog, [role=\"dialog\"], wallet-dialog, iframe') && !protectedElement(tree.host)) target = tree.host;\r\n    target.style.setProperty('display', 'none', 'important');\r\n    target.setAttribute('aria-hidden', 'true');\r\n  }\r\n  function scan(node) {\r\n    if (node.nodeType === Node.TEXT_NODE) { if (node.parentElement) hideShortcut(node.parentElement); return; }\r\n    if (!(node instanceof Element || node instanceof ShadowRoot)) return;\r\n    if (node instanceof Element) {\r\n      if (node.closest('#root, dialog, [role=\"dialog\"], wallet-dialog')) return;\r\n      hideShortcut(node);\r\n      if (node.shadowRoot) watch(node.shadowRoot);\r\n    }\r\n    for (var child of node.children) scan(child);\r\n  }\r\n  function watch(root) {\r\n    if (observed.has(root)) return;\r\n    observed.add(root);\r\n    new MutationObserver(function (records) {\r\n      for (var record of records) {\r\n        if (record.type === 'characterData') scan(record.target);\r\n        else for (var node of record.addedNodes) scan(node);\r\n      }\r\n    }).observe(root, { childList: true, subtree: true, characterData: true });\r\n    if (root === document.documentElement) { if (document.body) scan(document.body); }\r\n    else scan(root);\r\n  }\r\n  watch(document.documentElement);\r\n})();\r\n\r\n</script>\r\n    <script>\r\n      // Every fresh visit shows the welcome screen, including returning players.\r\n      // Start the title download before the app bundle and larger scene artwork.\r\n      (function () {\r\n        var mobile = innerWidth <= 700 || matchMedia('(pointer: coarse)').matches ||\r\n          new URLSearchParams(location.search).get('view') === 'mobile' || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||\r\n          (navigator.maxTouchPoints > 0 && Math.min(screen.width, screen.height) > 0 && Math.min(screen.width, screen.height) <= 700);\r\n        var hour = new Date().getHours(), time = hour >= 6 && hour < 17 ? 'day' : hour >= 17 && hour < 20 ? 'sunset' : 'night';\r\n        var art = 'welcome-' + (mobile ? 'phone' : 'desktop') + '-' + time + '-notes-v197.webp';\r\n        var title = document.createElement('link'); title.rel = 'preload'; title.as = 'image'; title.href = '/art/welcome-title-tm-v215.webp'; title.fetchPriority = 'high'; document.head.appendChild(title);\r\n        var assets = mobile ? [art, 'welcome-play-button.webp'] : [art];\r\n        assets.forEach(function (asset) { var link = document.createElement('link'); link.rel = 'preload'; link.as = 'image'; link.href = '/art/' + asset; link.fetchPriority = 'high'; document.head.appendChild(link); });\r\n      })();\r\n    </script>\r\n    <!-- Music streams on Play; no full-track download competes with startup. -->\r\n\r\n    <meta\r\n      name=\"description\"\r\n      content=\"Your coins. Your world. Own, launch and trade in Cartoon Money on Solana Mainnet.\"\r\n    />\r\n    <link\r\n      rel=\"icon\"\r\n      type=\"image/png\"\r\n      sizes=\"32x32\"\r\n      href=\"/icons/cartoon-c-32-v2.png\"\r\n    />\r\n    <link\r\n      rel=\"icon\"\r\n      type=\"image/png\"\r\n      sizes=\"192x192\"\r\n      href=\"/icons/cartoon-c-192-v2.png\"\r\n    />\r\n    <link\r\n      rel=\"apple-touch-icon\"\r\n      sizes=\"180x180\"\r\n      href=\"/icons/cartoon-c-180-v2.png\"\r\n    />\r\n    <link\r\n      rel=\"manifest\"\r\n      href=\"/manifest.webmanifest?v=cartoon-c-2\"\r\n      crossorigin=\"use-credentials\"\r\n    />\r\n    <meta name=\"mobile-web-app-capable\" content=\"yes\" />\r\n    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\" />\r\n    <meta\r\n      name=\"apple-mobile-web-app-status-bar-style\"\r\n      content=\"black-translucent\"\r\n    />\r\n    <meta name=\"apple-mobile-web-app-title\" content=\"Cartoon Money\" />\r\n    <title>Cartoon Money · Own the coin. Launch the market.</title>\r\n    <script type=\"module\" crossorigin src=\"/assets/index-piyWfkhQ.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-NCVjhjwW.css\">\n  </head>\r\n  <body>\r\n    <div id=\"root\"><style></style><section class=\"startup-splash\" aria-label=\"Loading Cartoon Money\"><img src=\"/art/welcome-title-tm-v215.webp\" width=\"1864\" height=\"844\" alt=\"Cartoon Money\" fetchpriority=\"high\"/><p role=\"status\">Opening your cartoon world…</p><noscript><small>Enable JavaScript to play Cartoon Money.</small></noscript></section></div>\r\r\n  </body>\r\n</html>\r\n",
+  "bytes": 5822,
+  "truncated": false,
+  "redirects": [],
+  "blocked": null,
+  "elapsedMs": 1195,
+  "compacted": true
+ },
+ "sitemap": {
+  "status": 404,
+  "ok": false,
+  "body": "{\"error\":\"Private game request refused.\"}"
+ },
+ "http": {
+  "https://rdap.org/domain/cartoon-money.com": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"registration\",\"eventDate\":\"2026-09-27T02:21:32Z\"},{\"eventAction\":\"expiration\",\"eventDate\":\"2036-09-27T02:21:32Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-10-02T02:43:44Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:37:46Z\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"GoDaddy.com, LLC\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"\"],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:480-624-2505\"],[\"email\",{},\"text\",\"abuse@godaddy.com\"]]]}]}]}"
+  }
+ }
+}

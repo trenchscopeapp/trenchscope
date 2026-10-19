@@ -1,0 +1,40 @@
+  trenchscope ┃  1 Screener   2 New ▌          SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+  New 20   Graduating 4   Migrated 1h 7   Trenches 3    min liq 5K · dev < 5% · no mint
+╭─ NEW PAIRS ─────────────────────────── ws: pumpportal newToken · jup tokens/v2/recent ─╮
+│   AGE TOKEN        LAUNCH BONDING            MCAP     LIQ      5M   HLD TREND          │
+│ ────────────────────────────────────────────────────────────────────────────────────── │
+│    1m BOOP          PUMP  █████████ 100%     $81K    $27K   ▼1.4%   881 ▁▁▁▂▂▂▂▂▂▂▃█   │
+│▎  NEW CLAUDE        PUMP  ████▓░░░░  40%     $27K    $14K  ▲18.8%   176 ▃▃▃▃▂▂▂▂▂▂▁█   │
+│    2m GRIDLOCK      DBC   migrated           $17K     $6K  ▼13.3%   647 ▂▂▂▂▂▁▁▁▁▂▂█   │
+│    2m RATTO         PUMP  █████████ 100%     $77K    $23K   ▲9.5%   797 ▅▄▃▄▆▇▇▇██▇▁   │
+│    9m MOONPIE       BONK  migrated           $44K    $12K   ▼3.7%   635 ▁▁▁▁▁▂▂▂▂▂▂█   │
+│    6m WAFFLE        PUMP  ████▓░░░░  46%     $32K    $13K  ▲23.8%   821 ▅▅▅▅▅▇▇▇█▇█▁   │
+│    5m PEBBLE        PUMP  ██████▓░░  71%     $49K    $13K   ▼6.1%    86 ▄▄▅▅▅▅▄▄▅▆█▁   │
+│   12m HONK          DBC   migrated           $52K    $27K  ▲11.8%   201 ▅▃▃▂▂▁▁▁▃▃▅█   │
+│    9m SIRLOIN       PUMP  █████████ 100%     $78K    $41K  ▲14.3%   575 ▆▆▇▇▆▇█▆▆▆▆▁   │
+│   11m ORB           BONK  migrated           $34K     $9K  ▲23.4%   133 ▁▂▂▂▂▂▁▁▂▁▁█   │
+│   14m DRIFTER       PUMP  ██████▓░░  66%     $46K    $15K   ▼5.1%   325 ▄▄▃▂▂▂▁▄▃▄▃█   │
+│    6m GLIZZY        PUMP  ████████▓  86%     $59K    $32K   ▼9.5%   734 ▃▂▂▂▂▁▁▁▁▁▁█   │
+│    8m NOODLE        DBC   migrated           $24K     $7K   ▲2.9%   176 ▂▁▁▁▁▁▂▂▂▂▂█   │
+│   17m TUNA          PUMP  ███▓░░░░░  30%     $21K     $8K  ▲19.7%   383 ▂▁▁▁▂▁▂▁▁▁▁█   │
+│   16m CRAB          PUMP  ████▓░░░░  42%     $29K    $16K  ▲14.8%   413 ▇█▇▆▅▅▄▄▄▆▅▁   │
+│   13m FELIX         BONK  migrated           $22K    $11K  ▲12.8%   726 ▅▅▅▆▆▆▇▇█▅▆▁   │
+│   33m KERNEL        PUMP  ████▓░░░░  44%     $30K    $12K   ▲9.4%   506 ▄▄▆▆▆▆▅▆▇█▆▁   │
+│   26m BAGEL         PUMP  ██▓░░░░░░  24%     $17K     $8K  ▼15.6%   736 ▂▂▃▁▁▁▁▂▄▄▄█   │
+│   34m YAP           DBC   migrated           $36K    $18K  ▲15.0%   699 ▅▆▆▅▇▇▇████▁   │
+│   21m PLONK         PUMP  █████████ 100%     $84K    $37K  ▲15.0%   511 ▇█▆▄▃▂▃▂▁▃▂▅   │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────╯
+  j/k  move   ⏎  open   p  pause feed   f  filters   w  watch

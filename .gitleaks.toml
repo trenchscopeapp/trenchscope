@@ -1,0 +1,39 @@
+# gitleaks configuration for the dexterm public repo. Extends the default rules; the allow-lists below are the
+# only exceptions and each has a reason. Everything else that gitleaks flags fails CI.
+# Note (gitleaks 8.30): an allow-list with `paths` exempts the WHOLE file even when it also has `regexes`
+# (condition = "AND" did not narrow it in testing), so line-level exceptions are regex-only and anchored on
+# the exact test line.
+title = "dexterm"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Recorded public market data. The data fixtures are HTTP recordings of DexScreener / Jupiter / GeckoTerminal responses: 44-char base58 strings are Solana mint and wallet addresses, 87/88-char ones are transaction signatures (tx_hash). None of them is a credential."
+paths = ['''packages/data/fixtures/.*\.json''']
+
+[[allowlists]]
+description = "Test doubles. The three tests below define an obviously fake token / key constant to exercise redaction and ticket code paths; the values are not real credentials."
+paths = ['''packages/data/test/(paper|task-1298|task-1313)\.test\.ts''']
+regexTarget = "line"
+regexes = ['''(FAKE_KEY|TOKEN|token) = ['"]''']
+
+[[allowlists]]
+description = "packages/agents/test/bus.test.ts: `idempotency_key: 'dup-key-…'` is the idempotency key of a test proposal (the dedupe path), not a credential."
+regexTarget = "line"
+regexes = ['''idempotency_key: 'dup-key-[0-9]+''']
+
+[[allowlists]]
+description = "packages/data/test/intel-1340.test.ts: the CEX and LP_AUTH constants are well-known public Solana accounts (an exchange hot wallet and the Raydium AMM authority) used as labelled counterparties in the rules fixture."
+regexTarget = "line"
+regexes = ['''const POOL = addr\(3\), DEV = addr\(1\), FUNDER_B = addr\(2\), CEX = ''']
+
+[[allowlists]]
+description = "packages/agents/test/malicious-1345.test.ts: `idempotency_key: 'esc-…'` / `'inject-key-…'` are idempotency keys of refused test proposals in the malicious-agent suite, not credentials."
+regexTarget = "line"
+regexes = ['''idempotency_key: '(esc-[0-9]{8}|inject-key-[0-9]{4})'[ ,}]''']
+
+[[allowlists]]
+description = "packages/cli/test/x-ui-1357.test.ts: `access_token: 'at-xyz-1234567890'` is the fake X OAuth token a test stores to render the logged-in status line (task-1375); it is written only into the test's temp home dir."
+regexTarget = "line"
+regexes = ['''store\.setTokens\(\{ access_token: 'at-xyz-1234567890', refresh_token: 'rt-1', ''']

@@ -1,0 +1,11 @@
+{
+  "name": "example-widgets",
+  "version": "1.0.0",
+  "publisher": "dexterm",
+  "description": "The example pack for the popup widget API (task-1358): one MOVERS widget tiling the screener's biggest 5m movers + the latest alerts in the terminal's theme. Read widgets/movers/movers.html, then enable it: dexterm pack widget example-widgets movers --enable",
+  "requires": { "dexterm": ">=0.1.0", "api": 1 },
+  "contents": {
+    "workspaces": ["workspaces/movers.json"],
+    "widgets": ["widgets/movers"]
+  }
+}

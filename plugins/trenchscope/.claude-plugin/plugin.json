@@ -1,0 +1,10 @@
+{
+  "name": "trenchscope",
+  "version": "0.1.5",
+  "description": "Read-only Solana memecoin research over MCP, the same tools the trenchscope terminal shows. It can never build, sign or send a transaction.",
+  "author": { "name": "trenchscope" },
+  "homepage": "https://github.com/trenchscopeapp/trenchscope",
+  "repository": "https://github.com/trenchscopeapp/trenchscope",
+  "license": "AGPL-3.0-only",
+  "keywords": ["solana", "memecoin", "mcp", "read-only"]
+}

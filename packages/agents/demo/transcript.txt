@@ -1,0 +1,82 @@
+dexterm bring-your-own-agent — worked demo (fixtures, offline). No wallets, no mainnet.
+agent bus listening on ws://127.0.0.1:<port> · 3 registered agents
+
+──────────────────────────────────────────────────────────────────────────────
+ACTOR 1a — Claude Code connects OVER MCP and receives the agent packs
+──────────────────────────────────────────────────────────────────────────────
+MCP server: dexterm@0.0.1
+skills offered as MCP prompts (agent packs): rug-check, token-dossier, trench-scan
+MCP resources (KB + cases + skills): 30; read case resource: dexterm://case/libra-2025
+trench-scan skill playbook received over MCP (first lines):
+  | # Trench scan
+  | 
+  | Argument: `8` = how many of the newest rows to scan (default 8, max 10).
+  | 
+  | ## Tool calls, in this order
+  | 
+  | …
+
+──────────────────────────────────────────────────────────────────────────────
+ACTOR 1b — claude-code runs the trench-scan skill on the fixture dataset
+──────────────────────────────────────────────────────────────────────────────
+claude-code connected over the bus — tier propose (runs the trench-scan skill it received over MCP).
+[tool] screener_query{preset:new} -> 4 rows (source: screener_query.rows)
+[tool] rugcheck{FixtMi…} -> score 12, 0 risks -> INSUFFICIENT_DATA
+[tool] rugcheck{FixtMi…} -> score 8, 0 risks -> WATCH
+[tool] rugcheck{FixtMi…} -> score 5, 0 risks -> WATCH
+[propose] claude-code -> propose_alert MOONER (armed=false) — a DRAFT the user confirms with a keypress
+verdict JSON:
+  {"skill":"trench-scan","scanned":4,"skipped":1,"candidates":[{"mint":"FixtMintBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB","symbol":"MOONER","verdict":"WATCH","strongest":"organicScore 71 (screener_query.organicScore), rugScore 8 (rugcheck.scoreNormalised), 0 risk flags"},{"mint":"FixtMintDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD","symbol":"GIGA","verdict":"WATCH","strongest":"organicScore 80 (screener_query.organicScore), rugScore 5 (rugcheck.scoreNormalised), 0 risk flags"},{"mint":"FixtMintAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","symbol":"TROLL","verdict":"INSUFFICIENT_DATA","strongest":"organicScore 62 (screener_query.organicScore), rugScore 12 (rugcheck.scoreNormalised), 0 risk flags"}]}
+
+──────────────────────────────────────────────────────────────────────────────
+ACTOR 2 — a custom TS agent subscribes to the stream and proposes an alert
+──────────────────────────────────────────────────────────────────────────────
+scanbot connected — tier propose (custom TS SDK agent).
+[stream] scanbot subscribed to new_pairs, trades, alerts
+[stream] scanbot received 1 alert event(s); acting on the volume spike
+[propose] scanbot -> propose_alert GIGA (armed=false) labelled "scanbot"
+
+──────────────────────────────────────────────────────────────────────────────
+ACTOR 3 — a malicious agent fails every escalation / exfiltration / financial attempt
+──────────────────────────────────────────────────────────────────────────────
+redteam connected — tier propose (simulated compromised agent).
+[malicious] arm_plan         -> REFUSED (never)
+[malicious] sign_tx          -> REFUSED (never)
+[malicious] raise_cap        -> REFUSED (never)
+[malicious] set_tier         -> REFUSED (never)
+[malicious] wallet_export    -> REFUSED (never)
+[malicious] read_key         -> REFUSED (never)
+[malicious] open_ticket      -> REFUSED (never)
+[malicious] screener_query   -> REFUSED (spoof)
+all 8 malicious attempts refused: true
+
+──────────────────────────────────────────────────────────────────────────────
+ROSTER — who is connected, their tier, and what they did
+──────────────────────────────────────────────────────────────────────────────
+  claude-code  tier=propose  sessions=1 reads/min=4 proposals=1 refused=0  (claude-code 2.1 (MCP))
+  scanbot      tier=propose  sessions=1 reads/min=0 proposals=1 refused=0  (my-ts-bot 1.0)
+
+──────────────────────────────────────────────────────────────────────────────
+PROPOSALS — every one labelled with the agent that made it, none armed
+──────────────────────────────────────────────────────────────────────────────
+  [scanbot] alert      alert FixtMi… when price +20% in 15m  (armed=false, status=pending)
+  [claude-code] alert      alert FixtMi… when mcap crosses 10M  (armed=false, status=pending)
+proposals are DRAFTS; an agent can never confirm or arm one — the user confirms with a keypress.
+
+──────────────────────────────────────────────────────────────────────────────
+AUDIT — tail of the shared audit log (every connect / call / refusal / proposal)
+──────────────────────────────────────────────────────────────────────────────
+  scanbot      proposal   propose_alert    ok  alert FixtMi… when price +20% in 15m
+  scanbot      disconnect -                ok  socket closed
+  redteam      connect    -                ok  tier propose · definitely-friendly 1.0 · 127.0.0.1
+  redteam      refused    arm_plan         no  never: no agent may do that at any tier
+  redteam      refused    sign_tx          no  never: no agent may do that at any tier
+  redteam      refused    raise_cap        no  never: no agent may do that at any tier
+  redteam      refused    set_tier         no  never: no agent may do that at any tier
+  redteam      refused    wallet_export    no  never: no agent may do that at any tier
+  redteam      refused    read_key         no  never: no agent may do that at any tier
+  redteam      refused    open_ticket      no  never: no agent may do that at any tier
+  redteam      refused    screener_query   no  spoof: argument "tier" is not yours to set: identity and tie
+  redteam      disconnect -                ok  socket closed
+  claude-code  connect    -                ok  tier propose · claude-code 2.1 (MCP) · 127.0.0.1
+  scanbot      connect    -                ok  tier propose · my-ts-bot 1.0 · 127.0.0.1

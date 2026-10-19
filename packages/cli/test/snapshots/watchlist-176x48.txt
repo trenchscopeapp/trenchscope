@@ -1,0 +1,48 @@
+  trenchscope ┃  1 Screener   2 New pairs   3 Watchlist ▌ 4 Analyst                           dexscreener · jup · gecko · rugcheck   SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+╭─ WATCHLIST ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 6 tokens · PnL vs entry ─╮
+│ TOKEN                                     LP           PRICE       ENTRY  VS ENTRY      1H      24H     MCAP      LIQ 24H TREND        NOTE                            ADDED │
+│ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── │
+│ GOAT Goatseus Maximus                      RAY       $0.1339     $0.1575    ▼15.0%   ▲4.8%   ▼61.8%  $133.9M   $19.8M ▅▅▆▆▆▆▆▆▆█████▆▁ thesis: CT rotation into cats     14h │
+│▎ACT Act I: The AI Prophecy                 RAY       $0.0578     $0.0445    ▲29.8%  ▲12.0%   ▼10.5%   $57.8M    $7.6M ▆▆▆▅▆▄▄▅█▃▃▃▂▁▁▂ dev doxxed, LP burned              2d │
+│ NEIRO Neiro                                RAY       $0.0742     $0.0850    ▼12.7%  ▲11.9%   ▼11.9%   $74.2M    $9.2M █▄▇▆▄▂▁▁▂▇▇▅▄▄▅▄ wait for retest of 1.2M            2d │
+│ MANEKI Maneki Neko                         MET     $0.007084   $0.008866    ▼20.1%  ▲11.4%   ▼53.9%    $7.1M    $994K ▆▆██▇▇▇▇▇▇▇▇███▁ watch holder growth                2d │
+│ CLAUDE claude wif terminal                 PUMP    $0.0₄2749   $0.0₄2723     ▲1.0%  ▲36.6%   ▲36.6%     $27K     $14K ▃▃▃▃▃▂▁▂▂▂▂▂▂▁▁█ claude flagged: wash vol           2d │
+│ RETARDIO retardio cousins                  RAY     $0.004481   $0.005046    ▼11.2%   ▼4.2%   ▲53.2%    $4.5M    $549K ▃▃▃▂▂▂▂▂▂▂▂▂▁▁▂█ ATH breakout candidate            23h │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ ALERTS ─────────────────────────────────────────── price · holders · risk · smart money · claude ─╮╭─ ✦ ANALYST DIGEST ───────────────────────────── every 15m · claude -p ─╮
+│  18s ▲  PRICE      GOAT crossed +25% 1h (now +4.8%)                                                ││ Watchlist health: 4 of 6 intact                                        │
+│   2m ◆  HOLDERS    ACT holders +312 in 10m (velocity 3.4x)                                         ││                                                                        │
+│   6m ▼  RISK       CLAUDE dev wallet sold 60% of allocation                                        ││ ● GOAT: momentum intact, holders ▲4103 24h                             │
+│   9m ◆  MIGRATION  RATTO graduated pump.fun → PumpSwap                                             ││ ● ACT: consolidating above entry, no dev sells                         │
+│  14m ▲  SMART      smart wallet 7xKp…q3Lm bought NEIRO $12.4K                                      ││ ◐ NEIRO: volume fading, thesis needs a catalyst                        │
+│  22m ✦  AI         claude: MANEKI thesis invalidated (liq -40%)                                    ││ ○ CLAUDE: wash-trade signature (organic 1), consider dropping          │
+│  31m ▼  PRICE      RETARDIO -18% 5m, sell wall at $0.0042                                          ││ ● MANEKI: smart wallets accumulating (3 tagged buys)                   │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││ Suggested: alert on CATWIF liq < $80K; review SNAIL at 1.2M            │
+│                                                                                                    ││ I do not trade. Confirm any action in the Trade panel (v2).            │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+│                                                                                                    ││                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯╰────────────────────────────────────────────────────────────────────────╯
+  j/k  move   ⏎  open   d  remove   n  note   b  add alert   a  ask claude   q  quit

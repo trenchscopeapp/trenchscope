@@ -1,0 +1,13 @@
+{
+  "name": "trenches",
+  "description": "yo jarvis the trenches are hot, show me everything",
+  "start": "screener",
+  "screener": { "preset": "trench", "filter": "liq > 25K", "sort": "vol5m:desc" },
+  "theme": "trenches-gold",
+  "intensity": "fever",
+  "popups": [
+    { "kind": "narrative", "x": 0.62, "y": 0.04, "w": 0.36, "h": 0.46 },
+    { "kind": "feeds", "x": 0.62, "y": 0.52, "w": 0.36, "h": 0.44 },
+    { "kind": "chart", "mint": "selected", "x": 0.32, "y": 0.56, "w": 0.28, "h": 0.4 }
+  ]
+}

@@ -1,0 +1,20 @@
+# Advisories CI accepts (ci.yml passes --config osv-scanner.toml). Each needs a reason and an expiry; anything
+# else osv-scanner reports fails CI. The release's scan-results.json still lists these as findings.
+#
+# Both are in packages/popup/shell/wry/Cargo.lock: the optional native chart window, which dexterm does not ship
+# prebuilt; it is compiled only on machines that opt in. Clearing them needs tao/wry/gtk upgrades (glib >= 0.20).
+
+[[IgnoredVulns]]
+id = "RUSTSEC-2024-0429"
+ignoreUntil = 2027-01-11
+reason = "glib 0.18.5 VariantStrIter unsoundness, pulled in by tao/wry; optional user-built shell, not shipped. Fix: upgrade the gtk stack."
+
+[[IgnoredVulns]]
+id = "GHSA-wrw7-89jp-8q8g"
+ignoreUntil = 2027-01-11
+reason = "GitHub alias of RUSTSEC-2024-0429 (see above)."
+
+[[IgnoredVulns]]
+id = "RUSTSEC-2024-0370"
+ignoreUntil = 2027-01-11
+reason = "proc-macro-error 1.0.4 is unmaintained (no fix version); build-time proc macro of the optional user-built shell, not shipped."

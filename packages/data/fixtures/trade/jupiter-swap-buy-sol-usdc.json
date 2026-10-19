@@ -1,0 +1,73 @@
+{
+  "recordedAt": "2026-10-09T18:35:46.239Z",
+  "host": "https://api.jup.ag",
+  "note": "keyless read-only recording; userPublicKey is a THROWAWAY key generated for this fixture and never funded or stored; nothing was signed or sent",
+  "userPublicKey": "8yfecPq3CJmnMANcvBbP4xRn1wrkxUgyJpfh1Qau1bfp",
+  "quoteUrl": "https://api.jup.ag/swap/v1/quote?inputMint=So11111111111111111111111111111111111111112&outputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&amount=10000000&slippageBps=50&swapMode=ExactIn",
+  "quote": {
+    "inputMint": "So11111111111111111111111111111111111111112",
+    "inAmount": "10000000",
+    "outputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "outAmount": "1092439",
+    "otherAmountThreshold": "1086977",
+    "swapMode": "ExactIn",
+    "slippageBps": 50,
+    "platformFee": null,
+    "priceImpactPct": "0",
+    "routePlan": [
+      {
+        "swapInfo": {
+          "ammKey": "ExcBWu8fGPdJiaF1b1z3iEef38sjQJks8xvj6M85pPY6",
+          "label": "Raydium CLMM",
+          "inputMint": "So11111111111111111111111111111111111111112",
+          "outputMint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+          "inAmount": "10000000",
+          "outAmount": "1093270",
+          "updateContextSlot": "454960327"
+        },
+        "percent": 100,
+        "bps": null
+      },
+      {
+        "swapInfo": {
+          "ammKey": "EEUNhHsRoUVgJUFpkupmdF4v7uLUw1zhYLp7u9s8zFqG",
+          "label": "GoonFi V2",
+          "inputMint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+          "outputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "inAmount": "1093270",
+          "outAmount": "1092439",
+          "updateContextSlot": "454960441"
+        },
+        "percent": 100,
+        "bps": null
+      }
+    ],
+    "contextSlot": 454960441,
+    "timeTaken": 0.001659615,
+    "swapUsdValue": "1.09203558647971",
+    "mostReliableAmmsQuoteReport": {
+      "info": {
+        "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU": "1092280",
+        "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE": "1092337",
+        "8sjV1AqBFvFuADBCQHhotaRq5DFFYSjjg1jMyVWMqXvZ": "1092363"
+      }
+    },
+    "longtailMarketQuoteReport": null,
+    "useIncurredSlippageForQuoting": null,
+    "useRewards": null,
+    "otherRoutePlans": null,
+    "loadedLongtailToken": false,
+    "instructionVersion": null,
+    "transactionVersion": 0
+  },
+  "swap": {
+    "swapTransaction": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAIEXaGCKL9RfdH4xggZLbX3HY4doDnJ7jfoHspGiZCcnAzBi+PvMRYTgoW8ha4+adY7gO6FwZzwcq0tnCMiZZGUlsKBSRBoVhOV4xwBfanvh4FdBl3V3APJBkA8l9K/YoZzh5O/Sjtq+59G1FTQ3q7725c1pkC02b4y/CN9yOQh0aQlV1buZgD7czSZBwe2mg72pq5/1Xgo7MVClqlufJBJwiYp5MV8uMy9MGpdsikStGi0Dyy1X2o3NLYr145/7U1N7mFrjy6CB49a7T3SzV9/jKgKMC9Qt5n5ypgWf4B2TlN11paatStpkTew6tvIpqp8mubojC8xdc+3qd0J1oCtbn49OSjnZUvQIgzbG2XRaS82yUPpZrDGvvJ30diWU3gvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwZGb+UhFzL/7K26csOb57yM5bvF9xJrLEObOkAAAAAEedVb8jHAbu50xW7OaBUH/bGy3qP0jlECsc2iVrwTjwbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCpjJclj04kifG7PRApFI4NgwtaE5na/xCEBI572Nvp+Fm0P/on9df2SnTAmx8pWHneSwmrNt/J3VFLMhqns4zl6OL4d+g9rsaIj0Orta57MRu3jDSWCJf85ae4LBbiD/GX/NE9oEFVkBPPSuuhqE7XAjrU/yGoR0f/OwWrMPqCB8PqnuBaWf9Ww9in/GUUBz1kvWQwidggVOTTLNKzMga0TwcKAAUCwFwVAA0GAAcAGwkMAQEJAgAHDAIAAACAlpgAAAAAAAwBBwERDQYABAAgCQwBAQsrDA8ABwIGBBsgCwsOCxkPGhUCCBQREgwDEwEFCx0PFwgGFhghIB4fHAwMECnBIJszQdacgQACAAAAGmQAAZcAZAECgJaYAAAAAABXqxAAAAAAADIAAAwDBwAAAQkCl98LjM2/35G0D6kTAQc1BAYDEPHRdkcV3drPKSX/8WkFfHZ4eXUCCRfdQMuNJaJHv+04x8D4Sg82s/W3PeRY8dKw3RipgfqwqQMSFxQHARYbExUZGA==",
+    "lastValidBlockHeight": 432997812,
+    "prioritizationFeeLamports": 0,
+    "computeUnitLimit": 1400000,
+    "simulationError": {
+      "errorCode": "TRANSACTION_ERROR",
+      "error": "Attempt to debit an account but found no record of a prior credit."
+    }
+  }
+}

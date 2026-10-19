@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-10-12T21:46:02Z",
+  "note": "task-1368: keyless `api.jup.ag` /swap/v1/quote exceeded on purpose (8 back-to-back GETs from one IP; read-only, no key, nothing signed or sent) to record what a Jupiter rate limit looks like. Requests 1-2 answered 200 with x-ratelimit-remaining 1 then 0; requests 3-8 answered 429. There is NO Retry-After header: the honest wait is x-ratelimit-reset (epoch seconds) minus now — here 3 s. The window observed is 5 requests per ~10 s per IP (x-ratelimit-current 5). The same shape is assumed for POST /swap/v1/swap, which the live ticket hit (`HTTP 429 for https://api.jup.ag/swap/v1/swap`); a /swap 429 was not provoked on purpose because the build needs a quote object and burns the same window.",
+  "host": "https://api.jup.ag",
+  "quoteUrl": "https://api.jup.ag/swap/v1/quote?inputMint=So11111111111111111111111111111111111111112&outputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&amount=10000000&slippageBps=50&swapMode=ExactIn",
+  "responses": [
+    { "n": 1, "status": 200, "headers": { "content-type": "application/json", "x-ratelimit-remaining": "1", "x-ratelimit-current": "4", "x-ratelimit-reset": "1791841565", "date": "Mon, 12 Oct 2026 21:45:59 GMT" } },
+    { "n": 2, "status": 200, "headers": { "content-type": "application/json", "x-ratelimit-remaining": "0", "x-ratelimit-current": "5", "x-ratelimit-reset": "1791841565", "date": "Mon, 12 Oct 2026 21:46:00 GMT" } },
+    {
+      "n": 3,
+      "status": 429,
+      "headers": {
+        "content-type": "application/json",
+        "content-length": "56",
+        "timing-allow-origin": "https://jup.ag",
+        "x-ratelimit-remaining": "0",
+        "x-ratelimit-current": "5",
+        "x-ratelimit-reset": "1791841565",
+        "date": "Mon, 12 Oct 2026 21:46:02 GMT",
+        "x-cache": "Error from cloudfront",
+        "via": "1.1 cloudfront"
+      },
+      "body": "{\"code\":429,\"message\":\"[API Gateway] Too many requests\"}",
+      "epochNowSeconds": 1791841562
+    }
+  ],
+  "liteApiSameMinute": {
+    "note": "The alternate keyless host answered the same quote with an nginx 503 (text/html, no rate-limit headers) at 21:46:24Z — a 5xx on the OTHER host must alternate straight back, which is why the retry policy treats 5xx like 429 for host rotation.",
+    "host": "https://lite-api.jup.ag",
+    "status": 503,
+    "headers": { "content-type": "text/html", "content-length": "190" },
+    "body": "<html>\n<head><title>503 Service Temporarily Unavailable</title></head>\n<body>\n<center><h1>503 Service Temporarily Unavailable</h1></center>\n<hr><center>nginx</center>\n</body>\n</html>"
+  },
+  "retryAfterVariant": {
+    "note": "Not observed from Jupiter on this day; kept as the standards-form fixture (RFC 9110 Retry-After in seconds) the retry policy must honour when a gateway sends it.",
+    "status": 429,
+    "headers": { "content-type": "application/json", "retry-after": "2", "x-ratelimit-remaining": "0" },
+    "body": "{\"code\":429,\"message\":\"[API Gateway] Too many requests\"}"
+  }
+}

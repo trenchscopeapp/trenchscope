@@ -1,0 +1,45 @@
+/* dexterm popup — spectator page styles (task-1406, "watch the agent cook"). The palette comes from the
+   theme CSS vars common.js sets (--text, --muted, --accent, --up, --down, --warn, --pump, --ai …). */
+.body { overflow-y: auto; padding: 6px 8px; }
+
+.spec-screen { font: 12px ui-monospace, Menlo, monospace; color: var(--text); margin-bottom: 8px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; background: color-mix(in srgb, var(--panel) 85%, transparent); }
+.spec-screen-k { color: var(--accent); font-weight: 600; }
+.spec-screen-dim { color: var(--dim); }
+.spec-takeover { color: var(--warn); font-weight: 600; }
+
+.spec-agents { display: flex; flex-direction: column; gap: 6px; }
+.spec-agent { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font: 12px ui-monospace, Menlo, monospace; background: color-mix(in srgb, var(--panel) 85%, transparent); }
+.spec-agent.off { opacity: 0.6; border-color: var(--warn); }
+.spec-badge { font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; padding: 1px 5px; border-radius: 4px; background: var(--ai, var(--accent)); color: #000; font-weight: 700; }
+.spec-badge.sm { font-size: 8px; padding: 0 4px; }
+.spec-name { color: var(--text); font-weight: 600; }
+.spec-tier { font-size: 10px; padding: 1px 5px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+.tier-observe { color: var(--muted); }
+.tier-annotate { color: var(--accent); border-color: var(--accent); }
+.tier-propose { color: var(--pump); border-color: var(--pump); }
+.spec-status { font-size: 10px; padding: 1px 5px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); }
+.status-active { color: var(--up); border-color: color-mix(in srgb, var(--up) 50%, var(--border)); }
+.status-paused { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 50%, var(--border)); }
+.status-killed { color: var(--down); border-color: color-mix(in srgb, var(--down) 50%, var(--border)); }
+.spec-dim { color: var(--dim); }
+
+.spec-ctl { display: flex; gap: 6px; margin-left: auto; }
+.spec-btn { font: 11px ui-monospace, Menlo, monospace; padding: 2px 10px; border-radius: 4px; border: 1px solid var(--border); background: transparent; color: var(--text); cursor: pointer; }
+.spec-btn:hover { border-color: var(--borderFocus); }
+.spec-btn.danger { color: var(--down); border-color: color-mix(in srgb, var(--down) 50%, var(--border)); }
+.spec-btn.danger:hover { border-color: var(--down); }
+
+.spec-activity-head { margin: 10px 0 4px; font: 11px ui-monospace, Menlo, monospace; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; }
+.spec-activity { display: flex; flex-direction: column; gap: 1px; font: 11px ui-monospace, Menlo, monospace; }
+.spec-act { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; color: var(--muted); }
+.spec-act.bad { color: var(--down); }
+.spec-act.nav .spec-act-phase { color: var(--ai, var(--accent)); font-weight: 600; }
+.spec-act-t { color: var(--dim); min-width: 28px; }
+.spec-act-agent { color: var(--text); }
+.spec-act-phase { color: var(--accent); }
+.spec-act-tool { color: var(--muted); }
+.spec-act-sum { color: var(--text); overflow: hidden; text-overflow: ellipsis; }
+.spec-act-ms { color: var(--dim); }
+.spec-act-age { color: var(--warn); }
+
+.spec-foot-redact { color: var(--up); font-weight: 600; }

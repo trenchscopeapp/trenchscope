@@ -1,0 +1,24 @@
+{
+  "name": "dexterm-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm: terminal DEX screener with a local Claude CLI analyst (monorepo)",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "test": "npm run typecheck && node --test \"packages/*/test/*.test.ts\" && npm run test:serial && npm run test:perf",
+    "test:serial": "node scripts/test-lane.mjs serial",
+    "test:perf": "node scripts/test-lane.mjs perf",
+    "typecheck": "tsc -p tsconfig.json",
+    "snap:update": "node packages/cli/tools/snapshots.mjs --update",
+    "trenchscope": "node packages/cli/bin/trenchscope.mjs",
+    "dexterm": "node packages/cli/bin/dexterm.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}

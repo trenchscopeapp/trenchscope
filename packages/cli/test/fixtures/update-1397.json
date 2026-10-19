@@ -1,0 +1,44 @@
+{
+  "$comment": "task-1397: the two update-check responses, recorded 2026-10-16T03:40Z with curl from https://registry.npmjs.org/dexterm-cli/latest and https://api.github.com/repos/dexterm-xyz/dexterm/releases/latest. Bodies trimmed to the fields update.ts reads plus a few for context; replayed by update-1397.test.ts.",
+  "npm": {
+    "url": "https://registry.npmjs.org/dexterm-cli/latest",
+    "status": 200,
+    "body": {
+      "name": "dexterm-cli",
+      "version": "0.1.1",
+      "license": "AGPL-3.0-only",
+      "engines": {
+        "node": ">=22.18"
+      },
+      "bin": {
+        "dexterm": "dist/packages/cli/bin/dexterm.mjs"
+      }
+    }
+  },
+  "github": {
+    "url": "https://api.github.com/repos/dexterm-xyz/dexterm/releases/latest",
+    "status": 200,
+    "body": {
+      "tag_name": "v0.1.1",
+      "name": "dexterm v0.1.1",
+      "draft": false,
+      "prerelease": false,
+      "published_at": "2026-10-16T02:26:00Z",
+      "html_url": "https://github.com/dexterm-xyz/dexterm/releases/tag/v0.1.1",
+      "assets": [
+        {
+          "name": "dexterm-0.1.1-src.tar.gz"
+        },
+        {
+          "name": "dexterm-0.1.1.cdx.json"
+        },
+        {
+          "name": "scan-results.json"
+        },
+        {
+          "name": "SHA256SUMS"
+        }
+      ]
+    }
+  }
+}

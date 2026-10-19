@@ -1,0 +1,643 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T00:54:33.454Z",
+  "title": "Design System: trenchscope",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Ground Black",
+        "canonical": "#0a0a0a",
+        "oklch": "oklch(14.5% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "sharedWith": "packages/tui/src/theme.ts mono.bg"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Install Surface",
+        "canonical": "#0e0e0e",
+        "oklch": "oklch(16.4% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Chip",
+        "canonical": "#141414",
+        "oklch": "oklch(19.1% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#1d1d1d",
+        "oklch": "oklch(23.1% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "#2c2c2c",
+        "oklch": "oklch(29.3% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "sharedWith": "mono.border"
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "#ededed",
+        "oklch": "oklch(94.6% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "sharedWith": "mono.text"
+      },
+      "ink-body": {
+        "role": "neutral",
+        "displayName": "Body Grey",
+        "canonical": "#a6a6a6",
+        "oklch": "oklch(72.5% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "sharedWith": "mono.muted"
+      },
+      "ink-quiet": {
+        "role": "neutral",
+        "displayName": "Quiet Grey",
+        "canonical": "#8c8c8c",
+        "oklch": "oklch(64.0% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "sharedWith": "mono.dim"
+      },
+      "ink-faint": {
+        "role": "neutral",
+        "displayName": "Faint Grey (non-text)",
+        "canonical": "#4a4a4a",
+        "oklch": "oklch(40.9% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ink-bright": {
+        "role": "primary",
+        "displayName": "Bright White (hover only)",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "up": {
+        "role": "secondary",
+        "displayName": "Muted Up",
+        "canonical": "#7cc794",
+        "oklch": "oklch(76.7% 0.105 153)",
+        "tonalRamp": [
+          "#001500",
+          "#003207",
+          "#005126",
+          "#257244",
+          "#4a9564",
+          "#6eb886",
+          "#92dea9",
+          "#b7ffce"
+        ],
+        "sharedWith": "mono.up"
+      },
+      "down": {
+        "role": "secondary",
+        "displayName": "Muted Down",
+        "canonical": "#e8847c",
+        "oklch": "oklch(72.0% 0.124 25)",
+        "tonalRamp": [
+          "#2e0000",
+          "#520000",
+          "#761c1c",
+          "#9b3f3b",
+          "#c2625b",
+          "#e9857c",
+          "#ffa99f",
+          "#ffcec4"
+        ],
+        "sharedWith": "mono.down"
+      },
+      "warn": {
+        "role": "secondary",
+        "displayName": "Amber Warn",
+        "canonical": "#d9b46a",
+        "oklch": "oklch(78.7% 0.102 83)",
+        "tonalRamp": [
+          "#1e0200",
+          "#3c1d00",
+          "#5b3b00",
+          "#7d5b00",
+          "#a07c31",
+          "#c49f55",
+          "#e9c479",
+          "#ffe99e"
+        ],
+        "sharedWith": "mono.warn"
+      },
+      "bezel-top": {
+        "role": "neutral",
+        "displayName": "Bezel Highlight",
+        "canonical": "#2b2b2b",
+        "oklch": "oklch(28.9% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "bezel-mid": {
+        "role": "neutral",
+        "displayName": "Bezel Graphite",
+        "canonical": "#161616",
+        "oklch": "oklch(20.0% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "bezel-low": {
+        "role": "neutral",
+        "displayName": "Bezel Shadow",
+        "canonical": "#0b0b0b",
+        "oklch": "oklch(15.0% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "bezel-edge": {
+        "role": "neutral",
+        "displayName": "Bezel Edge",
+        "canonical": "#343434",
+        "oklch": "oklch(32.5% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "screen-bar": {
+        "role": "neutral",
+        "displayName": "Window Bar",
+        "canonical": "#0d0d0d",
+        "oklch": "oklch(15.9% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "frame-fill": {
+        "role": "neutral",
+        "displayName": "Frame Fill",
+        "canonical": "#0c0c0c",
+        "oklch": "oklch(15.4% 0.000 89)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The one big statement of the safety section. Spline Sans Mono 600, 5rem, 10ch cap; 2.75rem at 767px and below."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The hero line. Spline Sans Mono 600, 4.625rem; 2.375rem at 767px and below."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings. Spline Sans Mono 600, 2.375rem, 24ch cap; 1.75rem at 767px and below."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Hero lede under the headline, 36ch."
+      },
+      "sub": {
+        "displayName": "Sub",
+        "purpose": "Section subtext, 44ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose and descriptions, about 52ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav, buttons, row titles."
+      },
+      "machine": {
+        "displayName": "Machine",
+        "purpose": "Typed or printed text: install commands, tabs, captions, table last column, footer. Ligatures off."
+      },
+      "keycap": {
+        "displayName": "Keycap",
+        "purpose": "Key labels in reverse video."
+      },
+      "cell": {
+        "displayName": "Cell",
+        "purpose": "Tour grid, 14px on an 18px row, scaled by transform to its box."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bezel",
+        "value": "0 0 0 1px #343434 inset, 0 1px 0 #5a5a5a inset, 0 0 0 1px #000, 0 3rem 5rem -2.5rem rgb(0 0 0 / 0.95), 0 6rem 9rem -5rem rgb(255 255 255 / 0.06)",
+        "purpose": "The lit hardware edge of the stage. Used once."
+      },
+      {
+        "name": "keycap-lip",
+        "value": "0 2px 0 #8c8c8c",
+        "purpose": "The physical lip of the HUD keycap, collapsing to 0 on press."
+      },
+      {
+        "name": "spotlight",
+        "value": "radial-gradient(34% 46% at 50% 0%, rgb(255 255 255 / 0.085), transparent 70%)",
+        "purpose": "White pool behind the stage (with a faint conic light cone)."
+      },
+      {
+        "name": "bezel-glow",
+        "value": "radial-gradient(50% 60% at 50% 0%, rgb(255 255 255 / 0.07), transparent 70%) blurred 10px",
+        "purpose": "Soft glow under the bezel."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-osmo",
+        "value": "cubic-bezier(0.625, 0.05, 0, 1)",
+        "purpose": "Reveals, underlines, stage tilt (400ms to 900ms)."
+      },
+      {
+        "name": "ease-energy",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Pointer lean of the stage (600ms)."
+      },
+      {
+        "name": "ease-punch",
+        "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "purpose": "Press and pop: buttons, HUD, keycap (300ms to 520ms)."
+      },
+      {
+        "name": "ease-smooth",
+        "value": "cubic-bezier(0.38, 0.005, 0.215, 1)",
+        "purpose": "Color fades (200ms to 300ms) and the light sweep (11s)."
+      },
+      {
+        "name": "stage-rise",
+        "value": "rotateX(16deg) scale(0.94) translateY(1.5rem) to none, view() entry 10% to cover 42%",
+        "purpose": "The screen straightens as it scrolls in; rests at rotateX(9deg) without scroll timelines."
+      },
+      {
+        "name": "trench-pan",
+        "value": "far 240s linear, near 130s linear, translateX(-50%)",
+        "purpose": "ASCII ridge layers pan at different speeds."
+      },
+      {
+        "name": "tour-clock",
+        "value": "12 fps, frame holds from tour.json",
+        "purpose": "Tour playback; pauses offscreen, on hover, hidden tab, or by hand."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "frame-desktop",
+        "value": "1440 ideal, 992px to 1920px container"
+      },
+      {
+        "name": "frame-tablet",
+        "value": "max-width 991px, 834 ideal, 768px to 991px; layouts collapse to one column"
+      },
+      {
+        "name": "frame-mobile",
+        "value": "max-width 767px, 550 ideal, 480px to 767px; nav hidden, gutter 1rem"
+      },
+      {
+        "name": "frame-small",
+        "value": "max-width 479px, 390 ideal, 320px to 479px, font floor 0.8125rem"
+      },
+      {
+        "name": "keylist-single",
+        "value": "max-width 639px"
+      }
+    ],
+    "system": {
+      "sharedWithCli": {
+        "theme": "mono",
+        "file": "packages/tui/src/theme.ts",
+        "note": "The site palette and the CLI mono theme are one system; change both together."
+      },
+      "scaling": {
+        "name": "Osmo scaling",
+        "rootFontSize": "max(container / (ideal / 16), 0.875rem)",
+        "frames": [
+          "frame-desktop",
+          "frame-tablet",
+          "frame-mobile",
+          "frame-small",
+          "keylist-single"
+        ]
+      },
+      "generatedAssets": [
+        {
+          "path": "site/tour.json",
+          "renderedBy": "packages/cli/tools/site-frames.mjs",
+          "size": "160x46",
+          "fps": 12,
+          "rule": "regenerate, never hand-draw"
+        },
+        {
+          "path": "site/tour-narrow.json",
+          "renderedBy": "packages/cli/tools/site-frames.mjs",
+          "size": "60x44",
+          "fps": 12,
+          "rule": "regenerate, never hand-draw"
+        },
+        {
+          "path": "site/assets/trench-far.webp",
+          "renderedBy": "ASCII Magic asciiStudio",
+          "provenance": "site/assets/trench-far.webp.json"
+        },
+        {
+          "path": "site/assets/trench-near.webp",
+          "renderedBy": "ASCII Magic asciiStudio",
+          "provenance": "site/assets/trench-near.webp.json"
+        }
+      ],
+      "glyphField": {
+        "renderer": "canvas in site/main.js",
+        "glyphs": ". · : + x * = % # $",
+        "cellPx": 15,
+        "alpha": "0.05 to 0.18 of ink",
+        "tickMs": 110
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Ink fill, ground text. The only solid light action. No arrow.",
+      "html": "<button class=\"ds-btn\">Install</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.5rem;padding:0 1rem;border:0;border-radius:8px;background:var(--ink,#ededed);color:var(--bg,#0a0a0a);font:500 0.875rem "Spline Sans Mono",ui-monospace,monospace;cursor:pointer;transition:background-color 200ms cubic-bezier(0.38,0.005,0.215,1),transform 300ms cubic-bezier(0.19,1,0.22,1)}.ds-btn:hover{background:#fff}.ds-btn:active{transform:scale(0.97)}.ds-btn:focus-visible{outline:2px solid #ededed;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Hairline outline control with a non-directional icon (pause).",
+      "html": "<button class=\"ds-ghost\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M5 3.5v9M11 3.5v9\"/></svg><span>Pause</span></button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;gap:0.5rem;min-height:2.75rem;padding:0 0.875rem;background:none;border:1px solid #2c2c2c;border-radius:8px;color:#a6a6a6;font:400 0.8125rem "Spline Sans Mono",ui-monospace,monospace;cursor:pointer;transition:color 200ms,border-color 200ms}.ds-ghost svg{width:0.875rem;height:0.875rem;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}.ds-ghost:hover{color:#ededed;border-color:#4a4a4a}.ds-ghost:focus-visible{outline:2px solid #ededed;outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Install Block",
+      "kind": "custom",
+      "refersTo": "install-block",
+      "description": "Tabbed command block with copy control, one frame language (14px outer).",
+      "html": "<div class=\"ds-install\"><div class=\"ds-tabs\"><button class=\"ds-tab\" aria-selected=\"true\">checkout</button><button class=\"ds-tab\" aria-selected=\"false\">npm</button><button class=\"ds-tab\" aria-selected=\"false\">brew</button><button class=\"ds-copy\">copy</button></div><pre class=\"ds-cmd\"><span class=\"ds-ps\">$ </span><b>npm</b> run trenchscope -- doctor\n<span class=\"ds-ps\">$ </span><b>npm</b> run trenchscope</pre><p class=\"ds-note\">From a checkout of the repo. Node 22.18 or newer, no build step.</p></div>",
+      "css": ".ds-install{border:1px solid #2c2c2c;border-radius:14px;background:#0e0e0e;overflow:hidden;max-width:34rem}.ds-tabs{display:flex;align-items:center;border-bottom:1px solid #1d1d1d;padding-inline:0.375rem}.ds-tab{position:relative;min-height:2.75rem;padding:0 0.75rem;background:none;border:0;font:500 0.8125rem \"JetBrains Mono\",monospace;color:#8c8c8c;cursor:pointer}.ds-tab::after{content:\"\";position:absolute;left:0.75rem;right:0.75rem;bottom:-1px;height:1px;background:#ededed;transform:scaleX(0);transition:transform 400ms cubic-bezier(0.625,0.05,0,1)}.ds-tab[aria-selected=true]{color:#ededed}.ds-tab[aria-selected=true]::after{transform:scaleX(1)}.ds-tab:hover{color:#ededed}.ds-copy{margin-left:auto;min-height:2.75rem;padding:0 0.75rem;background:none;border:0;font:400 0.8125rem \"JetBrains Mono\",monospace;color:#8c8c8c;cursor:pointer}.ds-copy:hover{color:#ededed}.ds-cmd{margin:0;padding:1rem 1.125rem 1.125rem;font:400 0.9375rem/1.9 \"JetBrains Mono\",monospace;color:#a6a6a6;white-space:pre;overflow-x:auto}.ds-cmd b{color:#ededed;font-weight:400}.ds-ps{color:#8c8c8c;user-select:none}.ds-note{margin:0;padding:0 1.125rem 1rem;font:400 0.8125rem "Spline Sans Mono",ui-monospace,monospace;color:#8c8c8c}"
+    },
+    {
+      "name": "Keycap",
+      "kind": "chip",
+      "refersTo": "keycap",
+      "description": "Reverse-video key label; the world's signature mark for anything pressable.",
+      "html": "<span class=\"ds-caps\"><kbd class=\"ds-kbd\">j</kbd><kbd class=\"ds-kbd\">k</kbd><kbd class=\"ds-kbd\">enter</kbd></span>",
+      "css": ".ds-caps{display:flex;gap:0.375rem}.ds-kbd{display:inline-grid;place-items:center;min-width:2.25rem;height:2.25rem;padding:0 0.625rem;border-radius:7px;background:#ededed;color:#0a0a0a;font:700 0.9375rem \"JetBrains Mono\",monospace}"
+    },
+    {
+      "name": "Chapter Rail Item",
+      "kind": "nav",
+      "refersTo": "chapter-key",
+      "description": "One tour chapter: a 1px progress track, a label, and a key chip that goes reverse video when current.",
+      "html": "<div class=\"ds-rail\"><button class=\"ds-ch\" aria-current=\"step\"><span class=\"ds-track\"><i style=\"--p:.6\"></i></span><span class=\"ds-lab\">Screener<kbd>$</kbd></span></button><button class=\"ds-ch\"><span class=\"ds-track\"><i style=\"--p:0\"></i></span><span class=\"ds-lab\">Token<kbd>enter</kbd></span></button></div>",
+      "css": ".ds-rail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem;max-width:22rem}.ds-ch{display:flex;flex-direction:column;gap:0.625rem;width:100%;text-align:left;background:none;border:0;padding:0 0 0.25rem;cursor:pointer;font-family:"Spline Sans Mono",ui-monospace,monospace}.ds-track{position:relative;height:1px;background:#2c2c2c;overflow:hidden}.ds-track i{position:absolute;inset:0;background:#ededed;transform:scaleX(var(--p,0));transform-origin:left}.ds-lab{display:flex;align-items:center;gap:0.625rem;font-size:0.875rem;color:#8c8c8c;transition:color 300ms cubic-bezier(0.38,0.005,0.215,1)}.ds-lab kbd{font:400 0.6875rem \"JetBrains Mono\",monospace;color:#8c8c8c;padding:0.0625rem 0.375rem;border:1px solid #2c2c2c;border-radius:4px}.ds-ch[aria-current=step] .ds-lab{color:#ededed}.ds-ch[aria-current=step] .ds-lab kbd{background:#ededed;border-color:#ededed;color:#0a0a0a}.ds-ch:hover .ds-lab{color:#ededed}"
+    },
+    {
+      "name": "Rules List",
+      "kind": "custom",
+      "refersTo": "rules-row",
+      "description": "Ruled definition list: term column in ink, description in body grey.",
+      "html": "<dl class=\"ds-rules\"><div><dt>Read-only</dt><dd>It has no build, sign or send tool.</dd></div><div><dt>Your login</dt><dd>Usage goes to your own account.</dd></div></dl>",
+      "css": ".ds-rules{display:grid;margin:0;max-width:34rem;font-family:"Spline Sans Mono",ui-monospace,monospace}.ds-rules>div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.5rem;padding:1rem 0;border-top:1px solid #1d1d1d}.ds-rules>div:last-child{border-bottom:1px solid #1d1d1d}.ds-rules dt{font-weight:500;font-size:0.9375rem;color:#ededed}.ds-rules dd{margin:0;color:#a6a6a6;line-height:1.6}"
+    },
+    {
+      "name": "Source Table",
+      "kind": "custom",
+      "refersTo": "table-cell",
+      "description": "Hairline table, mono heads, right-aligned mono key column. No fills.",
+      "html": "<table class=\"ds-table\"><thead><tr><th>Source</th><th>What it gives</th><th>Key</th></tr></thead><tbody><tr><th scope=\"row\">DexScreener</th><td>pairs, prices, volume</td><td>none</td></tr><tr><th scope=\"row\">Solana RPC</th><td>holders, on-chain reads</td><td>optional Helius</td></tr></tbody></table>",
+      "css": ".ds-table{width:100%;max-width:34rem;border-collapse:collapse;font:400 0.9375rem "Spline Sans Mono",ui-monospace,monospace}.ds-table th,.ds-table td{padding:0.9375rem 1rem 0.9375rem 0;text-align:left;border-bottom:1px solid #1d1d1d}.ds-table thead th{padding-block:0.75rem;font:400 0.75rem \"JetBrains Mono\",monospace;color:#8c8c8c}.ds-table tbody th{font-weight:500;color:#ededed;white-space:nowrap}.ds-table td{color:#a6a6a6}.ds-table td:last-child,.ds-table thead th:last-child{text-align:right;padding-right:0;font:400 0.8125rem \"JetBrains Mono\",monospace;color:#8c8c8c}"
+    },
+    {
+      "name": "Analyst Frame",
+      "kind": "card",
+      "refersTo": "frame",
+      "description": "Two-layer frame: 16px outer hairline, 12px inner strong hairline, mono caption bar with an up-colored pip.",
+      "html": "<figure class=\"ds-frame\"><div class=\"ds-frame-in\"><div class=\"ds-frame-bar\"><span>token screen · analyst panel</span><span>live render</span></div><div class=\"ds-frame-body\"></div></div></figure>",
+      "css": ".ds-frame{margin:0;padding:0.25rem;border:1px solid #1d1d1d;border-radius:16px;background:#0c0c0c;max-width:28rem}.ds-frame-in{border:1px solid #2c2c2c;border-radius:12px;overflow:hidden;background:#0a0a0a}.ds-frame-bar{display:flex;justify-content:space-between;gap:1rem;padding:0.625rem 0.875rem;border-bottom:1px solid #1d1d1d;font:400 0.75rem \"JetBrains Mono\",monospace;color:#8c8c8c}.ds-frame-bar span:last-child{display:inline-flex;align-items:center;gap:0.4375rem}.ds-frame-bar span:last-child::before{content:\"\";width:0.4375rem;height:0.4375rem;background:#7cc794}.ds-frame-body{height:8rem}"
+    },
+    {
+      "name": "Stage Bezel",
+      "kind": "custom",
+      "refersTo": "bezel",
+      "description": "Graphite bezel, window bar and ground screen with a keystroke HUD. The one lit object.",
+      "html": "<figure class=\"ds-bezel\"><div class=\"ds-screen\"><div class=\"ds-sbar\"><span class=\"ds-dots\"><i></i><i></i><i></i></span><span>trenchscope</span><span class=\"ds-size\">160×46</span></div><div class=\"ds-sbody\"></div><div class=\"ds-hud\"><kbd>a</kbd><span>ask the analyst</span></div></div></figure>",
+      "css": ".ds-bezel{position:relative;margin:0;padding:0.75rem;border-radius:1.375rem;max-width:34rem;background:linear-gradient(172deg,#2b2b2b 0%,#161616 22%,#0b0b0b 70%,#202020 100%);box-shadow:0 0 0 1px #343434 inset,0 1px 0 #5a5a5a inset,0 0 0 1px #000,0 3rem 5rem -2.5rem rgb(0 0 0/.95),0 6rem 9rem -5rem rgb(255 255 255/.06)}.ds-screen{position:relative;overflow:hidden;border-radius:0.625rem;background:#0a0a0a;box-shadow:0 0 0 1px #000}.ds-sbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:2.125rem;padding:0 0.875rem;border-bottom:1px solid #161616;background:#0d0d0d;font:400 0.75rem \"JetBrains Mono\",monospace;color:#8c8c8c}.ds-dots{display:flex;gap:0.4375rem}.ds-dots i{width:0.6875rem;height:0.6875rem;border-radius:50%;border:1px solid #3a3a3a;background:#1a1a1a}.ds-size{justify-self:end}.ds-sbody{height:9rem}.ds-hud{position:absolute;right:1rem;bottom:1rem;display:flex;align-items:center;gap:0.625rem;padding:0.375rem 0.75rem 0.375rem 0.375rem;border-radius:10px;background:rgb(12 12 12/.86);border:1px solid #2c2c2c;font:400 0.8125rem "Spline Sans Mono",ui-monospace,monospace;color:#a6a6a6}.ds-hud kbd{display:inline-grid;place-items:center;min-width:2rem;height:2rem;padding:0 0.5rem;border-radius:7px;background:#ededed;color:#0a0a0a;font:700 0.9375rem \"JetBrains Mono\",monospace;box-shadow:0 2px 0 #8c8c8c}"
+    },
+    {
+      "name": "State Chip",
+      "kind": "chip",
+      "refersTo": "state-chip",
+      "description": "Inline mono chip naming a failure state the app prints.",
+      "html": "<p class=\"ds-states\"><code>unavailable</code> the source did not answer</p>",
+      "css": ".ds-states{margin:0;font:400 0.875rem "Spline Sans Mono",ui-monospace,monospace;color:#8c8c8c}.ds-states code{margin-right:0.5rem;padding:0.125rem 0.4375rem;border-radius:4px;background:#141414;border:1px solid #2c2c2c;color:#ededed;font:400 0.875em \"JetBrains Mono\",monospace}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Screen",
+    "overview": "The page is the product running. A real terminal, drawn cell for cell by the app itself, sits in a graphite bezel under a soft white spotlight, and everything else on the page is quiet enough to let it be the brightest thing. The site and the CLI are one system: the site palette is the `mono` theme in `packages/tui/src/theme.ts` (ground, ink, three greys, up, down, warn), so the screen and the page read as one surface and a change to one is a change to both.\n\nThe world is black and white. Ink on near-black for everything, hairline rules instead of fills, reverse video (ink background, ground text) for anything that is pressed, active or a key. Hue exists only where the data carries meaning: a muted green for up, a muted red for down, an amber for real warnings. Geist sets the prose; JetBrains Mono appears only for what a person types or the machine prints. Depth comes from light and tilt (a perspective stage, a spotlight, a bezel), not from shadows on content.\n\nBehind the content runs a full-bleed ASCII trench: two ridges rendered by ASCII Magic, panned at different speeds, a band of light sweeping the near ridge, and a sparse canvas field of flickering glyphs. It steps back past the first screen.",
+    "keyCharacteristics": [
+      "One palette shared with the CLI `mono` theme; the page never invents a color the app does not have.",
+      "Reverse video is the only emphasis fill: keycaps, the primary button, the current chapter key, selection.",
+      "Hairline rules and one frame language (outer radius with a hairline, 4px padding, inner radius with a stronger hairline).",
+      "Rem-scaled layout (Osmo scaling) so the composition holds its proportions between design frames.",
+      "Motion is eased with four named curves and respects reduced motion everywhere."
+    ],
+    "rules": [
+      {
+        "name": "The Shared Palette Rule",
+        "body": "The site palette and the CLI `mono` theme are one system. Ground, ink, ink-body, ink-quiet, hairline-strong, up, down and warn are the same values in both. A change goes to `packages/tui/src/theme.ts` and `site/styles.css` together, then the tour is regenerated.",
+        "section": "colors"
+      },
+      {
+        "name": "The Signal Only Rule",
+        "body": "Hue carries data, never decoration. Up and down mean price direction; amber means a warning. No accent color, no brand tint, no gradient fills with hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Reverse Video Rule",
+        "body": "Anything pressed, active, selected or a key is ink on ground inverted: ink fill, ground text. Nothing else gets a solid light fill.",
+        "section": "colors"
+      },
+      {
+        "name": "The Machine Voice Rule",
+        "body": "Mono is for commands, keys, source names the app prints, and cell data. Never set headings, nav or marketing sentences in mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tight Display Rule",
+        "body": "Letter-spacing tightens as size grows (-0.03em at title, -0.035em at headline, -0.04em at display) and line-height drops to 1 or below; body stays at 1.5 to 1.6.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Content Rule",
+        "body": "Cards, frames, tables and rules have no drop shadows. If a surface needs lifting, step the tone or draw a hairline.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Lit Object Rule",
+        "body": "Only the stage is lit and tilted. A second tilted or glowing object would dilute it.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** take every color from the frontmatter tokens, and keep the site and `mono` theme values identical.",
+      "**Do** use reverse video (ink fill, ground text) for keys, the current chapter and the primary action.",
+      "**Do** keep mono for typed and printed text only, with ligatures off.",
+      "**Do** use rem for layout so the Osmo scaling holds; design both the desktop and the 390px frame.",
+      "**Do** keep controls at least 2.75rem tall and keep a visible 2px ink focus ring with 3px offset.",
+      "**Do** regenerate the tour with `site-frames.mjs` whenever the app's look changes.",
+      "**Do** put provenance (a `.webp.json` sidecar) beside every shipping raster."
+    ],
+    "donts": [
+      "**Don't** add hue beyond up, down and warn; no blue accent, no coral, no launchpad colors.",
+      "**Don't** use em dashes (U+2014) anywhere in copy, code comments or docs.",
+      "**Don't** put arrows or chevrons on buttons or calls to action.",
+      "**Don't** hand-draw or screenshot-edit the CLI; frames come from the app.",
+      "**Don't** present the npm or Homebrew names as live until they are published.",
+      "**Don't** put shadows on content surfaces, or tilt or glow a second object next to the stage.",
+      "**Don't** set ink-faint (#4a4a4a) as text."
+    ]
+  }
+}

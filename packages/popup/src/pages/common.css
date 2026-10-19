@@ -1,0 +1,34 @@
+/* dexterm popup — shared chrome + cyberspace look (task-1281 palette; approved HUD look from the spike).
+   Inlined under a CSP nonce. Transparent body so the frameless shell shows CSS-rounded corners. */
+:root { --bg:#020507; --panel:#03090c; --border:#0c3a24; --borderFocus:#39ff14; --text:#eafff0; --muted:#62c98a; --dim:#3aa866; --accent:#00f0ff; --up:#5dff6e; --down:#ff3b6b; --warn:#f5ff2d; --ai:#d97757; --pump:#ff2bd6; --dbc:#ff8a3d; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; background: transparent; overflow: hidden; }
+body { font: 13px/1.35 ui-monospace, "SF Mono", Menlo, monospace; color: var(--text); -webkit-user-select: none; user-select: none; }
+.hud {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  background: radial-gradient(130% 100% at 50% 0%, var(--panel) 0%, var(--bg) 78%);
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,.6), inset 0 0 0 1px rgba(57,255,20,.04);
+}
+.drag { display: flex; align-items: center; gap: 8px; padding: 6px 10px; cursor: default; -webkit-app-region: drag;
+  background: linear-gradient(to bottom, rgba(12,58,36,.5), rgba(3,9,12,0)); border-bottom: 1px solid var(--border); }
+.drag .mark { color: var(--accent); }
+.drag .title { font-weight: 700; letter-spacing: .04em; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.drag .status { margin-left: auto; color: var(--warn); font-size: 11px; }
+.drag .close { -webkit-app-region: no-drag; cursor: pointer; background: none; border: 1px solid var(--border); color: var(--muted);
+  border-radius: 6px; width: 22px; height: 20px; line-height: 1; font-size: 12px; }
+.drag .close:hover { color: var(--down); border-color: var(--down); }
+.stage { position: relative; flex: 1 1 auto; min-height: 0; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; padding: 4px 10px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+.legend b { color: var(--dim); font-weight: 400; }
+.foot { display: flex; gap: 14px; padding: 4px 10px; font-size: 11px; color: var(--dim); border-top: 1px solid var(--border); }
+.foot .fps { margin-left: auto; color: var(--muted); }
+/* list-style popups (token detail, feeds) */
+.body { position: relative; flex: 1 1 auto; min-height: 0; overflow: auto; }
+.rows { position: relative; z-index: 1; }
+.row { display: flex; gap: 10px; padding: 4px 12px; border-bottom: 1px solid rgba(12,58,36,.3); }
+.row .k { color: var(--muted); min-width: 92px; }
+.row .v { color: var(--text); white-space: pre-wrap; word-break: break-word; }
+.row.sel { background: rgba(0,240,255,.08); }
+.up { color: var(--up); } .down { color: var(--down); } .warn { color: var(--warn); } .muted { color: var(--muted); }

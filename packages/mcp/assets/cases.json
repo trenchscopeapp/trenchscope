@@ -1,0 +1,1194 @@
+{
+ "version": 1,
+ "format": "cases/FORMAT.md",
+ "builtAt": "2026-10-06T10:30:22.444Z",
+ "note": "Ten well-documented public memecoin cases for the case-file library sample (task-1293). `expectMint` is the author's (Claude's) recollection and is NOT a fact: the resolver fetches the mint from DexScreener (top-liquidity Solana pair with the symbol) and records whether memory matched. `narrativeDraft` is Claude-drafted prose for the maintainers to rewrite; nothing in it is served as a fact. Post-mortem URLs were fetched on 2026-10-06 (status 200) unless marked citationGap.",
+ "cases": [
+  {
+   "id": "libra-2025",
+   "title": "$LIBRA: presidential promotion, insider liquidity withdrawal, collapse",
+   "symbol": "LIBRA",
+   "pattern": "insider-dump",
+   "outcome": "rug",
+   "period": {
+    "from": "2025-02-14",
+    "to": "2025-02-16"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/$Libra_cryptocurrency_scandal",
+     "publisher": "Wikipedia",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "promoted by Javier Milei on 2025-02-14; token created by Kelsier Ventures (Hayden Davis); price spiked then dropped severely; rug-pull allegations; Meteora co-founder connection"
+    }
+   ],
+   "citationGap": false,
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "Launched on Meteora and promoted by Argentina's president on 2025-02-14; the price spiked within hours and then collapsed as liquidity was withdrawn by wallets linked to the launch team, leading to rug-pull allegations and investigations. Pattern to compare: a single promoter event, concentrated early liquidity, and insiders able to exit against the public bid."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "query": "LIBRA",
+    "resolvedAt": "2026-10-06T10:36:27.744Z",
+    "mint": "Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU",
+    "pairAddress": "DywR4cjNLhPy1dV9tBShpCbXoAAq3LN3Wajj9Gw64co9",
+    "dexId": "raydium",
+    "liveSymbol": "LIBRA",
+    "liquidityUsd": 6162.52,
+    "fdv": 3210202,
+    "pairCreatedAt": 1739570549000,
+    "candidates": 7,
+    "candidatesInWindow": 4,
+    "windowMiss": false,
+    "candidatesSummary": [
+     {
+      "mint": "7Zt2KUh5mkpEpPGcNcFy51aGkh9Ycb5ELcqRH1n2GmAe",
+      "symbol": "LIBRA",
+      "dex": "raydium",
+      "liquidityUsd": 22391.29,
+      "pairCreatedAt": 1720206200000,
+      "inWindow": false
+     },
+     {
+      "mint": "Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU",
+      "symbol": "LIBRA",
+      "dex": "raydium",
+      "liquidityUsd": 6162.52,
+      "pairCreatedAt": 1739570549000,
+      "inWindow": true
+     },
+     {
+      "mint": "HrNDtPdFJ9SvKrukuh8ucLb3NT5deJV7uXWDFfhuG6FA",
+      "symbol": "LIBRA",
+      "dex": "raydium",
+      "liquidityUsd": 824.39,
+      "pairCreatedAt": 1710556754000,
+      "inWindow": false
+     },
+     {
+      "mint": "Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU",
+      "symbol": "LIBRA",
+      "dex": "orca",
+      "liquidityUsd": 240.79,
+      "pairCreatedAt": 1739571448000,
+      "inWindow": true
+     },
+     {
+      "mint": "Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU",
+      "symbol": "LIBRA",
+      "dex": "meteora",
+      "liquidityUsd": 154.27,
+      "pairCreatedAt": 1739570984000,
+      "inWindow": true
+     },
+     {
+      "mint": "7Zt2KUh5mkpEpPGcNcFy51aGkh9Ycb5ELcqRH1n2GmAe",
+      "symbol": "LIBRA",
+      "dex": "orca",
+      "liquidityUsd": 112.86,
+      "pairCreatedAt": 1729103583000,
+      "inWindow": false
+     }
+    ],
+    "expectMint": null,
+    "expectMintSource": null,
+    "memoryMintMatch": null,
+    "previous": {
+     "method": "dexscreener-search-top-liquidity",
+     "resolvedAt": "2026-10-06T10:30:22.859Z",
+     "mint": "7Zt2KUh5mkpEpPGcNcFy51aGkh9Ycb5ELcqRH1n2GmAe",
+     "pairAddress": "DTXPQjK4ae4h2Wc7D5Rpij8YmSQxqLuTcNKrpBCjcAN9",
+     "dexId": "raydium",
+     "liquidityUsd": 22391.29,
+     "fdv": 89021,
+     "pairCreatedAt": 1720206200000,
+     "candidates": 7,
+     "expectMint": null,
+     "memoryMintMatch": null,
+     "note": "first resolution by symbol search; superseded"
+    },
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "pair",
+     "value": "DywR4cjNLhPy1dV9tBShpCbXoAAq3LN3Wajj9Gw64co9",
+     "dex": "raydium",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "Bo9jh3wsmcC2AjakLWzNmKJ3SgtZmXEcSaW7L2FAvUsU",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "999983127284431",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453876464,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "3vtogCe5Q52iUYbY6CLRTV3RUf2ggSDoAkPtCYpJrvpvdoqx71mJbS5zgwvze7CDHTBzNohbg4eJiFPw5kUnu5Dh",
+     "slot": 320680900,
+     "blockTime": 1739569069,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "trump-2025",
+   "title": "OFFICIAL TRUMP: 1B supply, 200M public float, run-up then long decline",
+   "symbol": "TRUMP",
+   "pattern": "runner",
+   "outcome": "runner",
+   "period": {
+    "from": "2025-01-17",
+    "to": "2025-01-20"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/$Trump",
+     "publisher": "Wikipedia",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "launched 2025-01-17, three days before the inauguration; one billion coins created, 800 million held by two Trump-owned companies, 200 million released publicly"
+    }
+   ],
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "Launched 2025-01-17 with 1B supply of which 200M was public; ran to a multi-billion valuation within two days and then declined for months. Pattern to compare: enormous insider allocation that is disclosed rather than hidden; the float, not the authorities, is the risk."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "resolvedAt": "2026-10-06T10:30:26.106Z",
+    "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+    "pairAddress": "3C5YE97HADPDxZehYq9Cis8AXr9aNyrUsczKzE1nDbW9",
+    "dexId": "meteora",
+    "liquidityUsd": 11777886.07,
+    "fdv": 2027180388,
+    "pairCreatedAt": 1737191463000,
+    "candidates": 18,
+    "expectMint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+    "memoryMintMatch": true,
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "3C5YE97HADPDxZehYq9Cis8AXr9aNyrUsczKzE1nDbW9",
+     "dex": "meteora",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "999998918333179",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453875109,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "3RVpxfaDscntzr4abnmjkkN1cDPthzpxG3Pgt6PksmvhzNDFXxCPPxnKByjPJK4vsmXueD3zxuhYq5PpwCuyigLR",
+     "slot": 314587378,
+     "blockTime": 1737122459,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "melania-2025",
+   "title": "MELANIA: second launch two days later, bundled early supply, decline",
+   "symbol": "MELANIA",
+   "pattern": "bundled-launch",
+   "outcome": "fade",
+   "period": {
+    "from": "2025-01-19",
+    "to": "2025-01-22"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/$Melania",
+     "publisher": "Wikipedia (redirects to the $Trump article, which covers $Melania)",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "launched 2025-01-19; on-chain analyses of early wallet activity; drew value away from $TRUMP"
+    }
+   ],
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "Launched 2025-01-19 on the heels of TRUMP; early supply was concentrated in wallets that bought in the launch window and the token declined steadily. Pattern to compare: a derivative launch into an existing narrative where the early float was already placed."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "resolvedAt": "2026-10-06T10:30:29.704Z",
+    "mint": "FUAfBo2jgks6gB4Z4LfZkqSZgzNucisEHqnNebaRxM1P",
+    "pairAddress": "9DiruRpjnAnzhn6ts5HGLouHtJrT1JGsPbXNYCrFz2ad",
+    "dexId": "meteora",
+    "liquidityUsd": 12887609.1,
+    "fdv": 103984558,
+    "pairCreatedAt": 1737320909000,
+    "candidates": 18,
+    "expectMint": "FUAfBo2jgks6gB4Z4LfZkqSZgzNucisEHqnNebaRxM1P",
+    "memoryMintMatch": true,
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "FUAfBo2jgks6gB4Z4LfZkqSZgzNucisEHqnNebaRxM1P",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "9DiruRpjnAnzhn6ts5HGLouHtJrT1JGsPbXNYCrFz2ad",
+     "dex": "meteora",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "FUAfBo2jgks6gB4Z4LfZkqSZgzNucisEHqnNebaRxM1P",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "999995680565764",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453875122,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "Qipr1f8z6cs6Bo6g9xyd6Ux3c8Aakw4VdyF2nKvLBW6RLcBPabxfQxzNNNubd3gcFRs3zVEN27quwmwGXdNgpx9",
+     "slot": 315065765,
+     "blockTime": 1737316310,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "hawk-2024",
+   "title": "HAWK: celebrity meme token, launch-window insiders, immediate collapse",
+   "symbol": "HAWK",
+   "pattern": "insider-dump",
+   "outcome": "rug",
+   "period": {
+    "from": "2024-12-04",
+    "to": "2024-12-05"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Hawk_tuah",
+     "publisher": "Wikipedia",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "the meme's origin (June 2024 interview); the readability extract fetched did not include the coin section, citationGap for the coin specifics"
+    }
+   ],
+   "citationGap": true,
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "Launched 2024-12-04 around a viral meme personality; a large share of supply was held by launch-window wallets and the price collapsed within hours, followed by investor lawsuits. Pattern to compare: celebrity-attached launch where the early float sits with the launch team and snipers."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "query": "HAWK",
+    "resolvedAt": "2026-10-06T10:36:31.091Z",
+    "mint": "14Ak6KegFHLANKALmpjdn1MFW477yvesX8cdzdVEpump",
+    "pairAddress": "Enh96DNuB9cWsTeJouHePiCjPNoUn8eca1rwqgb7q1R9",
+    "dexId": "raydium",
+    "liveSymbol": "HAWK",
+    "liquidityUsd": 12177.29,
+    "fdv": 12599,
+    "pairCreatedAt": 1720015457000,
+    "candidates": 5,
+    "candidatesInWindow": 0,
+    "windowMiss": true,
+    "candidatesSummary": [
+     {
+      "mint": "14Ak6KegFHLANKALmpjdn1MFW477yvesX8cdzdVEpump",
+      "symbol": "HAWK",
+      "dex": "raydium",
+      "liquidityUsd": 12177.29,
+      "pairCreatedAt": 1720015457000,
+      "inWindow": false
+     },
+     {
+      "mint": "5d88LoqtAw9m4D4nEMvNZkgYYmPcQnGe6RUVZmSzpump",
+      "symbol": "HAWK",
+      "dex": "pumpswap",
+      "liquidityUsd": 2532.85,
+      "pairCreatedAt": 1785547653000,
+      "inWindow": false
+     },
+     {
+      "mint": "BKipkearSqAUdNKa1WDstvcMjoPsSKBuNyvKDQDDu9WE",
+      "symbol": "HAWK",
+      "dex": "raydium",
+      "liquidityUsd": 1198.48,
+      "pairCreatedAt": 1669605188000,
+      "inWindow": false
+     },
+     {
+      "mint": "BKipkearSqAUdNKa1WDstvcMjoPsSKBuNyvKDQDDu9WE",
+      "symbol": "HAWK",
+      "dex": "fluxbeam",
+      "liquidityUsd": 32.85,
+      "pairCreatedAt": 1703393565000,
+      "inWindow": false
+     },
+     {
+      "mint": "6Q5ko4T28CHkMAKCZco5JXG1nGytw3MpNVAE4FE7pump",
+      "symbol": "HAWK",
+      "dex": "pumpfun",
+      "liquidityUsd": null,
+      "pairCreatedAt": 1791146660000,
+      "inWindow": false
+     }
+    ],
+    "expectMint": null,
+    "expectMintSource": null,
+    "memoryMintMatch": null,
+    "previous": {
+     "method": "dexscreener-search-top-liquidity",
+     "resolvedAt": "2026-10-06T10:30:33.374Z",
+     "mint": "14Ak6KegFHLANKALmpjdn1MFW477yvesX8cdzdVEpump",
+     "pairAddress": "Enh96DNuB9cWsTeJouHePiCjPNoUn8eca1rwqgb7q1R9",
+     "dexId": "raydium",
+     "liquidityUsd": 12177.29,
+     "fdv": 12599,
+     "pairCreatedAt": 1720015457000,
+     "candidates": 5,
+     "expectMint": null,
+     "memoryMintMatch": null,
+     "note": "first resolution by symbol search; superseded"
+    },
+    "identity": "unresolved-window-miss"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "14Ak6KegFHLANKALmpjdn1MFW477yvesX8cdzdVEpump",
+     "source": "dexscreener",
+     "confidence": "low"
+    },
+    {
+     "kind": "pair",
+     "value": "Enh96DNuB9cWsTeJouHePiCjPNoUn8eca1rwqgb7q1R9",
+     "dex": "raydium",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "14Ak6KegFHLANKALmpjdn1MFW477yvesX8cdzdVEpump",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "999034949254225",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453876477,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "3FLyeuaFLbigEi9LR7TNJxHkPgnUUxhsH8QdTSLbzRiaYm3wnEkpVTEpNwQwgoqukiRhrPctTpsf3miwEfFb6rLf",
+     "slot": 275453595,
+     "blockTime": 1720015359,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "pnut-2024",
+   "title": "PNUT: pump.fun launch after a news event, graduation, CEX listings",
+   "symbol": "PNUT",
+   "pattern": "runner",
+   "outcome": "runner",
+   "period": {
+    "from": "2024-11-01",
+    "to": "2024-11-15"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Peanut_(squirrel)",
+     "publisher": "Wikipedia",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "the news event (squirrel euthanised c. 2024-10-30) that the token references; coin specifics not confirmed in the extract"
+    }
+   ],
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "A pump.fun token created within a day of the news event; graduated, drew a broad holder base and was listed on major exchanges within two weeks. Pattern to compare: event-driven launch where holder growth, not insider float, dominated."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "resolvedAt": "2026-10-06T10:30:36.886Z",
+    "mint": "2qEHjDLDLbuBgRYvsxhc5D6uDWAivNFZGan56P1tpump",
+    "pairAddress": "9BGWviA13cVrGhCNzvtNW75XR5CXfKyjnMYb3ks3PTEz",
+    "dexId": "meteora",
+    "liquidityUsd": 78.67,
+    "fdv": 54221416,
+    "pairCreatedAt": 1734569700000,
+    "candidates": 10,
+    "expectMint": "2qEHjDLDLbuBgRYvsxhc5D6uDWAivNFZGan56P1tpump",
+    "memoryMintMatch": true,
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "2qEHjDLDLbuBgRYvsxhc5D6uDWAivNFZGan56P1tpump",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "9BGWviA13cVrGhCNzvtNW75XR5CXfKyjnMYb3ks3PTEz",
+     "dex": "meteora",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "2qEHjDLDLbuBgRYvsxhc5D6uDWAivNFZGan56P1tpump",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "999841090269852",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453875151,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "2Av1bHTDCSc9hU5nNHfFmn2xUuJftEV4HcwSszU6v5Axrf46vaGWbLjmTYysHkcv9ajsUpzWjF61VZaQE1EUWWme",
+     "slot": 298736120,
+     "blockTime": 1730384500,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "moodeng-2024",
+   "title": "MOODENG: pump.fun launch on a viral animal, graduation and run",
+   "symbol": "MOODENG",
+   "pattern": "runner",
+   "outcome": "runner",
+   "period": {
+    "from": "2024-09-10",
+    "to": "2024-09-30"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Moo_Deng",
+     "publisher": "Wikipedia",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "the viral subject (pygmy hippo, 2024); coin specifics not confirmed in the extract"
+    }
+   ],
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "A pump.fun token on a viral animal meme that graduated and ran over several weeks with a wide holder base. Pattern to compare: narrative-driven runner with no insider disqualifier."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "resolvedAt": "2026-10-06T10:30:40.517Z",
+    "mint": "ED5nyyWEzpPPiWimP8vYm7sD7TD3LAt3Q3gRTWHzPJBY",
+    "pairAddress": "22WrmyTj8x2TRVQen3fxxi2r4Rn6JDHWoMTpsSmn8RUd",
+    "dexId": "raydium",
+    "liquidityUsd": 3039999.49,
+    "fdv": 45332363,
+    "pairCreatedAt": 1725994387000,
+    "candidates": 17,
+    "expectMint": "ED5nyyWEzpPPiWimP8vYm7sD7TD3LAt3Q3gRTWHzPJBY",
+    "memoryMintMatch": true,
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "ED5nyyWEzpPPiWimP8vYm7sD7TD3LAt3Q3gRTWHzPJBY",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "22WrmyTj8x2TRVQen3fxxi2r4Rn6JDHWoMTpsSmn8RUd",
+     "dex": "raydium",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "ED5nyyWEzpPPiWimP8vYm7sD7TD3LAt3Q3gRTWHzPJBY",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "989936533476048",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453875164,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "2RHqj9CjdvWVuJhAMm3FtRftbap6fBAzukTzSEFaFwKBRTsL3ev235LsiZ616mojVqdQrQRR2WSu13LtEAx5f7St",
+     "slot": 288997318,
+     "blockTime": 1725989127,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "wif-2023",
+   "title": "dogwifhat: early-cycle Solana meme runner",
+   "symbol": "$WIF",
+   "pattern": "runner",
+   "outcome": "runner",
+   "period": {
+    "from": "2023-11-20",
+    "to": "2024-03-31"
+   },
+   "postmortem": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Dogwifhat",
+     "publisher": "Wikipedia (redirects to Meme coin)",
+     "fetched": "2026-10-06",
+     "kind": "encyclopedia",
+     "supports": "listed as a meme coin example; no launch specifics"
+    }
+   ],
+   "citationGap": true,
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "Launched late 2023 on Raydium with LP burned early, ran through Q1 2024 to a multi-billion valuation. Pattern to compare: the reference 'clean runner' for the eval: no authorities, burned LP, broad holders."
+   },
+   "resolution": {
+    "method": "dexscreener-search-by-mint",
+    "query": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+    "resolvedAt": "2026-10-06T10:36:34.699Z",
+    "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+    "pairAddress": "EP2ib6dYdEeqD8MfE2ezHCxX3kP3K2eLKkirfPm5eyMx",
+    "dexId": "raydium",
+    "liveSymbol": "$WIF",
+    "liquidityUsd": 6901831.11,
+    "fdv": 251776042,
+    "pairCreatedAt": 1700510070000,
+    "candidates": 30,
+    "candidatesInWindow": 30,
+    "windowMiss": false,
+    "candidatesSummary": [
+     {
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "symbol": "$WIF",
+      "dex": "raydium",
+      "liquidityUsd": 6901831.11,
+      "pairCreatedAt": 1700510070000,
+      "inWindow": true
+     },
+     {
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "symbol": "$WIF",
+      "dex": "orca",
+      "liquidityUsd": 179829.76,
+      "pairCreatedAt": 1716065147000,
+      "inWindow": true
+     },
+     {
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "symbol": "$WIF",
+      "dex": "orca",
+      "liquidityUsd": 24111.84,
+      "pairCreatedAt": 1702336783000,
+      "inWindow": true
+     },
+     {
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "symbol": "$WIF",
+      "dex": "meteora",
+      "liquidityUsd": 20795.03,
+      "pairCreatedAt": 1721341513000,
+      "inWindow": false
+     },
+     {
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "symbol": "$WIF",
+      "dex": "orca",
+      "liquidityUsd": 15293.47,
+      "pairCreatedAt": 1702237068000,
+      "inWindow": true
+     },
+     {
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "symbol": "$WIF",
+      "dex": "raydium",
+      "liquidityUsd": 9493.27,
+      "pairCreatedAt": 1723729962000,
+      "inWindow": false
+     }
+    ],
+    "expectMint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+    "expectMintSource": "model-memory",
+    "memoryMintMatch": true,
+    "previous": {
+     "method": "dexscreener-search-top-liquidity",
+     "resolvedAt": "2026-10-06T10:30:44.093Z",
+     "mint": "21AErpiB8uSb94oQKRcwuHqyHF93njAxBSbdUrpupump",
+     "pairAddress": "32vFAmd12dTHMwo9g5QuCE9sgvdv72yUfK9PMP2dtBj7",
+     "dexId": "raydium",
+     "liquidityUsd": 39549.8,
+     "fdv": 48915,
+     "pairCreatedAt": 1717345411000,
+     "candidates": 14,
+     "expectMint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+     "memoryMintMatch": false,
+     "note": "first resolution by symbol search; superseded"
+    },
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "EP2ib6dYdEeqD8MfE2ezHCxX3kP3K2eLKkirfPm5eyMx",
+     "dex": "raydium",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "998837420426582",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453876491,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "4VAGET7z5g7ogVGmbmZ6KBtF6DS8ftLWzD65BXZWQJjwASUqLod7LhGB6mqThcqo97QcC7r7uNmBY8GwsnLAA52n",
+     "slot": 231220478,
+     "blockTime": 1700508163,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "bonk-2022",
+   "title": "BONK: community airdrop launch, Solana's first large meme",
+   "symbol": "Bonk",
+   "pattern": "runner",
+   "outcome": "runner",
+   "period": {
+    "from": "2022-12-25",
+    "to": "2023-01-15"
+   },
+   "postmortem": [],
+   "citationGap": true,
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "Launched 2022-12-25 with half the supply airdropped to Solana users; became the chain's first large memecoin. Pattern to compare: distribution-first launch; concentration metrics look different because supply was given away."
+   },
+   "resolution": {
+    "method": "dexscreener-search-by-mint",
+    "query": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    "resolvedAt": "2026-10-06T10:36:38.306Z",
+    "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    "pairAddress": "5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9",
+    "dexId": "orca",
+    "liveSymbol": "Bonk",
+    "liquidityUsd": 429701.79,
+    "fdv": 337858706,
+    "pairCreatedAt": 1671980424000,
+    "candidates": 30,
+    "candidatesInWindow": 30,
+    "windowMiss": false,
+    "candidatesSummary": [
+     {
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "symbol": "Bonk",
+      "dex": "orca",
+      "liquidityUsd": 429701.79,
+      "pairCreatedAt": 1671980424000,
+      "inWindow": true
+     },
+     {
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "symbol": "Bonk",
+      "dex": "meteora",
+      "liquidityUsd": 268915.1,
+      "pairCreatedAt": 1752767469000,
+      "inWindow": false
+     },
+     {
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "symbol": "Bonk",
+      "dex": "meteora",
+      "liquidityUsd": 230857.03,
+      "pairCreatedAt": 1706213679000,
+      "inWindow": false
+     },
+     {
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "symbol": "Bonk",
+      "dex": "raydium",
+      "liquidityUsd": 202706.71,
+      "pairCreatedAt": 1775036809000,
+      "inWindow": false
+     },
+     {
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "symbol": "Bonk",
+      "dex": "orca",
+      "liquidityUsd": 167243.61,
+      "pairCreatedAt": 1671846116000,
+      "inWindow": true
+     },
+     {
+      "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "symbol": "Bonk",
+      "dex": "orca",
+      "liquidityUsd": 97834.51,
+      "pairCreatedAt": 1671900044000,
+      "inWindow": true
+     }
+    ],
+    "expectMint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+    "expectMintSource": "dexterm/research/probes/firehose-probe.mjs constant (prior task-1285 work, verified live there)",
+    "memoryMintMatch": true,
+    "previous": {
+     "method": "dexscreener-search-top-liquidity",
+     "resolvedAt": "2026-10-06T10:30:47.715Z",
+     "mint": "BonkUg9t46HnxF4erZzmnB4Ae6oEcDS4V66zqUoUhwWY",
+     "pairAddress": "4XspUUYDz5EkNvNKy8BngHt6Tx4rTe6nJvbq7A9hUmR1",
+     "dexId": "raydium",
+     "liquidityUsd": 1705465.87,
+     "fdv": 3279727,
+     "pairCreatedAt": 1773402195000,
+     "candidates": 22,
+     "expectMint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+     "memoryMintMatch": false,
+     "note": "first resolution by symbol search; superseded"
+    },
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9",
+     "dex": "orca",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 5,
+     "supply": "8799436999603710854",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453876504,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "2K5X6HT9QZ8dcApbWL6mzYw6WBDvL5vWndTpGrFkQuMfuStGTP5LxPNQnnn5v5KR2T6UD1zEXnfCdajzUfuCPZgS",
+     "slot": 165714665,
+     "blockTime": 1670531612,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "slerf-2024",
+   "title": "SLERF: developer burned presale tokens and LP by mistake",
+   "symbol": "SLERF",
+   "pattern": "accident",
+   "outcome": "accident",
+   "period": {
+    "from": "2024-03-17",
+    "to": "2024-03-20"
+   },
+   "postmortem": [],
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "The developer burned the tokens reserved for presale buyers (and the LP tokens) by mistake on 2024-03-18, so presale participants could not be refunded; the token nonetheless traded heavily. Pattern to compare: a burn that is not a safety signal; the chain fact (a Burn instruction) needs an event-tx ref."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "resolvedAt": "2026-10-06T10:30:51.302Z",
+    "mint": "7BgBvyjrZX1YKz4oh9mjb8ZScatkkwb8DzFx7LoiVkM3",
+    "pairAddress": "AgFnRLUScRD2E4nWQxW73hdbSN7eKEUb2jHX7tx9YTYc",
+    "dexId": "raydium",
+    "liquidityUsd": 20467646.29,
+    "fdv": 11751418,
+    "pairCreatedAt": 1710747025000,
+    "candidates": 8,
+    "expectMint": "7BgBvyjrZX1YKz4oh9mjb8ZScatkkwb8DzFx7LoiVkM3",
+    "memoryMintMatch": true,
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "7BgBvyjrZX1YKz4oh9mjb8ZScatkkwb8DzFx7LoiVkM3",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "AgFnRLUScRD2E4nWQxW73hdbSN7eKEUb2jHX7tx9YTYc",
+     "dex": "raydium",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "7BgBvyjrZX1YKz4oh9mjb8ZScatkkwb8DzFx7LoiVkM3",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 9,
+     "supply": "499985141393248153",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453875205,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "2RbfjRP6twsxjCrFBr4Z1HtkyFuFvnQZfd9yZ5uJrMYjAbYoUNtdJt5LZEt7tLQcuvdD6zyRg24Y98iyygPvXWwu",
+     "slot": 254777258,
+     "blockTime": 1710701551,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  },
+  {
+   "id": "goat-2024",
+   "title": "GOAT: AI-agent-promoted pump.fun token",
+   "symbol": "GOAT",
+   "pattern": "runner",
+   "outcome": "runner",
+   "period": {
+    "from": "2024-10-10",
+    "to": "2024-11-15"
+   },
+   "postmortem": [],
+   "narrative": {
+    "author": "claude-draft",
+    "reviewed_by": "none",
+    "text": "A pump.fun token created by a third party and promoted by an AI agent's X account; graduated and ran over weeks. Pattern to compare: narrative attached to a non-creator promoter; creator and promoter are different wallets."
+   },
+   "resolution": {
+    "method": "dexscreener-search-top-liquidity",
+    "resolvedAt": "2026-10-06T10:30:54.921Z",
+    "mint": "CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump",
+    "pairAddress": "9Tb2ohu5P16BpBarqd3N27WnkF51Ukfs8Z1GzzLDxVZW",
+    "dexId": "raydium",
+    "liquidityUsd": 1780842.42,
+    "fdv": 18635650,
+    "pairCreatedAt": 1728595144000,
+    "candidates": 22,
+    "expectMint": "CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump",
+    "memoryMintMatch": true,
+    "identity": "resolved"
+   },
+   "refs": [
+    {
+     "kind": "mint",
+     "value": "CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump",
+     "source": "dexscreener",
+     "confidence": "high"
+    },
+    {
+     "kind": "pair",
+     "value": "9Tb2ohu5P16BpBarqd3N27WnkF51Ukfs8Z1GzzLDxVZW",
+     "dex": "raydium",
+     "source": "dexscreener",
+     "confidence": "medium"
+    },
+    {
+     "kind": "mint-account",
+     "mint": "CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump",
+     "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+     "type": "mint",
+     "decimals": 6,
+     "supply": "999978724700023",
+     "mintAuthority": null,
+     "freezeAuthority": null,
+     "isInitialized": true,
+     "extensions": [],
+     "slotObserved": 453875219,
+     "source": "helius:getAccountInfo",
+     "confidence": "high"
+    },
+    {
+     "kind": "creation-tx",
+     "signature": "3pMFUaD2UCvtty2RhXeyxq4r3WtuZyTiR4DgGv6smt5rdSthbVRXDsMqcm3fhdLtZd5uSy9PUFtCw6AVAGGKF1vV",
+     "slot": 294880886,
+     "blockTime": 1728594506,
+     "err": null,
+     "source": "helius:getTransactionsForAddress(asc,1)",
+     "confidence": "high",
+     "raw": [
+      "signature",
+      "slot",
+      "transactionIndex",
+      "err",
+      "memo",
+      "blockTime",
+      "confirmationStatus"
+     ]
+    }
+   ],
+   "verification": {
+    "status": "pass",
+    "at": "2026-10-06T10:37:05.411Z",
+    "checks": 9,
+    "failed": []
+   }
+  }
+ ],
+ "lastVerification": {
+  "at": "2026-10-06T10:37:05.411Z",
+  "cases": 10,
+  "pass": 10,
+  "fail": 0,
+  "callsUsedTotal": 53,
+  "callCap": 60
+ }
+}

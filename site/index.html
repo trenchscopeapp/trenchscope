@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>trenchscope</title>
+<meta name="description" content="A terminal for the trenches. Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="trenchscope: a terminal for the trenches">
+<meta property="og:description" content="Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens. Paper trading by default.">
+<meta property="og:url" content="https://www.trenchscope.dev/">
+<meta property="og:image" content="https://www.trenchscope.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The trenchscope wordmark above a row of halftone keycaps.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trenchscope.dev/og.png">
+<meta name="twitter:site" content="@trenchscopehq">
+<link rel="canonical" href="https://www.trenchscope.dev/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="preload" href="tour.json" as="fetch" crossorigin media="(min-width: 768px)">
+<link rel="preload" href="tour-narrow.json" as="fetch" crossorigin media="(max-width: 767px)">
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="ascii-bg" aria-hidden="true">
+  <canvas class="ascii-field" data-field></canvas>
+  <canvas class="ascii-gl" data-gl></canvas>
+  <div class="ascii-layer ascii-far"><i></i></div>
+  <div class="ascii-layer ascii-near"><i></i></div>
+  <div class="ascii-layer ascii-lit"><i></i></div>
+</div>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="mark" href="#top" aria-label="trenchscope, top of page">trenchscope<i aria-hidden="true"></i></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#tour">Tour</a><a href="#analyst">Analyst</a><a href="#keys">Keys</a><a href="#safety">Safety</a><a href="#sources">Sources</a>
+    </nav>
+    <a class="xlink" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a class="btn btn-ink" href="#install">Install</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <h1 class="h1">A terminal for the trenches<span class="pop">.</span><i class="h1-cur" aria-hidden="true"></i></h1>
+    <div class="hero-sub">
+      <p class="lede">Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens. Paper trading by default.</p>
+      <div class="install" data-install>
+        <div class="install-tabs" role="tablist" aria-label="Install method">
+          <button role="tab" aria-selected="true" data-soon data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor" data-note="macOS and Linux. No sudo; fetches a verified Node if yours is missing.">curl</button>
+          <button role="tab" aria-selected="false" data-soon data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor" data-note="Windows PowerShell. Offers to install Node with winget if it is missing.">windows</button>
+          <button role="tab" aria-selected="false" data-soon data-cmd="npm i -g trenchscope&#10;trenchscope doctor" data-note="Node 22.18 or newer. No build step.">npm</button>
+          <button role="tab" aria-selected="false" data-soon data-cmd="claude mcp add trenchscope -- npx -y trenchscope mcp&#10;codex mcp add trenchscope -- npx -y trenchscope mcp" data-note="Gives your own Claude Code or Codex the read-only tools. They can never sign or send.">claude</button>
+          <button class="install-copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg><span data-copy-word>copy</span></button>
+        </div>
+        <pre class="install-cmd" data-cmd-out></pre>
+        <p class="install-note" data-note-out>macOS and Linux. No sudo; fetches a verified Node if yours is missing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage" id="tour" aria-label="Tour of the app">
+    <div class="wrap">
+      <div class="stage-scene">
+        <div class="stage-tilt">
+          <div class="stage-lean" data-lean>
+            <figure class="bezel" role="img" aria-label="trenchscope running in a terminal: the launch screen, the screener, a token with the analyst answering, new pairs, the analyst full screen and the watchlist, one after another.">
+              <div class="screen">
+                <div class="screen-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="screen-title">trenchscope</span><span class="screen-size" data-size>160×46</span></div>
+                <div class="screen-body" data-fit>
+                  <pre class="cells" data-tour="main" aria-hidden="true"></pre>
+                </div>
+                <div class="hud" data-hud aria-hidden="true"><kbd data-hud-key></kbd><span data-hud-label></span></div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="rail">
+        <ol class="chapters" data-chapters aria-label="Screens in the tour"></ol>
+        <div class="rail-foot">
+          <p class="caption">Sample data. Every frame is drawn by trenchscope itself, cell for cell.</p>
+          <button class="ghost" type="button" data-toggle aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-pause><path d="M5 3.5v9M11 3.5v9"/></svg><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-play hidden><path d="M5 3.2v9.6l7.5-4.8z"/></svg><span data-toggle-word>Pause</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap analyst" id="analyst" aria-labelledby="h-analyst">
+    <div class="analyst-copy">
+      <h2 class="h2" id="h-analyst">Your analyst reads the screen you are reading<span class="pop">.</span></h2>
+      <p class="sub">Press <kbd class="key-inline">a</kbd> and your own claude or codex login gets the same tool results, through a read-only MCP server.</p>
+      <dl class="rules">
+        <div><dt>Labelled</dt><dd>Every answer is marked model output, with the age of every number it used.</dd></div>
+        <div><dt>Untrusted input</dt><dd>Token names, descriptions and fetched pages reach the model wrapped as untrusted text.</dd></div>
+        <div><dt>Read-only</dt><dd>It has no build, sign or send tool. The most it can do is open a paper ticket.</dd></div>
+        <div><dt>Your login</dt><dd>Usage goes to your own account. Everything else works without it.</dd></div>
+      </dl>
+    </div>
+    <figure class="frame analyst-frame">
+      <div class="frame-in">
+        <div class="frame-bar"><span>token screen · analyst panel</span><span>live render</span></div>
+        <div class="crop" data-fit-crop><pre class="cells" data-tour="crop" aria-hidden="true"></pre></div>
+      </div>
+      <figcaption class="sr">The analyst panel answering a question about a sample token, with the tool calls it made and their timings.</figcaption>
+    </figure>
+  </section>
+
+  <section class="section wrap keys" id="keys" aria-labelledby="h-keys">
+    <div class="keys-head">
+      <h2 class="h2" id="h-keys">Keyboard only<span class="pop">.</span></h2>
+      <p class="sub">Every screen answers to the same few keys. Press <kbd class="key-inline">?</kbd> for the rest.</p>
+    </div>
+    <ul class="keylist">
+      <li><span class="caps"><kbd>j</kbd><kbd>k</kbd></span><p><b>Move</b> through rows on any list.</p></li>
+      <li><span class="caps"><kbd>enter</kbd></span><p><b>Open</b> the coin: chart, holders, tape and safety.</p></li>
+      <li><span class="caps"><kbd>a</kbd></span><p><b>Ask</b> the analyst about what is on screen.</p></li>
+      <li><span class="caps"><kbd>/</kbd></span><p><b>Filter</b> with plain thresholds: <code>vol24 &gt; 250K liq &gt; 50K</code></p></li>
+      <li><span class="caps"><kbd>w</kbd></span><p><b>Watch</b> a coin and set alerts, stored on your machine.</p></li>
+      <li><span class="caps"><kbd>c</kbd></span><p><b>Chart</b> in a docked window or your browser.</p></li>
+      <li><span class="caps"><kbd>esc</kbd></span><p><b>Back</b> to where you came from.</p></li>
+      <li><span class="caps"><kbd>q</kbd></span><p><b>Quit.</b> Nothing keeps running.</p></li>
+    </ul>
+  </section>
+
+  <section class="section wrap safety" id="safety" aria-labelledby="h-safety">
+    <h2 class="display" id="h-safety">It never holds your keys<span class="pop">.</span></h2>
+    <div class="safety-body">
+      <dl class="rules rules-wide">
+        <div><dt>Paper first</dt><dd>Every run starts on the simulated wallet. Live is devnet unless you start with <code>--mainnet</code>.</dd></div>
+        <div><dt>Signing</dt><dd>Nothing is sent without a keypress and your wallet's approval.</dd></div>
+        <div><dt>Caps</dt><dd>A separate signer refuses anything over your per-trade and daily caps.</dd></div>
+        <div><dt>The model</dt><dd>The analyst has no build, sign or send tool.</dd></div>
+        <div><dt>Network</dt><dd>Local servers bind <code>127.0.0.1</code> only.</dd></div>
+        <div><dt>Telemetry</dt><dd>None. No account, no crash reports, no update check.</dd></div>
+      </dl>
+      <p class="note"><b>Known issues.</b> Paper and live trading are experimental and have bugs we are still fixing. Do not rely on them yet. Nothing here is financial advice.</p>
+    </div>
+  </section>
+
+  <section class="section wrap sources" id="sources" aria-labelledby="h-sources">
+    <div class="sources-head">
+      <h2 class="h2" id="h-sources">Public data, read on your machine<span class="pop">.</span></h2>
+      <p class="sub">No server in the middle. When a source fails, the cell says so instead of guessing.</p>
+      <p class="states"><span><code>unavailable</code> the source did not answer</span><span><code>needs key</code> the field wants a key you have not set</span></p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th scope="col">Source</th><th scope="col">What it gives</th><th scope="col">Key</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">DexScreener</th><td>pairs, prices, volume, liquidity</td><td class="k-none">none</td></tr>
+          <tr><th scope="row">Jupiter</th><td>prices and token lists</td><td class="k-none">none</td></tr>
+          <tr><th scope="row">GeckoTerminal</th><td>candles</td><td class="k-none">none</td></tr>
+          <tr><th scope="row">PumpPortal</th><td>launches and migrations, live</td><td class="k-none">none</td></tr>
+          <tr><th scope="row">RugCheck</th><td>mint, freeze and LP checks</td><td class="k-none">none</td></tr>
+          <tr><th scope="row">GoPlus</th><td>safety reads</td><td class="k-none">none</td></tr>
+          <tr><th scope="row">Solana RPC</th><td>holders and on-chain reads</td><td>optional Helius</td></tr>
+          <tr><th scope="row">Solana Tracker</th><td>a second risk source</td><td>optional</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section wrap close" id="install" aria-labelledby="h-close">
+    <div>
+      <h2 class="h2" id="h-close">Open a terminal<span class="pop">.</span></h2>
+      <p class="sub">Run doctor first. It checks Node, your terminal, the optional claude login and every data source, and prints the exact fix for anything missing.</p>
+    </div>
+    <div class="install install-lg" data-install>
+      <div class="install-tabs" role="tablist" aria-label="Install method">
+        <button role="tab" aria-selected="true" data-soon data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor&#10;trenchscope" data-note="macOS and Linux. No sudo; fetches a verified Node if yours is missing.">curl</button>
+        <button role="tab" aria-selected="false" data-soon data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor&#10;trenchscope" data-note="Windows PowerShell. Offers to install Node with winget if it is missing.">windows</button>
+        <button role="tab" aria-selected="false" data-soon data-cmd="npm i -g trenchscope&#10;trenchscope doctor&#10;trenchscope" data-note="Node 22.18 or newer. No build step.">npm</button>
+        <button role="tab" aria-selected="false" data-soon data-cmd="claude mcp add trenchscope -- npx -y trenchscope mcp&#10;codex mcp add trenchscope -- npx -y trenchscope mcp" data-note="Gives your own Claude Code or Codex the read-only tools. They can never sign or send.">claude</button>
+        <button class="install-copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg><span data-copy-word>copy</span></button>
+      </div>
+      <pre class="install-cmd" data-cmd-out></pre>
+      <p class="install-note" data-note-out>macOS and Linux. No sudo; fetches a verified Node if yours is missing.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>trenchscope 0.1.5</span><span>live now</span><span class="foot-end">not financial advice<a class="xlink xlink-sm" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></span>
+  </div>
+</footer>
+</body>
+</html>

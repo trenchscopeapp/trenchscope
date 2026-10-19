@@ -1,0 +1,994 @@
+{
+ "schema": "dexterm/packs/skill-backtest/1",
+ "eval": {
+  "built_at": "2026-10-16T04:59:12.726Z",
+  "horizon_sec": 259200,
+  "cutoff_t0": 1791840503575,
+  "counts": {
+   "rows": 1054,
+   "train": 726,
+   "test": 328,
+   "bad_train": 294,
+   "bad_test": 61,
+   "excluded": {
+    "no_cached_link_record": 0,
+    "no_point_in_time_link_record": 235,
+    "no_t0_snapshot": 0,
+    "chain_verified_label": 0
+   }
+  },
+  "label_rule": "recorder outcome at 259200s (keyless proxy, labeler 0.2.0); bad = rug ∪ dead, ok = flat ∪ fade ∪ runner; unobserved dropped",
+  "evidence_rule": "link features from the cached DexScreener/Jupiter token record only when it was fetched within 3600s after the row's t0 (latest such t0 per coin); rug-check features from that t0 snapshot",
+  "split_rule": "by time: the latest 30% of rows by t0 (t0 ≥ 2026-10-12T21:28:23.575Z) are the held-out TEST split, fixed before tuning"
+ },
+ "larp": {
+  "before": {
+   "params": "larp-links-v0",
+   "train": {
+    "n": 726,
+    "bad": 294,
+    "base_rate": {
+     "value": 0.4049586776859504,
+     "lo": 0.3698414305113348,
+     "hi": 0.441076445367486,
+     "k": 294,
+     "n": 726
+    },
+    "by_grade": [
+     {
+      "grade": "LARP",
+      "claims": "bad",
+      "n": 75,
+      "bad": 35,
+      "bad_rate": {
+       "value": 0.4666666666666667,
+       "lo": 0.35815509458811656,
+       "hi": 0.5784266084721967,
+       "k": 35,
+       "n": 75
+      },
+      "precision": {
+       "value": 0.4666666666666667,
+       "lo": 0.35815509458811656,
+       "hi": 0.5784266084721967,
+       "k": 35,
+       "n": 75
+      },
+      "recall": {
+       "value": 0.11904761904761904,
+       "lo": 0.0868554201893776,
+       "hi": 0.16106696540081533,
+       "k": 35,
+       "n": 294
+      }
+     },
+     {
+      "grade": "UNVERIFIABLE",
+      "claims": null,
+      "n": 299,
+      "bad": 170,
+      "bad_rate": {
+       "value": 0.568561872909699,
+       "lo": 0.5119030715952239,
+       "hi": 0.6234812349201294,
+       "k": 170,
+       "n": 299
+      },
+      "precision": null,
+      "recall": null
+     },
+     {
+      "grade": "EARLY_BUT_REAL",
+      "claims": "ok",
+      "n": 352,
+      "bad": 89,
+      "bad_rate": {
+       "value": 0.2528409090909091,
+       "lo": 0.21027001911368448,
+       "hi": 0.3007483665950129,
+       "k": 89,
+       "n": 352
+      },
+      "precision": {
+       "value": 0.7471590909090909,
+       "lo": 0.6992516334049871,
+       "hi": 0.7897299808863155,
+       "k": 263,
+       "n": 352
+      },
+      "recall": {
+       "value": 0.6087962962962963,
+       "lo": 0.5620100381379726,
+       "hi": 0.6536646473440925,
+       "k": 263,
+       "n": 432
+      }
+     }
+    ],
+    "binary": {
+     "tp": 35,
+     "fp": 40,
+     "fn": 259,
+     "tn": 392,
+     "precision": {
+      "value": 0.4666666666666667,
+      "lo": 0.35815509458811656,
+      "hi": 0.5784266084721967,
+      "k": 35,
+      "n": 75
+     },
+     "recall": {
+      "value": 0.11904761904761904,
+      "lo": 0.0868554201893776,
+      "hi": 0.16106696540081533,
+      "k": 35,
+      "n": 294
+     },
+     "mcc": 0.0426680320655395
+    }
+   },
+   "test": {
+    "n": 328,
+    "bad": 61,
+    "base_rate": {
+     "value": 0.18597560975609756,
+     "lo": 0.1475897254628402,
+     "hi": 0.2316321683563796,
+     "k": 61,
+     "n": 328
+    },
+    "by_grade": [
+     {
+      "grade": "LARP",
+      "claims": "bad",
+      "n": 30,
+      "bad": 7,
+      "bad_rate": {
+       "value": 0.23333333333333334,
+       "lo": 0.11792239210501232,
+       "hi": 0.40928672330324267,
+       "k": 7,
+       "n": 30
+      },
+      "precision": {
+       "value": 0.23333333333333334,
+       "lo": 0.11792239210501232,
+       "hi": 0.40928672330324267,
+       "k": 7,
+       "n": 30
+      },
+      "recall": {
+       "value": 0.11475409836065574,
+       "lo": 0.0567113064337431,
+       "hi": 0.2184453830989026,
+       "k": 7,
+       "n": 61
+      }
+     },
+     {
+      "grade": "UNVERIFIABLE",
+      "claims": null,
+      "n": 130,
+      "bad": 38,
+      "bad_rate": {
+       "value": 0.2923076923076923,
+       "lo": 0.22098338444253135,
+       "hi": 0.37555461271231444,
+       "k": 38,
+       "n": 130
+      },
+      "precision": null,
+      "recall": null
+     },
+     {
+      "grade": "EARLY_BUT_REAL",
+      "claims": "ok",
+      "n": 168,
+      "bad": 16,
+      "bad_rate": {
+       "value": 0.09523809523809523,
+       "lo": 0.05947379664629028,
+       "hi": 0.14909968032319793,
+       "k": 16,
+       "n": 168
+      },
+      "precision": {
+       "value": 0.9047619047619048,
+       "lo": 0.8509003196768021,
+       "hi": 0.9405262033537098,
+       "k": 152,
+       "n": 168
+      },
+      "recall": {
+       "value": 0.5692883895131086,
+       "lo": 0.5093237920359055,
+       "hi": 0.6272874227848604,
+       "k": 152,
+       "n": 267
+      }
+     }
+    ],
+    "binary": {
+     "tp": 7,
+     "fp": 23,
+     "fn": 54,
+     "tn": 244,
+     "precision": {
+      "value": 0.23333333333333334,
+      "lo": 0.11792239210501232,
+      "hi": 0.40928672330324267,
+      "k": 7,
+      "n": 30
+     },
+     "recall": {
+      "value": 0.11475409836065574,
+      "lo": 0.0567113064337431,
+      "hi": 0.2184453830989026,
+      "k": 7,
+      "n": 61
+     },
+     "mcc": 0.03861860741636523
+    }
+   }
+  },
+  "after": {
+   "params": "larp-links-v1",
+   "train": {
+    "n": 726,
+    "bad": 294,
+    "base_rate": {
+     "value": 0.4049586776859504,
+     "lo": 0.3698414305113348,
+     "hi": 0.441076445367486,
+     "k": 294,
+     "n": 726
+    },
+    "by_grade": [
+     {
+      "grade": "LARP",
+      "claims": "bad",
+      "n": 46,
+      "bad": 32,
+      "bad_rate": {
+       "value": 0.6956521739130435,
+       "lo": 0.5519408125976183,
+       "hi": 0.8092032919255109,
+       "k": 32,
+       "n": 46
+      },
+      "precision": {
+       "value": 0.6956521739130435,
+       "lo": 0.5519408125976183,
+       "hi": 0.8092032919255109,
+       "k": 32,
+       "n": 46
+      },
+      "recall": {
+       "value": 0.10884353741496598,
+       "lo": 0.07816017792459272,
+       "hi": 0.1496172715653375,
+       "k": 32,
+       "n": 294
+      }
+     },
+     {
+      "grade": "UNVERIFIABLE",
+      "claims": null,
+      "n": 299,
+      "bad": 170,
+      "bad_rate": {
+       "value": 0.568561872909699,
+       "lo": 0.5119030715952239,
+       "hi": 0.6234812349201294,
+       "k": 170,
+       "n": 299
+      },
+      "precision": null,
+      "recall": null
+     },
+     {
+      "grade": "EARLY_BUT_REAL",
+      "claims": "ok",
+      "n": 381,
+      "bad": 92,
+      "bad_rate": {
+       "value": 0.24146981627296588,
+       "lo": 0.20121320092145772,
+       "hi": 0.28688787754822953,
+       "k": 92,
+       "n": 381
+      },
+      "precision": {
+       "value": 0.7585301837270341,
+       "lo": 0.7131121224517705,
+       "hi": 0.7987867990785422,
+       "k": 289,
+       "n": 381
+      },
+      "recall": {
+       "value": 0.6689814814814815,
+       "lo": 0.6232870234353199,
+       "hi": 0.7116970625261855,
+       "k": 289,
+       "n": 432
+      }
+     }
+    ],
+    "binary": {
+     "tp": 32,
+     "fp": 14,
+     "fn": 262,
+     "tn": 418,
+     "precision": {
+      "value": 0.6956521739130435,
+      "lo": 0.5519408125976183,
+      "hi": 0.8092032919255109,
+      "k": 32,
+      "n": 46
+     },
+     "recall": {
+      "value": 0.10884353741496598,
+      "lo": 0.07816017792459272,
+      "hi": 0.1496172715653375,
+      "k": 32,
+      "n": 294
+     },
+     "mcc": 0.1540213255936982
+    }
+   },
+   "test": {
+    "n": 328,
+    "bad": 61,
+    "base_rate": {
+     "value": 0.18597560975609756,
+     "lo": 0.1475897254628402,
+     "hi": 0.2316321683563796,
+     "k": 61,
+     "n": 328
+    },
+    "by_grade": [
+     {
+      "grade": "LARP",
+      "claims": "bad",
+      "n": 14,
+      "bad": 4,
+      "bad_rate": null,
+      "precision": null,
+      "recall": null
+     },
+     {
+      "grade": "UNVERIFIABLE",
+      "claims": null,
+      "n": 130,
+      "bad": 38,
+      "bad_rate": {
+       "value": 0.2923076923076923,
+       "lo": 0.22098338444253135,
+       "hi": 0.37555461271231444,
+       "k": 38,
+       "n": 130
+      },
+      "precision": null,
+      "recall": null
+     },
+     {
+      "grade": "EARLY_BUT_REAL",
+      "claims": "ok",
+      "n": 184,
+      "bad": 19,
+      "bad_rate": {
+       "value": 0.10326086956521739,
+       "lo": 0.06710751930987377,
+       "hi": 0.15564186101908423,
+       "k": 19,
+       "n": 184
+      },
+      "precision": {
+       "value": 0.8967391304347826,
+       "lo": 0.8443581389809158,
+       "hi": 0.9328924806901262,
+       "k": 165,
+       "n": 184
+      },
+      "recall": {
+       "value": 0.6179775280898876,
+       "lo": 0.5584131898612708,
+       "hi": 0.6741950948335471,
+       "k": 165,
+       "n": 267
+      }
+     }
+    ],
+    "binary": {
+     "tp": 4,
+     "fp": 10,
+     "fn": 57,
+     "tn": 257,
+     "precision": null,
+     "recall": {
+      "value": 0.06557377049180328,
+      "lo": 0.02579328695767287,
+      "hi": 0.15683021400467229,
+      "k": 4,
+      "n": 61
+     },
+     "mcc": 0.05412726559678879
+    }
+   }
+  },
+  "rubric_before": {
+   "id": "larp-links-v0",
+   "weights": {
+    "site_is_social": 2,
+    "site_is_launchpad": 2,
+    "site_linktree": 1,
+    "site_free_host": 1,
+    "site_no_name_match": 1,
+    "cheap_tld": 0,
+    "x_not_profile": 1,
+    "no_x": 0,
+    "no_tg": 0
+   },
+   "threshold": 2,
+   "provenance": "hand-written from the larp-check skill text before the backtest (task-1401)"
+  },
+  "rubric_after": {
+   "id": "larp-links-v1",
+   "weights": {
+    "site_is_social": 0,
+    "site_is_launchpad": 0,
+    "site_linktree": 0,
+    "site_free_host": 1,
+    "site_no_name_match": 1,
+    "cheap_tld": 1,
+    "x_not_profile": 2,
+    "no_x": 1,
+    "no_tg": 1
+   },
+   "threshold": 4,
+   "provenance": "tuned on 726 train rows (MCC 0.154)"
+  },
+  "tuned": {
+   "train_mcc": 0.1540213255936982,
+   "candidates": 98410
+  }
+ },
+ "rug": {
+  "before": {
+   "params": "rug-rules-v0",
+   "train": {
+    "n": 726,
+    "bad": 294,
+    "base_rate": {
+     "value": 0.4049586776859504,
+     "lo": 0.3698414305113348,
+     "hi": 0.441076445367486,
+     "k": 294,
+     "n": 726
+    },
+    "by_grade": [
+     {
+      "grade": "AVOID",
+      "claims": "bad",
+      "n": 62,
+      "bad": 7,
+      "bad_rate": {
+       "value": 0.11290322580645161,
+       "lo": 0.05577792691334926,
+       "hi": 0.21519969209955447,
+       "k": 7,
+       "n": 62
+      },
+      "precision": {
+       "value": 0.11290322580645161,
+       "lo": 0.05577792691334926,
+       "hi": 0.21519969209955447,
+       "k": 7,
+       "n": 62
+      },
+      "recall": {
+       "value": 0.023809523809523808,
+       "lo": 0.011580038835282788,
+       "hi": 0.048322943152458345,
+       "k": 7,
+       "n": 294
+      }
+     },
+     {
+      "grade": "SPECULATIVE",
+      "claims": "bad",
+      "n": 373,
+      "bad": 175,
+      "bad_rate": {
+       "value": 0.4691689008042895,
+       "lo": 0.4190951102550342,
+       "hi": 0.5198712883591315,
+       "k": 175,
+       "n": 373
+      },
+      "precision": {
+       "value": 0.4691689008042895,
+       "lo": 0.4190951102550342,
+       "hi": 0.5198712883591315,
+       "k": 175,
+       "n": 373
+      },
+      "recall": {
+       "value": 0.5952380952380952,
+       "lo": 0.5382508292239636,
+       "hi": 0.6497685743784882,
+       "k": 175,
+       "n": 294
+      }
+     },
+     {
+      "grade": "WATCH",
+      "claims": "ok",
+      "n": 287,
+      "bad": 108,
+      "bad_rate": {
+       "value": 0.37630662020905925,
+       "lo": 0.3222383791334503,
+       "hi": 0.4336424852270815,
+       "k": 108,
+       "n": 287
+      },
+      "precision": {
+       "value": 0.6236933797909407,
+       "lo": 0.5663575147729185,
+       "hi": 0.6777616208665498,
+       "k": 179,
+       "n": 287
+      },
+      "recall": {
+       "value": 0.41435185185185186,
+       "lo": 0.36885241964088716,
+       "hi": 0.4613611258306786,
+       "k": 179,
+       "n": 432
+      }
+     },
+     {
+      "grade": "INSUFFICIENT_DATA",
+      "claims": null,
+      "n": 4,
+      "bad": 4,
+      "bad_rate": null,
+      "precision": null,
+      "recall": null
+     }
+    ],
+    "binary": {
+     "tp": 182,
+     "fp": 253,
+     "fn": 112,
+     "tn": 179,
+     "precision": {
+      "value": 0.41839080459770117,
+      "lo": 0.37294572932898384,
+      "hi": 0.46526468645657526,
+      "k": 182,
+      "n": 435
+     },
+     "recall": {
+      "value": 0.6190476190476191,
+      "lo": 0.562338819715672,
+      "hi": 0.6726854347873927,
+      "k": 182,
+      "n": 294
+     },
+     "mcc": 0.03345522866405044
+    }
+   },
+   "test": {
+    "n": 328,
+    "bad": 61,
+    "base_rate": {
+     "value": 0.18597560975609756,
+     "lo": 0.1475897254628402,
+     "hi": 0.2316321683563796,
+     "k": 61,
+     "n": 328
+    },
+    "by_grade": [
+     {
+      "grade": "AVOID",
+      "claims": "bad",
+      "n": 49,
+      "bad": 3,
+      "bad_rate": {
+       "value": 0.061224489795918366,
+       "lo": 0.021039764955529186,
+       "hi": 0.16520743422087725,
+       "k": 3,
+       "n": 49
+      },
+      "precision": {
+       "value": 0.061224489795918366,
+       "lo": 0.021039764955529186,
+       "hi": 0.16520743422087725,
+       "k": 3,
+       "n": 49
+      },
+      "recall": {
+       "value": 0.04918032786885246,
+       "lo": 0.016865676835230686,
+       "hi": 0.1349134279370143,
+       "k": 3,
+       "n": 61
+      }
+     },
+     {
+      "grade": "SPECULATIVE",
+      "claims": "bad",
+      "n": 119,
+      "bad": 31,
+      "bad_rate": {
+       "value": 0.2605042016806723,
+       "lo": 0.19001607594151523,
+       "hi": 0.3459717327487004,
+       "k": 31,
+       "n": 119
+      },
+      "precision": {
+       "value": 0.2605042016806723,
+       "lo": 0.19001607594151523,
+       "hi": 0.3459717327487004,
+       "k": 31,
+       "n": 119
+      },
+      "recall": {
+       "value": 0.5081967213114754,
+       "lo": 0.386024064532302,
+       "hi": 0.6293981335627482,
+       "k": 31,
+       "n": 61
+      }
+     },
+     {
+      "grade": "WATCH",
+      "claims": "ok",
+      "n": 159,
+      "bad": 26,
+      "bad_rate": {
+       "value": 0.16352201257861634,
+       "lo": 0.11410265608365244,
+       "hi": 0.22881708923940997,
+       "k": 26,
+       "n": 159
+      },
+      "precision": {
+       "value": 0.8364779874213837,
+       "lo": 0.7711829107605901,
+       "hi": 0.8858973439163476,
+       "k": 133,
+       "n": 159
+      },
+      "recall": {
+       "value": 0.49812734082397003,
+       "lo": 0.43860614823830607,
+       "hi": 0.557701656766538,
+       "k": 133,
+       "n": 267
+      }
+     },
+     {
+      "grade": "INSUFFICIENT_DATA",
+      "claims": null,
+      "n": 1,
+      "bad": 1,
+      "bad_rate": null,
+      "precision": null,
+      "recall": null
+     }
+    ],
+    "binary": {
+     "tp": 34,
+     "fp": 134,
+     "fn": 27,
+     "tn": 133,
+     "precision": {
+      "value": 0.20238095238095238,
+      "lo": 0.1485947022039544,
+      "hi": 0.26947403086184574,
+      "k": 34,
+      "n": 168
+     },
+     "recall": {
+      "value": 0.5573770491803278,
+      "lo": 0.4330314670045551,
+      "hi": 0.6749239196607956,
+      "k": 34,
+      "n": 61
+     },
+     "mcc": 0.04320492445507054
+    }
+   }
+  },
+  "after": {
+   "params": "rug-rules-v1",
+   "train": {
+    "n": 726,
+    "bad": 294,
+    "base_rate": {
+     "value": 0.4049586776859504,
+     "lo": 0.3698414305113348,
+     "hi": 0.441076445367486,
+     "k": 294,
+     "n": 726
+    },
+    "by_grade": [
+     {
+      "grade": "AVOID",
+      "claims": "bad",
+      "n": 62,
+      "bad": 7,
+      "bad_rate": {
+       "value": 0.11290322580645161,
+       "lo": 0.05577792691334926,
+       "hi": 0.21519969209955447,
+       "k": 7,
+       "n": 62
+      },
+      "precision": {
+       "value": 0.11290322580645161,
+       "lo": 0.05577792691334926,
+       "hi": 0.21519969209955447,
+       "k": 7,
+       "n": 62
+      },
+      "recall": {
+       "value": 0.023809523809523808,
+       "lo": 0.011580038835282788,
+       "hi": 0.048322943152458345,
+       "k": 7,
+       "n": 294
+      }
+     },
+     {
+      "grade": "SPECULATIVE",
+      "claims": "bad",
+      "n": 198,
+      "bad": 159,
+      "bad_rate": {
+       "value": 0.803030303030303,
+       "lo": 0.7420928511098817,
+       "hi": 0.8524327570898154,
+       "k": 159,
+       "n": 198
+      },
+      "precision": {
+       "value": 0.803030303030303,
+       "lo": 0.7420928511098817,
+       "hi": 0.8524327570898154,
+       "k": 159,
+       "n": 198
+      },
+      "recall": {
+       "value": 0.5408163265306123,
+       "lo": 0.48369197476516623,
+       "hi": 0.5968877696358845,
+       "k": 159,
+       "n": 294
+      }
+     },
+     {
+      "grade": "WATCH",
+      "claims": "ok",
+      "n": 462,
+      "bad": 124,
+      "bad_rate": {
+       "value": 0.2683982683982684,
+       "lo": 0.23002231834343104,
+       "hi": 0.31059406284708524,
+       "k": 124,
+       "n": 462
+      },
+      "precision": {
+       "value": 0.7316017316017316,
+       "lo": 0.6894059371529148,
+       "hi": 0.769977681656569,
+       "k": 338,
+       "n": 462
+      },
+      "recall": {
+       "value": 0.7824074074074074,
+       "lo": 0.7411009338017915,
+       "hi": 0.8187354838325049,
+       "k": 338,
+       "n": 432
+      }
+     },
+     {
+      "grade": "INSUFFICIENT_DATA",
+      "claims": null,
+      "n": 4,
+      "bad": 4,
+      "bad_rate": null,
+      "precision": null,
+      "recall": null
+     }
+    ],
+    "binary": {
+     "tp": 166,
+     "fp": 94,
+     "fn": 128,
+     "tn": 338,
+     "precision": {
+      "value": 0.6384615384615384,
+      "lo": 0.5784370220233498,
+      "hi": 0.6944539853083219,
+      "k": 166,
+      "n": 260
+     },
+     "recall": {
+      "value": 0.564625850340136,
+      "lo": 0.5074774813897598,
+      "hi": 0.6201071139119039,
+      "k": 166,
+      "n": 294
+     },
+     "mcc": 0.3553096505057177
+    }
+   },
+   "test": {
+    "n": 328,
+    "bad": 61,
+    "base_rate": {
+     "value": 0.18597560975609756,
+     "lo": 0.1475897254628402,
+     "hi": 0.2316321683563796,
+     "k": 61,
+     "n": 328
+    },
+    "by_grade": [
+     {
+      "grade": "AVOID",
+      "claims": "bad",
+      "n": 49,
+      "bad": 3,
+      "bad_rate": {
+       "value": 0.061224489795918366,
+       "lo": 0.021039764955529186,
+       "hi": 0.16520743422087725,
+       "k": 3,
+       "n": 49
+      },
+      "precision": {
+       "value": 0.061224489795918366,
+       "lo": 0.021039764955529186,
+       "hi": 0.16520743422087725,
+       "k": 3,
+       "n": 49
+      },
+      "recall": {
+       "value": 0.04918032786885246,
+       "lo": 0.016865676835230686,
+       "hi": 0.1349134279370143,
+       "k": 3,
+       "n": 61
+      }
+     },
+     {
+      "grade": "SPECULATIVE",
+      "claims": "bad",
+      "n": 42,
+      "bad": 23,
+      "bad_rate": {
+       "value": 0.5476190476190477,
+       "lo": 0.39948862747122693,
+       "hi": 0.6877683618136149,
+       "k": 23,
+       "n": 42
+      },
+      "precision": {
+       "value": 0.5476190476190477,
+       "lo": 0.39948862747122693,
+       "hi": 0.6877683618136149,
+       "k": 23,
+       "n": 42
+      },
+      "recall": {
+       "value": 0.3770491803278688,
+       "lo": 0.2661433042836724,
+       "hi": 0.5025237242905762,
+       "k": 23,
+       "n": 61
+      }
+     },
+     {
+      "grade": "WATCH",
+      "claims": "ok",
+      "n": 236,
+      "bad": 34,
+      "bad_rate": {
+       "value": 0.1440677966101695,
+       "lo": 0.10496233108011335,
+       "hi": 0.1945753637985065,
+       "k": 34,
+       "n": 236
+      },
+      "precision": {
+       "value": 0.8559322033898306,
+       "lo": 0.8054246362014934,
+       "hi": 0.8950376689198867,
+       "k": 202,
+       "n": 236
+      },
+      "recall": {
+       "value": 0.7565543071161048,
+       "lo": 0.7016743799375456,
+       "hi": 0.8041563343988045,
+       "k": 202,
+       "n": 267
+      }
+     },
+     {
+      "grade": "INSUFFICIENT_DATA",
+      "claims": null,
+      "n": 1,
+      "bad": 1,
+      "bad_rate": null,
+      "precision": null,
+      "recall": null
+     }
+    ],
+    "binary": {
+     "tp": 26,
+     "fp": 65,
+     "fn": 35,
+     "tn": 202,
+     "precision": {
+      "value": 0.2857142857142857,
+      "lo": 0.2030608259873361,
+      "hi": 0.3857272163906922,
+      "k": 26,
+      "n": 91
+     },
+     "recall": {
+      "value": 0.4262295081967213,
+      "lo": 0.3101502855796743,
+      "hi": 0.5510499315648748,
+      "k": 26,
+      "n": 61
+     },
+     "mcc": 0.15884129433240657
+    }
+   }
+  },
+  "rules_before": {
+   "id": "rug-rules-v0",
+   "dev_pct_over": 10,
+   "organic_below": 40,
+   "top10_over": null,
+   "liq_below": null,
+   "provenance": "the rug-check skill 0.2.0 / token-dossier computeFlags thresholds before the backtest"
+  },
+  "rules_after": {
+   "id": "rug-rules-v1",
+   "dev_pct_over": null,
+   "organic_below": null,
+   "top10_over": null,
+   "liq_below": 5000,
+   "provenance": "tuned on 726 train rows (MCC 0.355)"
+  },
+  "tuned": {
+   "train_mcc": 0.3553096505057177,
+   "candidates": 1728
+  }
+ },
+ "not_measured": [
+  "larp-check model stage (fetch_page / check_domain / check_github and the model's judgement): pages from the past cannot be re-fetched as they were; measured forward only via `dexterm backtest --subject larp` once ≥ 50 recorded verdicts match an outcome",
+  "rug-check model output (rug_probability, bias): measured forward via `--subject pack_verdicts` from recorded verdicts",
+  "trench-scan: no per-token labelled outcome"
+ ],
+ "method": [
+  "eval set: 1054 coins from this machine's recorder (726 train / 328 test), one row per coin",
+  "labels: recorder outcome at 259200s (keyless proxy, labeler 0.2.0); bad = rug ∪ dead, ok = flat ∪ fade ∪ runner; unobserved dropped",
+  "evidence: link features from the cached DexScreener/Jupiter token record only when it was fetched within 3600s after the row's t0 (latest such t0 per coin); rug-check features from that t0 snapshot",
+  "split: by time: the latest 30% of rows by t0 (t0 ≥ 2026-10-12T21:28:23.575Z) are the held-out TEST split, fixed before tuning",
+  "tuning: grid search on the train split only (the code refuses test rows); objective MCC of warning grade → bad; ties go to the simpler setting",
+  "rates: 95% Wilson intervals; a grade with fewer than 20 rows prints counts only",
+  "meaning: agreement between a grade and a bad price outcome; a risk flag, not a certificate, and not a measure of whether a product is real"
+ ]
+}

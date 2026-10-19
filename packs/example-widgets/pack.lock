@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "pack.json",
+      "sha256": "647892d03a005cec1bafc217d9286af5841911dc6a6213f28396fafd2efb6bae",
+      "bytes": 510
+    },
+    {
+      "path": "readme.md",
+      "sha256": "002836a1b4a0ccf8f18062dc633255cf0d32ee6304a56cf6402ae951601efeea",
+      "bytes": 970
+    },
+    {
+      "path": "widgets/movers/movers.html",
+      "sha256": "97515b35af1e3ff7b1cedd2f816dae7c3ae9d9c8d45628e635ca34d0a1093339",
+      "bytes": 4935
+    },
+    {
+      "path": "widgets/movers/widget.json",
+      "sha256": "b6fe6596885967478dccfaad416f792f47bde6b291dcfcf274e6c17250f908d0",
+      "bytes": 391
+    },
+    {
+      "path": "workspaces/movers.json",
+      "sha256": "38a42b4505e01230f60b204c52106eb5d9185b1bdd193cc6319326e39151749c",
+      "bytes": 280
+    }
+  ],
+  "hash": "sha256:fe088819ab8d46c01ae5f350a43dced27ed817ce7e5cb8551ecd93d53882b3b9"
+}

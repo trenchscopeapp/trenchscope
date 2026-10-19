@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>trenchscope link preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* The 1200x630 link preview: open this page at 1200x630 once data-ready is set on body, and capture it as og.png. Not linked from the site. */
+  :root { --bg: #0a0a0a; --ink: #ededed; --ink-2: #a6a6a6; --ink-3: #8c8c8c; --line: #2c2c2c; --pop: #52e08a; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: 'Spline Sans Mono', ui-monospace, monospace; -webkit-font-smoothing: antialiased; }
+  .card { position: relative; width: 1200px; height: 630px; overflow: hidden; isolation: isolate; }
+  .trench { position: absolute; inset: 0; z-index: -2; background: url('assets/trench-far.webp') 0 120px / auto 680px repeat-x; opacity: 0.22; -webkit-mask-image: linear-gradient(to bottom, transparent 30%, #000 70%); mask-image: linear-gradient(to bottom, transparent 30%, #000 70%); }
+  .trench.near { background: url('assets/trench-near.webp') -300px 170px / auto 680px repeat-x; opacity: 0.3; }
+  .light { position: absolute; z-index: -1; right: -120px; top: -260px; width: 900px; height: 900px; background: radial-gradient(closest-side, rgb(255 255 255 / 0.07), transparent 72%); }
+  .mark { position: absolute; left: 64px; top: 52px; display: flex; align-items: center; gap: 4px; font-weight: 600; font-size: 26px; letter-spacing: -0.02em; }
+  .mark i { width: 13px; height: 27px; background: var(--pop); }
+  .copy { position: absolute; left: 64px; top: 168px; width: 560px; }
+  h1 { margin: 0; font-size: 70px; line-height: 1.02; font-weight: 600; letter-spacing: -0.04em; }
+  h1 .pop { color: var(--pop); }
+  h1 i { display: inline-block; width: 0.5em; height: 0.82em; margin-left: 0.08em; vertical-align: -0.04em; background: var(--pop); }
+  p { margin: 26px 0 0; max-width: 30ch; font-size: 22px; line-height: 1.5; color: var(--ink-2); }
+  .chips { position: absolute; left: 64px; bottom: 56px; display: flex; gap: 10px; font-size: 16px; }
+  .chips span { padding: 7px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink-2); background: rgb(14 14 14 / 0.9); }
+  .chips span:first-child { color: var(--bg); background: var(--ink); border-color: var(--ink); font-weight: 600; }
+  .scene { position: absolute; left: 650px; top: 92px; perspective: 1600px; }
+  .bezel { width: 700px; padding: 10px; border-radius: 20px; transform: rotateY(-16deg) rotateX(5deg); transform-origin: 0 50%;
+    background: linear-gradient(172deg, #2b2b2b 0%, #161616 22%, #0b0b0b 70%, #202020 100%);
+    box-shadow: 0 0 0 1px #343434 inset, 0 1px 0 #5a5a5a inset, 0 0 0 1px #000, 0 40px 70px -30px rgb(0 0 0 / 0.95); }
+  .screen { position: relative; overflow: hidden; border-radius: 10px; background: var(--bg); box-shadow: 0 0 0 1px #000; }
+  .bar { display: flex; align-items: center; gap: 7px; height: 28px; padding: 0 12px; border-bottom: 1px solid #161616; background: #0d0d0d; }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; border: 1px solid #3a3a3a; background: #1a1a1a; }
+  .body { position: relative; overflow: hidden; }
+  .cells { margin: 0; position: absolute; top: 0; left: 0; transform-origin: 0 0; font: 400 14px/18px 'JetBrains Mono', monospace; white-space: pre; background: var(--bg); }
+  .cells > div { height: 18px; display: flex; }
+  .cells span { display: inline-block; flex: none; height: 18px; overflow: hidden; }
+  .cells i { display: inline-block; width: 1ch; font-style: normal; text-align: center; overflow: hidden; vertical-align: top; }
+  .screen::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(116deg, rgb(255 255 255 / 0.06) 0%, transparent 30%, transparent 74%, rgb(255 255 255 / 0.02) 100%); }
+</style>
+</head>
+<body>
+<div class="card" data-card>
+  <div class="trench"></div>
+  <div class="trench near"></div>
+  <div class="light"></div>
+  <div class="mark">trenchscope<i></i></div>
+  <div class="copy">
+    <h1>A terminal for the trenches<span class="pop">.</span><i></i></h1>
+    <p>Screen Solana memecoins from keyless data. Your own claude reads the same screens.</p>
+  </div>
+  <div class="chips"><span>open source</span><span>keyless</span><span>local</span><span>paper by default</span></div>
+  <div class="scene">
+    <div class="bezel">
+      <div class="screen">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="body" data-fit><pre class="cells" data-tour="og"></pre></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module">
+  import { Tour } from './tour.js';
+  const doc = await (await fetch('tour.json')).json();
+  const pre = document.querySelector('[data-tour="og"]');
+  // the screener at rest with the selection on GIGA: the last frame of its chapter, its left two thirds
+  const crop = [0, 112, 0, 40];
+  const t = new Tour(pre, doc, { crop, chapters: ['screener'] });
+  t.show(0, t.list[0].frames.length - 1);
+  await document.fonts.load('400 14px "JetBrains Mono"');
+  await document.fonts.load('600 70px "Spline Sans Mono"');
+  const box = document.querySelector('[data-fit]');
+  const s = box.clientWidth / pre.offsetWidth;
+  pre.style.transform = `scale(${s})`;
+  box.style.height = `${(crop[3] - crop[2]) * 18 * s}px`;
+  document.body.dataset.ready = '1';
+</script>
+</body>
+</html>

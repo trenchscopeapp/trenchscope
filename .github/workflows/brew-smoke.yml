@@ -1,0 +1,58 @@
+# Homebrew smoke on Apple Silicon (task-1423). Manual only: installs the PUBLISHED formula from the public tap
+# exactly the way the docs tell users to (tap, trust, install), then runs `brew test` and the installed command.
+# macos-14 is an arm64 runner with Homebrew's Tier 1 bottles, so `node` pours instead of compiling. Nothing
+# is built from this checkout, nothing is uploaded, no secret is used.
+name: brew-smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      formula:
+        description: 'formula to install (tap/name)'
+        required: false
+        default: 'dexterm-xyz/dexterm/dexterm'
+        type: string
+
+permissions: {}
+
+jobs:
+  brew:
+    name: brew install + brew test (macos-14 arm64)
+    runs-on: macos-14
+    timeout-minutes: 30
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+      HOMEBREW_NO_ANALYTICS: '1'
+      HOMEBREW_NO_ENV_HINTS: '1'
+      HOMEBREW_NO_INSTALL_CLEANUP: '1'
+      FORMULA: ${{ inputs.formula }}
+    steps:
+      - name: runner facts
+        run: |
+          uname -m
+          sw_vers
+          brew --version
+          [ "$(uname -m)" = arm64 ] || { echo "expected an arm64 runner, got $(uname -m)" >&2; exit 1; }
+      - name: validate the formula input
+        run: |
+          [[ "$FORMULA" =~ ^[a-z0-9-]+/[a-z0-9-]+/[a-z0-9-]+$ ]] || { echo "formula must look like owner/tap/name" >&2; exit 1; }
+      - name: brew tap + trust (Homebrew 7+ refuses an untrusted third-party tap)
+        run: |
+          tap="${FORMULA%/*}"
+          brew tap "$tap"
+          brew trust "$tap"
+      - name: brew install
+        run: brew install "$FORMULA"
+      - name: brew test (offline --help + fixture frame, from the formula's test block)
+        run: brew test "$FORMULA"
+      - name: dexterm --version + doctor (offline, fresh HOME)
+        run: |
+          home="$RUNNER_TEMP/brew-home"; mkdir -p "$home"
+          dexterm --version
+          HOME="$home" DEXTERM_HOME="$home/.dexterm" DEXTERM_OFFLINE=1 NO_COLOR=1 dexterm doctor
+      - name: installed version matches the formula
+        run: |
+          want="$(brew info --json=v2 "$FORMULA" | jq -r '.formulae[0].versions.stable')"
+          got="$(dexterm --version)"
+          echo "formula: $want, dexterm --version: $got"
+          [ "$got" = "$want" ]

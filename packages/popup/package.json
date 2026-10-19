@@ -1,0 +1,20 @@
+{
+  "name": "@dexterm/popup",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm popup host: loopback-only server + frameless HUD windows (wry) with graceful browser fallback (task-1290)",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json",
+    "build:shell": "cd shell/wry && cargo build --release"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

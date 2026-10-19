@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="dexterm-ws" content="__WS_TOKEN__">
+<meta name="dexterm-popup" content="__POPUP_ID__">
+<meta name="dexterm-port" content="__PORT__">
+<title>trenchscope · bubble map</title>
+<style nonce="__NONCE__">/*__CSS__*/</style>
+</head>
+<body>
+<div id="hud" class="hud bubbles">
+  <div id="drag" class="drag">
+    <span class="mark">✦</span>
+    <span id="coin-img-slot" class="coin-img-slot" hidden></span>
+    <span id="title" class="title">trenchscope · BUBBLE MAP</span>
+    <span id="depth" class="depth"></span>
+    <span id="status" class="status">connecting…</span>
+    <button id="close" class="close" type="button" aria-label="close">✕</button>
+  </div>
+  <div id="banner" class="banner" hidden></div>
+  <div class="stage">
+    <canvas id="rain"></canvas>
+    <canvas id="map"></canvas>
+    <div id="tip" class="tip" hidden></div>
+  </div>
+  <div id="insights" class="insights"></div>
+  <div id="why" class="why"></div>
+  <div id="legend" class="legend"></div>
+  <div id="foot" class="foot"><span>hover  rule</span><span>click  select</span><span>m  treemap</span><span>z  zoom cluster</span><span>esc  close</span><span id="fps" class="fps">— fps</span></div>
+</div>
+<script nonce="__NONCE__">/*__COMMON_JS__*/</script>
+<script nonce="__NONCE__">/*__LIB_JS__*/</script>
+<script nonce="__NONCE__">/*__JS__*/</script>
+</body>
+</html>

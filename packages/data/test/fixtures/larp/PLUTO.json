@@ -1,0 +1,60 @@
+{
+ "tag": "PLUTO",
+ "group": "claim",
+ "mint": "6jijW4Ne924kqj8XYLKXFrhpeHy5y2qxoKgGzJHQpump",
+ "symbol": "Pluto",
+ "name": "Pluto",
+ "createdAt": 1791999965000,
+ "capturedAt": "2026-10-18T23:17:17.783Z",
+ "label": {
+  "reviewer": "early?",
+  "acceptable": [
+   "EARLY_BUT_REAL",
+   "UNVERIFIABLE"
+  ],
+  "note": "exe download behind a JS shell"
+ },
+ "pairs": [
+  "5fRTjsz43MS1Kz2ZrHA9QLHTEEHemn7Hpk43NTRBpD4u"
+ ],
+ "links": {
+  "website": "https://plutohey.com/",
+  "all": [
+   {
+    "kind": "website",
+    "url": "https://plutohey.com/",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://x.com/PLUTOhay",
+    "source": "dexscreener"
+   }
+  ]
+ },
+ "github": null,
+ "page": {
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://plutohey.com/",
+  "contentType": "text/html; charset=utf-8",
+  "body": "<!DOCTYPE html>\n<html lang=\"en-US\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <meta name=\"theme-color\" content=\"#07080D\" />\n    <title>Pluto | Voice-first assistant for Windows</title>\n    <meta name=\"description\" content=\"Pluto is a voice-first Windows 11 assistant that helps you operate your PC with less reliance on a mouse and keyboard, with per-action approval and an emergency stop.\" />\n    <meta name=\"robots\" content=\"index, follow\" />\n    <meta property=\"og:site_name\" content=\"Pluto\" />\n    <meta property=\"og:title\" content=\"Pluto | Voice-first assistant for Windows\" />\n    <meta property=\"og:description\" content=\"Speak, review, approve. Pluto turns your voice into bounded, approved actions on your Windows PC.\" />\n    <meta property=\"og:type\" content=\"website\" />\n    <meta property=\"og:locale\" content=\"en_US\" />\n    <meta name=\"twitter:card\" content=\"summary\" />\n    <meta name=\"twitter:title\" content=\"Pluto | Voice-first assistant for Windows\" />\n    <meta name=\"twitter:description\" content=\"Speak, review, approve. Pluto turns your voice into bounded, approved actions on your Windows PC.\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-D45cNvkr.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CEYF3jlx.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  <script src=\"https://i.replit.com/script.js\" async=\"\" data-website-id=\"56d45693-5d5b-4cc0-b32e-f9efdf1bde24\"></script></body>\n</html>\n",
+  "bytes": 1592,
+  "truncated": false,
+  "redirects": [],
+  "blocked": null,
+  "elapsedMs": 1281
+ },
+ "sitemap": {
+  "status": 200,
+  "ok": true,
+  "body": "<!DOCTYPE html>\n<html lang=\"en-US\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <meta name=\"theme-color\" content=\"#07080D\" />\n    <title>Pluto | Voice-first assistant for Windows</title>\n    <meta name=\"description\" content=\"Pluto is a voice-first Windows 11 assistant that helps you operate your PC with less reliance on a mouse and keyboard, with per-action approval and an emergency stop.\" />\n    <meta name=\"robots\" content=\"index, follow\" />\n    <meta property=\"og:site_name\" content=\"Pluto\" />\n    <meta property=\"og:title\" content=\"Pluto | Voice-first assistant for Windows\" />\n    <meta property=\"og:description\" content=\"Speak, review, approve. Pluto turns your voice into bounded, approved actions on your Windows PC.\" />\n    <meta property=\"og:type\" content=\"website\" />\n    <meta property=\"og:locale\" content=\"en_US\" />\n    <meta name=\"twitter:card\" content=\"summary\" />\n    <meta name=\"twitter:title\" content=\"Pluto | Voice-first assistant for Windows\" />\n    <meta name=\"twitter:description\" content=\"Speak, review, approve. Pluto turns your voice into bounded, approved actions on your Windows PC.\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-D45cNvkr.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CEYF3jlx.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  <script src=\"https://i.replit.com/script.js\" async=\"\" data-website-id=\"56d45693-5d5b-4cc0-b32e-f9efdf1bde24\"></script></body>\n</html>\n"
+ },
+ "http": {
+  "https://rdap.org/domain/plutohey.com": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"registration\",\"eventDate\":\"2026-10-09T20:46:31Z\"},{\"eventAction\":\"expiration\",\"eventDate\":\"2027-10-09T20:46:31Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-10-09T20:46:36Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:37:46Z\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"NameCheap, Inc.\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"\"],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+1.6613102107\"],[\"email\",{},\"text\",\"abuse@namecheap.com\"]]]}]}]}"
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@dexterm/voice",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm JARVIS voice mode (task-1282): push-to-talk, local no-key speech-in, macOS say speech-out, a safe deterministic router. Voice never executes a trade.",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "engines": { "node": ">=22.18" }
+}

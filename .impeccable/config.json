@@ -1,0 +1,27 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-10-19T00:40:32.620Z",
+        "reason": "agent decision: the flagged rows are tab strips and the terminal title bar whose 1px active underline sits on the row's rule by design; text has 0.75rem side padding and is vertically centred in a 2.75rem row"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-10-19T00:49:21.942Z",
+        "reason": "user asked for a full width and height animated ASCII background (2026-10-18); the panning layers are aria-hidden decoration carrying no content, static under reduced motion"
+      }
+    ]
+  }
+}

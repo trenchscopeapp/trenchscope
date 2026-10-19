@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/dexterm-xyz/dexterm/security/advisories/new
+    about: Private report to the maintainers. Please do not file security problems as public issues.
+  - name: A flagged scan result on the trust page
+    url: https://dexterm.xyz/trust/#scans
+    about: Read what a flag means and how it is handled before opening an issue; then open one with the engine name and label.
