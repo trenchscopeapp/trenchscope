@@ -1,0 +1,116 @@
+# Weekly re-scan of the latest published release: download its assets, verify SHA256SUMS, ask VirusTotal to
+# re-analyse each file by hash (no re-upload; a file already known to VT is just re-queued), refresh the
+# supply-chain entries (Scorecard score), rebuild scan-results.json and replace the release asset. Costs
+# ~12-20 VirusTotal requests at the public-tier pace (4/min, 500/day), i.e. about five minutes.
+name: rescan
+
+on:
+  schedule:
+    - cron: '0 6 * * 0'   # sunday 06:00 utc
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rescan
+  cancel-in-progress: false
+
+jobs:
+  rescan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write   # replace scan-results.json on the release
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '22'
+
+      - name: latest published release
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          json="$(gh release list --repo "$GITHUB_REPOSITORY" --exclude-drafts --exclude-pre-releases --limit 1 --json tagName,publishedAt,url)"
+          tag="$(echo "$json" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8'))[0]?.tagName || ''")"
+          [ -n "$tag" ] || { echo "no published release yet; nothing to re-scan"; echo "tag=" >> "$GITHUB_OUTPUT"; exit 0; }
+          { echo "tag=$tag"; echo "published=$(echo "$json" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8'))[0].publishedAt")"; echo "url=$(echo "$json" | node -p "JSON.parse(require('fs').readFileSync(0,'utf8'))[0].url")"; } >> "$GITHUB_OUTPUT"
+          gh release download "$tag" --repo "$GITHUB_REPOSITORY" --dir release
+          ls -l release
+
+      - name: verify the downloaded assets against SHA256SUMS
+        if: steps.rel.outputs.tag != ''
+        run: node scripts/release/checksums.mjs release --verify
+
+      - name: build-info for the assembler (commit from the tag)
+        if: steps.rel.outputs.tag != ''
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          git fetch --depth 1 origin "refs/tags/$TAG:refs/tags/$TAG"
+          commit="$(git rev-list -n 1 "$TAG")"
+          node -e "require('fs').writeFileSync('release/build-info.json', JSON.stringify({ name: 'dexterm', version: process.env.TAG.replace(/^v/, ''), commit: '$commit', ref: process.env.TAG, builtAt: new Date().toISOString(), rescan: true }, null, 2))"
+
+      - name: supply-chain refresh
+        if: steps.rel.outputs.tag != ''
+        run: |
+          GITLEAKS="$(scripts/release/fetch-tool.sh gitleaks "$RUNNER_TEMP/tools")"
+          OSV_SCANNER="$(scripts/release/fetch-tool.sh osv-scanner "$RUNNER_TEMP/tools")"
+          export GITLEAKS OSV_SCANNER
+          git fetch --unshallow || true
+          node scripts/release/supply-chain.mjs --out release/checks --repo "$GITHUB_REPOSITORY" --fetch-scorecard
+
+      - name: VirusTotal re-analysis by hash
+        if: steps.rel.outputs.tag != ''
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+          VT_STATE_DIR: ${{ runner.temp }}
+        run: |
+          files="$(ls release/dexterm-*-src.tar.gz release/*.cdx.json release/SHA256SUMS)"
+          if [ -n "${VT_API_KEY:-}" ]; then
+            # shellcheck disable=SC2086
+            node scripts/release/virustotal.mjs scan --out release/checks/vt --rescan $files
+          else
+            echo "::notice::VT_API_KEY is not configured; VirusTotal results are recorded as pending"
+            # shellcheck disable=SC2086
+            node scripts/release/virustotal.mjs scan --out release/checks/vt --dry-run $files
+          fi
+
+      - name: scan-results.json
+        if: steps.rel.outputs.tag != ''
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+          PUBLISHED: ${{ steps.rel.outputs.published }}
+          RELEASE_URL: ${{ steps.rel.outputs.url }}
+          REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          LICENSE_SPDX: ${{ vars.LICENSE_SPDX }}
+        run: |
+          prev="$(node -p "try { JSON.parse(require('fs').readFileSync('release/scan-results.json','utf8')).artifacts[0].attestation.url || '' } catch { '' }")"
+          args=(--dir release --vt release/checks/vt --supply release/checks/supply-chain.json --out release/scan-results.new.json
+                --download-base "https://github.com/$REPO/releases/download/$TAG" --release-url "$RELEASE_URL" --run-url "$RUN_URL"
+                --workflow .github/workflows/rescan.yml --owner "$OWNER" --repo-url "https://github.com/$REPO" --tag "$TAG" --published-at "$PUBLISHED"
+                --rescan-schedule "weekly (sunday 06:00 utc, .github/workflows/rescan.yml) and on every release")
+          [ -n "$prev" ] && args+=(--attestation-url "$prev")
+          [ -n "${LICENSE_SPDX:-}" ] && args+=(--license "$LICENSE_SPDX")
+          node scripts/release/scan-results.mjs "${args[@]}"
+          mv release/scan-results.new.json release/scan-results.json
+          node scripts/release/scan-results.mjs --check release/scan-results.json
+
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        if: steps.rel.outputs.tag != ''
+        with:
+          name: rescan-${{ steps.rel.outputs.tag }}-${{ github.run_id }}
+          path: release/scan-results.json
+
+      - name: replace scan-results.json on the release
+        if: steps.rel.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: gh release upload "$TAG" release/scan-results.json --clobber --repo "$GITHUB_REPOSITORY"

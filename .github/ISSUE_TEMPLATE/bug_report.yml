@@ -1,0 +1,56 @@
+name: Bug report
+description: Something in dexterm is wrong, hangs, crashes or shows a bad number.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks. **Security problems go through [SECURITY.md](../blob/main/SECURITY.md), not here.** For everything else, the more exact you are, the faster it gets fixed.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: "`dexterm --version`, the release tag, or the commit you ran from."
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: "`dexterm doctor` output"
+      description: Paste it whole. It contains no secrets (the key file is reported as present or absent only).
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you did
+      description: The exact command and the keys you pressed, in order.
+      placeholder: |
+        1. `dexterm --preset trending`
+        2. hover the third row, press ⏎
+        3. press `a`
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened instead
+    validations:
+      required: true
+  - type: input
+    id: terminal
+    attributes:
+      label: Terminal and OS
+      placeholder: "Ghostty 1.2 on macOS 15.7, 176x48, truecolor"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+        - label: This is not a security problem (those go to SECURITY.md).
+        - label: The data looked wrong — I checked the same coin on the source's own site (DexScreener, GeckoTerminal, RugCheck) and it differs from what dexterm showed.

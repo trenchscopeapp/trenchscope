@@ -1,0 +1,21 @@
+trenchscope
+A modified version of dexterm (https://github.com/dexterm-xyz/dexterm), forked at
+v0.1.5 (commit 6d76f1d) on 2026-10-18. Changes since the fork are in this
+repository's commit history. Licensed under AGPL-3.0-only, like the original.
+
+dexterm
+Copyright (C) 2026 The dexterm authors. Licensed under AGPL-3.0-only.
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 only. It is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the LICENSE file for the full license text.
+
+"The dexterm authors" means the people who have contributed to this project;
+see the commit history. Contributions are accepted under the Developer
+Certificate of Origin (see CONTRIBUTING.md).
+
+Third-party components keep their own licenses:
+- TradingView Lightweight Charts (Apache-2.0), vendored under
+  packages/popup/vendor/.

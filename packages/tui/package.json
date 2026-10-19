@@ -1,0 +1,13 @@
+{
+  "name": "@dexterm/tui",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm terminal renderer: cell buffer, diff flusher, widgets, themes, breakpoints, keymap (SPEC §2.2, §7)",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "engines": { "node": ">=22.18" }
+}

@@ -1,0 +1,48 @@
+  trenchscope ┃  1 Screener ▌ 2 New pairs   3 Watchlist   4 Analyst                           dexscreener · jup · gecko · rugcheck   SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+ ‹ $GIGA Gigachad Protocol   PUMP   PUMPSWAP   5pjVne…Jkpump  age 2mo                                         WEB    ╭─ ✦ ANALYST · claude ────── claude -p · 4 tools · local ─╮
+ $0.0834  5m ▼0.0%  1h ▲5.9%  6h ▼8.3%  24h ▲14.5%                                                                   │  $GIGA   holders:20   trades:1h   rugcheck   screener   │
+╭─ GIGA/SOL · 1h ──────────────────────────────────────────────────────1m─5m─15m─1h─4h─1d──── ohlcv: geckoterminal ─╮│                                                         │
+│ ·································································│·····································   0.08822 ││ › is $GIGA worth a position here? what would            │
+│                                                      │       │   │       │       │                                ││   invalidate it?                                        │
+│                                                      │   │ ▐███▐███      │   │   │       │                        ││                                                         │
+│ ·············································│···│·▐▄▄▄▐▄▄▄▐███▐███▐███▐███▐███▐███··│···│···│·········   0.08662 ││   ↳ get_token(GIGA) 84ms · get_holders(top=20) 131ms ·  │
+│                                              │   │ ▐███▐███▐███▐▀▀▀▐▀▀▀▐▀▀▀▐▀▀▀▐███  │ ▐███▐███                   ││  ● SPECULATIVE                              conf 0.44   │
+│                      │                 ▐▄▄▄▐▀▀▀▐▀▀▀▐███▐███▐███  │   │   │   │ ▐▀▀▀▐━━━▐▀▀▀▐███                   ││  Speculative. Nothing disqualifying on-chain, but the   │
+│ ·│···│···············│·······│·········▐███··········│·▐▀▀▀▐▀▀▀··········│···│···│·······│·▐███········   0.08501 ││  activity is thin and the chart is mostly noise.        │
+│ ███▐███            ▐███▐▀▀▀▐▄▄▄  │   │ ▐███              │   │                             ▐███                   ││                                                         │
+│ ███▐███▐▄▄▄  │   │ ▐███    ▐███▐▄▄▄  │ ▐███                  │                             ▐███▐▄▄▄               ││  • Organic score 55/100: most volume looks automated    │
+│ ███··│·▐███▐━━━▐▄▄▄▐███······│·▐▀▀▀▐▀▀▀▐███··················································│·▐███····   0.08341 ││  • Top 10 hold 37.3% (concentrated, one wallet can      │
+│ ╌│╌╌╌│╌╌╌│╌╌╌│╌╌▀▀▀╌▀▀▀╌╌╌╌╌╌╌╌╌╌╌╌╌╌│╌╌╌│╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌│╌╌╌╌╌   0.08342 ││    nuke it)                                             │
+│          │       │                   │   │                                                                        ││  • +266 holders 24h vs $101.2M volume: accumulation     │
+│ ·················│·····················································································   0.08181 ││    pattern                                              │
+│ ███                     ▃▃▃ ▁▁▁                     ▄▄▄         ▆▆▆         ▃▃▃                         vol       ││  • Dev: 8 prior launches, 1 rugged, holds 2.83%         │
+│ ███ ▆▆▆ ▃▃▃     ▁▁▁ ▄▄▄ ███ ███     ▁▁▁     ▃▃▃ ▁▁▁ ███         ███ ▆▆▆     ███         ▅▅▅ ▁▁▁ ▆▆▆     $5.8M     ││  • Mint/freeze revoked, LP 100% locked                  │
+│ ███ ███ ███ ▇▇▇ ███ ███ ███ ███ ▃▃▃ ███ ▆▆▆ ███ ███ ███ ▇▇▇ ▆▆▆ ███ ███ ▇▇▇ ███ ▅▅▅ ▆▆▆ ███ ███ ███               ││                                                         │
+│ 04/10 22:00         05/10 04:00             05/10 10:00             05/10 16:00             05/10 22:00    1h UTC ││  Invalidation: liquidity below $2.1M or top-10 above    │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯│  35%. I set two alerts for that. I don't trade; say     │
+╭─ ON-CHAIN ───────────────────────────────╮╭─ HOLDERS ─────────────────────── holders · trades · traders  (h/t/r) ─╮│  "quote 0.5 SOL" and I'll show the Jupiter route for    │
+│ MCAP                FDV                  ││ WALLET                                                      %     SOL ││  you to confirm.                                        │
+│ $83.4M              $86.7M               ││ P96W…FvwG  CEX       ███████████████████████████████████ 8.34   58.0K ││                                                         │
+│ LIQUIDITY           VOL 24H              ││ 3NAw…WugK            ████████████████████████████▓░░░░░░ 6.60   45.9K ││ › compare to the other cat coins in the screener        │
+│ $3.6M 4.3% of mcap  $101.2M              ││ v2SJ…WL5C  CEX       ██████████████████████████▓░░░░░░░░ 6.11   42.5K ││                                                         │
+│ HOLDERS             ORGANIC              ││ 9Syu…H729            ████████████████████████▓░░░░░░░░░░ 5.72   39.7K ││   ↳ screener_query(filter="cat", sort=vol24) 42ms       │
+│ 33.0K ▲266 24h      55/100               ││ iWHh…mXHq  CEX       ███████████████▓░░░░░░░░░░░░░░░░░░░ 3.64   25.3K ││  3 matches. $GIGA has the best organic/volume ratio     │
+│                                          ││ Ee7V…sYso  SNIPER    ███████████████▓░░░░░░░░░░░░░░░░░░░ 3.66   25.4K ││  but the thinnest liquidity of the three; CATWIF has    │
+│ ○ Top 10 holders                   37.3% ││ 4a9H…dQEM  DEV       █████████████▓░░░░░░░░░░░░░░░░░░░░░ 3.14   21.9K ││  2.1x the holder growth. Want the comparison table?     │
+│ ● Dev wallet                       2.83% ││ 2U1C…t6bP            ███████████▓░░░░░░░░░░░░░░░░░░░░░░░ 2.68   18.6K ││                                                         │
+│ ● Bundled supply                    1.3% ││ 6V1f…XXMT            ████████▓░░░░░░░░░░░░░░░░░░░░░░░░░░ 1.81   12.6K ││                                                         │
+│ ● Snipers (block 0-2)                  3 ││ XEj2…2Zai  DEV       ████▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 1.07   7.42K ││                                                         │
+│ ● LP locked / burned                100% ││───────────────────────────────────────────────────────────────────────││                                                         │
+│ ● Mint authority                 revoked ││ TAPE                                                        live · ws ││                                                         │
+│ ● Freeze authority               revoked ││   0s ▲BUY      $290  $0.0828  7tQ…NkJ           │   │   │  │   │      ││                                                         │
+│ ◐ Dev history        8 launches · 1 rugs ││  33s ▼SELL      $26  $0.0833  1vH…NqC           │   ▼│  │  ▼   │      ││                                                         │
+│ ● RugCheck score                  27/100 ││  43s ▼SELL    $3.0K  $0.0841  YAd…sNQ           ▼│   │  ▼      ▲ │    ││                                                         │
+│                                          ││  40s ▲BUY      $405  $0.0834  gFr…Fts            │   │      │    │    ││                                                         │
+│                                          ││   2m ▲BUY     $3.0K  $0.0830  Yzg…T5a            │   │      │    │    ││                                                         │
+│                                          ││   2m ▼SELL    $2.0K  $0.0829  hAb…2hC            │   ▲      ▲    ▼    ││                                                         │
+│                                          ││   3m ▲BUY     $6.6K  $0.0840  agM…6uH            ▼    │  ││  ││   │   ││├───────────────────────────────────────────────────────┤│
+│                                          ││  43s ▲BUY      $584  $0.0831  qwA…doU             │   │  ││  ││   │   ││ ▌ask about $GIGA…  read-only · never trades             │
+│                                          ││   2m ▼SELL    $2.9K  $0.0828  i6a…ANo  dev        │   ││ ▲│  ▼│   │ │ ││                                                         │
+╰──────────────────────────────────────────╯╰───────────────────────────────────────────────────────────────────────╯╰─────────────────────────────────────────────────────────╯
+  esc  back   g  go to   a  hide analyst   h/t/r  holders/trades/traders   w  watch   b  alert   1-6  timeframe   q  quit

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="dexterm-ws" content="__WS_TOKEN__">
+<meta name="dexterm-popup" content="__POPUP_ID__">
+<meta name="dexterm-port" content="__PORT__">
+<title>trenchscope · chart</title>
+<style nonce="__NONCE__">/*__CSS__*/</style>
+</head>
+<body>
+<div id="hud" class="hud chart2">
+  <div id="drag" class="drag">
+    <span class="mark">✦</span>
+    <!-- task-1326: the coin image, a 16×16 <img> served by THIS loopback server from the terminal's cache
+         (`/img/<key>.png`); the page CSP allows images from that path prefix only. -->
+    <span id="coin-img-slot" class="coin-img-slot" hidden></span>
+    <span id="title" class="title">trenchscope · CHART</span>
+    <span id="live" class="live wait" title="ticks from the terminal">● …</span>
+    <span id="status" class="status">connecting…</span>
+    <button id="close" class="close" type="button" aria-label="close">✕</button>
+  </div>
+  <div id="toolbar" class="toolbar">
+    <span class="grp" id="tf"></span>
+    <span class="sep"></span>
+    <span class="grp" id="styles"></span>
+    <span class="sep"></span>
+    <span class="grp" id="scales"></span>
+    <span class="sep"></span>
+    <span class="grp" id="inds"></span>
+    <span class="sep"></span>
+    <span class="grp" id="draws"></span>
+  </div>
+  <div id="banner" class="banner" hidden></div>
+  <div class="stage">
+    <canvas id="rain"></canvas>
+    <div id="chart" class="chart"></div>
+    <canvas id="draw" class="draw"></canvas>
+    <div id="legend" class="ohlc"></div>
+    <div id="hint" class="hint" hidden></div>
+  </div>
+  <div id="pos" class="pos" hidden>
+    <div class="pos-head"><span id="pos-title" class="pos-title">◈ POSITION · PAPER</span><span id="pos-cap" class="pos-cap"></span></div>
+    <div id="pos-cells" class="pos-cells"></div>
+  </div>
+  <div id="foot" class="foot">
+    <span class="keys">1–6 tf · c style · a/l/p scale · e ema · w vwap · m vol·ma · v vol · b tape · h/t draw · f fit · esc close</span>
+    <span class="attr" title="TradingView Lightweight Charts v__LWC_VERSION__ (Apache-2.0), self-hosted"><span id="notice">__LWC_NOTICE__</span> · <a id="tv-link" href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer">https://www.tradingview.com/</a></span>
+  </div>
+</div>
+<script nonce="__NONCE__">/*__COMMON_JS__*/</script>
+<script nonce="__NONCE__" src="__LWC_SRC__"></script>
+<script nonce="__NONCE__">/*__LIB_JS__*/</script>
+<script nonce="__NONCE__">/*__JS__*/</script>
+</body>
+</html>

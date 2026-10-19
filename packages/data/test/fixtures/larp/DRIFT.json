@@ -1,0 +1,69 @@
+{
+ "tag": "DRIFT",
+ "group": "real",
+ "mint": "DriFtupJYLTosbwoN8koMbEYSx54aFAVLddWsbksjwg7",
+ "symbol": "DRIFT",
+ "name": "Drift",
+ "createdAt": 1715723659000,
+ "capturedAt": "2026-10-18T23:14:29.161Z",
+ "label": {
+  "reviewer": "REAL",
+  "acceptable": [
+   "REAL_PRODUCT",
+   "EARLY_BUT_REAL",
+   "UNVERIFIABLE"
+  ],
+  "note": "Next.js client-rendered shell"
+ },
+ "pairs": [
+  "9kx6CHCKtGqDYMq4KPhpxFCZorgJZDFXT9a5iJx9S1Ab"
+ ],
+ "links": {
+  "website": "https://www.drift.foundation/",
+  "all": [
+   {
+    "kind": "x",
+    "url": "https://x.com/DriftProtocol",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "telegram",
+    "url": "https://t.me/+G4i0AZcHf6cxNDll",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "website",
+    "url": "https://www.drift.foundation/",
+    "source": "jupiter"
+   }
+  ]
+ },
+ "github": null,
+ "page": {
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://drift.foundation/",
+  "contentType": "text/html; charset=utf-8",
+  "body": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/d1c634cc13df9ca0.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/6c6c70bd3c152ecd.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/fb9a9af3f6f81ba5.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-fb32d0bad4c7f750.js\"/><script src=\"/_next/static/chunks/4bd1b696-879339b6a430f9d7.js\" async=\"\"></script><script src=\"/_next/static/chunks/1517-e0c6de3157d4eecb.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-d9502c8ccb19a657.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/error-461f6f8cd47a70a0.js\" async=\"\"></script><script src=\"/_next/static/chunks/3d022da4-91f58777073cbf56.js\" async=\"\"></script><script src=\"/_next/static/chunks/aaea2bcf-9904fb64374d61ea.js\" async=\"\"></script><script src=\"/_next/static/chunks/fafd8c6a-fd6904de68f63e1e.js\" async=\"\"></script><script src=\"/_next/static/chunks/13b25b7b-4f128a744ba48706.js\" async=\"\"></script><script src=\"/_next/static/chunks/bfe06839-39943e8be82c00ae.js\" async=\"\"></script><script src=\"/_next/static/chunks/c5737094-3e38dc9e4f68d792.js\" async=\"\"></script><script src=\"/_next/static/chunks/47d5d1f8-b07dcf8f17282d8f.js\" async=\"\"></script><script src=\"/_next/static/chunks/91616e1f-1b7fb70a545fe616.js\" async=\"\"></script><script src=\"/_next/static/chunks/65166115-37ce0dc330964a20.js\" async=\"\"></script><script src=\"/_next/static/chunks/ed56a642-0418bec7a97016a0.js\" async=\"\"></script><script src=\"/_next/static/chunks/b3d2daa6-34d6a42387f4094b.js\" async=\"\"></script><script src=\"/_next/static/chunks/ae191284-4bdfc8bb14c19153.js\" async=\"\"></script><script src=\"/_next/static/chunks/0dfb99bf-8dcec17b73cfca64.js\" async=\"\"></script><script src=\"/_next/static/chunks/cc13ab32-feacbf03df1dc807.js\" async=\"\"></script><script src=\"/_next/static/chunks/4f605b15-2f1c47a7833ce19e.js\" async=\"\"></script><script src=\"/_next/static/chunks/3f44b3a9-0c4da5f6e0a81e20.js\" async=\"\"></script><script src=\"/_next/static/chunks/5fa68dec-1c3eccdab04a2446.js\" async=\"\"></script><script src=\"/_next/static/chunks/19de8fca-218ba55a6ba5bac7.js\" async=\"\"></script><script src=\"/_next/static/chunks/3a91511d-fcd286a93c18b9d9.js\" async=\"\"></script><script src=\"/_next/static/chunks/8ee196e4-d598caa68e5be32e.js\" async=\"\"></script><script src=\"/_next/static/chunks/70782656-8d8a148729bc68c2.js\" async=\"\"></script><script src=\"/_next/static/chunks/78f94902-ef9c75e73c0c11f1.js\" async=\"\"></script><script src=\"/_next/static/chunks/5819-fede39949b065f1a.js\" async=\"\"></script><script src=\"/_next/static/chunks/1301-199d067db46e5390.js\" async=\"\"></script><script src=\"/_next/static/chunks/7397-b1a1ca5d9bf8bf0f.js\" async=\"\"></script><script src=\"/_next/static/chunks/5565-d223211759cc7579.js\" async=\"\"></script><script src=\"/_next/static/chunks/6458-2f9a9ea2dedb4ba8.js\" async=\"\"></script><script src=\"/_next/static/chunks/7082-17ce588a8a6ab99f.js\" async=\"\"></script><script src=\"/_next/static/chunks/3233-a52cf849d29ca697.js\" async=\"\"></script><script src=\"/_next/static/chunks/7824-d3894278afaa8868.js\" async=\"\"></script><script src=\"/_next/static/chunks/8047-7ebf42a769c848a7.js\" async=\"\"></script><script src=\"/_next/static/chunks/9623-07393ecc7389017f.js\" async=\"\"></script><script src=\"/_next/static/chunks/7084-2497b47b769ab111.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(foundation)/layout-212e179fd21bb1e0.js\" async=\"\"></script><script src=\"/_next/static/chunks/6075-18d77988c3f361fe.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(foundation)/page-9521d86bd7f885de.js\" async=\"\"></script><meta name=\"next-size-adjust\"/><title>Drift Foundation</title><link rel=\"icon\" href=\"/icon.svg?b87a46d2e7333d52\" type=\"image/svg+xml\" sizes=\"any\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"dark-theme\"><svg width=\"0\" height=\"0\"></svg><!--$!--><template data-dgst=\"BAILOUT_TO_CLIENT_SIDE_RENDERING\"></template><div class=\"\"><span class=\"\"><span style=\"\"><svg viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"></svg></span></span></div><!--/$--><div class=\"Toastify\"></div><script src=\"/_next/static/chunks/webpack-fb32d0bad4c7f750.js\" async=\"\"></script><script></script><script></script><script></script><script></script><script></script><script>self.__next_f.push([1,\"e:{}\\nf:{}\\n\"])</script><script>self.__next_f.push([1,\"15:[[\\\"$\\\",\\\"meta\\\",\\\"0\\\",{\\\"name\\\":\\\"viewport\\\",\\\"content\\\":\\\"width=device-width, initial-scale=1\\\"}]]\\n13:[[\\\"$\\\",\\\"meta\\\",\\\"0\\\",{\\\"charSet\\\":\\\"utf-8\\\"}],[\\\"$\\\",\\\"title\\\",\\\"1\\\",{\\\"children\\\":\\\"Drift Foundation\\\"}],[\\\"$\\\",\\\"link\\\",\\\"2\\\",{\\\"rel\\\":\\\"icon\\\",\\\"href\\\":\\\"/icon.svg?b87a46d2e7333d52\\\",\\\"type\\\":\\\"image/svg+xml\\\",\\\"sizes\\\":\\\"any\\\"}]]\\n\"])</script><script>self.__next_f.push([1,\"11:null\\n\"])</script></body></html>",
+  "bytes": 5000,
+  "truncated": false,
+  "redirects": [
+   "https://www.drift.foundation/"
+  ],
+  "blocked": null,
+  "elapsedMs": 2393,
+  "compacted": true
+ },
+ "sitemap": {
+  "status": 404,
+  "ok": false,
+  "body": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/d1c634cc13df9ca0.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-fb32d0bad4c7f750.js\"/><script src=\"/_next/static/chunks/4bd1b696-879339b6a430f9d7.js\" async=\"\"></script><script src=\"/_next/static/chunks/1517-e0c6de3157d4eecb.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-d9502c8ccb19a657.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/error-461f6f8cd47a70a0.js\" async=\"\"></script><meta name=\"robots\" content=\"noindex\"/><meta name=\"next-size-adjust\"/><title>Drift Foundation</title><link rel=\"icon\" href=\"/icon.svg?b87a46d2e7333d52\" type=\"image/svg+xml\" sizes=\"any\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"dark-theme\"><svg width=\"0\" height=\"0\"><linearGradient id=\"app-gradient\" x1=\"100%\" y1=\"50%\" x2=\"0%\" y2=\"50%\" gradientTransform=\"rotate(0)\"><stop stop-color=\"#11C7E3\" offset=\"0\"></stop><stop stop-color=\"#9162F6\" offset=\"0.5\"></stop><stop stop-color=\"#F7648F\" offset=\"1\"></stop></linearGradient></svg><div class=\"flex items-center justify-center\">404 Not Found</div><script src=\"/_next/static/chunks/webpack-fb32d0bad4c7f750.js\" async=\"\"></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,\"2:\\\"$Sreact.fragment\\\"\\n3:I[15244,[],\\\"\\\"]\\n4:I[16310,[\\\"8039\\\",\\\"static/chunks/app/error-461f6f8cd47a70a0.js\\\"],\\\"default\\\"]\\n5:I[43866,[],\\\"\\\"]\\n6:I[86213,[],\\\"OutletBoundary\\\"]\\n8:I[86213,[],\\\"MetadataBoundary\\\"]\\na:I[86213,[],\\\"ViewportBoundary\\\"]\\nc:I[34835,[],\\\"\\\"]\\n1:HL[\\\"/_next/static/css/d1c634cc13df9ca0.css\\\",\\\"style\\\"]\\n\"])</script><script>self.__next_f.push([1,\"0:{\\\"P\\\":null,\\\"b\\\":\\\"MhpzeTy-HIH6A93pue-sD\\\",\\\"p\\\":\\\"\\\",\\\"c\\\":[\\\"\\\",\\\"_not-found\\\"],\\\"i\\\":false,\\\"f\\\":[[[\\\"\\\",{\\\"children\\\":[\\\"/_not-found\\\",{\\\"children\\\":[\\\"__PAGE__\\\",{}]}]},\\\"$undefined\\\",\\\"$undefined\\\",true],[\\\"\\\",[\\\"$\\\",\\\"$2\\\",\\\"c\\\",{\\\"children\\\":[[[\\\"$\\\",\\\"link\\\",\\\"0\\\",{\\\"rel\\\":\\\"stylesheet\\\",\\\"href\\\":\\\"/_next/static/css/d1c634cc13df9ca0.css\\\",\\\"precedence\\\":\\\"next\\\",\\\"crossOrigin\\\":\\\"$undefined\\\",\\\"nonce\\\":\\\"$undefined\\\"}]],[\\\"$\\\",\\\"html\\\",null,{\\\"lang\\\":\\\"en\\\",\\\"children\\\":[\\\"$\\\",\\\"body\\\",null,{\\\"className\\\":\\\"dark-theme\\\",\\\"children\\\":[[\\\"$\\\",\\\"svg\\\",null,{\\\"width\\\":\\\"0\\\",\\\"height\\\":\\\"0\\\",\\\"children\\\":[\\\"$\\\",\\\"linearGradient\\\",null,{\\\"id\\\":\\\"app-gradient\\\",\\\"x1\\\":\\\"100%\\\",\\\"y1\\\":\\\"50%\\\",\\\"x2\\\":\\\"0%\\\",\\\"y2\\\":\\\"50%\\\",\\\"gradientTransform\\\":\\\"rotate(0)\\\",\\\"children\\\":[[\\\"$\\\",\\\"stop\\\",null,{\\\"stopColor\\\":\\\"#11C7E3\\\",\\\"offset\\\":\\\"0\\\"}],[\\\"$\\\",\\\"stop\\\",null,{\\\"stopColor\\\":\\\"#9162F6\\\",\\\"offset\\\":\\\"0.5\\\"}],[\\\"$\\\",\\\"stop\\\",null,{\\\"stopColor\\\":\\\"#F7648F\\\",\\\"offset\\\":\\\"1\\\"}]]}]}],[\\\"$\\\",\\\"$L3\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"segmentPath\\\":[\\\"children\\\"],\\\"error\\\":\\\"$4\\\",\\\"errorStyles\\\":[],\\\"errorScripts\\\":[],\\\"template\\\":[\\\"$\\\",\\\"$L5\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"flex items-center justify-center\\\",\\\"children\\\":\\\"404 Not Found\\\"}],\\\"notFoundStyles\\\":[]}]]}]}]]}],{\\\"children\\\":[\\\"/_not-found\\\",[\\\"$\\\",\\\"$2\\\",\\\"c\\\",{\\\"children\\\":[null,[\\\"$\\\",\\\"$L3\\\",null,{\\\"parallelRouterKey\\\":\\\"children\\\",\\\"segmentPath\\\":[\\\"children\\\",\\\"/_not-found\\\",\\\"children\\\"],\\\"error\\\":\\\"$undefined\\\",\\\"errorStyles\\\":\\\"$undefined\\\",\\\"errorScripts\\\":\\\"$undefined\\\",\\\"template\\\":[\\\"$\\\",\\\"$L5\\\",null,{}],\\\"templateStyles\\\":\\\"$undefined\\\",\\\"templateScripts\\\":\\\"$undefined\\\",\\\"notFound\\\":\\\"$undefined\\\",\\\"notFoundStyles\\\":\\\"$undefined\\\"}]]}],{\\\"children\\\":[\\\"__PAGE__\\\",[\\\"$\\\",\\\"$2\\\",\\\"c\\\",{\\\"children\\\":[[\\\"$\\\",\\\"div\\\",null,{\\\"className\\\":\\\"flex items-center justify-center\\\",\\\"children\\\":\\\"404 Not Found\\\"}],null,[\\\"$\\\",\\\"$L6\\\",null,{\\\"children\\\":\\\"$L7\\\"}]]}],{},null]},null]},null],[\\\"$\\\",\\\"$2\\\",\\\"h\\\",{\\\"children\\\":[[\\\"$\\\",\\\"meta\\\",null,{\\\"name\\\":\\\"robots\\\",\\\"content\\\":\\\"noindex\\\"}],[\\\"$\\\",\\\"$2\\\",\\\"_h947LYCOYDa0ZiHEWA37\\\",{\\\"children\\\":[[\\\"$\\\",\\\"$L8\\\",null,{\\\"children\\\":\\\"$L9\\\"}],[\\\"$\\\",\\\"$La\\\",null,{\\\"children\\\":\\\"$Lb\\\"}],[\\\"$\\\",\\\"meta\\\",null,{\\\"name\\\":\\\"next-size-adjust\\\"}]]}]]}]]],\\\"m\\\":\\\"$undefined\\\",\\\"G\\\":[\\\"$c\\\",\\\"$undefined\\\"],\\\"s\\\":false,\\\"S\\\":true}\\n\"])</script><script>self.__next_f.push([1,\"b:[[\\\"$\\\",\\\"meta\\\",\\\"0\\\",{\\\"name\\\":\\\"viewport\\\",\\\"content\\\":\\\"width=device-width, initial-scale=1\\\"}]]\\n9:[[\\\"$\\\",\\\"meta\\\",\\\"0\\\",{\\\"charSet\\\":\\\"utf-8\\\"}],[\\\"$\\\",\\\"title\\\",\\\"1\\\",{\\\"children\\\":\\\"Drift Foundation\\\"}],[\\\"$\\\",\\\"link\\\",\\\"2\\\",{\\\"rel\\\":\\\"icon\\\",\\\"href\\\":\\\"/icon.svg?b87a46d2e7333d52\\\",\\\"type\\\":\\\"image/svg+xml\\\",\\\"sizes\\\":\\\"any\\\"}]]\\n\"])</script><script>self.__next_f.push([1,\"7:null\\n\"])</script></body></html>"
+ },
+ "http": {
+  "https://rdap.org/domain/drift.foundation": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"expiration\",\"eventDate\":\"2027-03-12T06:36:26.651Z\"},{\"eventAction\":\"registration\",\"eventDate\":\"2024-03-12T06:36:26.651Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-08-12T09:03:45.512Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:37:58.384Z\"}],\"redacted\":[{\"name\":{\"type\":\"Registry Domain ID\"},\"prePath\":\"$.handle\",\"pathLang\":\"jsonpath\",\"method\":\"removal\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"Spaceship, Inc.\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"\"],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+1.9854014545\"],[\"email\",{},\"text\",\"abuse@spaceship.com\"]]]}]}]}"
+  }
+ }
+}

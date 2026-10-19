@@ -1,0 +1,39 @@
+{
+  "schema": "dexterm/packs/skill-care-public/1",
+  "run_at": "2026-10-16T07:45:19.404Z",
+  "new_coins": 0,
+  "min_new_coins": 150,
+  "rolling": {
+    "train": 670,
+    "test": 330,
+    "split_rule": "newest 30% by t0 held out and never tuned on"
+  },
+  "held_out": {
+    "larp": {
+      "before": { "mcc": 0.08355371277010805 },
+      "after": {
+        "mcc": 0.05805381595090233,
+        "precision": { "value": 0.2727272727272727, "lo": 0.1315058201581444, "hi": 0.4815212369900198, "k": 6, "n": 22 },
+        "recall": { "value": 0.0967741935483871, "lo": 0.0451112577973332, "hi": 0.1954904286744415, "k": 6, "n": 62 }
+      }
+    },
+    "rug": {
+      "before": { "mcc": 0.14245907730619337 },
+      "after": {
+        "mcc": 0.14245907730619337,
+        "precision": { "value": 0.2823529411764706, "lo": 0.19768719505480054, "hi": 0.38584124207375187, "k": 24, "n": 85 },
+        "recall": { "value": 0.3870967741935484, "lo": 0.2758446342699068, "hi": 0.5115238379421901, "k": 24, "n": 62 }
+      }
+    }
+  },
+  "canary": {
+    "baseline": { "larpMcc": 0.05412726559678879, "rugMcc": 0.15884129433240657 },
+    "shipped": { "larpMcc": 0.05412726559678879, "rugMcc": 0.15884129433240657 },
+    "proposed": { "larpMcc": 0.05285840594602093, "rugMcc": 0.15884129433240657 }
+  },
+  "gate": {
+    "propose": false,
+    "canaryHolds": true,
+    "summary": "not enough new labelled coins and no held-out improvement beyond noise"
+  }
+}

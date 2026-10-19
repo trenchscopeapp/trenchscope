@@ -1,0 +1,48 @@
+  trenchscope ┃  1 Screener   2 New pairs ▌ 3 Watchlist   4 Analyst                           dexscreener · jup · gecko · rugcheck   SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+  New 20   Graduating 4   Migrated 1h 7   Trenches 3    min liq 5K · dev < 5% · no mint auth                                      ╭─ $CLAUDE ──────────────────────── 58s old ─╮
+╭─ NEW PAIRS ────────────────────────────────────────────────────────────────── ws: pumpportal newToken · jup tokens/v2/recent ─╮ │ claude wif terminal                 PUMP   │
+│   AGE TOKEN                    LAUNCH BONDING            MCAP     LIQ      5M      1H   HLD B/S 5M     DEV SNIPE TREND        │ │ $0.0₄2749 ▲36.6%                           │
+│ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── │ │                                            │
+│    1m BOOP boop the snoot       PUMP  █████████ 100%     $81K    $27K   ▼1.4%  ▲60.5%   881 ━━━━━━━━  1.9%    17 ▁▁▁▂▂▂▂▂▂▂▃█ │ │ BONDING CURVE       40% → PumpSwap at $69K │
+│▎  NEW CLAUDE claude wif termin  PUMP  ████▓░░░░  40%     $27K    $14K  ▲18.8%  ▲36.6%   176 ━━━━━━━━  4.2%     9 ▃▃▃▃▂▂▂▂▂▂▁█ │ │ █████████████████▓░░░░░░░░░░░░░░░░░░░░░░░░ │
+│    2m GRIDLOCK gridlock         DBC   migrated           $17K     $6K  ▼13.3%  ▲85.2%   647 ━━━━━━━━  4.4%     3 ▂▂▂▂▂▁▁▁▁▂▂█ │ │                                            │
+│    2m RATTO ratto               PUMP  █████████ 100%     $77K    $23K   ▲9.5%  ▼15.8%   797 ━━━━━━━━  2.8%    20 ▅▄▃▄▆▇▇▇██▇▁ │ │                                          █ │
+│    9m MOONPIE moon pie          BONK  migrated           $44K    $12K   ▼3.7%  ▲81.6%   635 ━━━━━━━━  6.3%     5 ▁▁▁▁▁▂▂▂▂▂▂█ │ │ ⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀                              █ │
+│    6m WAFFLE waffle house       PUMP  ████▓░░░░  46%     $32K    $13K  ▲23.8%  ▼43.1%   821 ━━━━━━━━  5.7%     2 ▅▅▅▅▅▇▇▇█▇█▁ │ │ ▃▄▃▂▂▂▃▂▂▂▁▁⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀█ │
+│    5m PEBBLE pebble             PUMP  ██████▓░░  71%     $49K    $13K   ▼6.1%  ▼31.8%    86 ━━━━━━━━  6.9%     8 ▄▄▅▅▅▅▄▄▅▆█▁ │ │ ████████████▇▇▆▅▄▄▅▅▅▅▅▅▅▆▅▄▃▃▄▅▅▅▃▂▁▁▂▃▂█ │
+│   12m HONK honk honk            DBC   migrated           $52K    $27K  ▲11.8%  ▲10.0%   201 ━━━━━━━━  3.5%    27 ▅▃▃▂▂▁▁▁▃▃▅█ │ │                                            │
+│    9m SIRLOIN sirloin           PUMP  █████████ 100%     $78K    $41K  ▲14.3%  ▼49.6%   575 ━━━━━━━━  4.2%     6 ▆▆▇▇▆▇█▆▆▆▆▁ │ │ MCAP                 LIQUIDITY             │
+│   11m ORB the orb               BONK  migrated           $34K     $9K  ▲23.4%  ▲44.3%   133 ━━━━━━━━  4.9%    27 ▁▂▂▂▂▂▁▁▂▁▁█ │ │ $27K                 $14K                  │
+│   14m DRIFTER drifter           PUMP  ██████▓░░  66%     $46K    $15K   ▼5.1%  ▲22.6%   325 ━━━━━━━━  1.1%    25 ▄▄▃▂▂▂▁▄▃▄▃█ │ │ HOLDERS              VOL SINCE LAUNCH      │
+│    6m GLIZZY glizzy gobbler     PUMP  ████████▓  86%     $59K    $32K   ▼9.5%  ▲57.0%   734 ━━━━━━━━  5.2%    21 ▃▂▂▂▂▁▁▁▁▁▁█ │ │ 176                  $37K                  │
+│    8m NOODLE noodle arms        DBC   migrated           $24K     $7K   ▲2.9% ▲103.0%   176 ━━━━━━━━  3.7%    12 ▂▁▁▁▁▁▂▂▂▂▂█ │ │                                            │
+│   17m TUNA tuna melt            PUMP  ███▓░░░░░  30%     $21K     $8K  ▲19.7%  ▲83.5%   383 ━━━━━━━━  6.2%     5 ▂▁▁▁▂▁▂▁▁▁▁█ │ │ LAUNCH FORENSICS                           │
+│   16m CRAB crab rave            PUMP  ████▓░░░░  42%     $29K    $16K  ▲14.8%  ▼27.2%   413 ━━━━━━━━  6.9%    10 ▇█▇▆▅▅▄▄▄▆▅▁ │ │ ● Dev wallet                               │
+│   13m FELIX felix the cat       BONK  migrated           $22K    $11K  ▲12.8%  ▼28.6%   726 ━━━━━━━━  6.9%    16 ▅▅▅▆▆▆▇▇█▅▆▁ │ │   4.2% · 4 prior · 0 rugs                  │
+│   33m KERNEL kernel panic       PUMP  ████▓░░░░  44%     $30K    $12K   ▲9.4%   ▼7.6%   506 ━━━━━━━━  2.9%    21 ▄▄▆▆▆▆▅▆▇█▆▁ │ │ ● Bundled at launch                        │
+│   26m BAGEL everything bagel    PUMP  ██▓░░░░░░  24%     $17K     $8K  ▼15.6%  ▲45.8%   736 ━━━━━━━━  1.0%     3 ▂▂▃▁▁▁▁▂▄▄▄█ │ │   1% across 1 wallets                      │
+│   34m YAP yapper                DBC   migrated           $36K    $18K  ▲15.0%  ▼55.7%   699 ━━━━━━━━  1.0%    25 ▅▆▆▅▇▇▇████▁ │ │ ◐ Snipers block 0-2                        │
+│   21m PLONK plonk               PUMP  █████████ 100%     $84K    $37K  ▲15.0%   ▼6.9%   511 ━━━━━━━━  1.3%     7 ▇█▆▄▃▂▃▂▁▃▂▅ │ │   9 wallets                                │
+│                                                                                                                               │ │ ○ Top 10 holders                           │
+│                                                                                                                               │ │   49.9%                                    │
+│                                                                                                                               │ │ ● Mint / freeze                            │
+│                                                                                                                               │ │   revoked                                  │
+│                                                                                                                               │ │ ◐ Socials                                  │
+│                                                                                                                               │ │   TG                                       │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │                                            │
+│                                                                                                                               │ │────────────────────────────────────────────│
+│                                                                                                                               │ │ ✦ claude                                   │
+│                                                                                                                               │ │ mixed: bundled supply is the risk here     │
+│                                                                                                                               │ │ 3/6 checks pass · a → full analysis        │
+│                                                                                                                               │ │                                            │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯ ╰────────────────────────────────────────────╯
+  j/k  move   ⏎  open   p  pause feed   f  filters   w  watch   a  ask claude   q  quit

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MOVERS</title>
+<!--
+  dexterm pack widget — the example (task-1358). What you get:
+    * window.dexterm (the SDK the popup host injects): dexterm.on('rows' | 'alerts' | 'theme', fn), dexterm.theme,
+      dexterm.close(), dexterm.log(text). Topics come from widget.json; an undeclared topic is never delivered.
+    * the terminal's theme as CSS variables (--bg --panel --border --text --muted --dim --accent --up --down --warn).
+  What you do not get: any network at all (this page is a sandboxed frame inside the host's window: no fetch, no socket,
+  no remote scripts/styles/images/fonts), eval, inline handlers, runtime script injection, cookies or storage, and no
+  navigating anywhere (the host's frame-src refuses it and closes the widget). Write plain <script> and <style> tags: the
+  host allow-lists each inline block by its sha256 (hash-only CSP, no nonce), and a page with a <script src>, a <link>, a
+  frame or an @import is refused at install. Render untrusted strings (symbols, names, alert text) with textContent,
+  never innerHTML.
+-->
+<style>
+  html, body { margin: 0; height: 100%; background: var(--bg, #020507); color: var(--text, #eafff0); font: 12px/1.35 ui-monospace, Menlo, monospace; }
+  .wrap { display: grid; grid-template-rows: auto 1fr auto; height: 100%; }
+  h1 { font-size: 12px; margin: 0; padding: 8px 10px; letter-spacing: .12em; color: var(--accent, #00f0ff); border-bottom: 1px solid var(--border, #0c3a24); display: flex; justify-content: space-between; }
+  h1 span { color: var(--muted, #62c98a); font-weight: normal; letter-spacing: 0; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 6px; padding: 8px 10px; overflow: auto; align-content: start; }
+  .tile { border: 1px solid var(--border, #0c3a24); background: var(--panel, #03090c); padding: 6px 8px; }
+  .tile .sym { font-weight: bold; }
+  .tile .chg { font-size: 14px; }
+  .tile .meta { color: var(--dim, #3aa866); font-size: 11px; }
+  .up { color: var(--up, #5dff6e); } .down { color: var(--down, #ff3b6b); } .warn { color: var(--warn, #f5ff2d); }
+  .alerts { border-top: 1px solid var(--border, #0c3a24); padding: 6px 10px; max-height: 30%; overflow: auto; color: var(--muted, #62c98a); }
+  .alerts div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .empty { padding: 10px; color: var(--dim, #3aa866); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>MOVERS · 5m <span id="meta">waiting for rows…</span></h1>
+  <div id="tiles" class="tiles"><div class="empty">no rows yet</div></div>
+  <div id="alerts" class="alerts"><div class="empty">no alerts yet</div></div>
+</div>
+<script>
+  (() => {
+    'use strict';
+    const $ = (id) => document.getElementById(id);
+    const tiles = $('tiles'), alertsEl = $('alerts'), meta = $('meta');
+    const clear = (el) => { while (el.firstChild) el.removeChild(el.firstChild); };
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = String(text); return e; };
+    const pct = (x) => (x == null ? '—' : (x >= 0 ? '+' : '') + x.toFixed(1) + '%');
+    const usd = (x) => { if (x == null) return '—'; const a = Math.abs(x); return a >= 1e6 ? '$' + (x / 1e6).toFixed(2) + 'M' : a >= 1e3 ? '$' + (x / 1e3).toFixed(1) + 'K' : '$' + x.toFixed(0); };
+
+    dexterm.on('rows', (vm) => {
+      const rows = (vm.rows || []).filter((r) => r.chg && r.chg.m5 != null).sort((a, b) => Math.abs(b.chg.m5) - Math.abs(a.chg.m5)).slice(0, 12);
+      meta.textContent = `${vm.feed || ''} · ${(vm.rows || []).length} rows · ${new Date(vm.updatedAt || Date.now()).toLocaleTimeString()}`;
+      clear(tiles);
+      if (!rows.length) { tiles.appendChild(el('div', 'empty', 'no 5m change on any row')); return; }
+      for (const r of rows) {
+        const t = el('div', 'tile');
+        t.appendChild(el('div', 'sym', '$' + r.symbol));
+        t.appendChild(el('div', 'chg ' + (r.chg.m5 >= 0 ? 'up' : 'down'), pct(r.chg.m5)));
+        t.appendChild(el('div', 'meta', `liq ${usd(r.liq)} · vol5m ${usd(r.vol5m)}${r.flags && r.flags.length ? ' · ' + r.flags.join(' ') : ''}`));
+        tiles.appendChild(t);
+      }
+    });
+
+    dexterm.on('alerts', (vm) => {
+      clear(alertsEl);
+      const items = (vm.items || []).slice(0, 8);
+      if (!items.length) { alertsEl.appendChild(el('div', 'empty', 'no alerts yet')); return; }
+      for (const a of items) alertsEl.appendChild(el('div', a.level === 'up' ? 'up' : a.level === 'down' ? 'down' : a.level === 'warn' ? 'warn' : '', `${new Date(a.at).toLocaleTimeString()} ${a.symbol ? '$' + a.symbol + ' ' : ''}${a.text}`));
+    });
+
+    // the theme arrives as CSS variables already; log once so the terminal's popup log shows the page is alive
+    dexterm.on('theme', () => dexterm.log('movers: theme applied'));
+  })();
+</script>
+</body>
+</html>

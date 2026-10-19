@@ -1,0 +1,17 @@
+{
+  "name": "trenchscope",
+  "owner": { "name": "trenchscope" },
+  "metadata": { "description": "trenchscope for Claude Code: the read-only Solana memecoin MCP server, plus an optional paper-trading playbook." },
+  "plugins": [
+    {
+      "name": "trenchscope",
+      "source": "./plugins/trenchscope",
+      "description": "Read-only MCP server: token dossiers, holders, rug and LARP checks, candles and trades. It can never build, sign or send a transaction."
+    },
+    {
+      "name": "dexterm-paper-strategy",
+      "source": "./plugins/paper-strategy",
+      "description": "PAPER-only strategy playbook for an agent driving the trenchscope MCP server."
+    }
+  ]
+}

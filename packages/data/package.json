@@ -1,0 +1,27 @@
+{
+  "name": "@dexterm/data",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm data layer: normalized model, source adapters, cache, rate limiter, health registry (SPEC §3)",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./model": "./src/model.ts",
+    "./core": "./src/core.ts",
+    "./plans": "./src/trade/plans/index.ts",
+    "./copy": "./src/trade/copy/index.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json",
+    "record:live": "node scripts/record-fixtures.ts",
+    "smoke:live": "node scripts/smoke-live.ts",
+    "record:d06": "node scripts/record-d06.ts",
+    "smoke:d06": "node scripts/smoke-d06.ts"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

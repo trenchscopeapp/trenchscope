@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="dexterm-ws" content="__WS_TOKEN__">
+<meta name="dexterm-popup" content="__POPUP_ID__">
+<meta name="dexterm-port" content="__PORT__">
+<meta name="dexterm-widget" content="__WIDGET_KEY__">
+<meta name="dexterm-frame" content="__FRAME_URL__">
+<title>trenchscope · widget</title>
+<style nonce="__NONCE__">/*__CSS__*/</style>
+</head>
+<body>
+<div id="hud" class="hud">
+  <div id="drag" class="drag"><span class="mark">✦</span><span id="title" class="title">__WIDGET_TITLE__</span><span id="status" class="status">connecting…</span><button id="close" class="close" type="button" aria-label="close">✕</button></div>
+  <div class="stage"><iframe id="widget" class="widget" sandbox="allow-scripts" referrerpolicy="no-referrer" title="pack widget" src="__FRAME_URL__"></iframe><div id="blocked" class="blocked" hidden></div></div>
+</div>
+<script nonce="__NONCE__">/*__COMMON_JS__*/</script>
+<script nonce="__NONCE__">/*__JS__*/</script>
+</body>
+</html>

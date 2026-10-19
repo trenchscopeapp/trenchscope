@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.trenchscopeapp/trenchscope",
+  "title": "trenchscope",
+  "description": "Local Solana memecoin research, rug checks, LARP evidence, and holder analysis over MCP.",
+  "repository": {
+    "url": "https://github.com/trenchscopeapp/trenchscope",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/trenchscopeapp/trenchscope#use-it-from-claude-or-codex",
+  "version": "0.1.5",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "trenchscope",
+      "version": "0.1.5",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "mcp"
+        }
+      ]
+    }
+  ]
+}

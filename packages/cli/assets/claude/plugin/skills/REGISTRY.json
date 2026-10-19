@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "note": "All skills named on the card. Three are built and proven on fixtures in this spike; the rest are defined (tools, output, owner) so lanes can pick them up. Status: proven = runs through claude -p with schema + grounding checks; defined = frontmatter contract only.",
+  "skills": [
+    { "name": "token-dossier", "status": "proven", "schema": "schemas/verdict.schema.json", "tools": ["screen_state", "get_dossier", "kb_lookup"], "owner": "maintainers" },
+    { "name": "rug-check", "status": "proven", "schema": "schemas/verdict.schema.json", "tools": ["screen_state", "get_dossier", "kb_lookup"], "owner": "maintainers" },
+    { "name": "trench-scan", "status": "proven", "schema": "schemas/trench-scan.schema.json", "tools": ["screener_query", "get_token", "rugcheck", "get_dev_history"], "owner": "maintainers" },
+    { "name": "larp-check", "status": "proven", "schema": "schemas/larp.schema.json", "tools": ["screen_state", "get_token", "get_links", "fetch_page", "check_domain", "check_github", "check_programs", "kb_lookup"], "owner": "maintainers", "note": "Vets the website/socials behind a coin for a real product vs a LARP via SSRF-safe read-only fetch; fetched page text is firewalled <untrusted>." },
+    { "name": "launch-forensics", "status": "defined", "schema": "schemas/verdict.schema.json", "tools": ["get_token", "get_dev_history", "get_holders", "get_trades", "kb_lookup"], "owner": "maintainers", "needs": "Tier-1 first-N-slot buys and funding-source clusters from the Helius history adapter (data lane item 1); until then bundledPct/snipers are null and the skill returns INSUFFICIENT_DATA" },
+    { "name": "narrative-scan", "status": "defined", "schema": "schemas/narrative.schema.json", "tools": ["screener_query", "get_token", "kb_lookup"], "owner": "maintainers", "needs": "theme matcher over firewalled names/descriptions; KB entry narrative-lifecycle reviewed by the maintainers; X feed (1289) optional" },
+    { "name": "wallet-dossier", "status": "defined", "schema": "schemas/wallet.schema.json", "tools": ["get_wallet", "get_wallet_trades", "get_labels", "kb_lookup"], "owner": "maintainers", "needs": "wallet tools (task-1286): history, PnL, early-entry score, labels with evidence" },
+    { "name": "cabal-check", "status": "defined", "schema": "schemas/verdict.schema.json", "tools": ["get_holders", "get_dev_history", "get_labels", "case_lookup", "kb_lookup"], "owner": "maintainers", "needs": "in-house label store with co-occurrence scores (1286); cabal-and-coordinated-launches KB entry reviewed" },
+    { "name": "trade-post-mortem", "status": "defined", "schema": "schemas/post-mortem.schema.json", "tools": ["history_query", "get_token", "get_candles", "kb_lookup"], "owner": "maintainers", "needs": "history table and fills (v2 trading); outputs become eval outcomes" },
+    { "name": "daily-digest", "status": "defined", "schema": "schemas/digest.schema.json", "tools": ["screener_query", "get_token", "macro", "kb_lookup"], "owner": "maintainers", "needs": "macro tool (Hyperliquid/OKX/Jito adapters, data lane item 4); runs as routine morning-digest" }
+  ]
+}

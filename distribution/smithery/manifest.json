@@ -1,0 +1,51 @@
+{
+  "manifest_version": "0.3",
+  "name": "trenchscope",
+  "display_name": "trenchscope",
+  "version": "0.1.5",
+  "description": "Local Solana memecoin research, rug checks, LARP evidence, and holder analysis over MCP.",
+  "long_description": "trenchscope exposes 36 MCP tools for Solana memecoin research: token dossiers, holder analysis, security and rug checks, mechanical LARP evidence, candles, trades, knowledge resources, and bounded app navigation. Market and web reads use public or user-configured sources and report missing data as unavailable. MCP actions cannot arm, sign, confirm, or send a trade, raise a signer cap, or change the keypress confirmation gate. The source is AGPL-3.0-only.",
+  "author": {
+    "name": "trenchscope",
+    "url": "https://github.com/trenchscopeapp/trenchscope"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trenchscopeapp/trenchscope.git"
+  },
+  "homepage": "https://github.com/trenchscopeapp/trenchscope",
+  "documentation": "https://github.com/trenchscopeapp/trenchscope#use-it-from-claude-or-codex",
+  "support": "https://github.com/trenchscopeapp/trenchscope/issues",
+  "license": "AGPL-3.0-only",
+  "keywords": [
+    "solana",
+    "memecoin",
+    "rug-check",
+    "larp",
+    "holder-analysis",
+    "read-only",
+    "local"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "server/dist/packages/mcp/bin/dexterm-mcp.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/server/dist/packages/mcp/bin/dexterm-mcp.mjs"
+      ]
+    }
+  },
+  "tools_generated": false,
+  "prompts_generated": false,
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=22.18"
+    }
+  }
+}

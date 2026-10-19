@@ -1,0 +1,328 @@
+{
+ "_note": "task-1367 fixture in the RECORDED RPC shape (getTokenLargestAccounts / getMultipleAccounts jsonParsed over the token accounts / getMultipleAccounts over the owners). Program ids and the constant pool-authority PDAs are the real mainnet ones (re-derived in the tests); the mint, token accounts, escrows and wallets are synthetic PDAs of a throwaway seed. Not a live recording: no mainnet call was made to build it.",
+ "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd",
+ "supply": "1000000000000000",
+ "decimals": 6,
+ "calls": {
+  "rpc.getTokenLargestAccounts": {
+   "body": {
+    "result": {
+     "value": [
+      {
+       "address": "DNcrh7RaAGVv163EJk5msXpCShsApieNCYKQS7ADXKES",
+       "amount": "700000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "8nwg6DpB1eSpCSdwdyp6nmhh2WypWkAEvhA1aYJohSgr",
+       "amount": "80000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "8G6Gh4JaW51WfGv2tKscZ8JVKEW5FTmvD2WL63GZXWZS",
+       "amount": "45000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "3cPwmWFnLRmEbtVFg4mHVmRh8eh3TzHSPW8VFQb5B9Ve",
+       "amount": "12000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "CARTAM9HVydeDhjHd8rJ7HYN2sd753XqByi73CDm5oUG",
+       "amount": "11000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "Ez7nUh5vfpPmQ9J3VUYn4bBB9PmZYioDgoXNUXk4yx96",
+       "amount": "10000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "8onXGZaqpby8DQHEx4StfVzaLNcCy6NnToxqAAoFDMS5",
+       "amount": "9000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "4suVuzo7NDDP1SyqZuX3xo3WqKtEGhWCJwbqnHij9rAV",
+       "amount": "8000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "8xgSZQigjJGaeZhNpsPmwn1WN8csK6LM3CMrGPsig2Qz",
+       "amount": "7000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "6W5eUfSJ7ehFZyZb7YeYfk97jXaspLYkvR8LD26YfMKY",
+       "amount": "6000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "3F94QPahcDhMBYy7WvHdJfNYGP1GAphVxtwZHuvsdHxU",
+       "amount": "5000000000000",
+       "decimals": 6
+      },
+      {
+       "address": "6m3dcb22LFrZxejPFrf5TEK4eTPfuV8otmWVD1zPoosD",
+       "amount": "4000000000000",
+       "decimals": 6
+      }
+     ]
+    }
+   }
+  },
+  "rpc.getMultipleAccounts.tokenAccounts": {
+   "body": {
+    "result": {
+     "value": [
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "FhVo3mqL8PW5pH5U2CN4XE33DokiyZnUwuGpH2hmHLuM",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "6xD1DDdhbB8umWLHYaJzY6ABQ55tkTN6FfWHRj12Y6D",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "4fsCUgez5GLpidz43JEkm28hbc1ykJWToK8UQqpicoLN",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "3EsNHcVB9s3Su9dkgyQcY1bbYXMCXxRMvts9TV1DGo3F",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "B3vXWHQambxcJEmaRvjoAX9RHLM8dCAbnjiA5q5xnz2b",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "1nc1nerator11111111111111111111111111111111",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "J1hpF6E8Y3gQVyaqQPZDkMuLZ4DXcYFyEspetCkytzfu",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "FFpxr264bDgDS7N5YtMjrjCoRTtfPSeGQhDr7FtZuMbi",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "7ghLNssza5So5sUswTztd3JCAJFzrWc5MTuk86h9H5ZU",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "2Gp9q2riwrHr3LEoV8mWcxPh5fngCWdqdfeQSvKZRb2g",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      },
+      {
+       "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+       "data": {
+        "parsed": {
+         "info": {
+          "owner": "84X5Nnpi8EhA5h6Cp5NrTfuan1qHJ6iGpgyTk5aPtU5e",
+          "mint": "Hdtx51P3Coa4veSSxqN3fn8mYa3bFkNJGo4pXNzcUXYd"
+         }
+        }
+       }
+      }
+     ]
+    }
+   }
+  },
+  "rpc.getMultipleAccounts.owners": {
+   "body": {
+    "result": {
+     "value": [
+      null,
+      {
+       "owner": "LocpQgucEQHbqNABEYvBvwoxCPsSbG91A1QaQhQQqjn",
+       "lamports": 2000000
+      },
+      {
+       "owner": "11111111111111111111111111111111",
+       "lamports": 5000000000
+      },
+      {
+       "owner": "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc",
+       "lamports": 6000000
+      },
+      {
+       "owner": "11111111111111111111111111111111",
+       "lamports": 900000
+      },
+      {
+       "owner": "vaU6kP7iNEGkbmPkLmZfGwiGxd4Mob24QQCie5R9kd2",
+       "lamports": 3000000
+      },
+      {
+       "owner": "11111111111111111111111111111111",
+       "lamports": 1
+      },
+      {
+       "owner": "HQw4qVwZL6gfUa3sDMFfDpGrF9vRSwN2Xzn9Vw8GsJxT",
+       "lamports": 2000000
+      },
+      null,
+      {
+       "owner": "11111111111111111111111111111111",
+       "lamports": 10000000
+      },
+      {
+       "owner": "11111111111111111111111111111111",
+       "lamports": 10000000
+      },
+      {
+       "owner": "11111111111111111111111111111111",
+       "lamports": 10000000
+      }
+     ]
+    }
+   }
+  }
+ },
+ "expect": [
+  {
+   "owner": "FhVo3mqL8PW5pH5U2CN4XE33DokiyZnUwuGpH2hmHLuM",
+   "pct": 70,
+   "what": "launchpad vault: Meteora DBC curve vault (pool authority PDA, no account)"
+  },
+  {
+   "owner": "6xD1DDdhbB8umWLHYaJzY6ABQ55tkTN6FfWHRj12Y6D",
+   "pct": 8,
+   "what": "lock: Jupiter Lock escrow account"
+  },
+  {
+   "owner": "4fsCUgez5GLpidz43JEkm28hbc1ykJWToK8UQqpicoLN",
+   "pct": 4.5,
+   "what": "plain wallet (System-owned)"
+  },
+  {
+   "owner": "3EsNHcVB9s3Su9dkgyQcY1bbYXMCXxRMvts9TV1DGo3F",
+   "pct": 1.2,
+   "what": "AMM pool: Orca Whirlpool pool account"
+  },
+  {
+   "owner": "GpMZbSM2GgvTKHJirzeGfMFoaZ8UR2X7F4v8vHTvxFbL",
+   "pct": 1.1,
+   "what": "AMM pool: Raydium CPMM vault authority"
+  },
+  {
+   "owner": "B3vXWHQambxcJEmaRvjoAX9RHLM8dCAbnjiA5q5xnz2b",
+   "pct": 1,
+   "what": "vault: Meteora Alpha Vault"
+  },
+  {
+   "owner": "1nc1nerator11111111111111111111111111111111",
+   "pct": 0.9,
+   "what": "burn: incinerator"
+  },
+  {
+   "owner": "J1hpF6E8Y3gQVyaqQPZDkMuLZ4DXcYFyEspetCkytzfu",
+   "pct": 0.8,
+   "what": "unknown program-owned: stays UNLABELLED and counted"
+  },
+  {
+   "owner": "FFpxr264bDgDS7N5YtMjrjCoRTtfPSeGQhDr7FtZuMbi",
+   "pct": 0.7,
+   "what": "PDA with no account: UNLABELLED and counted"
+  },
+  {
+   "owner": "7ghLNssza5So5sUswTztd3JCAJFzrWc5MTuk86h9H5ZU",
+   "pct": 0.6,
+   "what": "plain wallet"
+  },
+  {
+   "owner": "2Gp9q2riwrHr3LEoV8mWcxPh5fngCWdqdfeQSvKZRb2g",
+   "pct": 0.5,
+   "what": "plain wallet"
+  },
+  {
+   "owner": "84X5Nnpi8EhA5h6Cp5NrTfuan1qHJ6iGpgyTk5aPtU5e",
+   "pct": 0.4,
+   "what": "plain wallet"
+  }
+ ]
+}

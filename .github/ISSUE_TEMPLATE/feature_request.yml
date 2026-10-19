@@ -1,0 +1,31 @@
+name: Feature request
+description: Something dexterm should do, or do differently.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        dexterm will not take custody of your keys, sign or send without your keypress and wallet approval, loosen the signer's caps, or add telemetry; requests for those are closed with a pointer to the README. Everything else is fair game.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation at the keyboard, not the solution yet.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like dexterm to do?
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Where would the data come from?
+      description: If it needs a new source, name it and say whether it is keyless, free, and what its terms are.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [screener, token screen, new pairs, watchlist and alerts, analyst, chart window, MCP server, installer and doctor, docs, other]

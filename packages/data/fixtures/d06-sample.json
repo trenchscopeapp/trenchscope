@@ -1,0 +1,7233 @@
+{
+ "version": 1,
+ "recordedAt": "2026-10-06T02:39:46.124Z",
+ "note": "recorded by scripts/record-d06.ts; 14 live requests + 1 in the --holders top-up",
+ "entries": [
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263/pools?page=1",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": [
+     {
+      "id": "solana_5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003755111542",
+       "base_token_price_native_currency": "0.000000031123712274723",
+       "quote_token_price_usd": "120.545433711496201592612486763",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003112371227",
+       "quote_token_price_base_token": "32129843.3545842",
+       "address": "5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2023-07-05T14:41:09Z",
+       "token_price_usd": "0.000003755111542",
+       "fdv_usd": "330428679.764191",
+       "market_cap_usd": "330428679.764191",
+       "price_change_percentage": {
+        "m5": "-0.01",
+        "m15": "0.055",
+        "m30": "-0.183",
+        "h1": "-0.85",
+        "h6": "-2.76",
+        "h24": "-6.17"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 28,
+         "sells": 0,
+         "buyers": 17,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 68,
+         "sells": 41,
+         "buyers": 39,
+         "sellers": 19
+        },
+        "m30": {
+         "buys": 149,
+         "sells": 63,
+         "buyers": 58,
+         "sellers": 28
+        },
+        "h1": {
+         "buys": 249,
+         "sells": 118,
+         "buyers": 87,
+         "sellers": 55
+        },
+        "h6": {
+         "buys": 1379,
+         "sells": 836,
+         "buyers": 558,
+         "sellers": 319
+        },
+        "h24": {
+         "buys": 5742,
+         "sells": 4951,
+         "buyers": 1490,
+         "sellers": 1359
+        }
+       },
+       "volume_usd": {
+        "m5": "752.8093865104",
+        "m15": "3730.0864693259",
+        "m30": "7254.5267460025",
+        "h1": "11878.5457496368",
+        "h6": "99530.1169059971",
+        "h24": "497408.558389745"
+       },
+       "reserve_in_usd": "425670.8215"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "orca",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_3UwfrdLTpAjxTRni1boc5HUWe6hzc4HgE5yLdvEp2Noc",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003751303481",
+       "base_token_price_native_currency": "0.000000031119058744257",
+       "quote_token_price_usd": "1.00050053252381567101145940140747065127356794",
+       "quote_token_price_native_currency": "0.00829864594825421",
+       "base_token_price_quote_token": "0.000003749895939",
+       "quote_token_price_base_token": "266674.066733645",
+       "address": "3UwfrdLTpAjxTRni1boc5HUWe6hzc4HgE5yLdvEp2Noc",
+       "name": "Bonk / USDC",
+       "pool_created_at": "2026-04-01T09:46:49Z",
+       "token_price_usd": "0.000003751303481",
+       "fdv_usd": "330093591.830153",
+       "market_cap_usd": "330093591.830153",
+       "price_change_percentage": {
+        "m5": "0.37",
+        "m15": "0.003",
+        "m30": "-0.508",
+        "h1": "-1.32",
+        "h6": "-2.91",
+        "h24": "-5.99"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 2,
+         "sells": 2,
+         "buyers": 2,
+         "sellers": 2
+        },
+        "m15": {
+         "buys": 6,
+         "sells": 19,
+         "buyers": 5,
+         "sellers": 15
+        },
+        "m30": {
+         "buys": 18,
+         "sells": 29,
+         "buyers": 13,
+         "sellers": 21
+        },
+        "h1": {
+         "buys": 20,
+         "sells": 52,
+         "buyers": 14,
+         "sellers": 30
+        },
+        "h6": {
+         "buys": 94,
+         "sells": 168,
+         "buyers": 42,
+         "sellers": 57
+        },
+        "h24": {
+         "buys": 1446,
+         "sells": 1833,
+         "buyers": 170,
+         "sellers": 241
+        }
+       },
+       "volume_usd": {
+        "m5": "49.7879883598",
+        "m15": "428.3030153929",
+        "m30": "761.1723889318",
+        "h1": "1212.3581715334",
+        "h6": "4900.0322593558",
+        "h24": "257013.981100152"
+       },
+       "reserve_in_usd": "200076.4175"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "raydium-clmm",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_31p1hptjhFo6ZD8oBqkfutNXQKGGPyi7YcEAfsyKW777",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003739935649",
+       "base_token_price_native_currency": "0.000000031072689792681",
+       "quote_token_price_usd": "0.999482169132594990996389681603990494356877375838985576632006505",
+       "quote_token_price_native_currency": "0.00830312249799173",
+       "base_token_price_quote_token": "0.000003742289699",
+       "quote_token_price_base_token": "267216.084394068",
+       "address": "31p1hptjhFo6ZD8oBqkfutNXQKGGPyi7YcEAfsyKW777",
+       "name": "Bonk / USDC",
+       "pool_created_at": "2025-07-17T15:51:09Z",
+       "token_price_usd": "0.000003739935649",
+       "fdv_usd": "329093286.598862",
+       "market_cap_usd": "329093286.598862",
+       "price_change_percentage": {
+        "m5": "-0.02",
+        "m15": "-0.018",
+        "m30": "-0.639",
+        "h1": "-0.79",
+        "h6": "-3.51",
+        "h24": "-6.54"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 14,
+         "buyers": 0,
+         "sellers": 7
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 14,
+         "buyers": 0,
+         "sellers": 7
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 15,
+         "buyers": 0,
+         "sellers": 8
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 24,
+         "buyers": 0,
+         "sellers": 13
+        },
+        "h6": {
+         "buys": 14,
+         "sells": 92,
+         "buyers": 6,
+         "sellers": 23
+        },
+        "h24": {
+         "buys": 286,
+         "sells": 434,
+         "buyers": 51,
+         "sellers": 90
+        }
+       },
+       "volume_usd": {
+        "m5": "4672.0286227579",
+        "m15": "4672.0286227579",
+        "m30": "4672.0289663001",
+        "h1": "9350.2087537463",
+        "h6": "33048.9719242716",
+        "h24": "144094.058817497"
+       },
+       "reserve_in_usd": "266950.7559"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_2Sra9Xw28W25LecbFhHzV4nP2BoWx7G1mqyMJPnJHFF5",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.0006655966286",
+       "base_token_price_native_currency": "0.00000552537988145",
+       "quote_token_price_usd": "0.0000037439058521645901600193446478517544172446961212118142634767862",
+       "quote_token_price_native_currency": "0.0000000310796377033054",
+       "base_token_price_quote_token": "177.7813478457",
+       "quote_token_price_base_token": "0.005624887043",
+       "address": "2Sra9Xw28W25LecbFhHzV4nP2BoWx7G1mqyMJPnJHFF5",
+       "name": "BOP / Bonk",
+       "pool_created_at": "2026-09-22T05:28:12Z",
+       "token_price_usd": "0.0000037439058521645901600193446478517544172446961212118142634767862",
+       "fdv_usd": "329442642.130755",
+       "market_cap_usd": "329442642.130755",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0",
+        "m30": "-0.37",
+        "h1": "-0.94",
+        "h6": "-3.15",
+        "h24": "-6.59"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 1,
+         "buyers": 0,
+         "sellers": 1
+        },
+        "m15": {
+         "buys": 4,
+         "sells": 2,
+         "buyers": 4,
+         "sellers": 2
+        },
+        "m30": {
+         "buys": 8,
+         "sells": 7,
+         "buyers": 8,
+         "sellers": 6
+        },
+        "h1": {
+         "buys": 21,
+         "sells": 13,
+         "buyers": 19,
+         "sellers": 12
+        },
+        "h6": {
+         "buys": 280,
+         "sells": 464,
+         "buyers": 181,
+         "sellers": 285
+        },
+        "h24": {
+         "buys": 374,
+         "sells": 515,
+         "buyers": 256,
+         "sellers": 319
+        }
+       },
+       "volume_usd": {
+        "m5": "533.0761639534",
+        "m15": "689.8290586828",
+        "m30": "1956.7902696001",
+        "h1": "2813.1478580315",
+        "h6": "139965.799151737",
+        "h24": "154674.872185618"
+       },
+       "reserve_in_usd": "102106.6143"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_527PdUTGwcFxVEMXt8tyRJA1nYbVedgSiSfh4s2LWTWz",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "raydium",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_AtcGozT6i1GR3wJAjVwRwmt7qbHqZrBUqKs2DcMAKoVe",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.00000375861641",
+       "base_token_price_native_currency": "0.0000000312364450540829",
+       "quote_token_price_usd": "120.4340354915382836457982743309300340465776729",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003123644505",
+       "quote_token_price_base_token": "32013886.2879113",
+       "address": "AtcGozT6i1GR3wJAjVwRwmt7qbHqZrBUqKs2DcMAKoVe",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2024-03-19T03:11:43Z",
+       "token_price_usd": "0.00000375861641",
+       "fdv_usd": "330737088.420774",
+       "market_cap_usd": "330737088.420774",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0",
+        "m30": "0",
+        "h1": "0",
+        "h6": "-2.73",
+        "h24": "-6.39"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 3,
+         "buyers": 0,
+         "sellers": 3
+        },
+        "h6": {
+         "buys": 7,
+         "sells": 25,
+         "buyers": 5,
+         "sellers": 9
+        },
+        "h24": {
+         "buys": 107,
+         "sells": 162,
+         "buyers": 41,
+         "sellers": 69
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "0.0",
+        "m30": "0.0",
+        "h1": "1788.3901196455",
+        "h6": "5537.8847972893",
+        "h24": "52158.0124561151"
+       },
+       "reserve_in_usd": "228397.9764"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_5Dp922oSaj9rdLHTxZzq1B7QV7KmwY7U7K1JNCRhc45J",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.00000374125089",
+       "base_token_price_native_currency": "0.0000000310796377033054",
+       "quote_token_price_usd": "1.00019412008378",
+       "quote_token_price_native_currency": "0.00829692343495462",
+       "base_token_price_quote_token": "0.000003745923166",
+       "quote_token_price_base_token": "266956.890365302",
+       "address": "5Dp922oSaj9rdLHTxZzq1B7QV7KmwY7U7K1JNCRhc45J",
+       "name": "Bonk / USDC",
+       "pool_created_at": "2026-06-16T19:28:58Z",
+       "token_price_usd": "0.00000374125089",
+       "fdv_usd": "329209020.403928",
+       "market_cap_usd": "329209020.403928",
+       "price_change_percentage": {
+        "m5": "-0.28",
+        "m15": "-0.396",
+        "m30": "-0.516",
+        "h1": "-1.33",
+        "h6": "-3.61",
+        "h24": "-6.18"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 15,
+         "sells": 0,
+         "buyers": 5,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 17,
+         "sells": 0,
+         "buyers": 7,
+         "sellers": 0
+        },
+        "m30": {
+         "buys": 35,
+         "sells": 0,
+         "buyers": 21,
+         "sellers": 0
+        },
+        "h1": {
+         "buys": 67,
+         "sells": 2,
+         "buyers": 36,
+         "sellers": 2
+        },
+        "h6": {
+         "buys": 137,
+         "sells": 43,
+         "buyers": 69,
+         "sellers": 15
+        },
+        "h24": {
+         "buys": 420,
+         "sells": 355,
+         "buyers": 170,
+         "sellers": 132
+        }
+       },
+       "volume_usd": {
+        "m5": "2491.9189481082",
+        "m15": "2491.938431542",
+        "m30": "2524.8812288175",
+        "h1": "4387.3543765691",
+        "h6": "13488.9441342896",
+        "h24": "61958.5702136122"
+       },
+       "reserve_in_usd": "98494.606"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "zerofi",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_3ne4mWqdYuNiYrYZC9TrA3FcfuFdErghH97vNPbjicr1",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003733572679",
+       "base_token_price_native_currency": "0.0000000310634950568896",
+       "quote_token_price_usd": "120.260096713725",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003106349506",
+       "quote_token_price_base_token": "32192127.7103109",
+       "address": "3ne4mWqdYuNiYrYZC9TrA3FcfuFdErghH97vNPbjicr1",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2023-07-05T14:33:04Z",
+       "token_price_usd": "0.000003733572679",
+       "fdv_usd": "328533381.053325",
+       "market_cap_usd": "328533381.053324",
+       "price_change_percentage": {
+        "m5": "-0.05",
+        "m15": "-0.445",
+        "m30": "-0.606",
+        "h1": "-1",
+        "h6": "-3.71",
+        "h24": "-6.74"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 2,
+         "buyers": 0,
+         "sellers": 2
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 5,
+         "buyers": 0,
+         "sellers": 5
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 28,
+         "buyers": 0,
+         "sellers": 25
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 29,
+         "buyers": 0,
+         "sellers": 25
+        },
+        "h6": {
+         "buys": 3,
+         "sells": 94,
+         "buyers": 3,
+         "sellers": 61
+        },
+        "h24": {
+         "buys": 236,
+         "sells": 360,
+         "buyers": 119,
+         "sellers": 179
+        }
+       },
+       "volume_usd": {
+        "m5": "60.2647139295",
+        "m15": "89.6708806396",
+        "m30": "312.1270963669",
+        "h1": "426.7588635964",
+        "h6": "2099.0557269879",
+        "h24": "16778.7183293513"
+       },
+       "reserve_in_usd": "96894.2489"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "orca",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_HmQL6eECoaGLWvTxz6cWT3jEsPfjdin2vNVJ1xKiwjXz",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.00002776524327",
+       "base_token_price_native_currency": "0.0000000310726494475823",
+       "quote_token_price_usd": "0.00155736672372546179768045428520339541742467122502238945669496076",
+       "quote_token_price_native_currency": "0.000012938644258624",
+       "base_token_price_quote_token": "0.002401538278",
+       "quote_token_price_base_token": "416.3997756436",
+       "address": "HmQL6eECoaGLWvTxz6cWT3jEsPfjdin2vNVJ1xKiwjXz",
+       "name": "Bonk / SAROS",
+       "pool_created_at": "2025-09-16T02:31:10Z",
+       "token_price_usd": "0.00002776524327",
+       "fdv_usd": "2443185128.96991",
+       "market_cap_usd": "2443185128.96991",
+       "price_change_percentage": {
+        "m5": "-0.37",
+        "m15": "-0.526",
+        "m30": "-0.404",
+        "h1": "-1.01",
+        "h6": "-3.32",
+        "h24": "-5.87"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 5,
+         "buyers": 0,
+         "sellers": 2
+        },
+        "m15": {
+         "buys": 2,
+         "sells": 6,
+         "buyers": 2,
+         "sellers": 3
+        },
+        "m30": {
+         "buys": 2,
+         "sells": 11,
+         "buyers": 2,
+         "sellers": 4
+        },
+        "h1": {
+         "buys": 2,
+         "sells": 18,
+         "buyers": 2,
+         "sellers": 7
+        },
+        "h6": {
+         "buys": 14,
+         "sells": 75,
+         "buyers": 6,
+         "sellers": 9
+        },
+        "h24": {
+         "buys": 261,
+         "sells": 447,
+         "buyers": 24,
+         "sellers": 30
+        }
+       },
+       "volume_usd": {
+        "m5": "68.1132710045",
+        "m15": "146.6953894923",
+        "m30": "214.7299815935",
+        "h1": "345.3202372608",
+        "h6": "1416.6303613354",
+        "h24": "14769.0825589458"
+       },
+       "reserve_in_usd": "49004.455"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_SarosY6Vscao718M4A778z4CGtvcwcGef5M9MEH1LGL",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "saros-amm",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_BqnpCdDLPV2pFdAaLnVidmn3G93RP2p5oRdGEY2sJGez",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003748072252",
+       "base_token_price_native_currency": "0.0000000310532100237217",
+       "quote_token_price_usd": "120.262073426743",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003105321002",
+       "quote_token_price_base_token": "32202789.9607189",
+       "address": "BqnpCdDLPV2pFdAaLnVidmn3G93RP2p5oRdGEY2sJGez",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2023-07-05T14:39:01Z",
+       "token_price_usd": "0.000003748072252",
+       "fdv_usd": "329809261.865372",
+       "market_cap_usd": "329809261.865372",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "-0.476",
+        "m30": "-0.626",
+        "h1": "-1.15",
+        "h6": "-3.3",
+        "h24": "-6.65"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 3,
+         "buyers": 0,
+         "sellers": 3
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 8,
+         "buyers": 0,
+         "sellers": 8
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 34,
+         "buyers": 0,
+         "sellers": 34
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 43,
+         "buyers": 0,
+         "sellers": 42
+        },
+        "h6": {
+         "buys": 6,
+         "sells": 76,
+         "buyers": 6,
+         "sellers": 70
+        },
+        "h24": {
+         "buys": 45,
+         "sells": 188,
+         "buyers": 37,
+         "sellers": 149
+        }
+       },
+       "volume_usd": {
+        "m5": "23.2203606047",
+        "m15": "44.3303186517",
+        "m30": "131.2319434767",
+        "h1": "209.7523873537",
+        "h6": "462.357649229",
+        "h24": "2466.84154804"
+       },
+       "reserve_in_usd": "166325.4679"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "orca",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_GtKKKs3yaPdHbQd2aZS4SfWhy8zQ988BJGnKNndLxYsN",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003746296972",
+       "base_token_price_native_currency": "0.0000000310714453667192",
+       "quote_token_price_usd": "120.635916705214463596326256822",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003107144537",
+       "quote_token_price_base_token": "32183890.6493583",
+       "address": "GtKKKs3yaPdHbQd2aZS4SfWhy8zQ988BJGnKNndLxYsN",
+       "name": "Bonk / SOL 0.25%",
+       "pool_created_at": "2024-02-08T02:04:35Z",
+       "token_price_usd": "0.000003746296972",
+       "fdv_usd": "329653047.217671",
+       "market_cap_usd": "329653047.217671",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "-0.114",
+        "m30": "-0.272",
+        "h1": "-0.71",
+        "h6": "-2.61",
+        "h24": "-6.41"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 7,
+         "buyers": 0,
+         "sellers": 7
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 29,
+         "buyers": 0,
+         "sellers": 25
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 40,
+         "buyers": 0,
+         "sellers": 33
+        },
+        "h6": {
+         "buys": 15,
+         "sells": 144,
+         "buyers": 12,
+         "sellers": 101
+        },
+        "h24": {
+         "buys": 255,
+         "sells": 570,
+         "buyers": 166,
+         "sellers": 382
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "101.4868446593",
+        "m30": "381.1986577051",
+        "h1": "597.1365496905",
+        "h6": "1688.3502979193",
+        "h24": "6935.2883353149"
+       },
+       "reserve_in_usd": "30474.1289"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "raydium-clmm",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_7eexH14UjhNxJe6zTT3f1Vb1E8iACsBMVaWheDEmxdT2",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003736423407",
+       "base_token_price_native_currency": "0.0000000311115649438073",
+       "quote_token_price_usd": "120.353431063344376141474551529911409188339626416",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003111156494",
+       "quote_token_price_base_token": "32142388.2664266",
+       "address": "7eexH14UjhNxJe6zTT3f1Vb1E8iACsBMVaWheDEmxdT2",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2024-03-19T03:11:43Z",
+       "token_price_usd": "0.000003736423407",
+       "fdv_usd": "328784229.071784",
+       "market_cap_usd": "328784229.071784",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0",
+        "m30": "-0.528",
+        "h1": "-1.7",
+        "h6": "-3.53",
+        "h24": "-6.6"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m30": {
+         "buys": 1,
+         "sells": 8,
+         "buyers": 1,
+         "sellers": 8
+        },
+        "h1": {
+         "buys": 2,
+         "sells": 14,
+         "buyers": 2,
+         "sellers": 13
+        },
+        "h6": {
+         "buys": 26,
+         "sells": 49,
+         "buyers": 25,
+         "sellers": 40
+        },
+        "h24": {
+         "buys": 190,
+         "sells": 235,
+         "buyers": 132,
+         "sellers": 177
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "0.0",
+        "m30": "94.9666590272",
+        "h1": "192.4551562449",
+        "h6": "847.882017549",
+        "h24": "4709.87254002"
+       },
+       "reserve_in_usd": "18802.8936"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_G7mw1d83ismcQJKkzt62Ug4noXCjVhu3eV7U5EMgge6Z",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003735856019",
+       "base_token_price_native_currency": "0.0000000310729091089506",
+       "quote_token_price_usd": "0.999022656251403890267987529606",
+       "quote_token_price_native_currency": "0.00830715279342104",
+       "base_token_price_quote_token": "0.000003740500492",
+       "quote_token_price_base_token": "267343.902828466",
+       "address": "G7mw1d83ismcQJKkzt62Ug4noXCjVhu3eV7U5EMgge6Z",
+       "name": "Bonk / USDC",
+       "pool_created_at": "2023-01-05T08:16:55Z",
+       "token_price_usd": "0.000003735856019",
+       "fdv_usd": "328734302.121371",
+       "market_cap_usd": "328734302.121371",
+       "price_change_percentage": {
+        "m5": "-0.41",
+        "m15": "-0.933",
+        "m30": "-0.947",
+        "h1": "-1.28",
+        "h6": "-3.25",
+        "h24": "-6.53"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 6,
+         "buyers": 0,
+         "sellers": 6
+        },
+        "m15": {
+         "buys": 1,
+         "sells": 6,
+         "buyers": 1,
+         "sellers": 6
+        },
+        "m30": {
+         "buys": 1,
+         "sells": 13,
+         "buyers": 1,
+         "sellers": 12
+        },
+        "h1": {
+         "buys": 1,
+         "sells": 22,
+         "buyers": 1,
+         "sellers": 19
+        },
+        "h6": {
+         "buys": 17,
+         "sells": 74,
+         "buyers": 15,
+         "sellers": 58
+        },
+        "h24": {
+         "buys": 298,
+         "sells": 381,
+         "buyers": 120,
+         "sellers": 164
+        }
+       },
+       "volume_usd": {
+        "m5": "19.7019059022",
+        "m15": "26.5692950829",
+        "m30": "49.5874905929",
+        "h1": "89.6277609424",
+        "h6": "293.815309524",
+        "h24": "2592.5903832158"
+       },
+       "reserve_in_usd": "26336.5036"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "raydium",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_8QaXeHBrShJTdtN1rWCccBxpSVvKksQ2PCu5nufb2zbk",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003757109194",
+       "base_token_price_native_currency": "0.0000000310737410537436",
+       "quote_token_price_usd": "1.004497437159951918562619212021",
+       "quote_token_price_native_currency": "0.00831103208091744",
+       "base_token_price_quote_token": "0.000003738854663",
+       "quote_token_price_base_token": "267461.586506211",
+       "address": "8QaXeHBrShJTdtN1rWCccBxpSVvKksQ2PCu5nufb2zbk",
+       "name": "Bonk / USDC",
+       "pool_created_at": "2023-07-05T14:33:05Z",
+       "token_price_usd": "0.000003757109194",
+       "fdv_usd": "330604461.896254",
+       "market_cap_usd": "330604461.896254",
+       "price_change_percentage": {
+        "m5": "0.56",
+        "m15": "0.557",
+        "m30": "0.106",
+        "h1": "-0.99",
+        "h6": "-2.68",
+        "h24": "-6.03"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 2,
+         "buyers": 0,
+         "sellers": 2
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 2,
+         "buyers": 0,
+         "sellers": 2
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 8,
+         "buyers": 0,
+         "sellers": 6
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 13,
+         "buyers": 0,
+         "sellers": 11
+        },
+        "h6": {
+         "buys": 9,
+         "sells": 57,
+         "buyers": 9,
+         "sellers": 45
+        },
+        "h24": {
+         "buys": 174,
+         "sells": 304,
+         "buyers": 90,
+         "sellers": 143
+        }
+       },
+       "volume_usd": {
+        "m5": "7.3733682511",
+        "m15": "7.3733682511",
+        "m30": "22.8870584095",
+        "h1": "52.3516378882",
+        "h6": "175.5737518026",
+        "h24": "1518.2146766217"
+       },
+       "reserve_in_usd": "39987.0919"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "orca",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_278P6iwdEeX5tUFMGxmi2tii3EAho4iHzfiroKLKCQKj",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003763578044",
+       "base_token_price_native_currency": "0.0000000311828141374651",
+       "quote_token_price_usd": "120.71832920486065807550774502378530004979998185",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003118281414",
+       "quote_token_price_base_token": "32068946.5547157",
+       "address": "278P6iwdEeX5tUFMGxmi2tii3EAho4iHzfiroKLKCQKj",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2024-03-20T03:23:17Z",
+       "token_price_usd": "0.000003763578044",
+       "fdv_usd": "331173684.285838",
+       "market_cap_usd": "331173684.285838",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0.472",
+        "m30": "0.065",
+        "h1": "-0.22",
+        "h6": "-2.62",
+        "h24": "-5.96"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 1,
+         "sells": 4,
+         "buyers": 1,
+         "sellers": 4
+        },
+        "m30": {
+         "buys": 1,
+         "sells": 15,
+         "buyers": 1,
+         "sellers": 15
+        },
+        "h1": {
+         "buys": 1,
+         "sells": 22,
+         "buyers": 1,
+         "sellers": 22
+        },
+        "h6": {
+         "buys": 3,
+         "sells": 99,
+         "buyers": 3,
+         "sellers": 91
+        },
+        "h24": {
+         "buys": 266,
+         "sells": 487,
+         "buyers": 229,
+         "sellers": 418
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "5.8391155282",
+        "m30": "28.6303369989",
+        "h1": "49.663993615",
+        "h6": "215.981319278",
+        "h24": "2097.5478105424"
+       },
+       "reserve_in_usd": "24839.5011"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_CBLZqRexZ4XBV1JF3JpxAjME4bRZS9kNnP56Afvm9fYW",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.2355040159",
+       "base_token_price_native_currency": "0.00195673758072494",
+       "quote_token_price_usd": "0.0000037444503933920946838400356202798700647471918919568289157322176",
+       "quote_token_price_native_currency": "0.0000000311116002649152",
+       "base_token_price_quote_token": "62894.1476511438",
+       "quote_token_price_base_token": "0.00001589973054",
+       "address": "CBLZqRexZ4XBV1JF3JpxAjME4bRZS9kNnP56Afvm9fYW",
+       "name": "USELESS / Bonk",
+       "pool_created_at": "2026-09-30T10:47:59Z",
+       "token_price_usd": "0.0000037444503933920946838400356202798700647471918919568289157322176",
+       "fdv_usd": "329490558.693784",
+       "market_cap_usd": "329490558.693783",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0",
+        "m30": "0",
+        "h1": "-0.96",
+        "h6": "-3.51",
+        "h24": "-6.17"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 2,
+         "buyers": 0,
+         "sellers": 2
+        },
+        "h1": {
+         "buys": 6,
+         "sells": 6,
+         "buyers": 5,
+         "sellers": 5
+        },
+        "h6": {
+         "buys": 35,
+         "sells": 58,
+         "buyers": 26,
+         "sellers": 21
+        },
+        "h24": {
+         "buys": 89,
+         "sells": 134,
+         "buyers": 45,
+         "sellers": 40
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "0.0",
+        "m30": "52.9926935228",
+        "h1": "210.9032871031",
+        "h6": "1800.0557495739",
+        "h24": "4658.5417747198"
+       },
+       "reserve_in_usd": "9323.7732"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_Dz9mQ9NzkBcCsuGPFJ3r1bS4wgqKMHBPiVuniW8Mbonk",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_HVNwzt7Pxfu76KHCMQPTLuTCLTm6WnQ1esLv4eizseSv",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003773532427",
+       "base_token_price_native_currency": "0.0000000311826775243545",
+       "quote_token_price_usd": "120.925726596994",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003118267752",
+       "quote_token_price_base_token": "32069087.050622",
+       "address": "HVNwzt7Pxfu76KHCMQPTLuTCLTm6WnQ1esLv4eizseSv",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2023-01-05T08:27:43Z",
+       "token_price_usd": "0.000003773532427",
+       "fdv_usd": "332049613.960834",
+       "market_cap_usd": "332049613.960834",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0.499",
+        "m30": "0.079",
+        "h1": "-0.5",
+        "h6": "-1.85",
+        "h24": "-5.71"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 2,
+         "sells": 0,
+         "buyers": 1,
+         "sellers": 0
+        },
+        "m30": {
+         "buys": 2,
+         "sells": 7,
+         "buyers": 1,
+         "sellers": 7
+        },
+        "h1": {
+         "buys": 2,
+         "sells": 16,
+         "buyers": 1,
+         "sellers": 16
+        },
+        "h6": {
+         "buys": 13,
+         "sells": 98,
+         "buyers": 9,
+         "sellers": 91
+        },
+        "h24": {
+         "buys": 251,
+         "sells": 484,
+         "buyers": 192,
+         "sellers": 369
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "0.6335402608",
+        "m30": "22.5573662352",
+        "h1": "45.1277382387",
+        "h6": "198.526180855",
+        "h24": "1887.3176423054"
+       },
+       "reserve_in_usd": "21499.4022"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "raydium",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_6oFWm7KPLfxnwMb3z5xwBoXNSPP3JJyirAPqPSiVcnsp",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003745085046",
+       "base_token_price_native_currency": "0.000000031119058744257",
+       "quote_token_price_usd": "120.365687607110797619038925820547038877136382446",
+       "quote_token_price_native_currency": "1.0",
+       "base_token_price_quote_token": "0.00000003111905874",
+       "quote_token_price_base_token": "32134648.0373398",
+       "address": "6oFWm7KPLfxnwMb3z5xwBoXNSPP3JJyirAPqPSiVcnsp",
+       "name": "Bonk / SOL",
+       "pool_created_at": "2024-05-10T09:34:00Z",
+       "token_price_usd": "0.000003745085046",
+       "fdv_usd": "329546404.551089",
+       "market_cap_usd": "329546404.551088",
+       "price_change_percentage": {
+        "m5": "-0.04",
+        "m15": "-0.445",
+        "m30": "-0.219",
+        "h1": "-1.02",
+        "h6": "-3.29",
+        "h24": "-6.37"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 2,
+         "sells": 0,
+         "buyers": 2,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 5,
+         "sells": 28,
+         "buyers": 5,
+         "sellers": 23
+        },
+        "m30": {
+         "buys": 15,
+         "sells": 37,
+         "buyers": 12,
+         "sellers": 29
+        },
+        "h1": {
+         "buys": 33,
+         "sells": 62,
+         "buyers": 23,
+         "sellers": 47
+        },
+        "h6": {
+         "buys": 198,
+         "sells": 239,
+         "buyers": 125,
+         "sellers": 178
+        },
+        "h24": {
+         "buys": 1221,
+         "sells": 1534,
+         "buyers": 646,
+         "sellers": 861
+        }
+       },
+       "volume_usd": {
+        "m5": "5.7703026002",
+        "m15": "29.7137214249",
+        "m30": "59.4078029586",
+        "h1": "120.8579087972",
+        "h6": "687.7396394396",
+        "h24": "4299.5613797638"
+       },
+       "reserve_in_usd": "7961.262"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_So11111111111111111111111111111111111111112",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_H5byjRgL3twofRnpjBZVr7AVRiT6mtBxA2W4bH6umPbC",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "1.0059230493",
+       "base_token_price_native_currency": "0.00832282734086952",
+       "quote_token_price_usd": "0.0000037556482102550268393680778081",
+       "quote_token_price_native_currency": "0.0000000310735613704701",
+       "base_token_price_quote_token": "267842.724612148",
+       "quote_token_price_base_token": "0.000003733534302",
+       "address": "H5byjRgL3twofRnpjBZVr7AVRiT6mtBxA2W4bH6umPbC",
+       "name": "SZ / Bonk",
+       "pool_created_at": "2026-03-21T20:01:56Z",
+       "token_price_usd": "0.0000037556482102550268393680778081",
+       "fdv_usd": "330475903.549955",
+       "market_cap_usd": "330475903.549955",
+       "price_change_percentage": {
+        "m5": "0.57",
+        "m15": "0.57",
+        "m30": "-0.57",
+        "h1": "-0.95",
+        "h6": "-2.69",
+        "h24": "-5.82"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 3,
+         "buyers": 0,
+         "sellers": 3
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 3,
+         "buyers": 0,
+         "sellers": 3
+        },
+        "m30": {
+         "buys": 0,
+         "sells": 9,
+         "buyers": 0,
+         "sellers": 6
+        },
+        "h1": {
+         "buys": 0,
+         "sells": 15,
+         "buyers": 0,
+         "sellers": 6
+        },
+        "h6": {
+         "buys": 3,
+         "sells": 40,
+         "buyers": 3,
+         "sellers": 8
+        },
+        "h24": {
+         "buys": 70,
+         "sells": 188,
+         "buyers": 22,
+         "sellers": 33
+        }
+       },
+       "volume_usd": {
+        "m5": "11.0864760691",
+        "m15": "11.0864760691",
+        "m30": "45.0179409195",
+        "h1": "101.8188729374",
+        "h6": "278.164196203",
+        "h24": "1956.9439624262"
+       },
+       "reserve_in_usd": "9550.3308"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_BhmPSRoEYPT7epsM87xWKcSoLkgaf7b5SqTzZpufApMQ",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "orca",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_HToym65Q2pD5LxGYjAkn42TMe8xdLubs9WTMW92HCmb1",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.00000769238825",
+       "base_token_price_native_currency": "0.0000000639251882823502",
+       "quote_token_price_usd": "0.0000037473628645105464971720165185669767813103074781738156207561424",
+       "quote_token_price_native_currency": "0.0000000311412878405176",
+       "base_token_price_quote_token": "2.0527470993",
+       "quote_token_price_base_token": "0.4871520707",
+       "address": "HToym65Q2pD5LxGYjAkn42TMe8xdLubs9WTMW92HCmb1",
+       "name": "PONK / Bonk",
+       "pool_created_at": "2026-10-02T17:07:01Z",
+       "token_price_usd": "0.0000037473628645105464971720165185669767813103074781738156207561424",
+       "fdv_usd": "329746839.759141",
+       "market_cap_usd": "329746839.759141",
+       "price_change_percentage": {
+        "m5": "0",
+        "m15": "0",
+        "m30": "0",
+        "h1": "-1.01",
+        "h6": "-3.05",
+        "h24": "-6.53"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m15": {
+         "buys": 0,
+         "sells": 0,
+         "buyers": 0,
+         "sellers": 0
+        },
+        "m30": {
+         "buys": 1,
+         "sells": 0,
+         "buyers": 1,
+         "sellers": 0
+        },
+        "h1": {
+         "buys": 3,
+         "sells": 0,
+         "buyers": 3,
+         "sellers": 0
+        },
+        "h6": {
+         "buys": 20,
+         "sells": 4,
+         "buyers": 7,
+         "sellers": 4
+        },
+        "h24": {
+         "buys": 85,
+         "sells": 29,
+         "buyers": 31,
+         "sellers": 25
+        }
+       },
+       "volume_usd": {
+        "m5": "0.0",
+        "m15": "0.0",
+        "m30": "0.002334169897",
+        "h1": "3.9248959099",
+        "h6": "228.1214949249",
+        "h24": "1837.5289067468"
+       },
+       "reserve_in_usd": "7711.195"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_fJ5tNJQzyaGbx9oiz2MTdpP6ZRRgcaTM9AesKReCZWC",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "raydium",
+         "type": "dex"
+        }
+       }
+      }
+     },
+     {
+      "id": "solana_N4xy6PT672fPyA969nQy7jTQ17AsMZ1jrbgm8ZvRKYK",
+      "type": "pool",
+      "attributes": {
+       "base_token_price_usd": "0.000003741367543",
+       "base_token_price_native_currency": "0.0000000310727262343163",
+       "quote_token_price_usd": "0.999308791916728576238965236485979063529554146428187026528612657",
+       "quote_token_price_native_currency": "0.00829785217251884",
+       "base_token_price_quote_token": "0.000003744670981",
+       "quote_token_price_base_token": "267046.158420268",
+       "address": "N4xy6PT672fPyA969nQy7jTQ17AsMZ1jrbgm8ZvRKYK",
+       "name": "Bonk / USDC",
+       "pool_created_at": "2024-03-20T03:23:17Z",
+       "token_price_usd": "0.000003741367543",
+       "fdv_usd": "329219285.211338",
+       "market_cap_usd": "329219285.211338",
+       "price_change_percentage": {
+        "m5": "-0.24",
+        "m15": "-0.538",
+        "m30": "-0.47",
+        "h1": "-1.13",
+        "h6": "-3.16",
+        "h24": "-6.45"
+       },
+       "transactions": {
+        "m5": {
+         "buys": 0,
+         "sells": 7,
+         "buyers": 0,
+         "sellers": 6
+        },
+        "m15": {
+         "buys": 4,
+         "sells": 7,
+         "buyers": 4,
+         "sellers": 6
+        },
+        "m30": {
+         "buys": 4,
+         "sells": 12,
+         "buyers": 4,
+         "sellers": 10
+        },
+        "h1": {
+         "buys": 4,
+         "sells": 18,
+         "buyers": 4,
+         "sellers": 14
+        },
+        "h6": {
+         "buys": 14,
+         "sells": 64,
+         "buyers": 13,
+         "sellers": 48
+        },
+        "h24": {
+         "buys": 282,
+         "sells": 303,
+         "buyers": 180,
+         "sellers": 173
+        }
+       },
+       "volume_usd": {
+        "m5": "5.9364522804",
+        "m15": "8.467979079",
+        "m30": "18.3676446912",
+        "h1": "33.7377754561",
+        "h6": "108.1323428252",
+        "h24": "1015.5593355865"
+       },
+       "reserve_in_usd": "9437.5116"
+      },
+      "relationships": {
+       "base_token": {
+        "data": {
+         "id": "solana_DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+         "type": "token"
+        }
+       },
+       "quote_token": {
+        "data": {
+         "id": "solana_EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+         "type": "token"
+        }
+       },
+       "dex": {
+        "data": {
+         "id": "meteora",
+         "type": "dex"
+        }
+       }
+      }
+     }
+    ]
+   },
+   "bodyIsJson": true,
+   "latencyMs": 420,
+   "recordedAt": "2026-10-06T02:36:53.548Z"
+  },
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9/ohlcv/minute?aggregate=1&limit=100&currency=usd",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": {
+     "id": "8467031f-8d3e-44fd-8167-bd7afa70f72a",
+     "type": "ohlcv_request_response",
+     "attributes": {
+      "ohlcv_list": [
+       [
+        1791254160,
+        0.000003751772884324435,
+        0.0000037551115419515675,
+        0.000003751772884324435,
+        0.0000037551115419515675,
+        0.1972446357282425
+       ],
+       [
+        1791254100,
+        0.0000037367863136186637,
+        0.0000037574764490540323,
+        0.0000037367863136186637,
+        0.000003751772884324435,
+        752.6121418746433
+       ],
+       [
+        1791254040,
+        0.0000037371762343253203,
+        0.0000037556215279892506,
+        0.0000037335472354295497,
+        0.0000037367863136186637,
+        455.57673700806674
+       ],
+       [
+        1791253980,
+        0.0000037487108147978735,
+        0.0000037518402464029186,
+        0.0000037371762343253203,
+        0.0000037371762343253203,
+        277.8196843019652
+       ],
+       [
+        1791253920,
+        0.000003752979771130054,
+        0.000003752979771130054,
+        0.0000037487108147978735,
+        0.0000037487108147978735,
+        87.87251466170139
+       ],
+       [
+        1791253860,
+        0.0000037513353084250663,
+        0.000003752979771130054,
+        0.0000037476113840998543,
+        0.000003752979771130054,
+        238.4500503153122
+       ],
+       [
+        1791253800,
+        0.0000037562367293143626,
+        0.0000037562367293143626,
+        0.0000037474949829185076,
+        0.0000037513353084250663,
+        571.9044416791198
+       ],
+       [
+        1791253740,
+        0.0000037562176467212706,
+        0.0000037562367293143626,
+        0.0000037562176467212706,
+        0.0000037562367293143626,
+        0.46008012693729244
+       ],
+       [
+        1791253680,
+        0.000003751926444673282,
+        0.000003760993514173985,
+        0.0000037461070573763093,
+        0.0000037562176467212706,
+        908.3179344896643
+       ],
+       [
+        1791253620,
+        0.0000037523790374838815,
+        0.0000037523790374838815,
+        0.000003751926444673282,
+        0.000003751926444673282,
+        4.76953205593358
+       ],
+       [
+        1791253560,
+        0.0000037523353143000598,
+        0.0000037523790374838815,
+        0.000003752195978663881,
+        0.0000037523790374838815,
+        1.8112081081521176
+       ],
+       [
+        1791253500,
+        0.000003761435052454982,
+        0.00000377411263867461,
+        0.0000037523353143000598,
+        0.0000037523353143000598,
+        430.2949000686263
+       ],
+       [
+        1791253440,
+        0.000003756822219513851,
+        0.000003761435052454982,
+        0.000003756822219513851,
+        0.000003761435052454982,
+        542.144672221469
+       ],
+       [
+        1791253380,
+        0.000003750515001239954,
+        0.0000037571075391433505,
+        0.000003750515001239954,
+        0.000003756822219513851,
+        365.2768978740817
+       ],
+       [
+        1791253320,
+        0.000003751509821286648,
+        0.000003754137351176874,
+        0.0000037474757801629856,
+        0.000003750515001239954,
+        459.2649573658113
+       ],
+       [
+        1791253260,
+        0.000003751609214109017,
+        0.0000037516446134476283,
+        0.000003751509821286648,
+        0.000003751509821286648,
+        0.7075086638900627
+       ],
+       [
+        1791253200,
+        0.0000037536117844253333,
+        0.000003754975805964421,
+        0.000003748346925031733,
+        0.000003751609214109017,
+        727.5701472239865
+       ],
+       [
+        1791253140,
+        0.00000375344286647594,
+        0.000003763020476321263,
+        0.00000375344286647594,
+        0.0000037536117844253333,
+        1.9361224138472135
+       ],
+       [
+        1791253080,
+        0.0000037534078335467008,
+        0.0000037535537210048134,
+        0.0000037496262813086148,
+        0.00000375344286647594,
+        13.488408201310358
+       ],
+       [
+        1791253020,
+        0.0000037521945123264213,
+        0.0000037558319936613002,
+        0.0000037499323162145185,
+        0.0000037534078335467008,
+        240.58887851540055
+       ],
+       [
+        1791252960,
+        0.0000037560741866944684,
+        0.000003756085687187628,
+        0.0000037521945123264213,
+        0.0000037521945123264213,
+        44.85900781195852
+       ],
+       [
+        1791252900,
+        0.0000037579537632270217,
+        0.000003758035361548061,
+        0.0000037532383052229173,
+        0.0000037560741866944684,
+        153.61448676077572
+       ],
+       [
+        1791252840,
+        0.0000037591802564459704,
+        0.0000037591802564459704,
+        0.0000037550173583030994,
+        0.0000037579537632270217,
+        208.1034672349097
+       ],
+       [
+        1791252780,
+        0.0000037578724331628157,
+        0.0000037591802564459704,
+        0.0000037578724331628157,
+        0.0000037591802564459704,
+        0.24701236916826588
+       ],
+       [
+        1791252720,
+        0.0000037626822077397087,
+        0.0000037720961074201383,
+        0.000003749248149595068,
+        0.0000037578724331628157,
+        629.5913069450742
+       ],
+       [
+        1791252660,
+        0.000003762646428141371,
+        0.0000037626822077397087,
+        0.000003762646428141371,
+        0.0000037626822077397087,
+        0.367148031238397
+       ],
+       [
+        1791252600,
+        0.0000037619496029003415,
+        0.000003762646428141371,
+        0.0000037522953243478807,
+        0.000003762646428141371,
+        136.6802550437158
+       ],
+       [
+        1791252540,
+        0.0000037632231925974522,
+        0.0000037632231925974522,
+        0.0000037619496029003415,
+        0.0000037619496029003415,
+        3.00081194808633
+       ],
+       [
+        1791252480,
+        0.0000037535519161585375,
+        0.0000037726080468599746,
+        0.0000037535519161585375,
+        0.0000037632231925974522,
+        0.4743008075098267
+       ],
+       [
+        1791252420,
+        0.0000037537568148678786,
+        0.0000037630900637358544,
+        0.0000037535519161585375,
+        0.0000037535519161585375,
+        0.6836699493288569
+       ],
+       [
+        1791252360,
+        0.0000037756175610019316,
+        0.0000037756223594492153,
+        0.000003753605727783304,
+        0.0000037537568148678786,
+        297.7630398022469
+       ],
+       [
+        1791252300,
+        0.0000037685332275062855,
+        0.0000037770277214248913,
+        0.000003755714399939655,
+        0.0000037756175610019316,
+        390.8851997036582
+       ],
+       [
+        1791252240,
+        0.0000037691372917291187,
+        0.0000037691372917291187,
+        0.0000037648556227072707,
+        0.0000037685332275062855,
+        33.61486153342967
+       ],
+       [
+        1791252180,
+        0.000003770905958205401,
+        0.000003770905958205401,
+        0.0000037691372917291187,
+        0.0000037691372917291187,
+        1.5539355686533
+       ],
+       [
+        1791252120,
+        0.0000037782592004658763,
+        0.0000037782592004658763,
+        0.000003768549301550524,
+        0.000003770905958205401,
+        861.0815877139567
+       ],
+       [
+        1791252060,
+        0.0000037845579607467317,
+        0.0000037859537663994383,
+        0.0000037747249874129207,
+        0.0000037782592004658763,
+        1157.3244588350565
+       ],
+       [
+        1791252000,
+        0.00000378674015496837,
+        0.00000378674015496837,
+        0.0000037841242879485206,
+        0.0000037845579607467317,
+        366.07366798232493
+       ],
+       [
+        1791251940,
+        0.0000037900669292220587,
+        0.0000037900669292220587,
+        0.00000378674015496837,
+        0.00000378674015496837,
+        0.6034514595957103
+       ],
+       [
+        1791251880,
+        0.0000037920359065970124,
+        0.0000037987302205964976,
+        0.0000037802177886369815,
+        0.0000037900669292220587,
+        432.49454044185376
+       ],
+       [
+        1791251820,
+        0.0000037818595846510927,
+        0.0000037920359065970124,
+        0.0000037818595846510927,
+        0.0000037920359065970124,
+        48.618671673145684
+       ],
+       [
+        1791251760,
+        0.0000037824718915736005,
+        0.0000037824718915736005,
+        0.000003781777156747768,
+        0.0000037818595846510927,
+        33.518799681314334
+       ],
+       [
+        1791251580,
+        0.0000037851021301233533,
+        0.000003788287224002875,
+        0.0000037824718915736005,
+        0.0000037824718915736005,
+        308.80134969973903
+       ],
+       [
+        1791251520,
+        0.000003799523796132738,
+        0.000003799523796132738,
+        0.0000037851021301233533,
+        0.0000037851021301233533,
+        128.9503736919408
+       ],
+       [
+        1791251460,
+        0.0000037801265094161002,
+        0.000003799523796132738,
+        0.0000037801265094161002,
+        0.000003799523796132738,
+        0.120988762550291
+       ],
+       [
+        1791251400,
+        0.0000037900910133680378,
+        0.0000037900910133680378,
+        0.000003780100779476368,
+        0.0000037801265094161002,
+        25.02321553988617
+       ],
+       [
+        1791251280,
+        0.0000037803893091777976,
+        0.0000037901480464637886,
+        0.0000037803893091777976,
+        0.0000037900910133680378,
+        0.1803678145322811
+       ],
+       [
+        1791251220,
+        0.0000037850130054555024,
+        0.000003798902581790761,
+        0.0000037803893091777976,
+        0.0000037803893091777976,
+        172.35589006038362
+       ],
+       [
+        1791251160,
+        0.000003785244419547066,
+        0.0000037888836812544028,
+        0.0000037850130054555024,
+        0.0000037850130054555024,
+        15.953482057853895
+       ],
+       [
+        1791251100,
+        0.0000037893583396342107,
+        0.0000037893583396342107,
+        0.000003779357530884193,
+        0.000003785244419547066,
+        52.88081517224024
+       ],
+       [
+        1791251040,
+        0.000003786117565742666,
+        0.0000037893583396342107,
+        0.000003786117565742666,
+        0.0000037893583396342107,
+        0.3937635998451131
+       ],
+       [
+        1791250980,
+        0.000003790153167291006,
+        0.0000037905223367118296,
+        0.000003786117565742666,
+        0.000003786117565742666,
+        195.55038097546614
+       ],
+       [
+        1791250920,
+        0.0000037905867223587067,
+        0.0000037905867223587067,
+        0.0000037865724394132343,
+        0.000003790153167291006,
+        91.62233833987787
+       ],
+       [
+        1791250860,
+        0.0000037873062707369964,
+        0.0000037905867223587067,
+        0.000003786928573132803,
+        0.0000037905867223587067,
+        2.879365106903901
+       ],
+       [
+        1791250800,
+        0.00000378776940215898,
+        0.00000378776940215898,
+        0.0000037873062707369964,
+        0.0000037873062707369964,
+        1.61567571292475
+       ],
+       [
+        1791250740,
+        0.0000037880043616742615,
+        0.0000037880246133913866,
+        0.00000378776940215898,
+        0.00000378776940215898,
+        0.13166282956065087
+       ],
+       [
+        1791250680,
+        0.000003781698071031901,
+        0.0000037963170510266935,
+        0.000003781012413033505,
+        0.0000037880043616742615,
+        198.30286936046483
+       ],
+       [
+        1791250620,
+        0.000003779811421804783,
+        0.000003800400209307692,
+        0.0000037798060474695695,
+        0.000003781698071031901,
+        312.89141638229466
+       ],
+       [
+        1791250560,
+        0.0000037956552486628946,
+        0.0000038012071576467924,
+        0.000003770886960858521,
+        0.000003779811421804783,
+        1421.4969125760274
+       ],
+       [
+        1791250500,
+        0.000003784226606495923,
+        0.0000037956552486628946,
+        0.000003774770518141275,
+        0.0000037956552486628946,
+        249.16513610099886
+       ],
+       [
+        1791250440,
+        0.0000037869560893583493,
+        0.0000037869716410962457,
+        0.0000037812388732831557,
+        0.000003784226606495923,
+        581.9611038146724
+       ],
+       [
+        1791250380,
+        0.000003799299593500417,
+        0.0000038006226690451414,
+        0.0000037846271946393683,
+        0.0000037869560893583493,
+        1892.9981170352235
+       ],
+       [
+        1791250320,
+        0.000003785847224163862,
+        0.0000038051439570063823,
+        0.000003785847224163862,
+        0.000003799299593500417,
+        479.5926463234172
+       ],
+       [
+        1791250260,
+        0.000003798076236870428,
+        0.000003804821651286845,
+        0.000003785847224163862,
+        0.000003785847224163862,
+        7.1771170033894895
+       ],
+       [
+        1791250200,
+        0.000003798909800243013,
+        0.000003798951440390747,
+        0.000003793881918411612,
+        0.000003798076236870428,
+        169.6130305545035
+       ],
+       [
+        1791250140,
+        0.0000037974009290462795,
+        0.000003798909800243013,
+        0.0000037974009290462795,
+        0.000003798909800243013,
+        182.5145924906001
+       ],
+       [
+        1791250080,
+        0.0000037978713578633975,
+        0.0000037978713578633975,
+        0.0000037935612165366092,
+        0.0000037974009290462795,
+        56.258372858275784
+       ],
+       [
+        1791250020,
+        0.0000037975127840375615,
+        0.00000379794370335114,
+        0.0000037975127840375615,
+        0.0000037978713578633975,
+        3.0587146339942985
+       ],
+       [
+        1791249960,
+        0.0000037930543040351336,
+        0.0000037975127840375615,
+        0.0000037930543040351336,
+        0.0000037975127840375615,
+        136.22009850270393
+       ],
+       [
+        1791249900,
+        0.000003798350642097057,
+        0.000003798350642097057,
+        0.0000037930543040351336,
+        0.0000037930543040351336,
+        200.20469396834443
+       ],
+       [
+        1791249840,
+        0.0000037943037161873313,
+        0.000003798350642097057,
+        0.0000037941184638905683,
+        0.000003798350642097057,
+        0.039708332182108445
+       ],
+       [
+        1791249780,
+        0.0000038034851897853063,
+        0.0000038034851897853063,
+        0.000003794276228102604,
+        0.0000037943037161873313,
+        6.809149252837248
+       ],
+       [
+        1791249720,
+        0.0000037882668996977575,
+        0.0000038034851897853063,
+        0.0000037882668996977575,
+        0.0000038034851897853063,
+        1.9662068122653449
+       ],
+       [
+        1791249660,
+        0.000003795477191163742,
+        0.000003806268027086098,
+        0.0000037882668996977575,
+        0.0000037882668996977575,
+        270.1253726258687
+       ],
+       [
+        1791249600,
+        0.00000378434401378659,
+        0.000003795477191163742,
+        0.00000378434401378659,
+        0.000003795477191163742,
+        183.26010004015353
+       ],
+       [
+        1791249540,
+        0.0000037935326251873402,
+        0.0000037935353666899252,
+        0.0000037843182933426245,
+        0.00000378434401378659,
+        8.209381271681183
+       ],
+       [
+        1791249480,
+        0.000003794685557694028,
+        0.0000037970214404073734,
+        0.000003789220185318375,
+        0.0000037935326251873402,
+        1391.4721275657466
+       ],
+       [
+        1791249420,
+        0.000003800231132436808,
+        0.000003800231132436808,
+        0.0000037939542963298463,
+        0.000003794685557694028,
+        233.4781732405752
+       ],
+       [
+        1791249360,
+        0.0000038019814137124276,
+        0.0000038019814137124276,
+        0.0000037971033692609953,
+        0.000003800231132436808,
+        192.96939332183715
+       ],
+       [
+        1791249300,
+        0.000003815575609962127,
+        0.000003815575609962127,
+        0.000003801977296622788,
+        0.0000038019814137124276,
+        54.90858468878842
+       ],
+       [
+        1791249240,
+        0.0000037990300197107624,
+        0.000003815575808157176,
+        0.000003796688036142071,
+        0.000003815575609962127,
+        235.6090549969527
+       ],
+       [
+        1791249180,
+        0.0000037954001417078672,
+        0.0000037991735165409216,
+        0.0000037952706852019566,
+        0.0000037990300197107624,
+        13.147587657774372
+       ],
+       [
+        1791249120,
+        0.000003819210982054383,
+        0.000003819956254099919,
+        0.0000037954001417078672,
+        0.0000037954001417078672,
+        263.82318495531047
+       ],
+       [
+        1791249060,
+        0.000003808571665756084,
+        0.000003819210982054383,
+        0.0000038000736911571528,
+        0.000003819210982054383,
+        81.43344027307427
+       ],
+       [
+        1791249000,
+        0.000003819220864502479,
+        0.000003820273014617811,
+        0.0000037992946997825383,
+        0.000003808571665756084,
+        2639.1151729814765
+       ],
+       [
+        1791248940,
+        0.0000038122145473619355,
+        0.000003819220864502479,
+        0.0000038122145473619355,
+        0.000003819220864502479,
+        1609.1773427733417
+       ],
+       [
+        1791248880,
+        0.000003811107791055734,
+        0.0000038122145473619355,
+        0.0000038097578388434247,
+        0.0000038122145473619355,
+        330.11524924392654
+       ],
+       [
+        1791248820,
+        0.000003815261568251588,
+        0.000003815261568251588,
+        0.000003811107791055734,
+        0.000003811107791055734,
+        53.79471412483501
+       ],
+       [
+        1791248760,
+        0.0000038128709748331237,
+        0.000003815261568251588,
+        0.0000038128709748331237,
+        0.000003815261568251588,
+        150.1800143031661
+       ],
+       [
+        1791248700,
+        0.000003813545187527079,
+        0.000003813633949199141,
+        0.0000038094687048438812,
+        0.0000038128709748331237,
+        84.88776415515713
+       ],
+       [
+        1791248640,
+        0.000003814096942404948,
+        0.000003814120834462607,
+        0.0000038135427350002678,
+        0.000003813545187527079,
+        2.1232277474615326
+       ],
+       [
+        1791248580,
+        0.0000038212529218540235,
+        0.0000038212529218540235,
+        0.0000038103351870543334,
+        0.000003814096942404948,
+        1455.9031703692028
+       ],
+       [
+        1791248520,
+        0.000003825048007437986,
+        0.000003825983825030188,
+        0.0000038212529218540235,
+        0.0000038212529218540235,
+        177.34902906700026
+       ],
+       [
+        1791248460,
+        0.000003821956951814946,
+        0.000003825048007437986,
+        0.000003821956951814946,
+        0.000003825048007437986,
+        408.4326705742203
+       ],
+       [
+        1791248400,
+        0.000003821598425762018,
+        0.000003821956951814946,
+        0.0000038213865382897425,
+        0.000003821956951814946,
+        53.936942518414305
+       ],
+       [
+        1791248340,
+        0.000003821392301123371,
+        0.000003821598425762018,
+        0.000003821178463827034,
+        0.000003821598425762018,
+        34.52130885055648
+       ],
+       [
+        1791248280,
+        0.000003820820126487973,
+        0.000003821392301123371,
+        0.000003820820126487973,
+        0.000003821392301123371,
+        0.1686227757761831
+       ],
+       [
+        1791248220,
+        0.000003810626044405736,
+        0.000003832200017157502,
+        0.000003807990064217431,
+        0.000003820820126487973,
+        272.4436681543248
+       ],
+       [
+        1791248160,
+        0.00000382465187175965,
+        0.000003830636234308724,
+        0.0000038101404322550042,
+        0.000003810626044405736,
+        331.971331967851
+       ],
+       [
+        1791248100,
+        0.0000038193858123964385,
+        0.0000038247098181192206,
+        0.000003815149994481198,
+        0.00000382465187175965,
+        0.7836319268338806
+       ],
+       [
+        1791248040,
+        0.0000038218201085655115,
+        0.0000038294892850033326,
+        0.000003818503407729254,
+        0.0000038193858123964385,
+        2809.353187752893
+       ]
+      ]
+     }
+    },
+    "meta": {
+     "base": {
+      "name": "Bonk",
+      "symbol": "Bonk",
+      "coingecko_coin_id": "bonk",
+      "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+     },
+     "quote": {
+      "name": "Wrapped SOL",
+      "symbol": "SOL",
+      "coingecko_coin_id": "wrapped-solana",
+      "address": "So11111111111111111111111111111111111111112"
+     }
+    }
+   },
+   "bodyIsJson": true,
+   "latencyMs": 463,
+   "recordedAt": "2026-10-06T02:37:02.162Z"
+  },
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9/ohlcv/minute?aggregate=5&limit=100&currency=usd",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": {
+     "id": "cda4a55a-2ef1-4997-a075-2c994cabf46b",
+     "type": "ohlcv_request_response",
+     "attributes": {
+      "ohlcv_list": [
+       [
+        1791254100,
+        0.0000037367863136186637,
+        0.0000037574764490540323,
+        0.0000037367863136186637,
+        0.0000037551115419515675,
+        752.8093865103716
+       ],
+       [
+        1791253800,
+        0.0000037562367293143626,
+        0.0000037562367293143626,
+        0.0000037335472354295497,
+        0.0000037367863136186637,
+        1631.6234279661653
+       ],
+       [
+        1791253500,
+        0.000003761435052454982,
+        0.00000377411263867461,
+        0.0000037461070573763093,
+        0.0000037562367293143626,
+        1345.6536548493134
+       ],
+       [
+        1791253200,
+        0.0000037536117844253333,
+        0.000003761435052454982,
+        0.0000037474757801629856,
+        0.000003761435052454982,
+        2094.9641833492387
+       ],
+       [
+        1791252900,
+        0.0000037579503365358645,
+        0.000003763020476321263,
+        0.0000037496262813086148,
+        0.0000037536117844253333,
+        454.48690370329234
+       ],
+       [
+        1791252600,
+        0.0000037619496029003415,
+        0.0000037720961074201383,
+        0.000003749248149595068,
+        0.0000037579503365358645,
+        974.9891896241063
+       ],
+       [
+        1791252300,
+        0.0000037685332275062855,
+        0.0000037770277214248913,
+        0.0000037535519161585375,
+        0.0000037619496029003415,
+        692.8070222108302
+       ],
+       [
+        1791252000,
+        0.00000378674015496837,
+        0.00000378674015496837,
+        0.0000037648556227072707,
+        0.0000037685332275062855,
+        2419.648511633421
+       ],
+       [
+        1791251700,
+        0.0000037824718915736005,
+        0.0000037987302205964976,
+        0.0000037802177886369815,
+        0.00000378674015496837,
+        515.2354632559095
+       ],
+       [
+        1791251400,
+        0.0000037900910133680378,
+        0.000003799523796132738,
+        0.000003780100779476368,
+        0.0000037824718915736005,
+        462.8959276941163
+       ],
+       [
+        1791251100,
+        0.0000037893583396342107,
+        0.000003798902581790761,
+        0.000003779357530884193,
+        0.0000037900910133680378,
+        241.37055510501003
+       ],
+       [
+        1791250800,
+        0.00000378776940215898,
+        0.0000037905867223587067,
+        0.000003786117565742666,
+        0.0000037893583396342107,
+        292.0615237350178
+       ],
+       [
+        1791250500,
+        0.000003784226606495923,
+        0.0000038012071576467924,
+        0.000003770886960858521,
+        0.00000378776940215898,
+        2181.9879972493463
+       ],
+       [
+        1791250200,
+        0.000003798909800243013,
+        0.0000038051439570063823,
+        0.0000037812388732831557,
+        0.000003784226606495923,
+        3131.342014731206
+       ],
+       [
+        1791249900,
+        0.000003798350642097057,
+        0.000003798909800243013,
+        0.0000037930543040351336,
+        0.000003798909800243013,
+        578.2564724539186
+       ],
+       [
+        1791249600,
+        0.00000378434401378659,
+        0.000003806268027086098,
+        0.00000378434401378659,
+        0.000003798350642097057,
+        462.2005370633069
+       ],
+       [
+        1791249300,
+        0.000003815575609962127,
+        0.000003815575609962127,
+        0.0000037843182933426245,
+        0.00000378434401378659,
+        1881.0376600886286
+       ],
+       [
+        1791249000,
+        0.000003819220864502479,
+        0.000003820273014617811,
+        0.0000037952706852019566,
+        0.000003815575609962127,
+        3233.128440864588
+       ],
+       [
+        1791248700,
+        0.0000038135427350002678,
+        0.000003819220864502479,
+        0.0000038094687048438812,
+        0.000003819220864502479,
+        2228.1550846004266
+       ],
+       [
+        1791248400,
+        0.000003821598425762018,
+        0.000003825983825030188,
+        0.0000038103351870543334,
+        0.0000038135427350002678,
+        2097.7450402762993
+       ],
+       [
+        1791248100,
+        0.000003818503407729254,
+        0.000003832200017157502,
+        0.000003807990064217431,
+        0.000003821598425762018,
+        639.8885636753423
+       ],
+       [
+        1791247800,
+        0.000003828069189233272,
+        0.00000383342881898452,
+        0.0000038133702390645963,
+        0.000003818503407729254,
+        3329.118135075976
+       ],
+       [
+        1791247500,
+        0.00000382992665272423,
+        0.000003830472597296869,
+        0.000003821861032394573,
+        0.000003828069189233272,
+        1100.3448954030273
+       ],
+       [
+        1791247200,
+        0.0000038454634626828226,
+        0.0000038454634626828226,
+        0.000003821829098093973,
+        0.00000382992665272423,
+        9571.096727071234
+       ],
+       [
+        1791246900,
+        0.0000038384918216828615,
+        0.0000038454634626828226,
+        0.000003813193114826287,
+        0.0000038454634626828226,
+        544.5234362900576
+       ],
+       [
+        1791246600,
+        0.000003842293481300328,
+        0.000003848103561592266,
+        0.0000038126030553414846,
+        0.0000038384918216828615,
+        273.46607326598644
+       ],
+       [
+        1791246300,
+        0.000003847010191761049,
+        0.000003847866619071327,
+        0.0000038105003065367417,
+        0.000003842293481300328,
+        947.1538580995369
+       ],
+       [
+        1791246000,
+        0.000003840981823075974,
+        0.000003847849130941807,
+        0.0000038191210020819565,
+        0.000003847010191761049,
+        748.634896473949
+       ],
+       [
+        1791245700,
+        0.000003836251774833312,
+        0.000003846073852124414,
+        0.000003826015824493795,
+        0.000003840981823075974,
+        17.407745903430204
+       ],
+       [
+        1791245400,
+        0.0000038361221826311,
+        0.000003839241814201156,
+        0.000003832319472658467,
+        0.000003836251774833312,
+        770.2663567075513
+       ],
+       [
+        1791245100,
+        0.0000038312042815086505,
+        0.000003853971187283682,
+        0.000003825759627601687,
+        0.0000038361221826311,
+        916.4736149842925
+       ],
+       [
+        1791244800,
+        0.000003844724330346503,
+        0.000003844724330346503,
+        0.0000038312042815086505,
+        0.0000038312042815086505,
+        1507.5089968779544
+       ],
+       [
+        1791244500,
+        0.00000384691256628664,
+        0.00000384691256628664,
+        0.000003841310837834085,
+        0.000003844724330346503,
+        266.5631575481561
+       ],
+       [
+        1791244200,
+        0.000003851170814263595,
+        0.000003853927330763893,
+        0.0000038353774686658905,
+        0.00000384691256628664,
+        450.409461255404
+       ],
+       [
+        1791243900,
+        0.0000038475233019287205,
+        0.000003851612545423697,
+        0.00000384528757589451,
+        0.000003851170814263595,
+        808.9168155097701
+       ],
+       [
+        1791243600,
+        0.000003848310404985745,
+        0.0000038512283893970815,
+        0.000003825212491375334,
+        0.0000038475233019287205,
+        1100.1015978381793
+       ],
+       [
+        1791243300,
+        0.000003835256635521999,
+        0.000003852532031296646,
+        0.000003821625789753537,
+        0.000003848310404985745,
+        546.3166307557767
+       ],
+       [
+        1791243000,
+        0.000003833104152702078,
+        0.00000384059016398331,
+        0.000003833104152702078,
+        0.000003835256635521999,
+        174.84050065297345
+       ],
+       [
+        1791242700,
+        0.000003846222239866866,
+        0.000003852497856111336,
+        0.000003827450541494733,
+        0.000003833104152702078,
+        37.16765107496687
+       ],
+       [
+        1791242400,
+        0.00000385599068180799,
+        0.000003858581943757031,
+        0.000003826766934595147,
+        0.000003846222239866866,
+        930.4427159820405
+       ],
+       [
+        1791242100,
+        0.000003860056953858159,
+        0.000003864634761671113,
+        0.000003844515485738843,
+        0.00000385599068180799,
+        528.4563996688286
+       ],
+       [
+        1791241800,
+        0.000003873215961657356,
+        0.000003873215961657356,
+        0.0000038330909764056145,
+        0.000003860056953858159,
+        1123.2272814048206
+       ],
+       [
+        1791241500,
+        0.000003868560647739876,
+        0.000003873215961657356,
+        0.0000038590229507974886,
+        0.000003873215961657356,
+        612.1490050078381
+       ],
+       [
+        1791241200,
+        0.000003870039938337402,
+        0.000003889343023928303,
+        0.000003846319901229994,
+        0.000003868560647739876,
+        2482.556998599348
+       ],
+       [
+        1791240900,
+        0.000003870306193935071,
+        0.000003884587344939026,
+        0.0000038608001953551985,
+        0.000003870039938337402,
+        184.47390418729566
+       ],
+       [
+        1791240600,
+        0.000003873376787195627,
+        0.000003874441822539558,
+        0.000003870306193935071,
+        0.000003870306193935071,
+        852.8445759596378
+       ],
+       [
+        1791240300,
+        0.000003873605223265103,
+        0.000003877487241838791,
+        0.000003868506113642191,
+        0.000003873376787195627,
+        1655.9983423092144
+       ],
+       [
+        1791240000,
+        0.000003864956634862977,
+        0.0000038894981056428845,
+        0.000003833606492356136,
+        0.000003873605223265103,
+        10395.136788220407
+       ],
+       [
+        1791239700,
+        0.000003871472649811473,
+        0.000003871472649811473,
+        0.000003824567458495311,
+        0.000003864956634862977,
+        898.6687473138059
+       ],
+       [
+        1791239400,
+        0.00000385792252780149,
+        0.0000038791704132203906,
+        0.000003852752331718719,
+        0.000003871472649811473,
+        1623.2088559451884
+       ],
+       [
+        1791239100,
+        0.0000038591816884199885,
+        0.000003876158030873722,
+        0.00000385792252780149,
+        0.00000385792252780149,
+        454.264662878774
+       ],
+       [
+        1791238800,
+        0.000003862950253694039,
+        0.000003878202701814373,
+        0.000003830172718673863,
+        0.0000038591816884199885,
+        1858.9926962614963
+       ],
+       [
+        1791238500,
+        0.000003867608146214079,
+        0.000003873329305747236,
+        0.0000038281141353823,
+        0.000003862950253694039,
+        828.8962370944222
+       ],
+       [
+        1791238200,
+        0.000003863426942554403,
+        0.000003867608146214079,
+        0.000003853535815481419,
+        0.000003867608146214079,
+        887.5657336106774
+       ],
+       [
+        1791237900,
+        0.000003875884761642587,
+        0.0000038819039311935005,
+        0.0000038414470691481915,
+        0.000003863426942554403,
+        1547.3367432328134
+       ],
+       [
+        1791237600,
+        0.000003860890868353752,
+        0.000003879096958035789,
+        0.00000385528085802439,
+        0.000003875884761642587,
+        1874.1383088618288
+       ],
+       [
+        1791237300,
+        0.000003850052283229147,
+        0.000003860890868353752,
+        0.000003850052283229147,
+        0.000003860890868353752,
+        414.8706356008744
+       ],
+       [
+        1791237000,
+        0.00000386125098433335,
+        0.000003862745096458335,
+        0.000003841243811398384,
+        0.000003850052283229147,
+        312.36838981358164
+       ],
+       [
+        1791236700,
+        0.000003858664166132321,
+        0.000003862419187402817,
+        0.000003841959264350613,
+        0.00000386125098433335,
+        549.4730618125178
+       ],
+       [
+        1791236400,
+        0.00000386543565961155,
+        0.000003867015347282118,
+        0.000003858664166132321,
+        0.000003858664166132321,
+        293.9092600054711
+       ],
+       [
+        1791236100,
+        0.00000385766702779516,
+        0.000003869159483717432,
+        0.000003848063932338379,
+        0.00000386543565961155,
+        465.4053452033322
+       ],
+       [
+        1791235800,
+        0.000003867996266935878,
+        0.000003867996266935878,
+        0.000003855258733294061,
+        0.00000385766702779516,
+        617.6436144818018
+       ],
+       [
+        1791235500,
+        0.000003853997937772601,
+        0.000003867996266935878,
+        0.000003843589367684733,
+        0.000003867996266935878,
+        652.6875358717422
+       ],
+       [
+        1791235200,
+        0.000003854804322265323,
+        0.000003865145391536837,
+        0.0000038503623013413254,
+        0.000003853997937772601,
+        710.1219135804994
+       ],
+       [
+        1791234900,
+        0.000003852266059976061,
+        0.000003854804322265323,
+        0.0000038485685594775045,
+        0.000003854804322265323,
+        140.6182596648836
+       ],
+       [
+        1791234600,
+        0.000003861096713115561,
+        0.000003873049949707022,
+        0.000003848462722210152,
+        0.000003852266059976061,
+        1638.0722393653843
+       ],
+       [
+        1791234300,
+        0.000003849839170507491,
+        0.000003865997114417845,
+        0.000003849839170507491,
+        0.000003861096713115561,
+        1714.1776030682615
+       ],
+       [
+        1791234000,
+        0.000003859705924604465,
+        0.000003859705924604465,
+        0.000003836069363872224,
+        0.000003849839170507491,
+        6122.895777117589
+       ],
+       [
+        1791233700,
+        0.000003862415100095243,
+        0.00000386997076176215,
+        0.000003852715361408846,
+        0.000003859705924604465,
+        460.3172670679311
+       ],
+       [
+        1791233400,
+        0.0000038632216500722884,
+        0.000003874402954842368,
+        0.000003854039097897113,
+        0.000003862415100095243,
+        3359.2918841882038
+       ],
+       [
+        1791233100,
+        0.000003869137600083802,
+        0.000003878769316258459,
+        0.0000038588309374315,
+        0.0000038632216500722884,
+        1063.6850955125856
+       ],
+       [
+        1791232800,
+        0.000003861769103424782,
+        0.00000387853671509197,
+        0.0000038563204060641275,
+        0.000003869137600083802,
+        853.6229156759297
+       ],
+       [
+        1791232500,
+        0.000003859592498000121,
+        0.000003861769103424782,
+        0.000003857139892904587,
+        0.000003861769103424782,
+        106.17048216204213
+       ],
+       [
+        1791232200,
+        0.000003851840693305681,
+        0.000003866748872490844,
+        0.000003827380364601093,
+        0.000003859592498000121,
+        812.5922893653739
+       ],
+       [
+        1791231900,
+        0.000003855410887119532,
+        0.000003860255415150876,
+        0.000003846057298248088,
+        0.000003851840693305681,
+        2242.116771587911
+       ],
+       [
+        1791231600,
+        0.00000385743881300559,
+        0.000003863373834678494,
+        0.000003831958515365228,
+        0.000003855410887119532,
+        427.90166634891455
+       ],
+       [
+        1791231300,
+        0.00000385596952866925,
+        0.000003861111796076136,
+        0.000003853331398768949,
+        0.00000385743881300559,
+        1195.467395795945
+       ],
+       [
+        1791231000,
+        0.000003853788556968678,
+        0.00000385596952866925,
+        0.000003852420717582579,
+        0.00000385596952866925,
+        126.73692821035186
+       ],
+       [
+        1791230700,
+        0.000003851046413280532,
+        0.000003863885473048295,
+        0.0000038473881281024714,
+        0.000003853788556968678,
+        1196.563789857463
+       ],
+       [
+        1791230400,
+        0.000003844279647542874,
+        0.0000038568143613542546,
+        0.0000038386398449895124,
+        0.000003851046413280532,
+        1729.2119519076007
+       ],
+       [
+        1791230100,
+        0.0000038193474089143975,
+        0.0000038480123303625825,
+        0.0000038193474089143975,
+        0.000003844279647542874,
+        3029.0253336758
+       ],
+       [
+        1791229800,
+        0.000003836794364668114,
+        0.000003837451546056541,
+        0.000003819242510602606,
+        0.0000038193474089143975,
+        856.0380652607131
+       ],
+       [
+        1791229500,
+        0.00000383512948054865,
+        0.000003836794364668114,
+        0.000003831300232341656,
+        0.000003836794364668114,
+        397.14580275469746
+       ],
+       [
+        1791229200,
+        0.0000038442978603591556,
+        0.0000038442978603591556,
+        0.0000038106731056274722,
+        0.00000383512948054865,
+        484.9291304796207
+       ],
+       [
+        1791228900,
+        0.000003842002502037235,
+        0.0000038442978603591556,
+        0.000003806909790116039,
+        0.0000038442978603591556,
+        657.2618236055603
+       ],
+       [
+        1791228600,
+        0.000003838782342490648,
+        0.000003843442209530889,
+        0.000003838718857791918,
+        0.000003842002502037235,
+        699.7788496332032
+       ],
+       [
+        1791228300,
+        0.000003835337241137806,
+        0.0000038468730208895145,
+        0.0000038110637024421098,
+        0.000003838782342490648,
+        417.5927637718751
+       ],
+       [
+        1791228000,
+        0.0000038434562544545954,
+        0.000003844709921074447,
+        0.000003835337241137806,
+        0.000003835337241137806,
+        874.3593620688315
+       ],
+       [
+        1791227700,
+        0.000003833329642376901,
+        0.000003851189707024984,
+        0.0000038092105971638633,
+        0.0000038434562544545954,
+        897.7053510003192
+       ],
+       [
+        1791227400,
+        0.000003830535371187227,
+        0.000003842868449073585,
+        0.0000038290528938945375,
+        0.000003833329642376901,
+        440.40270031213964
+       ],
+       [
+        1791227100,
+        0.000003836187344909514,
+        0.000003838326367270385,
+        0.0000038071358073602744,
+        0.000003830535371187227,
+        1348.4695393770085
+       ],
+       [
+        1791226800,
+        0.000003838435060433768,
+        0.000003843148587101163,
+        0.0000038325948861349745,
+        0.000003836187344909514,
+        680.5204355859692
+       ],
+       [
+        1791226500,
+        0.000003832047067791698,
+        0.0000038525385813522785,
+        0.000003821854102400473,
+        0.000003838435060433768,
+        273.89323989633857
+       ],
+       [
+        1791226200,
+        0.000003832518287864383,
+        0.000003834022687397038,
+        0.0000038320104296000825,
+        0.000003832047067791698,
+        203.9125147098043
+       ],
+       [
+        1791225900,
+        0.000003831211096219487,
+        0.000003832694014951822,
+        0.0000038095223833347636,
+        0.000003832518287864383,
+        173.60937661162635
+       ],
+       [
+        1791225600,
+        0.000003820508379743107,
+        0.000003838502953058273,
+        0.000003809127224626941,
+        0.000003831211096219487,
+        395.90914537752985
+       ],
+       [
+        1791225300,
+        0.000003825661478746317,
+        0.000003840206744467921,
+        0.000003820508379743107,
+        0.000003820508379743107,
+        1208.7804200699034
+       ],
+       [
+        1791225000,
+        0.0000038181986435146805,
+        0.000003827904291038625,
+        0.0000038181986435146805,
+        0.000003825661478746317,
+        621.8418469287934
+       ],
+       [
+        1791224700,
+        0.000003831769416030199,
+        0.000003842438494124625,
+        0.000003817896817131358,
+        0.0000038181986435146805,
+        145.3751171713629
+       ],
+       [
+        1791224400,
+        0.000003829307014619978,
+        0.000003842328585121186,
+        0.0000038134864436926367,
+        0.000003831769416030199,
+        5295.917672043353
+       ]
+      ]
+     }
+    },
+    "meta": {
+     "base": {
+      "name": "Bonk",
+      "symbol": "Bonk",
+      "coingecko_coin_id": "bonk",
+      "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+     },
+     "quote": {
+      "name": "Wrapped SOL",
+      "symbol": "SOL",
+      "coingecko_coin_id": "wrapped-solana",
+      "address": "So11111111111111111111111111111111111111112"
+     }
+    }
+   },
+   "bodyIsJson": true,
+   "latencyMs": 347,
+   "recordedAt": "2026-10-06T02:37:10.620Z"
+  },
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9/ohlcv/minute?aggregate=15&limit=100&currency=usd",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": {
+     "id": "0880c11f-4b76-4760-b68f-6e9a8de72521",
+     "type": "ohlcv_request_response",
+     "attributes": {
+      "ohlcv_list": [
+       [
+        1791253800,
+        0.0000037562367293143626,
+        0.0000037574764490540323,
+        0.0000037335472354295497,
+        0.0000037551115419515675,
+        2384.432814476537
+       ],
+       [
+        1791252900,
+        0.0000037579503365358645,
+        0.00000377411263867461,
+        0.0000037461070573763093,
+        0.0000037562367293143626,
+        3895.1047419018446
+       ],
+       [
+        1791252000,
+        0.00000378674015496837,
+        0.00000378674015496837,
+        0.000003749248149595068,
+        0.0000037579503365358645,
+        4087.4447234683576
+       ],
+       [
+        1791251100,
+        0.0000037893583396342107,
+        0.000003799523796132738,
+        0.000003779357530884193,
+        0.00000378674015496837,
+        1219.501946055036
+       ],
+       [
+        1791250200,
+        0.000003798909800243013,
+        0.0000038051439570063823,
+        0.000003770886960858521,
+        0.0000037893583396342107,
+        5605.39153571557
+       ],
+       [
+        1791249300,
+        0.000003815575609962127,
+        0.000003815575609962127,
+        0.0000037843182933426245,
+        0.000003798909800243013,
+        2921.494669605854
+       ],
+       [
+        1791248400,
+        0.000003821598425762018,
+        0.000003825983825030188,
+        0.0000037952706852019566,
+        0.000003815575609962127,
+        7559.028565741314
+       ],
+       [
+        1791247500,
+        0.00000382992665272423,
+        0.00000383342881898452,
+        0.000003807990064217431,
+        0.000003821598425762018,
+        5069.351594154346
+       ],
+       [
+        1791246600,
+        0.000003842293481300328,
+        0.000003848103561592266,
+        0.0000038126030553414846,
+        0.00000382992665272423,
+        10389.086236627276
+       ],
+       [
+        1791245700,
+        0.000003836251774833312,
+        0.000003847866619071327,
+        0.0000038105003065367417,
+        0.000003842293481300328,
+        1713.196500476916
+       ],
+       [
+        1791244800,
+        0.000003844724330346503,
+        0.000003853971187283682,
+        0.000003825759627601687,
+        0.000003836251774833312,
+        3194.2489685697983
+       ],
+       [
+        1791243900,
+        0.0000038475233019287205,
+        0.000003853927330763893,
+        0.0000038353774686658905,
+        0.000003844724330346503,
+        1525.8894343133302
+       ],
+       [
+        1791243000,
+        0.000003833104152702078,
+        0.000003852532031296646,
+        0.000003821625789753537,
+        0.0000038475233019287205,
+        1821.2587292469293
+       ],
+       [
+        1791242100,
+        0.000003860056953858159,
+        0.000003864634761671113,
+        0.000003826766934595147,
+        0.000003833104152702078,
+        1496.0667667258358
+       ],
+       [
+        1791241200,
+        0.000003870039938337402,
+        0.000003889343023928303,
+        0.0000038330909764056145,
+        0.000003860056953858159,
+        4217.933285012006
+       ],
+       [
+        1791240300,
+        0.000003873605223265103,
+        0.000003884587344939026,
+        0.0000038608001953551985,
+        0.000003870039938337402,
+        2693.3168224561477
+       ],
+       [
+        1791239400,
+        0.00000385792252780149,
+        0.0000038894981056428845,
+        0.000003824567458495311,
+        0.000003873605223265103,
+        12917.0143914794
+       ],
+       [
+        1791238500,
+        0.000003867608146214079,
+        0.000003878202701814373,
+        0.0000038281141353823,
+        0.00000385792252780149,
+        3142.1535962346925
+       ],
+       [
+        1791237600,
+        0.000003860890868353752,
+        0.0000038819039311935005,
+        0.0000038414470691481915,
+        0.000003867608146214079,
+        4309.04078570532
+       ],
+       [
+        1791236700,
+        0.000003858664166132321,
+        0.000003862745096458335,
+        0.000003841243811398384,
+        0.000003860890868353752,
+        1276.7120872269738
+       ],
+       [
+        1791235800,
+        0.000003867996266935878,
+        0.000003869159483717432,
+        0.000003848063932338379,
+        0.000003858664166132321,
+        1376.9582196906051
+       ],
+       [
+        1791234900,
+        0.000003852266059976061,
+        0.000003867996266935878,
+        0.000003843589367684733,
+        0.000003867996266935878,
+        1503.4277091171252
+       ],
+       [
+        1791234000,
+        0.000003859705924604465,
+        0.000003873049949707022,
+        0.000003836069363872224,
+        0.000003852266059976061,
+        9475.145619551235
+       ],
+       [
+        1791233100,
+        0.000003869137600083802,
+        0.000003878769316258459,
+        0.000003852715361408846,
+        0.000003859705924604465,
+        4883.294246768721
+       ],
+       [
+        1791232200,
+        0.000003851840693305681,
+        0.00000387853671509197,
+        0.000003827380364601093,
+        0.000003869137600083802,
+        1772.3856872033457
+       ],
+       [
+        1791231300,
+        0.00000385596952866925,
+        0.000003863373834678494,
+        0.000003831958515365228,
+        0.000003851840693305681,
+        3865.4858337327705
+       ],
+       [
+        1791230400,
+        0.000003844279647542874,
+        0.000003863885473048295,
+        0.0000038386398449895124,
+        0.00000385596952866925,
+        3052.5126699754155
+       ],
+       [
+        1791229500,
+        0.00000383512948054865,
+        0.0000038480123303625825,
+        0.000003819242510602606,
+        0.000003844279647542874,
+        4282.20920169121
+       ],
+       [
+        1791228600,
+        0.000003838782342490648,
+        0.0000038442978603591556,
+        0.000003806909790116039,
+        0.00000383512948054865,
+        1841.9698037183841
+       ],
+       [
+        1791227700,
+        0.000003833329642376901,
+        0.000003851189707024984,
+        0.0000038092105971638633,
+        0.000003838782342490648,
+        2189.657476841026
+       ],
+       [
+        1791226800,
+        0.000003838435060433768,
+        0.000003843148587101163,
+        0.0000038071358073602744,
+        0.000003833329642376901,
+        2469.392675275117
+       ],
+       [
+        1791225900,
+        0.000003831211096219487,
+        0.0000038525385813522785,
+        0.0000038095223833347636,
+        0.000003838435060433768,
+        651.4151312177692
+       ],
+       [
+        1791225000,
+        0.0000038181986435146805,
+        0.000003840206744467921,
+        0.000003809127224626941,
+        0.000003831211096219487,
+        2226.5314123762264
+       ],
+       [
+        1791224100,
+        0.000003824274804401829,
+        0.000003842438494124625,
+        0.0000038134864436926367,
+        0.0000038181986435146805,
+        6126.571167643601
+       ],
+       [
+        1791223200,
+        0.000003812787714440868,
+        0.000003842398191710229,
+        0.0000038079145471872908,
+        0.000003824274804401829,
+        4517.898012876652
+       ],
+       [
+        1791222300,
+        0.000003812178091566277,
+        0.000003822342610376052,
+        0.0000037904467215399155,
+        0.000003812787714440868,
+        1209.8169837439152
+       ],
+       [
+        1791221400,
+        0.000003784925058381161,
+        0.000003813344730966768,
+        0.00000378279065445097,
+        0.000003812178091566277,
+        3864.4068900610864
+       ],
+       [
+        1791220500,
+        0.0000037964243766216173,
+        0.000003797307339744268,
+        0.0000037632531961561692,
+        0.000003784925058381161,
+        7830.4569516868405
+       ],
+       [
+        1791219600,
+        0.0000038267382213484674,
+        0.000003831922438873418,
+        0.000003758127544744145,
+        0.0000037964243766216173,
+        9035.48408536824
+       ],
+       [
+        1791218700,
+        0.000003830849493033867,
+        0.000003835115146042206,
+        0.000003815050557274215,
+        0.0000038267382213484674,
+        1703.1750419426
+       ],
+       [
+        1791217800,
+        0.000003819634997258012,
+        0.000003844082207782649,
+        0.0000037852860207170355,
+        0.000003830849493033867,
+        3140.621243713609
+       ],
+       [
+        1791216900,
+        0.000003823104495993433,
+        0.000003835505219542134,
+        0.0000038081838131173745,
+        0.000003819634997258012,
+        4183.330916068143
+       ],
+       [
+        1791216000,
+        0.000003836887873145312,
+        0.0000038393089039546625,
+        0.000003797167916807471,
+        0.000003823104495993433,
+        5933.189922049793
+       ],
+       [
+        1791215100,
+        0.000003856216530885701,
+        0.000003862157446289656,
+        0.000003836887873145312,
+        0.000003836887873145312,
+        2917.5782452994213
+       ],
+       [
+        1791214200,
+        0.0000038970898627284155,
+        0.000003901320564172174,
+        0.000003818512433708551,
+        0.000003856216530885701,
+        15730.446577706662
+       ],
+       [
+        1791213300,
+        0.000003902182851997749,
+        0.000003918366973929604,
+        0.000003885211255217297,
+        0.0000038970898627284155,
+        2170.46647026897
+       ],
+       [
+        1791212400,
+        0.000003895507697993628,
+        0.000003910135472982275,
+        0.000003870923814517316,
+        0.000003902182851997749,
+        6095.144808200923
+       ],
+       [
+        1791211500,
+        0.000003899156773357617,
+        0.000003914939381053014,
+        0.0000038797743130490745,
+        0.000003895507697993628,
+        4590.983346771422
+       ],
+       [
+        1791210600,
+        0.000003966044338778627,
+        0.0000039662331564208354,
+        0.000003882327014540907,
+        0.000003899156773357617,
+        13074.356168479764
+       ],
+       [
+        1791209700,
+        0.0000039986250139177536,
+        0.000004012690612647383,
+        0.000003956395558745662,
+        0.000003966044338778627,
+        3334.203988816009
+       ],
+       [
+        1791208800,
+        0.0000039686799986151326,
+        0.000004012065469526822,
+        0.000003967337875027181,
+        0.0000039986250139177536,
+        5687.726254085395
+       ],
+       [
+        1791207900,
+        0.000003985235656186963,
+        0.000003992512109936492,
+        0.000003929120777962717,
+        0.0000039686799986151326,
+        3424.321304872767
+       ],
+       [
+        1791207000,
+        0.00000399756218601294,
+        0.00000401021212783865,
+        0.00000397030166136893,
+        0.000003985235656186963,
+        4170.806534039037
+       ],
+       [
+        1791206100,
+        0.0000039796714721482274,
+        0.000004000171263891887,
+        0.0000039748235332033245,
+        0.00000399756218601294,
+        4812.254717450391
+       ],
+       [
+        1791205200,
+        0.00000395900975199143,
+        0.0000040008096717744066,
+        0.000003958696009090385,
+        0.0000039796714721482274,
+        3510.2088438165206
+       ],
+       [
+        1791204300,
+        0.000003968932388191363,
+        0.000003980873579759695,
+        0.00000392496234281445,
+        0.00000395900975199143,
+        5712.016386273759
+       ],
+       [
+        1791203400,
+        0.000003975970532734307,
+        0.000003987044160467779,
+        0.000003966056834518628,
+        0.000003968932388191363,
+        2229.3270614344624
+       ],
+       [
+        1791202500,
+        0.000003983342112028735,
+        0.000003992552079899947,
+        0.000003964528138457465,
+        0.000003975970532734307,
+        2509.1205271939693
+       ],
+       [
+        1791201600,
+        0.000003985630376013151,
+        0.000003998752428283309,
+        0.000003966975373375522,
+        0.000003983342112028735,
+        4905.129461980189
+       ],
+       [
+        1791200700,
+        0.000003986373199133701,
+        0.000004007209307244445,
+        0.000003976002065965812,
+        0.000003985630376013151,
+        6355.1683464548805
+       ],
+       [
+        1791199800,
+        0.0000039877463108610035,
+        0.000004001893304028996,
+        0.0000039792925321927065,
+        0.000003986373199133701,
+        1427.6407318931929
+       ],
+       [
+        1791198900,
+        0.0000039747943505767774,
+        0.000003991008960410543,
+        0.000003970191159036144,
+        0.0000039877463108610035,
+        6631.332060606612
+       ],
+       [
+        1791198000,
+        0.0000040078798978852905,
+        0.000004015191820944651,
+        0.0000039747943505767774,
+        0.0000039747943505767774,
+        3359.480689998226
+       ],
+       [
+        1791197100,
+        0.000003974544778789575,
+        0.000004017643369544942,
+        0.000003970352919494477,
+        0.0000040078798978852905,
+        5295.51078087142
+       ],
+       [
+        1791196200,
+        0.0000039919803989665835,
+        0.000004003031039763432,
+        0.000003972972500294282,
+        0.000003974544778789575,
+        4054.983070667362
+       ],
+       [
+        1791195300,
+        0.000004002429358175642,
+        0.000004016465322679598,
+        0.000003989058078672036,
+        0.0000039919803989665835,
+        3817.7133298961326
+       ],
+       [
+        1791194400,
+        0.00000401239764108161,
+        0.00000403214129604421,
+        0.000003993792638182941,
+        0.000004002429358175642,
+        6395.8506204323885
+       ],
+       [
+        1791193500,
+        0.000004016205739721984,
+        0.000004034907872610083,
+        0.000003995417578494747,
+        0.00000401239764108161,
+        8766.85102668141
+       ],
+       [
+        1791192600,
+        0.000004021114984815944,
+        0.0000040267356973745005,
+        0.000004001927869757224,
+        0.000004016205739721984,
+        1700.363124625892
+       ],
+       [
+        1791191700,
+        0.0000040270568712727724,
+        0.000004028295600086028,
+        0.000004008388994446802,
+        0.000004021114984815944,
+        3045.0888633910286
+       ],
+       [
+        1791190800,
+        0.0000040326636357849665,
+        0.000004036232587660232,
+        0.00000401602569932454,
+        0.0000040270568712727724,
+        4671.525255951885
+       ],
+       [
+        1791189900,
+        0.00000404441996921708,
+        0.00000404576391704562,
+        0.000004020662041165148,
+        0.0000040326636357849665,
+        5081.125832351622
+       ],
+       [
+        1791189000,
+        0.000004035128485878162,
+        0.0000040588650823389855,
+        0.000004025950995101165,
+        0.00000404441996921708,
+        5872.372715352965
+       ],
+       [
+        1791188100,
+        0.000004030042380043711,
+        0.000004063776057420283,
+        0.00000401281590070275,
+        0.000004035128485878162,
+        3178.3054874065406
+       ],
+       [
+        1791187200,
+        0.000004034452057908705,
+        0.000004039324286460706,
+        0.000004013961884850012,
+        0.000004030042380043711,
+        6666.100583671694
+       ],
+       [
+        1791186300,
+        0.000004025856923694865,
+        0.0000040478980390274795,
+        0.0000040124834450310074,
+        0.000004034452057908705,
+        4725.997991461538
+       ],
+       [
+        1791185400,
+        0.000004020746374858257,
+        0.000004059495338413742,
+        0.000004018729410784931,
+        0.000004025856923694865,
+        4698.112701433811
+       ],
+       [
+        1791184500,
+        0.000004034735831059872,
+        0.0000040570078642305,
+        0.000004019533166428055,
+        0.000004020746374858257,
+        5072.807536002709
+       ],
+       [
+        1791183600,
+        0.000004032173058943992,
+        0.00000405168615954411,
+        0.000004010778380478877,
+        0.000004034735831059872,
+        8018.690729987958
+       ],
+       [
+        1791182700,
+        0.000003990821326938551,
+        0.000004042335478051006,
+        0.000003990821326938551,
+        0.000004032173058943992,
+        7346.679497668308
+       ],
+       [
+        1791181800,
+        0.000004020180780422195,
+        0.0000040497687049348505,
+        0.000003990821326938551,
+        0.000003990821326938551,
+        8605.51462977679
+       ],
+       [
+        1791180900,
+        0.000003952390956947563,
+        0.000004059545163061285,
+        0.000003941812286975144,
+        0.000004020180780422195,
+        48115.89977209498
+       ],
+       [
+        1791180000,
+        0.000003917563274386649,
+        0.000003973289634290433,
+        0.000003917162431892213,
+        0.000003952390956947563,
+        5410.625240337544
+       ],
+       [
+        1791179100,
+        0.000003913430285035858,
+        0.000003945570666096076,
+        0.000003903881335834526,
+        0.000003917563274386649,
+        4347.021532257394
+       ],
+       [
+        1791178200,
+        0.000003919614181471906,
+        0.000003935211121113498,
+        0.000003909760397157866,
+        0.000003913430285035858,
+        2490.6166102086795
+       ],
+       [
+        1791177300,
+        0.000003928705105683401,
+        0.000003933940085306203,
+        0.000003909293073570826,
+        0.000003919614181471906,
+        858.3853403014501
+       ],
+       [
+        1791176400,
+        0.0000039111441365229155,
+        0.0000039488310820425804,
+        0.0000038829453802633176,
+        0.000003928705105683401,
+        5088.533864986627
+       ],
+       [
+        1791175500,
+        0.00000393168908468922,
+        0.000003941083620517319,
+        0.00000390821009156756,
+        0.0000039111441365229155,
+        4023.827262834871
+       ],
+       [
+        1791174600,
+        0.000003924326166483305,
+        0.000003943666231433419,
+        0.000003906890206168878,
+        0.00000393168908468922,
+        6425.864945945157
+       ],
+       [
+        1791173700,
+        0.0000039683893878123975,
+        0.00000397906308186317,
+        0.000003920479278699873,
+        0.000003924326166483305,
+        4969.913858267805
+       ],
+       [
+        1791172800,
+        0.000003967283151091112,
+        0.000003991415741953228,
+        0.0000039474633463260345,
+        0.0000039683893878123975,
+        10777.934983250729
+       ],
+       [
+        1791171900,
+        0.000004014359759162453,
+        0.0000040164046722621425,
+        0.0000039648247137199084,
+        0.000003967283151091112,
+        6372.170260661602
+       ],
+       [
+        1791171000,
+        0.000003989424220767188,
+        0.000004036541510312421,
+        0.0000039745685283077866,
+        0.000004014359759162453,
+        9969.398868588329
+       ],
+       [
+        1791170100,
+        0.000004022404748970205,
+        0.000004022404748970205,
+        0.000003976332032186699,
+        0.000003989424220767188,
+        8022.713622591455
+       ],
+       [
+        1791169200,
+        0.000003984599834379182,
+        0.000004025736373857144,
+        0.000003965769590345352,
+        0.000004022404748970205,
+        8380.47498850956
+       ],
+       [
+        1791168300,
+        0.000004003206855378063,
+        0.000004014261949945577,
+        0.0000039808864986393585,
+        0.000003984599834379182,
+        2552.928108256351
+       ],
+       [
+        1791167400,
+        0.00000399657777230788,
+        0.0000040056664714300095,
+        0.000003975977064081132,
+        0.000004003206855378063,
+        4956.1147394073905
+       ],
+       [
+        1791166500,
+        0.000003987137300901614,
+        0.000004006291057598188,
+        0.000003969837186181819,
+        0.00000399657777230788,
+        5995.463362410962
+       ],
+       [
+        1791165600,
+        0.00000396016245093707,
+        0.000004000494266179086,
+        0.000003950355783899766,
+        0.000003987137300901614,
+        8070.65053906664
+       ],
+       [
+        1791164700,
+        0.000003944593798084102,
+        0.0000039856037889918216,
+        0.000003944593798084102,
+        0.00000396016245093707,
+        3381.5621015832603
+       ]
+      ]
+     }
+    },
+    "meta": {
+     "base": {
+      "name": "Bonk",
+      "symbol": "Bonk",
+      "coingecko_coin_id": "bonk",
+      "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+     },
+     "quote": {
+      "name": "Wrapped SOL",
+      "symbol": "SOL",
+      "coingecko_coin_id": "wrapped-solana",
+      "address": "So11111111111111111111111111111111111111112"
+     }
+    }
+   },
+   "bodyIsJson": true,
+   "latencyMs": 220,
+   "recordedAt": "2026-10-06T02:37:19.065Z"
+  },
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9/ohlcv/hour?aggregate=1&limit=100&currency=usd",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": {
+     "id": "73bcbd10-8517-4d91-8965-f48ee8b57e31",
+     "type": "ohlcv_request_response",
+     "attributes": {
+      "ohlcv_list": [
+       [
+        1791252000,
+        0.00000378674015496837,
+        0.00000378674015496837,
+        0.0000037335472354295497,
+        0.0000037551115419515675,
+        10366.98227984674
+       ],
+       [
+        1791248400,
+        0.000003821598425762018,
+        0.000003825983825030188,
+        0.000003770886960858521,
+        0.00000378674015496837,
+        17305.416717117772
+       ],
+       [
+        1791244800,
+        0.000003844724330346503,
+        0.000003853971187283682,
+        0.000003807990064217431,
+        0.000003821598425762018,
+        20365.883299828336
+       ],
+       [
+        1791241200,
+        0.000003870039938337402,
+        0.000003889343023928303,
+        0.000003821625789753537,
+        0.000003844724330346503,
+        9061.148215298103
+       ],
+       [
+        1791237600,
+        0.000003860890868353752,
+        0.0000038894981056428845,
+        0.000003824567458495311,
+        0.000003870039938337402,
+        23061.525595875562
+       ],
+       [
+        1791234000,
+        0.000003859705924604465,
+        0.000003873049949707022,
+        0.000003836069363872224,
+        0.000003860890868353752,
+        13632.243635585939
+       ],
+       [
+        1791230400,
+        0.000003844279647542874,
+        0.000003878769316258459,
+        0.000003827380364601093,
+        0.000003859705924604465,
+        13573.678437680252
+       ],
+       [
+        1791226800,
+        0.000003838435060433768,
+        0.000003851189707024984,
+        0.000003806909790116039,
+        0.000003844279647542874,
+        10783.229157525739
+       ],
+       [
+        1791223200,
+        0.000003812787714440868,
+        0.0000038525385813522785,
+        0.0000038079145471872908,
+        0.000003838435060433768,
+        13522.415724114247
+       ],
+       [
+        1791219600,
+        0.0000038267382213484674,
+        0.000003831922438873418,
+        0.000003758127544744145,
+        0.000003812787714440868,
+        21940.164910860083
+       ],
+       [
+        1791216000,
+        0.000003836887873145312,
+        0.000003844082207782649,
+        0.0000037852860207170355,
+        0.0000038267382213484674,
+        14960.317123774144
+       ],
+       [
+        1791212400,
+        0.000003895507697993628,
+        0.000003918366973929604,
+        0.000003818512433708551,
+        0.000003836887873145312,
+        26913.636101475975
+       ],
+       [
+        1791208800,
+        0.0000039686799986151326,
+        0.000004012690612647383,
+        0.0000038797743130490745,
+        0.000003895507697993628,
+        26687.26975815259
+       ],
+       [
+        1791205200,
+        0.00000395900975199143,
+        0.00000401021212783865,
+        0.000003929120777962717,
+        0.0000039686799986151326,
+        15917.591400178715
+       ],
+       [
+        1791201600,
+        0.000003985630376013151,
+        0.000003998752428283309,
+        0.00000392496234281445,
+        0.00000395900975199143,
+        15355.59343688238
+       ],
+       [
+        1791198000,
+        0.0000040078798978852905,
+        0.000004015191820944651,
+        0.000003970191159036144,
+        0.000003985630376013151,
+        17773.62182895291
+       ],
+       [
+        1791194400,
+        0.00000401239764108161,
+        0.00000403214129604421,
+        0.000003970352919494477,
+        0.0000040078798978852905,
+        19564.057801867304
+       ],
+       [
+        1791190800,
+        0.0000040326636357849665,
+        0.000004036232587660232,
+        0.000003995417578494747,
+        0.00000401239764108161,
+        18183.828270650214
+       ],
+       [
+        1791187200,
+        0.000004034452057908705,
+        0.000004063776057420283,
+        0.00000401281590070275,
+        0.0000040326636357849665,
+        20797.90461878282
+       ],
+       [
+        1791183600,
+        0.000004032173058943992,
+        0.000004059495338413742,
+        0.000004010778380478877,
+        0.000004034452057908705,
+        22515.608958886016
+       ],
+       [
+        1791180000,
+        0.000003917563274386649,
+        0.000004059545163061285,
+        0.000003917162431892213,
+        0.000004032173058943992,
+        69478.71913987762
+       ],
+       [
+        1791176400,
+        0.0000039111441365229155,
+        0.0000039488310820425804,
+        0.0000038829453802633176,
+        0.000003917563274386649,
+        12784.557347754151
+       ],
+       [
+        1791172800,
+        0.000003967283151091112,
+        0.000003991415741953228,
+        0.000003906890206168878,
+        0.0000039111441365229155,
+        26197.54105029856
+       ],
+       [
+        1791169200,
+        0.000003984599834379182,
+        0.000004036541510312421,
+        0.0000039648247137199084,
+        0.000003967283151091112,
+        32744.757740350946
+       ],
+       [
+        1791165600,
+        0.00000396016245093707,
+        0.000004014261949945577,
+        0.000003950355783899766,
+        0.000003984599834379182,
+        21575.156749141344
+       ],
+       [
+        1791162000,
+        0.000003943531805921571,
+        0.000003999739996796135,
+        0.000003943531805921571,
+        0.00000396016245093707,
+        28626.873711147713
+       ],
+       [
+        1791158400,
+        0.000003930613154491379,
+        0.00000396302231770571,
+        0.00000390585593251561,
+        0.000003943531805921571,
+        26308.532970017925
+       ],
+       [
+        1791154800,
+        0.000003940482779388952,
+        0.000003940482779388952,
+        0.00000390310824642555,
+        0.000003930613154491379,
+        12801.7909105176
+       ],
+       [
+        1791151200,
+        0.000003884225375116085,
+        0.000003954709083847842,
+        0.00000387234146659795,
+        0.000003940482779388952,
+        19454.112725392602
+       ],
+       [
+        1791147600,
+        0.000003856136765050088,
+        0.000003921306914112113,
+        0.000003817584990414207,
+        0.000003884225375116085,
+        30051.393858444844
+       ],
+       [
+        1791144000,
+        0.0000038255889963949805,
+        0.000003873983569061291,
+        0.000003821785402301973,
+        0.000003856136765050088,
+        8194.93905754926
+       ],
+       [
+        1791140400,
+        0.000003874217138934747,
+        0.000003876279841080222,
+        0.000003816245416128754,
+        0.0000038255889963949805,
+        8665.106629887205
+       ],
+       [
+        1791136800,
+        0.000003854888754381814,
+        0.000003875362102618473,
+        0.0000036895576507049738,
+        0.000003874217138934747,
+        10369.41584705992
+       ],
+       [
+        1791133200,
+        0.000003837289590015399,
+        0.000003928290572154893,
+        0.0000038291058485211425,
+        0.000003854888754381814,
+        57320.79448669045
+       ],
+       [
+        1791129600,
+        0.000003852946105973522,
+        0.000003852946105973522,
+        0.0000037853969335140257,
+        0.000003837289590015399,
+        18312.42791357772
+       ],
+       [
+        1791126000,
+        0.000003833795450769921,
+        0.000003877902211814637,
+        0.000003829159969943758,
+        0.000003852946105973522,
+        18882.95870417682
+       ],
+       [
+        1791122400,
+        0.000003799141033180873,
+        0.0000038506029729045145,
+        0.0000037959803576339707,
+        0.000003833795450769921,
+        17598.524792662112
+       ],
+       [
+        1791118800,
+        0.000003807514572370261,
+        0.00000381801087865857,
+        0.0000037404104910011573,
+        0.000003799141033180873,
+        4909.132758503407
+       ],
+       [
+        1791115200,
+        0.000003801025462189554,
+        0.0000038157326169626075,
+        0.000003718952725461667,
+        0.000003807514572370261,
+        7007.73426305679
+       ],
+       [
+        1791111600,
+        0.000003814776373463626,
+        0.0000038366441953119505,
+        0.0000037912250777282303,
+        0.000003801025462189554,
+        6767.232707352429
+       ],
+       [
+        1791108000,
+        0.0000038081408389034264,
+        0.000003825585155513974,
+        0.00000377780416134134,
+        0.000003814776373463626,
+        5895.869031449148
+       ],
+       [
+        1791104400,
+        0.000003831240437721869,
+        0.000003839791677293333,
+        0.000003757980942420937,
+        0.0000038081408389034264,
+        32189.853578072
+       ],
+       [
+        1791100800,
+        0.000003836904170032621,
+        0.00000387064966107648,
+        0.000003815890316996564,
+        0.000003831240437721869,
+        5905.3864479909
+       ],
+       [
+        1791097200,
+        0.000003852417939658121,
+        0.00000389786833855266,
+        0.000003829634660641148,
+        0.000003836904170032621,
+        19611.511102843426
+       ],
+       [
+        1791093600,
+        0.000003829877540086775,
+        0.000003871837434708507,
+        0.00000382052019960251,
+        0.000003852417939658121,
+        11061.80724830268
+       ],
+       [
+        1791090000,
+        0.000003833772786568849,
+        0.000003884671243586291,
+        0.000003820504791059699,
+        0.000003829877540086775,
+        17604.744963115645
+       ],
+       [
+        1791086400,
+        0.000003800046043076177,
+        0.000003846297350670609,
+        0.0000037986953156163073,
+        0.000003833772786568849,
+        8788.540463850974
+       ],
+       [
+        1791082800,
+        0.00000381516790570382,
+        0.000003832686402416634,
+        0.000003791271692610212,
+        0.000003800046043076177,
+        10644.79124381913
+       ],
+       [
+        1791079200,
+        0.000003844347426132267,
+        0.000003854844936530207,
+        0.0000038070904010019306,
+        0.00000381516790570382,
+        14649.08080766578
+       ],
+       [
+        1791075600,
+        0.0000038116118326399696,
+        0.0000038845040079634064,
+        0.0000037961293515448622,
+        0.000003844347426132267,
+        56821.21607679925
+       ],
+       [
+        1791072000,
+        0.0000037949865328527334,
+        0.0000038336484049416735,
+        0.000003783962579922899,
+        0.0000038116118326399696,
+        12899.15169599677
+       ],
+       [
+        1791068400,
+        0.000003782127072803593,
+        0.0000038069955566168336,
+        0.000003761261951217262,
+        0.0000037949865328527334,
+        7009.299010894518
+       ],
+       [
+        1791064800,
+        0.000003789832938125195,
+        0.000003797731187023168,
+        0.000003762660008299406,
+        0.000003782127072803593,
+        7578.926884878991
+       ],
+       [
+        1791061200,
+        0.0000038040933615301957,
+        0.0000038232734092114235,
+        0.0000037800870207370253,
+        0.000003789832938125195,
+        10939.732486702995
+       ],
+       [
+        1791057600,
+        0.000003801737693998958,
+        0.0000038206816479321925,
+        0.0000037780828365955077,
+        0.0000038040933615301957,
+        9354.18506290279
+       ],
+       [
+        1791054000,
+        0.0000038119478223696514,
+        0.000003825725771680241,
+        0.0000037815843744387806,
+        0.000003801737693998958,
+        32984.68585408669
+       ],
+       [
+        1791050400,
+        0.0000038050347034442232,
+        0.000003830623789225374,
+        0.000003792272365122952,
+        0.0000038119478223696514,
+        20417.027888726883
+       ],
+       [
+        1791046800,
+        0.000003830027584795172,
+        0.00000387452991282633,
+        0.0000037976584613474415,
+        0.0000038050347034442232,
+        31957.855194366435
+       ],
+       [
+        1791043200,
+        0.0000037596989667392557,
+        0.000003850621581961858,
+        0.0000037434488543912547,
+        0.000003830027584795172,
+        112627.99748889937
+       ],
+       [
+        1791039600,
+        0.0000037566003547682733,
+        0.000003785980937409526,
+        0.0000037268362070974492,
+        0.0000037596989667392557,
+        30806.710788289176
+       ],
+       [
+        1791036000,
+        0.0000036799154210169856,
+        0.0000037786010911940497,
+        0.0000036644759739323853,
+        0.0000037566003547682733,
+        33026.107011200096
+       ],
+       [
+        1791032400,
+        0.0000036478396036175165,
+        0.0000036946592089125723,
+        0.0000036417392196414304,
+        0.0000036799154210169856,
+        15762.061469949282
+       ],
+       [
+        1791028800,
+        0.000003672664146074268,
+        0.0000036867933145677913,
+        0.000003640329671273945,
+        0.0000036478396036175165,
+        11703.400862763443
+       ],
+       [
+        1791025200,
+        0.000003672879916359011,
+        0.0000036937432484670443,
+        0.000003646127564981748,
+        0.000003672664146074268,
+        14814.48504457487
+       ],
+       [
+        1791021600,
+        0.0000036109957994944177,
+        0.0000036856339894842113,
+        0.000003602858797523209,
+        0.000003672879916359011,
+        13759.024705201604
+       ],
+       [
+        1791018000,
+        0.0000036190253992651157,
+        0.000003635902457386703,
+        0.0000035993163547766918,
+        0.0000036109957994944177,
+        14225.296976896972
+       ],
+       [
+        1791014400,
+        0.000003628081259756104,
+        0.0000036401066578411355,
+        0.0000035961944463864647,
+        0.0000036190253992651157,
+        26546.720791649328
+       ],
+       [
+        1791010800,
+        0.000003640799713963335,
+        0.0000036456907206286915,
+        0.000003609230726940478,
+        0.000003628081259756104,
+        7954.020658660893
+       ],
+       [
+        1791007200,
+        0.000003622828542733656,
+        0.000003645104287830486,
+        0.0000035843484221413573,
+        0.000003640799713963335,
+        8945.587548781925
+       ],
+       [
+        1791003600,
+        0.0000036341404376941385,
+        0.0000036514959714266454,
+        0.0000036141470517335805,
+        0.000003622828542733656,
+        13434.175293958764
+       ],
+       [
+        1791000000,
+        0.0000036373060679198223,
+        0.0000036603438637702828,
+        0.000003610389948384745,
+        0.0000036341404376941385,
+        18907.6760830534
+       ],
+       [
+        1790996400,
+        0.0000036437792239912253,
+        0.000003680425921381945,
+        0.0000036302267808270876,
+        0.0000036373060679198223,
+        68376.4613361274
+       ],
+       [
+        1790992800,
+        0.0000036579948766817374,
+        0.000003686004780166966,
+        0.0000036328507400523344,
+        0.0000036437792239912253,
+        11515.709885095202
+       ],
+       [
+        1790989200,
+        0.0000036644151842452203,
+        0.000003696864786726735,
+        0.0000036271660856136685,
+        0.0000036579948766817374,
+        12300.382392061998
+       ],
+       [
+        1790985600,
+        0.0000036302752736568234,
+        0.0000036687729272368656,
+        0.0000036209710114746693,
+        0.0000036644151842452203,
+        17668.826781540683
+       ],
+       [
+        1790982000,
+        0.0000035713986548535087,
+        0.000003654335158995788,
+        0.0000035534766083707245,
+        0.0000036302752736568234,
+        23338.897358383812
+       ],
+       [
+        1790978400,
+        0.000003553599002864224,
+        0.0000035753399108262527,
+        0.000003541936494138809,
+        0.0000035713986548535087,
+        10305.846183805093
+       ],
+       [
+        1790974800,
+        0.0000035490779877996134,
+        0.000003586461229351339,
+        0.000003524130124966968,
+        0.000003553599002864224,
+        34688.711651925216
+       ],
+       [
+        1790971200,
+        0.0000035547118677399803,
+        0.0000035905759641510874,
+        0.000003543026405932452,
+        0.0000035490779877996134,
+        24369.294234904155
+       ],
+       [
+        1790967600,
+        0.0000035462316575725557,
+        0.0000035731938300797496,
+        0.0000035272194368861465,
+        0.0000035547118677399803,
+        28343.234222058883
+       ],
+       [
+        1790964000,
+        0.0000037673178849994404,
+        0.000003787583922224698,
+        0.000003530087085023739,
+        0.0000035462316575725557,
+        89319.94164214254
+       ],
+       [
+        1790960400,
+        0.000003830271778724915,
+        0.000003862960339141055,
+        0.0000037473284590880793,
+        0.0000037673178849994404,
+        2651943.7291911324
+       ],
+       [
+        1790956800,
+        0.000003834168211745374,
+        0.000003873161817124142,
+        0.0000038093483984692415,
+        0.000003830271778724915,
+        23532.7022712846
+       ],
+       [
+        1790953200,
+        0.000003835377228975094,
+        0.0000038564615709290075,
+        0.0000037962141272630802,
+        0.000003834168211745374,
+        27523.097695095526
+       ],
+       [
+        1790949600,
+        0.000003899459376282543,
+        0.000003917230652549812,
+        0.0000038083873719551612,
+        0.000003835377228975094,
+        39785.53272918954
+       ],
+       [
+        1790946000,
+        0.000003899225686029683,
+        0.000003934411640653424,
+        0.000003881897169590345,
+        0.000003899459376282543,
+        11364.65679017686
+       ],
+       [
+        1790942400,
+        0.0000038772586571319165,
+        0.000003925378109557099,
+        0.000003856312430807436,
+        0.000003899225686029683,
+        18395.613296195585
+       ],
+       [
+        1790938800,
+        0.000003904157149337502,
+        0.0000039062512793598155,
+        0.000003865343749797048,
+        0.0000038772586571319165,
+        10263.893965608118
+       ],
+       [
+        1790935200,
+        0.000003929145679619216,
+        0.00000393741299034559,
+        0.000003884199718686418,
+        0.000003904157149337502,
+        15429.946878260556
+       ],
+       [
+        1790931600,
+        0.000003951234541240732,
+        0.000003954598483712789,
+        0.000003899052165454319,
+        0.000003929145679619216,
+        15168.919483149632
+       ],
+       [
+        1790928000,
+        0.000003933358460927076,
+        0.0000039664545774879815,
+        0.000003888323758159616,
+        0.000003951234541240732,
+        20839.84341465375
+       ],
+       [
+        1790924400,
+        0.000003931001185672351,
+        0.000003937681960021513,
+        0.000003873932415585127,
+        0.000003933358460927076,
+        19704.207497742627
+       ],
+       [
+        1790920800,
+        0.000003899252278670599,
+        0.000003943507794748256,
+        0.00000388260364056572,
+        0.000003931001185672351,
+        25477.73087749752
+       ],
+       [
+        1790917200,
+        0.000003906029544029783,
+        0.000003979826908655373,
+        0.0000038629117117062016,
+        0.000003899252278670599,
+        58447.62233452683
+       ],
+       [
+        1790913600,
+        0.0000037914773613002554,
+        0.000003936666321968523,
+        0.0000037914773613002554,
+        0.000003906029544029783,
+        80857.41110823101
+       ],
+       [
+        1790910000,
+        0.0000038026346871934208,
+        0.0000038190957730850415,
+        0.0000037688047665183244,
+        0.0000037914773613002554,
+        24584.119647924104
+       ],
+       [
+        1790906400,
+        0.000003784809240872507,
+        0.000003820222264465926,
+        0.000003774311178389065,
+        0.0000038026346871934208,
+        15845.573271361223
+       ],
+       [
+        1790902800,
+        0.0000037835451902668773,
+        0.0000037983618806084917,
+        0.000003747543561107341,
+        0.000003784809240872507,
+        19141.302138639054
+       ],
+       [
+        1790899200,
+        0.0000037728731719506027,
+        0.0000037908771232911584,
+        0.0000037517799072031747,
+        0.0000037835451902668773,
+        13221.210398213701
+       ],
+       [
+        1790895600,
+        0.000003735167911041444,
+        0.0000037728731719506027,
+        0.0000037270725749620055,
+        0.0000037728731719506027,
+        7706.583575733659
+       ]
+      ]
+     }
+    },
+    "meta": {
+     "base": {
+      "name": "Bonk",
+      "symbol": "Bonk",
+      "coingecko_coin_id": "bonk",
+      "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+     },
+     "quote": {
+      "name": "Wrapped SOL",
+      "symbol": "SOL",
+      "coingecko_coin_id": "wrapped-solana",
+      "address": "So11111111111111111111111111111111111111112"
+     }
+    }
+   },
+   "bodyIsJson": true,
+   "latencyMs": 475,
+   "recordedAt": "2026-10-06T02:37:27.892Z"
+  },
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9/ohlcv/hour?aggregate=4&limit=100&currency=usd",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": {
+     "id": "1f27e72d-ccd9-400a-98a8-9c4b45f9e363",
+     "type": "ohlcv_request_response",
+     "attributes": {
+      "ohlcv_list": [
+       [
+        1791244800,
+        0.000003844724330346503,
+        0.000003853971187283682,
+        0.0000037335472354295497,
+        0.0000037551115419515675,
+        48038.28229679285
+       ],
+       [
+        1791230400,
+        0.000003844279647542874,
+        0.0000038894981056428845,
+        0.000003821625789753537,
+        0.000003844724330346503,
+        59328.595884439856
+       ],
+       [
+        1791216000,
+        0.000003836887873145312,
+        0.0000038525385813522785,
+        0.000003758127544744145,
+        0.000003844279647542874,
+        61206.12691627421
+       ],
+       [
+        1791201600,
+        0.000003985630376013151,
+        0.000004012690612647383,
+        0.000003818512433708551,
+        0.000003836887873145312,
+        84874.09069668966
+       ],
+       [
+        1791187200,
+        0.000004034452057908705,
+        0.000004063776057420283,
+        0.000003970191159036144,
+        0.000003985630376013151,
+        76319.41252025325
+       ],
+       [
+        1791172800,
+        0.000003967283151091112,
+        0.000004059545163061285,
+        0.0000038829453802633176,
+        0.000004034452057908705,
+        130976.42649681635
+       ],
+       [
+        1791158400,
+        0.000003930613154491379,
+        0.000004036541510312421,
+        0.00000390585593251561,
+        0.000003967283151091112,
+        109255.32117065793
+       ],
+       [
+        1791144000,
+        0.0000038255889963949805,
+        0.000003954709083847842,
+        0.000003817584990414207,
+        0.000003930613154491379,
+        70502.23655190431
+       ],
+       [
+        1791129600,
+        0.000003852946105973522,
+        0.000003928290572154893,
+        0.0000036895576507049738,
+        0.0000038255889963949805,
+        94667.7448772153
+       ],
+       [
+        1791115200,
+        0.000003801025462189554,
+        0.000003877902211814637,
+        0.000003718952725461667,
+        0.000003852946105973522,
+        48398.35051839913
+       ],
+       [
+        1791100800,
+        0.000003836904170032621,
+        0.00000387064966107648,
+        0.000003757980942420937,
+        0.000003801025462189554,
+        50758.341764864475
+       ],
+       [
+        1791086400,
+        0.000003800046043076177,
+        0.00000389786833855266,
+        0.0000037986953156163073,
+        0.000003836904170032621,
+        57066.60377811272
+       ],
+       [
+        1791072000,
+        0.0000037949865328527334,
+        0.0000038845040079634064,
+        0.000003783962579922899,
+        0.000003800046043076177,
+        95014.23982428093
+       ],
+       [
+        1791057600,
+        0.000003801737693998958,
+        0.0000038232734092114235,
+        0.000003761261951217262,
+        0.0000037949865328527334,
+        34882.1434453793
+       ],
+       [
+        1791043200,
+        0.0000037596989667392557,
+        0.00000387452991282633,
+        0.0000037434488543912547,
+        0.000003801737693998958,
+        197987.56642607937
+       ],
+       [
+        1791028800,
+        0.000003672664146074268,
+        0.000003785980937409526,
+        0.000003640329671273945,
+        0.0000037596989667392557,
+        91298.280132202
+       ],
+       [
+        1791014400,
+        0.000003628081259756104,
+        0.0000036937432484670443,
+        0.0000035961944463864647,
+        0.000003672664146074268,
+        69345.52751832278
+       ],
+       [
+        1791000000,
+        0.0000036373060679198223,
+        0.0000036603438637702828,
+        0.0000035843484221413573,
+        0.000003628081259756104,
+        49241.459584454984
+       ],
+       [
+        1790985600,
+        0.0000036302752736568234,
+        0.000003696864786726735,
+        0.0000036209710114746693,
+        0.0000036373060679198223,
+        109861.38039482528
+       ],
+       [
+        1790971200,
+        0.0000035547118677399803,
+        0.000003654335158995788,
+        0.000003524130124966968,
+        0.0000036302752736568234,
+        92702.74942901828
+       ],
+       [
+        1790956800,
+        0.000003834168211745374,
+        0.000003873161817124142,
+        0.0000035272194368861465,
+        0.0000035547118677399803,
+        2793139.6073266184
+       ],
+       [
+        1790942400,
+        0.0000038772586571319165,
+        0.000003934411640653424,
+        0.0000037962141272630802,
+        0.000003834168211745374,
+        97068.9005106575
+       ],
+       [
+        1790928000,
+        0.000003933358460927076,
+        0.0000039664545774879815,
+        0.000003865343749797048,
+        0.0000038772586571319165,
+        61702.60374167206
+       ],
+       [
+        1790913600,
+        0.0000037914773613002554,
+        0.000003979826908655373,
+        0.0000037914773613002554,
+        0.000003933358460927076,
+        184486.97181799798
+       ],
+       [
+        1790899200,
+        0.0000037728731719506027,
+        0.000003820222264465926,
+        0.000003747543561107341,
+        0.0000037914773613002554,
+        72792.20545613808
+       ],
+       [
+        1790884800,
+        0.000003750208742979864,
+        0.000003784212472030753,
+        0.000003703388802253394,
+        0.0000037728731719506027,
+        48296.50365821875
+       ],
+       [
+        1790870400,
+        0.000003698310037989729,
+        0.000003792680477374503,
+        0.000003687700497440631,
+        0.000003750208742979864,
+        383375.2791594942
+       ],
+       [
+        1790856000,
+        0.0000037431991793796936,
+        0.0000037887565506641303,
+        0.000003649917018186697,
+        0.000003698310037989729,
+        120516.24786408714
+       ],
+       [
+        1790841600,
+        0.0000037317951771332,
+        0.000003776196368166663,
+        0.0000036803788964756624,
+        0.0000037431991793796936,
+        91715.7109953379
+       ],
+       [
+        1790827200,
+        0.0000038571542630809305,
+        0.000003884098424009997,
+        0.0000037179903355414696,
+        0.0000037317951771332,
+        79865.05804068204
+       ],
+       [
+        1790812800,
+        0.0000037987123112585086,
+        0.000003905574936857459,
+        0.000003747946017253863,
+        0.0000038571542630809305,
+        136139.45798670416
+       ],
+       [
+        1790798400,
+        0.00000373949070604989,
+        0.000003827956247820741,
+        0.000003702917136676046,
+        0.0000037987123112585086,
+        106837.8152942085
+       ],
+       [
+        1790784000,
+        0.0000038141227623631974,
+        0.000003879372941802927,
+        0.0000037242112456961542,
+        0.00000373949070604989,
+        124606.90263627202
+       ],
+       [
+        1790769600,
+        0.000003905468539418056,
+        0.000004011836858675765,
+        0.0000037930972629071094,
+        0.0000038141227623631974,
+        234761.57598794418
+       ],
+       [
+        1790755200,
+        0.000003807165113330632,
+        0.000004024596648880299,
+        0.0000037804212527938794,
+        0.000003905468539418056,
+        355492.48249721486
+       ],
+       [
+        1790740800,
+        0.0000037620120516030213,
+        0.0000038509969919624165,
+        0.0000037255313873696865,
+        0.000003807165113330632,
+        393283.3456993505
+       ],
+       [
+        1790726400,
+        0.0000036434142400333656,
+        0.000003785642331318969,
+        0.0000036164146345886648,
+        0.0000037620120516030213,
+        109019.08130137164
+       ],
+       [
+        1790712000,
+        0.0000036764770062155514,
+        0.0000037268452867242295,
+        0.0000035924136443416347,
+        0.0000036434142400333656,
+        105807.25517937355
+       ],
+       [
+        1790697600,
+        0.0000036921237089027417,
+        0.0000037603569623964576,
+        0.0000035638551788982714,
+        0.0000036764770062155514,
+        194103.20224798293
+       ],
+       [
+        1790683200,
+        0.0000036828918737264337,
+        0.000003940077400331667,
+        0.0000036273652184948316,
+        0.0000036921237089027417,
+        582434.4802504986
+       ],
+       [
+        1790668800,
+        0.00000361642427563983,
+        0.0000037028736628405736,
+        0.0000035785726814954633,
+        0.0000036828918737264337,
+        117496.9842499438
+       ],
+       [
+        1790654400,
+        0.0000034332390197639015,
+        0.0000036373047642482474,
+        0.000003414188778181844,
+        0.00000361642427563983,
+        121830.89517619686
+       ],
+       [
+        1790640000,
+        0.0000034786585250092424,
+        0.000003518427189355276,
+        0.000003350851112248088,
+        0.0000034332390197639015,
+        114886.01470225057
+       ],
+       [
+        1790625600,
+        0.000003444349780680262,
+        0.0000035187888701759886,
+        0.000003418884259139059,
+        0.0000034786585250092424,
+        61097.34341694213
+       ],
+       [
+        1790611200,
+        0.0000034530758883292407,
+        0.000003544965090131429,
+        0.0000034278053093291842,
+        0.000003444349780680262,
+        102678.09175620766
+       ],
+       [
+        1790596800,
+        0.000003457730918728658,
+        0.0000035507559143538077,
+        0.000003370841389262195,
+        0.0000034530758883292407,
+        169905.55614352832
+       ],
+       [
+        1790582400,
+        0.000003441153093993195,
+        0.0000034909593366710856,
+        0.0000034177759015988212,
+        0.000003457730918728658,
+        74376.79607541466
+       ],
+       [
+        1790568000,
+        0.0000035556636526407702,
+        0.000003575189382798974,
+        0.0000034340111051181035,
+        0.000003441153093993195,
+        114827.43943381206
+       ],
+       [
+        1790553600,
+        0.0000037393505138342517,
+        0.0000037900852214699733,
+        0.000003532963702682489,
+        0.0000035556636526407702,
+        191977.423026102
+       ],
+       [
+        1790539200,
+        0.0000037240147390989915,
+        0.000003761625168830042,
+        0.0000036546459953551658,
+        0.0000037393505138342517,
+        97572.97412714337
+       ],
+       [
+        1790524800,
+        0.00000372641344724963,
+        0.0000037497750217032038,
+        0.0000036688349786450575,
+        0.0000037240147390989915,
+        85533.69385460966
+       ],
+       [
+        1790510400,
+        0.0000036844320102123343,
+        0.000003784266960104594,
+        0.0000036587062311197574,
+        0.00000372641344724963,
+        178174.0985343803
+       ],
+       [
+        1790496000,
+        0.0000037357832364696557,
+        0.000003772934650258789,
+        0.0000036709590798095996,
+        0.0000036844320102123343,
+        80356.6276993828
+       ],
+       [
+        1790481600,
+        0.0000036120546693575494,
+        0.0000037392185906658073,
+        0.000003581987785498442,
+        0.0000037357832364696557,
+        69701.75732213666
+       ],
+       [
+        1790467200,
+        0.0000036439074226582958,
+        0.0000036574357146148566,
+        0.0000036010587627693903,
+        0.0000036120546693575494,
+        92558.80563651511
+       ],
+       [
+        1790452800,
+        0.0000036834096350423695,
+        0.000003698442581643433,
+        0.0000035696425220206705,
+        0.0000036439074226582958,
+        76757.68596658997
+       ],
+       [
+        1790438400,
+        0.0000037488523861387123,
+        0.000003776815878983505,
+        0.0000036682897772342997,
+        0.0000036834096350423695,
+        104832.7944820193
+       ],
+       [
+        1790424000,
+        0.0000036847947700944392,
+        0.000003767407959659892,
+        0.0000036571709190981406,
+        0.0000037488523861387123,
+        73230.80215334194
+       ],
+       [
+        1790409600,
+        0.0000036847803190572375,
+        0.000003713162629326332,
+        0.0000036226742084058077,
+        0.0000036847947700944392,
+        93053.69544121674
+       ],
+       [
+        1790395200,
+        0.0000036439099639644954,
+        0.000003705713601341142,
+        0.000003635069670184886,
+        0.0000036847803190572375,
+        67301.37494967945
+       ],
+       [
+        1790380800,
+        0.0000037532700997375524,
+        0.0000037674369547027813,
+        0.0000036204032151197912,
+        0.0000036439099639644954,
+        82213.60873542263
+       ],
+       [
+        1790366400,
+        0.0000036843473588884716,
+        0.0000037590781735128586,
+        0.000003627253599537732,
+        0.0000037532700997375524,
+        110340.87014659421
+       ],
+       [
+        1790352000,
+        0.000003649342775143511,
+        0.000003705344659087486,
+        0.0000036256260089704384,
+        0.0000036843473588884716,
+        525245.9900034735
+       ],
+       [
+        1790337600,
+        0.0000037478745610766905,
+        0.000003759173012314881,
+        0.0000036058941258235047,
+        0.000003649342775143511,
+        146638.55689703464
+       ],
+       [
+        1790323200,
+        0.0000036308444040067485,
+        0.000003792775496742534,
+        0.0000036194478431672314,
+        0.0000037478745610766905,
+        127136.6763527366
+       ],
+       [
+        1790308800,
+        0.000003673727473168812,
+        0.000003702043321543406,
+        0.00000359622634076188,
+        0.0000036308444040067485,
+        75673.15734857164
+       ],
+       [
+        1790294400,
+        0.0000037806261112807446,
+        0.000003848199435533509,
+        0.000003652879780643218,
+        0.000003673727473168812,
+        151799.57189895463
+       ],
+       [
+        1790280000,
+        0.0000036884375973639006,
+        0.000003800931841030382,
+        0.000003662219580512402,
+        0.0000037806261112807446,
+        176450.9470748239
+       ],
+       [
+        1790265600,
+        0.000003665504001941652,
+        0.0000037641836527865136,
+        0.000003614192310588793,
+        0.0000036884375973639006,
+        305437.186434315
+       ],
+       [
+        1790251200,
+        0.0000035148425417398247,
+        0.0000037291721848080264,
+        0.0000034897074628126887,
+        0.000003665504001941652,
+        194001.71083736818
+       ],
+       [
+        1790236800,
+        0.00000360706571733864,
+        0.0000036175182317470524,
+        0.00000339791760288354,
+        0.0000035148425417398247,
+        143892.33300218996
+       ],
+       [
+        1790222400,
+        0.000003478259571853252,
+        0.000003635711989237413,
+        0.0000034598552414882745,
+        0.00000360706571733864,
+        173271.09604041037
+       ],
+       [
+        1790208000,
+        0.0000035201784198540976,
+        0.000003585280755476184,
+        0.000003442647740615485,
+        0.000003478259571853252,
+        179799.27699602733
+       ],
+       [
+        1790193600,
+        0.0000035278563651768136,
+        0.0000035607495571880283,
+        0.000003448322258239263,
+        0.0000035201784198540976,
+        225184.52130980723
+       ],
+       [
+        1790179200,
+        0.0000034804432945255444,
+        0.0000035421496078937604,
+        0.0000034047086989421837,
+        0.0000035278563651768136,
+        370879.301503135
+       ],
+       [
+        1790164800,
+        0.000003817756675199828,
+        0.000003875418308856742,
+        0.000003459254444466491,
+        0.0000034804432945255444,
+        470823.8164514502
+       ],
+       [
+        1790150400,
+        0.00000401050363428742,
+        0.000004136741473288656,
+        0.000003765241424209669,
+        0.000003817756675199828,
+        490938.21373295237
+       ],
+       [
+        1790136000,
+        0.0000037132904135598222,
+        0.0000042017902329799945,
+        0.0000036961164859074764,
+        0.00000401050363428742,
+        417700.6419288882
+       ],
+       [
+        1790121600,
+        0.0000036294209682318572,
+        0.0000038033654878022763,
+        0.000003603680128259265,
+        0.0000037132904135598222,
+        324942.7364259958
+       ],
+       [
+        1790107200,
+        0.0000036003355426366177,
+        0.0000036975179478992328,
+        0.0000035283496687506765,
+        0.0000036294209682318572,
+        656661.8306127901
+       ],
+       [
+        1790092800,
+        0.0000035724981255659556,
+        0.0000036289946952906033,
+        0.000003508467556093438,
+        0.0000036003355426366177,
+        669879.1431719991
+       ],
+       [
+        1790078400,
+        0.0000034063563916910493,
+        0.000003621718996237913,
+        0.0000033900249637885324,
+        0.0000035724981255659556,
+        373351.74021629425
+       ],
+       [
+        1790064000,
+        0.0000035357141140214046,
+        0.000003544051739077724,
+        0.000003356139340983012,
+        0.0000034063563916910493,
+        167393.3850417934
+       ],
+       [
+        1790049600,
+        0.000003465222857848207,
+        0.000003706308803043927,
+        0.000003450772054292511,
+        0.0000035357141140214046,
+        1068855.4176770325
+       ],
+       [
+        1790035200,
+        0.000003364333819016475,
+        0.000003476877053989551,
+        0.0000033386568804769615,
+        0.000003465222857848207,
+        188433.37724932932
+       ],
+       [
+        1790020800,
+        0.0000033495995683845256,
+        0.0000034313947078925485,
+        0.0000033261008240429563,
+        0.000003364333819016475,
+        169050.40629537727
+       ],
+       [
+        1790006400,
+        0.000003406462524446743,
+        0.000003423936862639941,
+        0.0000032604797162732067,
+        0.0000033495995683845256,
+        294087.37464035075
+       ],
+       [
+        1789992000,
+        0.0000032540775635951045,
+        0.0000034362766494077315,
+        0.0000032201220895163096,
+        0.000003406462524446743,
+        303016.22810684337
+       ],
+       [
+        1789977600,
+        0.000003040549117120229,
+        0.0000033179368482856804,
+        0.000003031383040198643,
+        0.0000032540775635951045,
+        190734.90353609694
+       ],
+       [
+        1789963200,
+        0.000003047880052923746,
+        0.000003072474649648074,
+        0.00000300426790027568,
+        0.000003040549117120229,
+        49467.36444995732
+       ],
+       [
+        1789948800,
+        0.0000030195810087797777,
+        0.000003112498865104262,
+        0.000002971791102014487,
+        0.000003047880052923746,
+        87125.06224463705
+       ],
+       [
+        1789934400,
+        0.0000030202067208978237,
+        0.0000030500496984914406,
+        0.0000029638135477622462,
+        0.0000030195810087797777,
+        68878.11072418747
+       ],
+       [
+        1789920000,
+        0.000002954776825632608,
+        0.0000030613842969667312,
+        0.000002942687140094265,
+        0.0000030202067208978237,
+        106932.06182039631
+       ],
+       [
+        1789905600,
+        0.0000029602117213412904,
+        0.0000029714236163525205,
+        0.0000029166446616113044,
+        0.000002954776825632608,
+        39890.77407166057
+       ],
+       [
+        1789891200,
+        0.00000297077038813981,
+        0.000002997144883478182,
+        0.0000029379374632588384,
+        0.0000029602117213412904,
+        69848.85929706613
+       ],
+       [
+        1789876800,
+        0.000002980543091247913,
+        0.0000030079702199610558,
+        0.0000029679487440813505,
+        0.00000297077038813981,
+        31958.513231930705
+       ],
+       [
+        1789862400,
+        0.000003049819431134368,
+        0.000003086422667865003,
+        0.0000029382402542469815,
+        0.000002980543091247913,
+        97240.41473683533
+       ],
+       [
+        1789848000,
+        0.0000030921485204815393,
+        0.000003106681314446364,
+        0.000002978792630398636,
+        0.000003049819431134368,
+        235397.35691616347
+       ],
+       [
+        1789833600,
+        0.0000030189942460651706,
+        0.0000031447373624938727,
+        0.000003005058933042784,
+        0.0000030921485204815393,
+        215643.88020219546
+       ],
+       [
+        1789819200,
+        0.0000030093281312181705,
+        0.0000030346129270919638,
+        0.0000029770933669240305,
+        0.0000030189942460651706,
+        211609.55424249117
+       ]
+      ]
+     }
+    },
+    "meta": {
+     "base": {
+      "name": "Bonk",
+      "symbol": "Bonk",
+      "coingecko_coin_id": "bonk",
+      "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+     },
+     "quote": {
+      "name": "Wrapped SOL",
+      "symbol": "SOL",
+      "coingecko_coin_id": "wrapped-solana",
+      "address": "So11111111111111111111111111111111111111112"
+     }
+    }
+   },
+   "bodyIsJson": true,
+   "latencyMs": 641,
+   "recordedAt": "2026-10-06T02:37:36.630Z"
+  },
+  {
+   "method": "GET",
+   "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9/ohlcv/day?aggregate=1&limit=100&currency=usd",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "data": {
+     "id": "e6987ce3-fd0d-43dd-b4f8-128bb06a2927",
+     "type": "ohlcv_request_response",
+     "attributes": {
+      "ohlcv_list": [
+       [
+        1791244800,
+        0.000003844724330346503,
+        0.000003853971187283682,
+        0.0000037335472354295497,
+        0.0000037551115419515675,
+        48038.28229679285
+       ],
+       [
+        1791158400,
+        0.000003930613154491379,
+        0.000004063776057420283,
+        0.000003758127544744145,
+        0.000003844724330346503,
+        521959.97368513123
+       ],
+       [
+        1791072000,
+        0.0000037949865328527334,
+        0.000003954709083847842,
+        0.0000036895576507049738,
+        0.000003930613154491379,
+        416407.51731477684
+       ],
+       [
+        1790985600,
+        0.0000036302752736568234,
+        0.00000387452991282633,
+        0.0000035843484221413573,
+        0.0000037949865328527334,
+        552616.3575012637
+       ],
+       [
+        1790899200,
+        0.0000037728731719506027,
+        0.000003979826908655373,
+        0.000003524130124966968,
+        0.0000036302752736568234,
+        3301893.0382821024
+       ],
+       [
+        1790812800,
+        0.0000037987123112585086,
+        0.000003905574936857459,
+        0.000003649917018186697,
+        0.0000037728731719506027,
+        859908.2577045242
+       ],
+       [
+        1790726400,
+        0.0000036434142400333656,
+        0.000004024596648880299,
+        0.0000036164146345886648,
+        0.0000037987123112585086,
+        1324001.2034163617
+       ],
+       [
+        1790640000,
+        0.0000034786585250092424,
+        0.000003940077400331667,
+        0.000003350851112248088,
+        0.0000036434142400333656,
+        1236558.8318062464
+       ],
+       [
+        1790553600,
+        0.0000037393505138342517,
+        0.0000037900852214699733,
+        0.000003370841389262195,
+        0.0000034786585250092424,
+        714862.6498520068
+       ],
+       [
+        1790467200,
+        0.0000036439074226582958,
+        0.000003784266960104594,
+        0.000003581987785498442,
+        0.0000037393505138342517,
+        603897.9571741679
+       ],
+       [
+        1790380800,
+        0.0000037532700997375524,
+        0.000003776815878983505,
+        0.0000035696425220206705,
+        0.0000036439074226582958,
+        497389.96172827
+       ],
+       [
+        1790294400,
+        0.0000037806261112807446,
+        0.000003848199435533509,
+        0.00000359622634076188,
+        0.0000037532700997375524,
+        1136834.822647365
+       ],
+       [
+        1790208000,
+        0.0000035201784198540976,
+        0.000003800931841030382,
+        0.00000339791760288354,
+        0.0000037806261112807446,
+        1172852.5503851348
+       ],
+       [
+        1790121600,
+        0.0000036294209682318572,
+        0.0000042017902329799945,
+        0.0000034047086989421837,
+        0.0000035201784198540976,
+        2300469.2313522287
+       ],
+       [
+        1790035200,
+        0.000003364333819016475,
+        0.000003706308803043927,
+        0.0000033386568804769615,
+        0.0000036294209682318572,
+        3124574.8939692387
+       ],
+       [
+        1789948800,
+        0.0000030195810087797777,
+        0.0000034362766494077315,
+        0.000002971791102014487,
+        0.000003364333819016475,
+        1093481.3392732628
+       ],
+       [
+        1789862400,
+        0.000003049819431134368,
+        0.000003086422667865003,
+        0.0000029166446616113044,
+        0.0000030195810087797777,
+        414748.7338820765
+       ],
+       [
+        1789776000,
+        0.0000030437105003010683,
+        0.0000031447373624938727,
+        0.0000029486970777215058,
+        0.000003049819431134368,
+        1020286.9878061209
+       ],
+       [
+        1789689600,
+        0.0000027382260363854918,
+        0.0000030993337534623937,
+        0.0000027130665187373636,
+        0.0000030437105003010683,
+        9237671.566023096
+       ],
+       [
+        1789603200,
+        0.000002657960561929058,
+        0.000002755141843389269,
+        0.0000026356162447466022,
+        0.0000027382260363854918,
+        999446.1689789951
+       ],
+       [
+        1789516800,
+        0.0000025759424196945806,
+        0.000002676200071979516,
+        0.0000024598834493361848,
+        0.000002657960561929058,
+        241269.75335482226
+       ],
+       [
+        1789430400,
+        0.0000027360205175572735,
+        0.0000027515200038208745,
+        0.0000025328668799916597,
+        0.0000025759424196945806,
+        378420.0922345098
+       ],
+       [
+        1789344000,
+        0.000002704594734439349,
+        0.000003198762976384091,
+        0.0000026900989734464968,
+        0.0000027360205175572735,
+        3025666.619410272
+       ],
+       [
+        1789257600,
+        0.000002786541083851099,
+        0.0000028271187340759894,
+        0.0000026800594319883937,
+        0.000002704594734439349,
+        497550.43887910334
+       ],
+       [
+        1789171200,
+        0.000002750033176986008,
+        0.000002943038007434883,
+        0.0000026610248351754747,
+        0.000002786541083851099,
+        843683.356101892
+       ],
+       [
+        1789084800,
+        0.0000026445295009281047,
+        0.000002847906700860158,
+        0.000002605613800082487,
+        0.000002750033176986008,
+        1137942.7153957793
+       ],
+       [
+        1788998400,
+        0.0000028604445425359433,
+        0.0000029478323049259843,
+        0.000002612223405702866,
+        0.0000026445295009281047,
+        299166.3125158619
+       ],
+       [
+        1788912000,
+        0.000003030579230179529,
+        0.000003097759156115993,
+        0.0000027931240200810258,
+        0.0000028604445425359433,
+        388380.49323647737
+       ],
+       [
+        1788825600,
+        0.000003137654551453108,
+        0.0000031882907173266868,
+        0.000003012690907982778,
+        0.000003030579230179529,
+        229351.3532833096
+       ],
+       [
+        1788739200,
+        0.0000033989284444018257,
+        0.000003414002037637044,
+        0.000003005249913865347,
+        0.000003137654551453108,
+        521298.8354600959
+       ],
+       [
+        1788652800,
+        0.000003208466100152649,
+        0.0000036996895458954726,
+        0.0000032055523042899966,
+        0.0000033989284444018257,
+        808447.5936961671
+       ],
+       [
+        1788566400,
+        0.0000031950787021105964,
+        0.00000339280732538143,
+        0.000003174237363327842,
+        0.000003208466100152649,
+        398804.49327453517
+       ],
+       [
+        1788480000,
+        0.000003122316204528307,
+        0.0000032616030709718807,
+        0.0000030270708054702783,
+        0.0000031950787021105964,
+        447312.4861778716
+       ],
+       [
+        1788393600,
+        0.000002907189675675002,
+        0.0000032617412244645854,
+        0.0000028539544550004826,
+        0.000003122316204528307,
+        425546.4268755248
+       ],
+       [
+        1788307200,
+        0.0000029676016820289018,
+        0.0000030510369877767518,
+        0.0000028439489571440613,
+        0.000002907189675675002,
+        131771.06864472132
+       ],
+       [
+        1788220800,
+        0.000002991687841088152,
+        0.0000033070207085804746,
+        0.000002926222478896774,
+        0.0000029676016820289018,
+        544067.9169966427
+       ],
+       [
+        1788134400,
+        0.0000027929681360619895,
+        0.0000030751984493147875,
+        0.000002756379345546474,
+        0.000002991687841088152,
+        169777.7417815825
+       ],
+       [
+        1788048000,
+        0.000002997148438253613,
+        0.0000030120193069846005,
+        0.0000027548502942374195,
+        0.0000027929681360619895,
+        44859.930747116
+       ],
+       [
+        1787961600,
+        0.000002980038734815938,
+        0.0000030345684585940774,
+        0.000002927827388838905,
+        0.000002997148438253613,
+        53986.79633114382
+       ],
+       [
+        1787875200,
+        0.000003169478853663335,
+        0.000003228154856788088,
+        0.0000028846446809098063,
+        0.000002980038734815938,
+        92848.22934299249
+       ],
+       [
+        1787788800,
+        0.000003078402243243942,
+        0.0000032142419473774085,
+        0.0000029744792194257986,
+        0.000003169478853663335,
+        133293.49348441316
+       ],
+       [
+        1787702400,
+        0.0000029837704851265426,
+        0.000003087138286938787,
+        0.0000028484902116918007,
+        0.000003078402243243942,
+        86284.2614743818
+       ],
+       [
+        1787616000,
+        0.000003201544786063234,
+        0.000003430769870217988,
+        0.0000029619217692343144,
+        0.0000029837704851265426,
+        150639.3210077614
+       ],
+       [
+        1787529600,
+        0.0000032698048197366843,
+        0.000003300115390229695,
+        0.0000031168266030274663,
+        0.000003201544786063234,
+        157377.4734956774
+       ],
+       [
+        1787443200,
+        0.0000032267028189708677,
+        0.0000033728842619823476,
+        0.0000030278813055883267,
+        0.0000032698048197366843,
+        264572.52390830265
+       ],
+       [
+        1787356800,
+        0.00000310398407269648,
+        0.0000036769988600154404,
+        0.0000029015681640215244,
+        0.0000032267028189708677,
+        604930.4452497228
+       ],
+       [
+        1787270400,
+        0.000002639509021818524,
+        0.0000032053655547210622,
+        0.000002598069791165025,
+        0.00000310398407269648,
+        411732.18645300996
+       ],
+       [
+        1787184000,
+        0.0000024621523134487234,
+        0.0000026755543639314165,
+        0.0000024246870634223523,
+        0.000002639509021818524,
+        135937.8588406755
+       ],
+       [
+        1787097600,
+        0.00000231014010413258,
+        0.000002501406869411632,
+        0.000002282862437256204,
+        0.0000024621523134487234,
+        167062.54843626983
+       ],
+       [
+        1787011200,
+        0.000002319236848941299,
+        0.0000023569639101005896,
+        0.0000022495671997802996,
+        0.00000231014010413258,
+        45998.68395195456
+       ],
+       [
+        1786924800,
+        0.0000023011977109192663,
+        0.000002362846780871865,
+        0.0000022933407770462447,
+        0.000002319236848941299,
+        63347.14778596964
+       ],
+       [
+        1786838400,
+        0.000002331849212398747,
+        0.0000023969717594568805,
+        0.0000022909075675302744,
+        0.0000023011977109192663,
+        62819.88848658137
+       ],
+       [
+        1786752000,
+        0.0000023890812463897072,
+        0.00000240459574897439,
+        0.000002316548701267731,
+        0.000002331849212398747,
+        73976.32420086014
+       ],
+       [
+        1786665600,
+        0.0000022879097761452035,
+        0.000002437006379417447,
+        0.0000022729216017140502,
+        0.0000023890812463897072,
+        123293.58501232656
+       ],
+       [
+        1786579200,
+        0.0000022319626516647774,
+        0.000002402616578410089,
+        0.0000022182390583518586,
+        0.0000022879097761452035,
+        155341.79462312517
+       ],
+       [
+        1786492800,
+        0.0000023188321854241516,
+        0.0000023671787544851667,
+        0.0000021162621386092797,
+        0.0000022319626516647774,
+        114284.51213896509
+       ],
+       [
+        1786406400,
+        0.000002432825680997031,
+        0.000002448948011602319,
+        0.0000022392358740074806,
+        0.0000023188321854241516,
+        142818.11663314383
+       ],
+       [
+        1786320000,
+        0.000002428620917280163,
+        0.0000025121932323977733,
+        0.000002326511805274632,
+        0.000002432825680997031,
+        142663.2835611002
+       ],
+       [
+        1786233600,
+        0.0000024858043608386737,
+        0.000002519988727181593,
+        0.000002416640621556534,
+        0.000002428620917280163,
+        121583.223077928
+       ],
+       [
+        1786147200,
+        0.0000024805922576688073,
+        0.000002573907704133136,
+        0.0000024486342956155085,
+        0.0000024858043608386737,
+        302321.4976421829
+       ],
+       [
+        1786060800,
+        0.000002780661557464996,
+        0.0000028803519583482864,
+        0.000002367029496497084,
+        0.0000024805922576688073,
+        810116.3198470087
+       ],
+       [
+        1785974400,
+        0.0000027991360939047773,
+        0.0000028449312798796167,
+        0.0000027306722638086495,
+        0.000002780661557464996,
+        78875.8258108982
+       ],
+       [
+        1785888000,
+        0.0000027818480097826955,
+        0.0000028468965261266222,
+        0.000002740420752883535,
+        0.0000027991360939047773,
+        64873.31395773548
+       ],
+       [
+        1785801600,
+        0.0000028406620832844014,
+        0.0000028649815619576703,
+        0.000002765710963469005,
+        0.0000027818480097826955,
+        64040.82096651314
+       ],
+       [
+        1785715200,
+        0.0000028965672360571532,
+        0.0000029045681372758757,
+        0.000002798549081850588,
+        0.0000028406620832844014,
+        94129.26864776359
+       ],
+       [
+        1785628800,
+        0.0000027809866613116373,
+        0.0000029376951750799826,
+        0.0000027744983961020793,
+        0.0000028965672360571532,
+        159440.4704450209
+       ],
+       [
+        1785542400,
+        0.00000280430495614654,
+        0.00000285608065668556,
+        0.0000027056646776760643,
+        0.0000027809866613116373,
+        255300.4647361569
+       ],
+       [
+        1785456000,
+        0.0000029072403458916763,
+        0.0000029650472989906146,
+        0.00000274643319944892,
+        0.00000280430495614654,
+        348833.52929271926
+       ],
+       [
+        1785369600,
+        0.000002898918857448847,
+        0.0000029813240349527967,
+        0.00000285687926615572,
+        0.0000029072403458916763,
+        500657.54676898057
+       ],
+       [
+        1785283200,
+        0.0000030153986458192744,
+        0.0000030420663436507285,
+        0.0000028298591678683193,
+        0.000002898918857448847,
+        559950.4597074909
+       ],
+       [
+        1785196800,
+        0.0000029034432142248143,
+        0.0000030909782397951226,
+        0.0000028854007525282725,
+        0.0000030153986458192744,
+        561515.212392887
+       ],
+       [
+        1785110400,
+        0.000003099920395382532,
+        0.000003177316590108566,
+        0.000002885313699929403,
+        0.0000029034432142248143,
+        597895.7515456863
+       ],
+       [
+        1785024000,
+        0.000003078923933592835,
+        0.0000032505942564338356,
+        0.0000030407530585125425,
+        0.000003099920395382532,
+        598241.2149700716
+       ],
+       [
+        1784937600,
+        0.0000029202934742067566,
+        0.000003122534909585819,
+        0.0000028898295907782143,
+        0.000003078923933592835,
+        653168.7169882131
+       ],
+       [
+        1784851200,
+        0.0000028833890027578814,
+        0.000002983911683767847,
+        0.000002861227074907578,
+        0.0000029202934742067566,
+        779579.7370872572
+       ],
+       [
+        1784764800,
+        0.0000029805652539552583,
+        0.0000030109421529277313,
+        0.000002865420524245168,
+        0.0000028833890027578814,
+        1323595.9390134949
+       ],
+       [
+        1784678400,
+        0.0000029912779229156716,
+        0.000003162683357764153,
+        0.0000029565206189795763,
+        0.0000029805652539552583,
+        1646703.5295355355
+       ],
+       [
+        1784592000,
+        0.000003181645210010803,
+        0.000003276939650618597,
+        0.0000029491294497586953,
+        0.0000029912779229156716,
+        1149454.4027737582
+       ],
+       [
+        1784505600,
+        0.0000027719513413682,
+        0.0000032516211484781056,
+        0.0000027044540465158715,
+        0.000003181645210010803,
+        2697537.794038672
+       ],
+       [
+        1784419200,
+        0.000002749950048861214,
+        0.0000029859055924721946,
+        0.000002730851958504636,
+        0.0000027719513413682,
+        2612524.408985488
+       ],
+       [
+        1784332800,
+        0.0000030545560554757397,
+        0.000003152764619880845,
+        0.0000026591321120265487,
+        0.000002749950048861214,
+        1378840.815071989
+       ],
+       [
+        1784246400,
+        0.0000034545385483406654,
+        0.0000034683420952103384,
+        0.000002986891414117358,
+        0.0000030545560554757397,
+        718549.7512489272
+       ],
+       [
+        1784160000,
+        0.0000037056794180189655,
+        0.0000037220233014796805,
+        0.0000032554390783436754,
+        0.0000034545385483406654,
+        992703.3011129056
+       ],
+       [
+        1784073600,
+        0.000003783413089114999,
+        0.000003835216023796009,
+        0.000003675890780501259,
+        0.0000037056794180189655,
+        163796.0316596079
+       ],
+       [
+        1783987200,
+        0.0000036750414572235903,
+        0.00000394558158418572,
+        0.000003538353941653591,
+        0.000003783413089114999,
+        180989.78882234663
+       ],
+       [
+        1783900800,
+        0.000003956848808273229,
+        0.000004035409102157608,
+        0.0000035759407313691784,
+        0.0000036750414572235903,
+        343689.7397180843
+       ],
+       [
+        1783814400,
+        0.000003981889914436891,
+        0.0000040525609348206164,
+        0.000003929736660787921,
+        0.000003956848808273229,
+        52610.07984703506
+       ],
+       [
+        1783728000,
+        0.0000041673561296654245,
+        0.000004180142834712955,
+        0.000003972744035816897,
+        0.000003981889914436891,
+        254164.2228565322
+       ],
+       [
+        1783641600,
+        0.00000396605347461706,
+        0.000004178597169237013,
+        0.00000393562681944097,
+        0.0000041673561296654245,
+        378014.9064614396
+       ],
+       [
+        1783555200,
+        0.0000040063983399926255,
+        0.000004055547890342031,
+        0.0000038897019207261905,
+        0.00000396605347461706,
+        182311.49859086948
+       ],
+       [
+        1783468800,
+        0.00000414445733283382,
+        0.000004181599080389413,
+        0.000003894378823178695,
+        0.0000040063983399926255,
+        313338.9227893416
+       ],
+       [
+        1783382400,
+        0.0000044104781446632944,
+        0.0000044920992261242675,
+        0.000004127963015431749,
+        0.00000414445733283382,
+        419118.1004833545
+       ],
+       [
+        1783296000,
+        0.0000049055720774457286,
+        0.000004941420229454791,
+        0.000004067435919815175,
+        0.0000044104781446632944,
+        779339.3418693553
+       ],
+       [
+        1783209600,
+        0.000004845961207094415,
+        0.000005154543240580168,
+        0.0000047078703040760256,
+        0.0000049055720774457286,
+        245699.6204540492
+       ],
+       [
+        1783123200,
+        0.000004959857117485545,
+        0.00000515024126906669,
+        0.00000479948701639938,
+        0.000004845961207094415,
+        292779.81685974315
+       ],
+       [
+        1783036800,
+        0.000004331747051417831,
+        0.000004969851062129603,
+        0.000004320844089072036,
+        0.000004959857117485545,
+        393619.8152327509
+       ],
+       [
+        1782950400,
+        0.000004255883266193564,
+        0.000004446488058286367,
+        0.000004221417823691565,
+        0.000004331747051417831,
+        209139.41349720105
+       ],
+       [
+        1782864000,
+        0.00000410085776166478,
+        0.00000447658359231452,
+        0.000004011377248216121,
+        0.000004255883266193564,
+        244668.30081423713
+       ],
+       [
+        1782777600,
+        0.0000042521922064014695,
+        0.000004293899146767256,
+        0.000004055405511815179,
+        0.00000410085776166478,
+        128029.36883474486
+       ],
+       [
+        1782691200,
+        0.000004143520910411758,
+        0.000004384919211395636,
+        0.000004091098054328768,
+        0.0000042521922064014695,
+        115213.99765472031
+       ]
+      ]
+     }
+    },
+    "meta": {
+     "base": {
+      "name": "Bonk",
+      "symbol": "Bonk",
+      "coingecko_coin_id": "bonk",
+      "address": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+     },
+     "quote": {
+      "name": "Wrapped SOL",
+      "symbol": "SOL",
+      "coingecko_coin_id": "wrapped-solana",
+      "address": "So11111111111111111111111111111111111111112"
+     }
+    }
+   },
+   "bodyIsJson": true,
+   "latencyMs": 242,
+   "recordedAt": "2026-10-06T02:37:44.805Z"
+  },
+  {
+   "method": "POST",
+   "url": "https://api.mainnet-beta.solana.com/",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "jsonrpc": "2.0",
+    "result": {
+     "context": {
+      "apiVersion": "4.3.0",
+      "slot": 453769025
+     },
+     "value": {
+      "data": [
+       "AAAAAHlZUWfaSAxa4TRFAdIRt3NjQOP73wDs3mO2TciKzC8cG8ZvnXXhHXoFAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+       "base64"
+      ],
+      "executable": false,
+      "lamports": 1092249446731,
+      "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "rentEpoch": 18446744073709552000,
+      "space": 82
+     }
+    },
+    "id": 1
+   },
+   "bodyIsJson": true,
+   "latencyMs": 118,
+   "recordedAt": "2026-10-06T02:37:44.924Z",
+   "requestBody": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+     "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+     {
+      "encoding": "base64",
+      "commitment": "confirmed"
+     }
+    ]
+   }
+  },
+  {
+   "method": "POST",
+   "url": "https://api.mainnet-beta.solana.com/",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "jsonrpc": "2.0",
+    "result": {
+     "context": {
+      "apiVersion": "4.3.0",
+      "slot": 453769034
+     },
+     "value": {
+      "data": [
+       "AQAAAGyRqkllkBL4q+lh7CS2EHSSZUdTL/CU7VtpOYLbmHMTX1cLSHSHAgAGAQEAAAAXhTJh72q4Uypn8FOGWq0xKT/PB88SCrW5oVcGVI3AKwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMAIAAXhTJh72q4Uypn8FOGWq0xKT/PB88SCrW5oVcGVI3AKwwAIAAXhTJh72q4Uypn8FOGWq0xKT/PB88SCrW5oVcGVI3AKwEAbAAXhTJh72q4Uypn8FOGWq0xKT/PB88SCrW5oVcGVI3AKxeFMmHvarhTKmfwU4ZarTEpP88HzxIKtbmhVwZUjcArAAAAAAAAAABdAgAAAAAAAAAAAAAAAAAAAABdAgAAAAAAAAAAAAAAAAAAAAAEAEEAF4UyYe9quFMqZ/BThlqtMSk/zwfPEgq1uaFXBlSNwCsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAIEAF4UyYe9quFMqZ/BThlqtMSk/zwfPEgq1uaFXBlSNwCscN+ZDO3ME3YJzeuQNm4vzxJ9bDmxJqNUzKLPlBpAcVwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgBAABeFMmHvarhTKmfwU4ZarTEpP88HzxIKtbmhVwZUjcArAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAEAAF4UyYe9quFMqZ/BThlqtMSk/zwfPEgq1uaFXBlSNwCsXkkg7bIoqh7dHHYFPlZH5OVyECpzj2fTVun06S4p0nhMArgAXhTJh72q4Uypn8FOGWq0xKT/PB88SCrW5oVcGVI3AKxeSSDtsiiqHt0cdgU+Vkfk5XIQKnOPZ9NW6fTpLinSeCgAAAFBheVBhbCBVU0QFAAAAUFlVU0RPAAAAaHR0cHM6Ly90b2tlbi1tZXRhZGF0YS5wYXhvcy5jb20vcHl1c2RfbWV0YWRhdGEvcHJvZC9zb2xhbmEvcHl1c2RfbWV0YWRhdGEuanNvbgAAAAA=",
+       "base64"
+      ],
+      "executable": false,
+      "lamports": 2078412093,
+      "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "rentEpoch": 18446744073709552000,
+      "space": 866
+     }
+    },
+    "id": 1
+   },
+   "bodyIsJson": true,
+   "latencyMs": 24,
+   "recordedAt": "2026-10-06T02:37:47.689Z",
+   "requestBody": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+     "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
+     {
+      "encoding": "base64",
+      "commitment": "confirmed"
+     }
+    ]
+   }
+  },
+  {
+   "method": "POST",
+   "url": "https://api.mainnet-beta.solana.com/",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "jsonrpc": "2.0",
+    "result": {
+     "context": {
+      "apiVersion": "4.3.0",
+      "slot": 453769045
+     },
+     "value": {
+      "data": [
+       "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtPe/NiWHAwAGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARIAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKFBrBwnfZBJFQ748fvWfEJluGviEyhEmmPLP/w96OqvEwCsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoUGsHCd9kEkVDvjx+9Z8QmW4a+ITKESaY8s//D3o6q8GAAAATWludHJvBgAAAE1JTlRST1AAAABodHRwczovL2lwZnMuaW8vaXBmcy9iYWZrcmVpZ2tjZmp4dHhqbzR0ZmFhZHpsZDY2YXhjbHVienNwbXc3ZWpjbmNyNWh0NXR5NmNieDJuZQAAAAA=",
+       "base64"
+      ],
+      "executable": false,
+      "lamports": 12733040,
+      "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "rentEpoch": 18446744073709552000,
+      "space": 410
+     }
+    },
+    "id": 1
+   },
+   "bodyIsJson": true,
+   "latencyMs": 33,
+   "recordedAt": "2026-10-06T02:37:50.556Z",
+   "requestBody": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+     "BrUimx7KncgRNTggAdZdaX2s5XUqQyR6XMRmEg4mpump",
+     {
+      "encoding": "base64",
+      "commitment": "confirmed"
+     }
+    ]
+   }
+  },
+  {
+   "method": "POST",
+   "url": "https://api.mainnet-beta.solana.com/",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "jsonrpc": "2.0",
+    "result": {
+     "context": {
+      "apiVersion": "4.3.0",
+      "slot": 453769056
+     },
+     "value": {
+      "data": {
+       "parsed": {
+        "info": {
+         "decimals": 6,
+         "extensions": [
+          {
+           "extension": "mintCloseAuthority",
+           "state": {
+            "closeAuthority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk"
+           }
+          },
+          {
+           "extension": "permanentDelegate",
+           "state": {
+            "delegate": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk"
+           }
+          },
+          {
+           "extension": "transferFeeConfig",
+           "state": {
+            "newerTransferFee": {
+             "epoch": 605,
+             "maximumFee": 0,
+             "transferFeeBasisPoints": 0
+            },
+            "olderTransferFee": {
+             "epoch": 605,
+             "maximumFee": 0,
+             "transferFeeBasisPoints": 0
+            },
+            "transferFeeConfigAuthority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "withdrawWithheldAuthority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "withheldAmount": 0
+           }
+          },
+          {
+           "extension": "confidentialTransferMint",
+           "state": {
+            "auditorElgamalPubkey": null,
+            "authority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "autoApproveNewAccounts": false
+           }
+          },
+          {
+           "extension": "confidentialTransferFeeConfig",
+           "state": {
+            "authority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "harvestToMintEnabled": true,
+            "withdrawWithheldAuthorityElgamalPubkey": "HDfmQztzBN2Cc3rkDZuL88SfWw5sSajVMyiz5QaQHFc=",
+            "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+           }
+          },
+          {
+           "extension": "transferHook",
+           "state": {
+            "authority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "programId": null
+           }
+          },
+          {
+           "extension": "metadataPointer",
+           "state": {
+            "authority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "metadataAddress": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo"
+           }
+          },
+          {
+           "extension": "tokenMetadata",
+           "state": {
+            "additionalMetadata": [],
+            "mint": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
+            "name": "PayPal USD",
+            "symbol": "PYUSD",
+            "updateAuthority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+            "uri": "https://token-metadata.paxos.com/pyusd_metadata/prod/solana/pyusd_metadata.json"
+           }
+          }
+         ],
+         "freezeAuthority": "2apBGMsS6ti9RyF5TwQTDswXBWskiJP2LD4cUEDqYJjk",
+         "isInitialized": true,
+         "mintAuthority": "8Jornc27vtAYPkwDzsZVgLQchAYyC8nD7aCNPCDV8Qk2",
+         "supply": "711883448080223"
+        },
+        "type": "mint"
+       },
+       "program": "spl-token-2022",
+       "space": 866
+      },
+      "executable": false,
+      "lamports": 2078412093,
+      "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "rentEpoch": 18446744073709552000,
+      "space": 866
+     }
+    },
+    "id": 1
+   },
+   "bodyIsJson": true,
+   "latencyMs": 52,
+   "recordedAt": "2026-10-06T02:37:53.433Z",
+   "requestBody": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+     "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
+     {
+      "encoding": "jsonParsed",
+      "commitment": "confirmed"
+     }
+    ]
+   }
+  },
+  {
+   "method": "POST",
+   "url": "https://api.mainnet-beta.solana.com/",
+   "status": 429,
+   "headers": {
+    "content-type": "application/json",
+    "retry-after": "10"
+   },
+   "body": {
+    "jsonrpc": "2.0",
+    "error": {
+     "code": 429,
+     "message": "Too many requests for a specific RPC call"
+    },
+    "id": 1
+   },
+   "bodyIsJson": true,
+   "latencyMs": 216,
+   "recordedAt": "2026-10-06T02:39:46.121Z",
+   "requestBody": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getTokenLargestAccounts",
+    "params": [
+     "BrUimx7KncgRNTggAdZdaX2s5XUqQyR6XMRmEg4mpump",
+     {
+      "commitment": "confirmed"
+     }
+    ]
+   }
+  },
+  {
+   "method": "POST",
+   "url": "https://api.mainnet-beta.solana.com/",
+   "status": 429,
+   "headers": {
+    "content-type": "application/json",
+    "retry-after": "10"
+   },
+   "body": {
+    "jsonrpc": "2.0",
+    "error": {
+     "code": 429,
+     "message": "Too many requests for a specific RPC call"
+    },
+    "id": 1
+   },
+   "bodyIsJson": true,
+   "latencyMs": 103,
+   "recordedAt": "2026-10-06T02:38:06.366Z",
+   "requestBody": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getTokenLargestAccounts",
+    "params": [
+     "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+     {
+      "commitment": "confirmed"
+     }
+    ]
+   }
+  },
+  {
+   "method": "GET",
+   "url": "https://api.rugcheck.xyz/v1/tokens/BrUimx7KncgRNTggAdZdaX2s5XUqQyR6XMRmEg4mpump/report/summary",
+   "status": 200,
+   "headers": {
+    "content-type": "application/json; charset=utf-8"
+   },
+   "body": {
+    "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "tokenType": "",
+    "risks": [],
+    "score": 1,
+    "score_normalised": 1,
+    "lpLockedPct": 99.9115988286915
+   },
+   "bodyIsJson": true,
+   "latencyMs": 384,
+   "recordedAt": "2026-10-06T02:38:06.751Z"
+  }
+ ]
+}

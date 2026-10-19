@@ -1,0 +1,9 @@
+{
+  "name": "movers",
+  "version": "1.0.0",
+  "api": 1,
+  "description": "Biggest 5-minute movers from the screener rows + the latest alerts, as tiles in the terminal's theme. A page the popup host serves; it only receives view models.",
+  "widgets": [
+    { "id": "movers", "title": "MOVERS", "page": "movers.html", "topics": ["rows", "alerts", "theme"], "min": { "w": 30, "h": 8 } }
+  ]
+}

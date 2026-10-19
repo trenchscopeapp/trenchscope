@@ -1,0 +1,23 @@
+{
+  "name": "@dexterm/agents",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm bring-your-own-agent layer (task-1345): per-agent identity and session tokens, server-side capability tiers (observe / annotate / propose), the gate every agent call passes, rate limits and quotas, proposals, the audit log, the loopback agent bus and the TS SDK. No agent path can arm, sign, raise a cap or change the gate.",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./sdk": "./src/sdk.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p ../../tsconfig.json"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "@dexterm/data": "0.0.1"
+  }
+}

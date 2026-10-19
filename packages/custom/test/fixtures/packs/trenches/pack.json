@@ -1,0 +1,14 @@
+{
+  "name": "trenches",
+  "version": "1.0.0",
+  "publisher": "publisher@example",
+  "description": "The north-star 'show me everything' pack: a trenches workspace, a gold theme, three trench rules, a keymap to review, and one popup widget (the Jito tip floor) that stays disabled until you read it.",
+  "requires": { "dexterm": ">=0.1.0", "api": 1 },
+  "contents": {
+    "workspaces": ["workspaces/trenches.json"],
+    "themes": ["themes/gold.json"],
+    "rules": ["rules/trenches.rules"],
+    "keymap": "keymap.json",
+    "widgets": ["widgets/tips"]
+  }
+}

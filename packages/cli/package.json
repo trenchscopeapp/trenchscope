@@ -1,0 +1,57 @@
+{
+  "name": "trenchscope",
+  "version": "0.1.5",
+  "mcpName": "io.github.trenchscopeapp/trenchscope",
+  "description": "trenchscope: a terminal for the trenches. Solana memecoin screener with a read-only MCP server for your own Claude or Codex",
+  "author": "trenchscope",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "bin": {
+    "trenchscope": "./dist/packages/cli/bin/trenchscope.mjs",
+    "dexterm": "./dist/packages/cli/bin/dexterm.mjs"
+  },
+  "exports": {
+    ".": "./dist/packages/cli/src/index.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build-dist.mjs",
+    "prepack": "node scripts/build-dist.mjs"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "keywords": [
+    "solana",
+    "memecoin",
+    "screener",
+    "terminal",
+    "tui",
+    "mcp",
+    "claude",
+    "codex",
+    "rug-check"
+  ],
+  "homepage": "https://github.com/trenchscopeapp/trenchscope#readme",
+  "bugs": {
+    "url": "https://github.com/trenchscopeapp/trenchscope/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trenchscopeapp/trenchscope.git"
+  },
+  "devDependencies": {
+    "@dexterm/agents": "0.0.1",
+    "@dexterm/custom": "0.0.1",
+    "@dexterm/data": "0.0.1",
+    "@dexterm/mcp": "0.0.1",
+    "@dexterm/packs": "0.0.1",
+    "@dexterm/popup": "0.0.1",
+    "@dexterm/recorder": "0.0.1",
+    "@dexterm/tui": "0.0.1",
+    "@dexterm/voice": "0.0.1"
+  }
+}

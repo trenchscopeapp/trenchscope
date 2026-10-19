@@ -1,0 +1,59 @@
+{
+  "recordedAt": "2026-10-09T18:35:46.329Z",
+  "host": "https://api.jup.ag",
+  "note": "keyless read-only recording; userPublicKey is a THROWAWAY key generated for this fixture and never funded or stored; nothing was signed or sent",
+  "userPublicKey": "8yfecPq3CJmnMANcvBbP4xRn1wrkxUgyJpfh1Qau1bfp",
+  "quoteUrl": "https://api.jup.ag/swap/v1/quote?inputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&outputMint=So11111111111111111111111111111111111111112&amount=1000000&slippageBps=50&swapMode=ExactIn",
+  "quote": {
+    "inputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "inAmount": "1000000",
+    "outputMint": "So11111111111111111111111111111111111111112",
+    "outAmount": "9153941",
+    "otherAmountThreshold": "9108172",
+    "swapMode": "ExactIn",
+    "slippageBps": 50,
+    "platformFee": null,
+    "priceImpactPct": "0.0000458633446944463225888029",
+    "routePlan": [
+      {
+        "swapInfo": {
+          "ammKey": "7yD7gfXv49SFxhx9uTc11dEd7Nj98rGWeYMdZJgheZbG",
+          "label": "Kipseli",
+          "inputMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "outputMint": "So11111111111111111111111111111111111111112",
+          "inAmount": "1000000",
+          "outAmount": "9153941",
+          "updateContextSlot": "454960442"
+        },
+        "percent": 100,
+        "bps": null
+      }
+    ],
+    "contextSlot": 454960442,
+    "timeTaken": 0.001263032,
+    "swapUsdValue": "0.9995974134386867805519",
+    "mostReliableAmmsQuoteReport": {
+      "info": {
+        "BZtgQEyS6eXUXicYPHecYQ7PybqodXQMvkjUbP4R8mUU": "1000637",
+        "Czfq3xZZDmsdGdUyrNLtRhGc47cXcZtLG4crryfu44zE": "9147357"
+      }
+    },
+    "longtailMarketQuoteReport": null,
+    "useIncurredSlippageForQuoting": null,
+    "useRewards": null,
+    "otherRoutePlans": null,
+    "loadedLongtailToken": false,
+    "instructionVersion": null,
+    "transactionVersion": 0
+  },
+  "swap": {
+    "swapTransaction": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAHCnaGCKL9RfdH4xggZLbX3HY4doDnJ7jfoHspGiZCcnAzlV1buZgD7czSZBwe2mg72pq5/1Xgo7MVClqlufJBJwjXWlpq1K2mRN7Dq28imqnya5uiMLzF1z7ep3QnWgK1uQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwZGb+UhFzL/7K26csOb57yM5bvF9xJrLEObOkAAAAAEedVb8jHAbu50xW7OaBUH/bGy3qP0jlECsc2iVrwTjwbd9uHXZaGT2cvhRs7reawctIXtX1s3kTqM9YV+/wCpjJclj04kifG7PRApFI4NgwtaE5na/xCEBI572Nvp+Fm0P/on9df2SnTAmx8pWHneSwmrNt/J3VFLMhqns4zl6MKqs2TKlB/RQTObLhlZOnqyXziikasaSVE2nT76lYiFmwC7IMKKr6LYapNTkOteo5rXXE9L9piog0R5hkl7LKcFBAAFAsBcFQAEAAkDBBcBAAAAAAAHBgACAA0DBgEBBRkGAAECBQ0FCAUPAAoMCw0QAgEGAwAJCREOJOUXy5d6460qAQAAALUAZAABQEIPAAAAAACVrYsAAAAAADIAAAYDAgAAAQkBE/Z4dKAt8Nhz1EWxneAcVZcjSDUigLvQOesCYHzCV/YD1deZBRPQ1qmY",
+    "lastValidBlockHeight": 432997813,
+    "prioritizationFeeLamports": 99999,
+    "computeUnitLimit": 1400000,
+    "simulationError": {
+      "errorCode": "TRANSACTION_ERROR",
+      "error": "Attempt to debit an account but found no record of a prior credit."
+    }
+  }
+}

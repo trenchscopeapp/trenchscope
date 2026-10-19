@@ -1,0 +1,97 @@
+# After a human publishes a draft release: (1) publish the compiled `trenchscope` package to npm through npm
+# trusted publishing (GitHub OIDC: no npm token exists anywhere, and npm attaches a provenance attestation), only
+# when the repository variable NPM_PUBLISH is "true" (docs/npm-publish-shape.md); (2) hand scan-results.json to
+# the website repo as a pull request, only when SITE_REPO is set. Both jobs are no-ops until those switches are
+# flipped on purpose.
+name: publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  npm:
+    name: npm publish (trusted publishing, provenance)
+    if: vars.NPM_PUBLISH == 'true'
+    runs-on: ubuntu-latest   # trusted publishing accepts GitHub-hosted runners only
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write   # the OIDC token npm exchanges for a one-off publish credential + the provenance signature
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '22'   # trusted publishing needs Node >= 22.14
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: npm 11.21.1 (trusted publishing needs npm >= 11.5.1)
+        run: npm install -g npm@11.21.1 && npm --version
+      - name: the tag, the package name, the version and repository.url agree
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          read -r name version repo < <(node -p "const p=require('./packages/cli/package.json'); [p.name, p.version, p.repository?.url ?? '-'].join(' ')")
+          echo "package $name@$version · repository $repo · tag $TAG"
+          [ "$name" = trenchscope ] || { echo "::error::packages/cli is named $name, not trenchscope"; exit 1; }
+          [ "v$version" = "$TAG" ] || { echo "::error::tag $TAG does not match packages/cli version $version"; exit 1; }
+          # npm refuses a trusted publish (and its provenance) unless repository.url names exactly this repository
+          [ "$repo" = "git+https://github.com/$GITHUB_REPOSITORY.git" ] || { echo "::error::packages/cli repository.url is $repo, expected git+https://github.com/$GITHUB_REPOSITORY.git"; exit 1; }
+          if [ -n "$(npm view "$name@$version" version 2>/dev/null)" ]; then echo "::error::$name@$version is already on npm (a version number can never be reused)"; exit 1; fi
+      - name: install + build the publishable package
+        run: |
+          npm ci
+          npm run build --workspace packages/cli
+      - name: publish (OIDC trusted publisher, provenance; no token)
+        working-directory: packages/cli
+        run: npm publish --provenance --access public
+      - name: the registry shows the version with its provenance
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          v="${TAG#v}"
+          for _ in $(seq 1 20); do
+            p="$(npm view "trenchscope@$v" dist.attestations.provenance.predicateType 2>/dev/null || true)"
+            if [ -n "$p" ]; then echo "trenchscope@$v provenance: $p"; exit 0; fi
+            sleep 15
+          done
+          echo "::error::trenchscope@$v has no provenance on the registry after 5 minutes (a new version can sit in 'Validating' for a few minutes; check npmjs.com)"; exit 1
+
+  scan-results-to-site:
+    name: hand scan-results.json to the website repo
+    if: vars.SITE_REPO != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: download scan-results.json from the published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern scan-results.json --dir "$RUNNER_TEMP/sr"
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          repository: ${{ vars.SITE_REPO }}
+          token: ${{ secrets.SITE_REPO_TOKEN }}
+          path: site
+      - name: open a pull request on the site repo (never a direct push)
+        env:
+          GH_TOKEN: ${{ secrets.SITE_REPO_TOKEN }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          cd site
+          cp "$RUNNER_TEMP/sr/scan-results.json" scan-results.json
+          git config user.name "dexterm-release-bot"
+          git config user.email "release-bot@users.noreply.github.com"
+          git checkout -b "scan-results/$TAG"
+          git add scan-results.json
+          git commit -m "scan-results.json for $TAG (from the release pipeline)"
+          git push -u origin "scan-results/$TAG"
+          gh pr create --title "trust page: scan results for $TAG" --body "Written by the release pipeline: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. The site build validates the file against the schema before it renders."

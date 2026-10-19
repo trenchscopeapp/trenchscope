@@ -1,0 +1,62 @@
+{
+ "tag": "WIF",
+ "group": "meme",
+ "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+ "symbol": "$WIF",
+ "name": "dogwifhat",
+ "createdAt": 1703010803000,
+ "capturedAt": "2026-10-18T23:14:57.854Z",
+ "label": {
+  "reviewer": "meme",
+  "acceptable": [
+   "NO_PRODUCT_CLAIMED",
+   "UNVERIFIABLE"
+  ],
+  "note": "site returns 403 to a no-JS fetch"
+ },
+ "pairs": [
+  "D6NdKrKNQPmRZCCnG1GqXtF7MMoHB7qR6GU5TkG59Qz1"
+ ],
+ "links": {
+  "website": "https://dogwifcoin.org/",
+  "all": [
+   {
+    "kind": "website",
+    "url": "https://dogwifcoin.org/",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://twitter.com/dogwifcoin",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "telegram",
+    "url": "https://t.me/dogwifcoin",
+    "source": "dexscreener"
+   }
+  ]
+ },
+ "github": null,
+ "page": {
+  "ok": false,
+  "status": 403,
+  "finalUrl": "https://dogwifcoin.org/",
+  "contentType": "text/html",
+  "body": "<!DOCTYPE html>\n<html>\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=windows-1252\">\n    <title>Bot Verification</title>\n    <script>\n        function onSubmit() {\n            document.getElementById('lsrecaptcha-form').submit();\n        }\n\n        var onloadCallback = function() {\n            var cont = grecaptcha.render('recaptchadiv', {\n                'sitekey': '6LewU34UAAAAAHvXqFOcQlm8z1MP1xpGAZCYEeZY',\n                'callback': onSubmit,\n                \n            });\n            grecaptcha.execute(cont);\n        };\n    </script>\n    <style></style>\n</head>\n<body>\n    <div class=\"panel\">\n        <h3 class=\"title\">Verifying that you are not a robot...</h3>\n        <form id=\"lsrecaptcha-form\" method=\"POST\" action=\"/.lsrecap/recaptcha?\">\n            <div id=\"recaptchadiv\" class=\"recaptcha-center\"></div>\n        </form>\n    </div>\n    <script src=\"https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit\"\n            async defer>\n    </script>\n</body>\n</html>\n",
+  "bytes": 1177,
+  "truncated": false,
+  "redirects": [],
+  "blocked": null,
+  "elapsedMs": 1132,
+  "compacted": true
+ },
+ "sitemap": null,
+ "http": {
+  "https://rdap.org/domain/dogwifcoin.org": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"expiration\",\"eventDate\":\"2027-11-25T16:07:50.953Z\"},{\"eventAction\":\"registration\",\"eventDate\":\"2023-11-25T16:07:50.953Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-08-12T04:16:53.489Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:38:21.395Z\"}],\"redacted\":[{\"name\":{\"type\":\"Registry Domain ID\"},\"prePath\":\"$.handle\",\"pathLang\":\"jsonpath\",\"method\":\"removal\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"HOSTINGER operations, UAB\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"\"],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+3.7064503378\"],[\"email\",{},\"text\",\"abuse@hostinger.com\"]]]}]}]}"
+  }
+ }
+}

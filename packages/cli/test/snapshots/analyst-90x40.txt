@@ -1,0 +1,40 @@
+  trenchscope ┃  1 Screener   2 New            SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+╭─ ✦ ANALYST · claude ────────────────── session 14m · 11 tool calls · $0.00 (your CLI) ─╮
+│ › screen for tokens under $5M mcap with rising holders, organic score over 60, and no  │
+│   bundler footprint. rank them.                                                        │
+│                                                                                        │
+│   ↳ screener_query(mcap<5M, org>60, bundled<10) 38ms · get_holders_delta(5 tokens,     │
+│   6h) 212ms · get_dev_history(5) 540ms                                                 │
+│                                                                                        │
+│     # TOKEN           MCAP   HLD 6H  ORG      1H      24H      LIQ TREND               │
+│     1 SIGMA        $162.4M     ▼143   73  ▼10.4%   ▲45.3%   $23.5M ▃▄▄▄▃▃▁▁▁▁▁▁▁█      │
+│     2 GOAT         $133.9M    ▲4103   56   ▲4.8%   ▼61.8%   $19.8M ▅▆▆▆▆▆▆▆████▆▁      │
+│     3 BOME         $122.0M    ▲3752   72   ▲4.5%   ▲27.3%   $15.8M ▃▂▁▁▂▅▄▄▄▅▅▆▄█      │
+│     4 MANEKI         $7.1M    ▲1505   96  ▲11.4%   ▼53.9%    $994K ▆▆█▇▇▇▇▇▇▇███▁      │
+│     5 SLERF         $38.6M     ▲451   81   ▼3.8%   ▼30.9%    $5.4M ▆▆▇▇██▇▇█████▁      │
+│                                                                                        │
+│ ✦ Ranked by holder velocity × organic volume. SIGMA leads because new wallets outpace  │
+│   sells 3:1 and the dev has no prior rugs; GOAT has the better chart but 2 wallets     │
+│   took 11% in block 1, which I weight down. None are "safe", all are sub-$5M memes.    │
+│                                                                                        │
+│ › what would make you flip bullish on BOME?                                            │
+│                                                                                        │
+│ ✦ Three things, in order: liquidity above $150K (currently $16M), top-10 below 25%,    │
+│   and a 6h candle closing above $0.1439 on organic volume. I added those as a watch    │
+│   rule; you'll get an alert, not a trade.                                              │
+│                                                                                        │
+│ › draft the thesis as a note for my watchlist                                          │
+│                                                                                        │
+│ ✦ Saved to watchlist note for BOME: "Range-bound memecoin with improving holder        │
+│   spread; entry only on liq > 150K + top10 < 25%; invalidate on dev sell or liq <      │
+│   60K." Edit with n.                                                                   │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│├──────────────────────────────────────────────────────────────────────────────────────┤│
+│ ▌ask anything about the market, a token, or your watchlist… (/screen /explain /rank /  │
+│                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────╯
+  ⏎  send   ↑↓  history   ctrl+l  clear   esc  back

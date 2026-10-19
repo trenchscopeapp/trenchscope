@@ -1,0 +1,40 @@
+  trenchscope ┃  1 Screener   2 New            SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+╭─ WATCHLIST ────────────────────────────────────────────────── 6 tokens · PnL vs entry ─╮
+│ TOKEN                                        PRICE  VS ENTRY      1H      24H     MCAP │
+│ ────────────────────────────────────────────────────────────────────────────────────── │
+│ GOAT Goatseus Maximus                      $0.1339    ▼15.0%   ▲4.8%   ▼61.8%  $133.9M │
+│▎ACT Act I: The AI Prophecy                 $0.0578    ▲29.8%  ▲12.0%   ▼10.5%   $57.8M │
+│ NEIRO Neiro                                $0.0742    ▼12.7%  ▲11.9%   ▼11.9%   $74.2M │
+│ MANEKI Maneki Neko                       $0.007084    ▼20.1%  ▲11.4%   ▼53.9%    $7.1M │
+│ CLAUDE claude wif terminal               $0.0₄2749     ▲1.0%  ▲36.6%   ▲36.6%     $27K │
+│ RETARDIO retardio cousins                $0.004481    ▼11.2%   ▼4.2%   ▲53.2%    $4.5M │
+╰────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ ALERTS ─────────────────────────────── price · holders · risk · smart money · claude ─╮
+│  18s ▲  PRICE      GOAT crossed +25% 1h (now +4.8%)                                    │
+│   2m ◆  HOLDERS    ACT holders +312 in 10m (velocity 3.4x)                             │
+│   6m ▼  RISK       CLAUDE dev wallet sold 60% of allocation                            │
+│   9m ◆  MIGRATION  RATTO graduated pump.fun → PumpSwap                                 │
+│  14m ▲  SMART      smart wallet 7xKp…q3Lm bought NEIRO $12.4K                          │
+│  22m ✦  AI         claude: MANEKI thesis invalidated (liq -40%)                        │
+│  31m ▼  PRICE      RETARDIO -18% 5m, sell wall at $0.0042                              │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+│                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────╯
+  j/k  move   ⏎  open   d  remove   n  note   b  add alert

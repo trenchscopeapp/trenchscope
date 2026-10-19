@@ -1,0 +1,58 @@
+SKILL BACKTEST  horizon=259200s  eval built 2026-10-16T04:59:12.726Z  rows 1054 (train 726 · test 328)
+
+larp-check · links-only baseline  before=larp-links-v0  after=larp-links-v1  (tuned: train MCC 0.154, 98410 candidates)
+  before
+    train: n=726  bad=294  base rate 40.5% [37–44]  MCC 0.043  (tp 35 fp 40 fn 259 tn 392)
+      LARP              n=75   bad=35   P(bad)=46.7% [36–58]      claims bad precision=46.7% [36–58]      recall=11.9% [9–16]
+      UNVERIFIABLE      n=299  bad=170  P(bad)=56.9% [51–62]      claims nothing
+      EARLY_BUT_REAL    n=352  bad=89   P(bad)=25.3% [21–30]      claims ok  precision=74.7% [70–79]      recall=60.9% [56–65]
+    TEST : n=328  bad=61  base rate 18.6% [15–23]  MCC 0.039  (tp 7 fp 23 fn 54 tn 244)
+      LARP              n=30   bad=7    P(bad)=23.3% [12–41]      claims bad precision=23.3% [12–41]      recall=11.5% [6–22]
+      UNVERIFIABLE      n=130  bad=38   P(bad)=29.2% [22–38]      claims nothing
+      EARLY_BUT_REAL    n=168  bad=16   P(bad)=9.5% [6–15]        claims ok  precision=90.5% [85–94]      recall=56.9% [51–63]
+  after
+    train: n=726  bad=294  base rate 40.5% [37–44]  MCC 0.154  (tp 32 fp 14 fn 262 tn 418)
+      LARP              n=46   bad=32   P(bad)=69.6% [55–81]      claims bad precision=69.6% [55–81]      recall=10.9% [8–15]
+      UNVERIFIABLE      n=299  bad=170  P(bad)=56.9% [51–62]      claims nothing
+      EARLY_BUT_REAL    n=381  bad=92   P(bad)=24.1% [20–29]      claims ok  precision=75.9% [71–80]      recall=66.9% [62–71]
+    TEST : n=328  bad=61  base rate 18.6% [15–23]  MCC 0.054  (tp 4 fp 10 fn 57 tn 257)
+      LARP              n=14   bad=4    P(bad)=—                  claims bad precision=—                  recall=—
+      UNVERIFIABLE      n=130  bad=38   P(bad)=29.2% [22–38]      claims nothing
+      EARLY_BUT_REAL    n=184  bad=19   P(bad)=10.3% [7–16]       claims ok  precision=89.7% [84–93]      recall=61.8% [56–67]
+
+rug-check · verdict rules  before=rug-rules-v0  after=rug-rules-v1  (tuned: train MCC 0.355, 1728 candidates)
+  before
+    train: n=726  bad=294  base rate 40.5% [37–44]  MCC 0.033  (tp 182 fp 253 fn 112 tn 179)
+      AVOID             n=62   bad=7    P(bad)=11.3% [6–22]       claims bad precision=11.3% [6–22]       recall=2.4% [1–5]
+      SPECULATIVE       n=373  bad=175  P(bad)=46.9% [42–52]      claims bad precision=46.9% [42–52]      recall=59.5% [54–65]
+      WATCH             n=287  bad=108  P(bad)=37.6% [32–43]      claims ok  precision=62.4% [57–68]      recall=41.4% [37–46]
+      INSUFFICIENT_DATA n=4    bad=4    P(bad)=—                  claims nothing
+    TEST : n=328  bad=61  base rate 18.6% [15–23]  MCC 0.043  (tp 34 fp 134 fn 27 tn 133)
+      AVOID             n=49   bad=3    P(bad)=6.1% [2–17]        claims bad precision=6.1% [2–17]        recall=4.9% [2–13]
+      SPECULATIVE       n=119  bad=31   P(bad)=26.1% [19–35]      claims bad precision=26.1% [19–35]      recall=50.8% [39–63]
+      WATCH             n=159  bad=26   P(bad)=16.4% [11–23]      claims ok  precision=83.6% [77–89]      recall=49.8% [44–56]
+      INSUFFICIENT_DATA n=1    bad=1    P(bad)=—                  claims nothing
+  after
+    train: n=726  bad=294  base rate 40.5% [37–44]  MCC 0.355  (tp 166 fp 94 fn 128 tn 338)
+      AVOID             n=62   bad=7    P(bad)=11.3% [6–22]       claims bad precision=11.3% [6–22]       recall=2.4% [1–5]
+      SPECULATIVE       n=198  bad=159  P(bad)=80.3% [74–85]      claims bad precision=80.3% [74–85]      recall=54.1% [48–60]
+      WATCH             n=462  bad=124  P(bad)=26.8% [23–31]      claims ok  precision=73.2% [69–77]      recall=78.2% [74–82]
+      INSUFFICIENT_DATA n=4    bad=4    P(bad)=—                  claims nothing
+    TEST : n=328  bad=61  base rate 18.6% [15–23]  MCC 0.159  (tp 26 fp 65 fn 35 tn 202)
+      AVOID             n=49   bad=3    P(bad)=6.1% [2–17]        claims bad precision=6.1% [2–17]        recall=4.9% [2–13]
+      SPECULATIVE       n=42   bad=23   P(bad)=54.8% [40–69]      claims bad precision=54.8% [40–69]      recall=37.7% [27–50]
+      WATCH             n=236  bad=34   P(bad)=14.4% [10–19]      claims ok  precision=85.6% [81–90]      recall=75.7% [70–80]
+      INSUFFICIENT_DATA n=1    bad=1    P(bad)=—                  claims nothing
+
+not measured:
+  - larp-check model stage (fetch_page / check_domain / check_github and the model's judgement): pages from the past cannot be re-fetched as they were; measured forward only via `dexterm backtest --subject larp` once ≥ 50 recorded verdicts match an outcome
+  - rug-check model output (rug_probability, bias): measured forward via `--subject pack_verdicts` from recorded verdicts
+  - trench-scan: no per-token labelled outcome
+method:
+  - eval set: 1054 coins from this machine's recorder (726 train / 328 test), one row per coin
+  - labels: recorder outcome at 259200s (keyless proxy, labeler 0.2.0); bad = rug ∪ dead, ok = flat ∪ fade ∪ runner; unobserved dropped
+  - evidence: link features from the cached DexScreener/Jupiter token record only when it was fetched within 3600s after the row's t0 (latest such t0 per coin); rug-check features from that t0 snapshot
+  - split: by time: the latest 30% of rows by t0 (t0 ≥ 2026-10-12T21:28:23.575Z) are the held-out TEST split, fixed before tuning
+  - tuning: grid search on the train split only (the code refuses test rows); objective MCC of warning grade → bad; ties go to the simpler setting
+  - rates: 95% Wilson intervals; a grade with fewer than 20 rows prints counts only
+  - meaning: agreement between a grade and a bad price outcome; a risk flag, not a certificate, and not a measure of whether a product is real

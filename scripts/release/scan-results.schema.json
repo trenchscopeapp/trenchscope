@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dexterm.xyz/schema/scan-results.schema.json",
+  "title": "trenchscope scan-results.json",
+  "description": "Contract between the release pipeline (card 1301) and the trust page (card 1300). The pipeline writes this file after every release and re-scan; the site build validates it and renders it. Nothing on the trust page may claim a scan that is not in this file. When `sample` is true every result is rendered with a SAMPLE banner.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sample", "generatedAt", "pipeline", "release", "artifacts", "supplyChain", "package"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "sample": {
+      "type": "boolean",
+      "description": "true = fixture data written by hand, not by the pipeline. The site shows a SAMPLE banner and never presents these as real results."
+    },
+    "generatedAt": { "type": "string", "format": "date-time", "description": "when the pipeline wrote this file (UTC, RFC 3339)" },
+    "pipeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "workflow", "runUrl", "rescanSchedule"],
+      "properties": {
+        "name": { "type": "string" },
+        "workflow": { "type": "string", "description": "path of the GitHub Actions workflow that produced this file" },
+        "runUrl": { "type": ["string", "null"], "format": "uri", "description": "public URL of the workflow run; null for samples" },
+        "rescanSchedule": { "type": "string", "description": "human-readable re-scan cadence, e.g. 'weekly (sunday 06:00 utc) and on every release'" }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "tag", "commit", "publishedAt", "url"],
+      "properties": {
+        "version": { "type": "string" },
+        "tag": { "type": ["string", "null"] },
+        "commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{7,40}$" },
+        "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+        "url": { "type": ["string", "null"], "format": "uri" }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "kind", "sha256", "sizeBytes", "downloadUrl", "scans", "attestation", "sbom"],
+        "properties": {
+          "name": { "type": "string" },
+          "kind": { "type": "string", "enum": ["npm-tarball", "tarball", "zip", "single-file", "checksums", "sbom", "other"] },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "sizeBytes": { "type": "integer", "minimum": 0 },
+          "downloadUrl": { "type": ["string", "null"], "format": "uri" },
+          "scans": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["engine", "status", "scannedAt", "reportUrl", "summary", "note"],
+              "properties": {
+                "engine": { "type": "string", "enum": ["virustotal", "clamav", "other"] },
+                "status": { "type": "string", "enum": ["clean", "flagged", "pending", "error"] },
+                "scannedAt": { "type": ["string", "null"], "format": "date-time" },
+                "reportUrl": { "type": ["string", "null"], "format": "uri", "description": "public permalink of the analysis (VirusTotal GUI URL)" },
+                "summary": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["engines", "malicious", "suspicious", "harmless", "undetected", "timeout"],
+                  "properties": {
+                    "engines": { "type": "integer", "minimum": 0 },
+                    "malicious": { "type": "integer", "minimum": 0 },
+                    "suspicious": { "type": "integer", "minimum": 0 },
+                    "harmless": { "type": "integer", "minimum": 0 },
+                    "undetected": { "type": "integer", "minimum": 0 },
+                    "timeout": { "type": "integer", "minimum": 0 }
+                  }
+                },
+                "flaggedBy": {
+                  "type": "array",
+                  "description": "engine names that returned malicious or suspicious, with the label they gave; required when status is flagged",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["engine", "label"],
+                    "properties": { "engine": { "type": "string" }, "label": { "type": "string" } }
+                  }
+                },
+                "note": { "type": "string", "description": "plain-language note shown next to the result (e.g. why a flag is believed to be a false positive, with the issue link)" }
+              }
+            }
+          },
+          "attestation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type", "url", "verifyCommand"],
+            "properties": {
+              "type": { "type": ["string", "null"], "enum": ["github-build-provenance", "slsa-provenance", "npm-provenance", null] },
+              "url": { "type": ["string", "null"], "format": "uri" },
+              "verifyCommand": { "type": ["string", "null"], "description": "exact command a user runs to verify, e.g. gh attestation verify dexterm-0.1.0.tgz --owner <org>" }
+            }
+          },
+          "sbom": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["format", "url"],
+            "properties": {
+              "format": { "type": ["string", "null"], "enum": ["cyclonedx-json", "spdx-json", null] },
+              "url": { "type": ["string", "null"], "format": "uri" }
+            }
+          }
+        }
+      }
+    },
+    "supplyChain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["check", "status", "checkedAt", "url", "score", "note"],
+        "properties": {
+          "check": { "type": "string", "enum": ["openssf-scorecard", "socket", "npm-audit", "osv-scanner", "gitleaks", "other"] },
+          "status": { "type": "string", "enum": ["pass", "warn", "fail", "pending", "error"] },
+          "checkedAt": { "type": ["string", "null"], "format": "date-time" },
+          "url": { "type": ["string", "null"], "format": "uri" },
+          "score": { "type": ["number", "string", "null"], "description": "scorecard 0-10, socket score, or a short result like '0 vulnerabilities'" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["npmName", "npmUrl", "provenance", "repoUrl", "license"],
+      "properties": {
+        "npmName": { "type": ["string", "null"] },
+        "npmUrl": { "type": ["string", "null"], "format": "uri" },
+        "provenance": { "type": "boolean", "description": "true only when npm shows a verified provenance attestation for this version" },
+        "repoUrl": { "type": ["string", "null"], "format": "uri" },
+        "license": { "type": ["string", "null"], "description": "SPDX id once decided; null renders as 'license decision pending'" }
+      }
+    }
+  }
+}

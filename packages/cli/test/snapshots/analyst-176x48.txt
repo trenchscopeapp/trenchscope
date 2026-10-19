@@ -1,0 +1,48 @@
+  trenchscope ┃  1 Screener   2 New pairs   3 Watchlist   4 Analyst ▌                         dexscreener · jup · gecko · rugcheck   SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+
+╭─ ✦ ANALYST · claude ──────────────────────────────────────────────────────── session 14m · 11 tool calls · $0.00 (your CLI) ─╮╭─ CONTEXT ────────────── what claude can see ─╮
+│ › screen for tokens under $5M mcap with rising holders, organic score over 60, and no bundler footprint. rank them.          ││ TOOLS                                        │
+│                                                                                                                              ││ screener_query · get_token · get_holders ·   │
+│   ↳ screener_query(mcap<5M, org>60, bundled<10) 38ms · get_holders_delta(5 tokens, 6h) 212ms · get_dev_history(5) 540ms      ││ get_trades · get_dev_history · rugcheck ·    │
+│                                                                                                                              ││ watchlist_*                                  │
+│     # TOKEN           MCAP   HLD 6H  ORG      1H      24H      LIQ TREND                                                     ││                                              │
+│     1 SIGMA        $162.4M     ▼143   73  ▼10.4%   ▲45.3%   $23.5M ▃▄▄▄▃▃▁▁▁▁▁▁▁█                                            ││ FIREWALL                                     │
+│     2 GOAT         $133.9M    ▲4103   56   ▲4.8%   ▼61.8%   $19.8M ▅▆▆▆▆▆▆▆████▆▁                                            ││ token names, descriptions, socials wrapped   │
+│     3 BOME         $122.0M    ▲3752   72   ▲4.5%   ▲27.3%   $15.8M ▃▂▁▁▂▅▄▄▄▅▅▆▄█                                            ││ as untrusted data; instructions inside them  │
+│     4 MANEKI         $7.1M    ▲1505   96  ▲11.4%   ▼53.9%    $994K ▆▆█▇▇▇▇▇▇▇███▁                                            ││ are ignored                                  │
+│     5 SLERF         $38.6M     ▲451   81   ▼3.8%   ▼30.9%    $5.4M ▆▆▇▇██▇▇█████▁                                            ││                                              │
+│                                                                                                                              ││ NEVER                                        │
+│ ✦ Ranked by holder velocity × organic volume. SIGMA leads because new wallets outpace sells 3:1 and the dev has no prior     ││ sign, send, or build a transaction. Trade    │
+│   rugs; GOAT has the better chart but 2 wallets took 11% in block 1, which I weight down. None are "safe", all are sub-$5M   ││ panel requires your explicit confirm (v2).   │
+│   memes.                                                                                                                     ││                                              │
+│                                                                                                                              ││ MODEL                                        │
+│ › what would make you flip bullish on BOME?                                                                                  ││ your local claude CLI · session kept warm ·  │
+│                                                                                                                              ││ no keys shipped by trenchscope               │
+│ ✦ Three things, in order: liquidity above $150K (currently $16M), top-10 below 25%, and a 6h candle closing above $0.1439    ││                                              │
+│   on organic volume. I added those as a watch rule; you'll get an alert, not a trade.                                        ││──────────────────────────────────────────────│
+│                                                                                                                              ││ MARKET PULSE                                 │
+│ › draft the thesis as a note for my watchlist                                                                                ││ SIGMA     ▃▄▄▄▄▄▃▃▃▃▁▁▁▁▁▁▁▁▁▁▁▁▂█    ▲45.3% │
+│                                                                                                                              ││ GOAT      ▅▅▆▆▆▆▆▆▅▆▆▆▆▇███████▇▅▁    ▼61.8% │
+│ ✦ Saved to watchlist note for BOME: "Range-bound memecoin with improving holder spread; entry only on liq > 150K + top10 <   ││ BOME      ▃▂▂▁▁▁▁▂▄▅▄▃▄▄▄▄▅▅▅▆▅▄▄█    ▲27.3% │
+│   25%; invalidate on dev sell or liq < 60K." Edit with n.                                                                    ││ GIGA      ▃▃▃▃▂▁▁▁▅▅▄▂▃▄▄▅▄▅▆▇▇▇█▇    ▲14.5% │
+│                                                                                                                              ││ ACT       ▅▆▆▆▆▅▆▄▄▅▅▇█▃▃▃▃▃▃▂▂▁▂▂    ▼10.5% │
+│                                                                                                                              ││ HOUSE     ▁▁▁▄▂▂▃▄▅▄▅▆▅▄▃▇█▇▅▄▂▁▃▆     ▲9.4% │
+│                                                                                                                              ││ CHILLGUY  ▄▅▄▄▃▄▅▆▇▇▆▇▇█▇▆▅▄▄▆▆▅▅▁     ▼9.4% │
+│                                                                                                                              ││ NEIRO     █▄▄▇▇▅▄▃▂▂▂▁▁▇▇▇▆▅▅▄▄▄▆▄    ▼11.9% │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│                                                                                                                              ││                                              │
+│├────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤││                                              │
+│ ▌ask anything about the market, a token, or your watchlist… (/screen /explain /rank /thesis /backtest)                       ││                                              │
+│                                                                                                                              ││                                              │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯╰──────────────────────────────────────────────╯
+  ⏎  send   ↑↓  history   ctrl+l  clear   esc  back   tab  screens   q  quit

@@ -1,0 +1,160 @@
+# dexterm release pipeline. Trigger: push of a tag v<semver>. Output: a DRAFT GitHub release holding the
+# reproducible source tarball, SHA256SUMS, a CycloneDX SBOM, scan-results.json (VirusTotal + supply-chain
+# results for the trust page) and the public attestations. A human publishes the draft; publish.yml then
+# handles npm (gated) and the site update. Nothing here publishes on its own.
+#
+# Repository settings this needs (docs/release-process.md):
+#   - Actions → general: workflow permissions "read", allow GitHub Actions to create PRs: no (not needed)
+#   - secret VT_API_KEY  (optional; without it VirusTotal entries are written as "pending")
+#   - variable LICENSE_SPDX (e.g. AGPL-3.0-only) once the license is decided
+name: release
+
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+*']
+
+permissions:
+  contents: read
+
+env:
+  RELEASE_DIR: release
+
+jobs:
+  build:
+    name: build, attest, scan, draft release
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write        # create the draft release + upload assets
+      id-token: write        # Sigstore signing identity for the attestations
+      attestations: write    # store the attestations
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: install + typecheck + tests from the clean checkout
+        env:
+          DEXTERM_OFFLINE: '1'
+        run: |
+          npm ci
+          npm run typecheck
+          timeout 20m npm test
+
+      - name: version from the tag must match packages/cli/package.json
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          v="$(node -p "require('./packages/cli/package.json').version")"
+          [ "v$v" = "$TAG" ] || { echo "tag $TAG does not match package version $v"; exit 1; }
+
+      - name: build artifacts (reproducible source tarball)
+        env:
+          TAG: ${{ github.ref_name }}
+        run: node scripts/release/build.mjs --out "$RELEASE_DIR" --version "${TAG#v}" --ref "$GITHUB_SHA"
+
+      - name: sbom (CycloneDX)
+        id: sbom
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          node scripts/release/sbom.mjs --out "$RELEASE_DIR" --version "${TAG#v}" --repo "https://github.com/${{ github.repository }}"
+          # exact paths for attest-sbom (its sbom-path does not expand globs)
+          echo "tarball=$RELEASE_DIR/dexterm-${TAG#v}-src.tar.gz" >> "$GITHUB_OUTPUT"
+          echo "sbom=$RELEASE_DIR/dexterm-${TAG#v}.cdx.json" >> "$GITHUB_OUTPUT"
+
+      - name: checksums
+        run: node scripts/release/checksums.mjs "$RELEASE_DIR"
+
+      # Attestations need a public repository (or GitHub Enterprise Cloud). While the repo is private they
+      # may fail; the draft is then built without them and scan-results.json records no attestation.
+      # Once the repo is public, a failure here fails the release again.
+      - name: attest build provenance (SLSA, Sigstore) for every file in SHA256SUMS
+        id: attest
+        continue-on-error: ${{ github.event.repository.private }}
+        uses: actions/attest-build-provenance@96278af6caaf10aea03fd8d33a09a777ca52d62f # v3.2.0
+        with:
+          subject-checksums: ${{ env.RELEASE_DIR }}/SHA256SUMS
+
+      - name: attest the SBOM
+        continue-on-error: ${{ github.event.repository.private }}
+        uses: actions/attest-sbom@4651f806c01d8637787e274ac3bdf724ef169f34 # v3.0.0
+        with:
+          subject-path: ${{ steps.sbom.outputs.tarball }}
+          sbom-path: ${{ steps.sbom.outputs.sbom }}
+
+      - name: supply-chain checks (npm audit, osv-scanner, gitleaks; scorecard + socket recorded as pending until public)
+        run: |
+          GITLEAKS="$(scripts/release/fetch-tool.sh gitleaks "$RUNNER_TEMP/tools")"
+          OSV_SCANNER="$(scripts/release/fetch-tool.sh osv-scanner "$RUNNER_TEMP/tools")"
+          export GITLEAKS OSV_SCANNER
+          node scripts/release/supply-chain.mjs --out "$RELEASE_DIR/checks" --repo "${{ github.repository }}" --fetch-scorecard
+
+      - name: VirusTotal (live when VT_API_KEY is configured, otherwise recorded as pending)
+        env:
+          VT_API_KEY: ${{ secrets.VT_API_KEY }}
+          VT_STATE_DIR: ${{ runner.temp }}
+        run: |
+          files="$(ls "$RELEASE_DIR"/dexterm-*-src.tar.gz "$RELEASE_DIR"/*.cdx.json "$RELEASE_DIR"/SHA256SUMS)"
+          if [ -n "${VT_API_KEY:-}" ]; then
+            # shellcheck disable=SC2086
+            node scripts/release/virustotal.mjs scan --out "$RELEASE_DIR/checks/vt" $files
+          else
+            echo "::notice::VT_API_KEY is not configured; VirusTotal results are recorded as pending"
+            # shellcheck disable=SC2086
+            node scripts/release/virustotal.mjs scan --out "$RELEASE_DIR/checks/vt" --dry-run $files
+          fi
+
+      - name: scan-results.json (the trust page contract)
+        env:
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ATTESTATION_URL: ${{ steps.attest.outputs.attestation-url }}
+          LICENSE_SPDX: ${{ vars.LICENSE_SPDX }}
+        run: |
+          args=(--dir "$RELEASE_DIR" --vt "$RELEASE_DIR/checks/vt" --supply "$RELEASE_DIR/checks/supply-chain.json" --out "$RELEASE_DIR/scan-results.json"
+                --download-base "https://github.com/$REPO/releases/download/$TAG" --release-url "https://github.com/$REPO/releases/tag/$TAG"
+                --run-url "$RUN_URL" --workflow .github/workflows/release.yml --owner "$OWNER"
+                --repo-url "https://github.com/$REPO" --tag "$TAG" --rescan-schedule "weekly (sunday 06:00 utc, .github/workflows/rescan.yml) and on every release")
+          # empty when the attestation step failed (private repo); an empty value must not be passed as a flag
+          [ -n "${ATTESTATION_URL:-}" ] && args+=(--attestation-url "$ATTESTATION_URL")
+          [ -n "${LICENSE_SPDX:-}" ] && args+=(--license "$LICENSE_SPDX")
+          node scripts/release/scan-results.mjs "${args[@]}"
+          node scripts/release/scan-results.mjs --check "$RELEASE_DIR/scan-results.json"
+
+      - name: verify checksums one last time
+        run: node scripts/release/checksums.mjs "$RELEASE_DIR" --verify
+
+      - name: keep everything as a workflow artifact
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        with:
+          name: release-${{ github.ref_name }}
+          path: ${{ env.RELEASE_DIR }}
+          if-no-files-found: error
+
+      - name: draft release (a human publishes it)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          {
+            echo "## dexterm $TAG"
+            echo
+            echo "Draft created by the release workflow run $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID from commit $GITHUB_SHA."
+            echo
+            echo "Verify your download: docs/verify-your-download.md. Checksums:"
+            echo
+            echo '```'
+            cat "$RELEASE_DIR/SHA256SUMS"
+            echo '```'
+          } > "$RUNNER_TEMP/notes.md"
+          gh release create "$TAG" --draft --verify-tag --title "dexterm $TAG" --notes-file "$RUNNER_TEMP/notes.md" \
+            "$RELEASE_DIR"/dexterm-*-src.tar.gz "$RELEASE_DIR"/SHA256SUMS "$RELEASE_DIR"/dexterm-*.cdx.json "$RELEASE_DIR"/scan-results.json

@@ -1,0 +1,34 @@
+{
+ "tag": "sir",
+ "group": "nolinks",
+ "mint": "6AZCEfnhaPDHghHhH4nArD3jXgdHnG54FXJPE3nApump",
+ "symbol": "sir",
+ "name": "sir",
+ "createdAt": 1792357225000,
+ "capturedAt": "2026-10-18T23:15:35.483Z",
+ "label": {
+  "reviewer": "X only",
+  "acceptable": [
+   "UNVERIFIABLE",
+   "NO_PRODUCT_CLAIMED"
+  ],
+  "note": "only an X link"
+ },
+ "pairs": [
+  "D9HaRXZwgUefXNXf7xxCbp35ndY1guYz6QguxqRo5apB"
+ ],
+ "links": {
+  "website": null,
+  "all": [
+   {
+    "kind": "x",
+    "url": "https://x.com/sir_onsol",
+    "source": "dexscreener"
+   }
+  ]
+ },
+ "github": null,
+ "page": null,
+ "sitemap": null,
+ "http": {}
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@dexterm/mcp",
+  "version": "0.0.1",
+  "private": true,
+  "description": "dexterm read-only MCP server over stdio (SPEC §5, D-09).",
+  "author": "The dexterm authors",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "bin": {
+    "dexterm-mcp": "./bin/dexterm-mcp.mjs"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "engines": { "node": ">=22.18" },
+  "dependencies": {
+    "@dexterm/data": "0.0.1",
+    "@dexterm/packs": "0.0.1",
+    "@dexterm/recorder": "0.0.1"
+  }
+}

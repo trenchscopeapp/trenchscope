@@ -1,0 +1,55 @@
+{
+ "tag": "FLAME",
+ "group": "claim",
+ "mint": "t7LytmT5nzG7TydFjhUm9FdA47NArgDgyvZyVxipump",
+ "symbol": "FLAME",
+ "name": "FLAME",
+ "createdAt": 1792350313000,
+ "capturedAt": "2026-10-18T23:16:26.590Z",
+ "label": {
+  "reviewer": "unverifiable",
+  "acceptable": [
+   "UNVERIFIABLE"
+  ],
+  "note": "robots.txt Disallow /"
+ },
+ "pairs": [
+  "8Aeje9uEmeAtdyqD7mmWmjownftBQBqttxp7CLw1NyGp"
+ ],
+ "links": {
+  "website": "https://flameengine.live/",
+  "all": [
+   {
+    "kind": "website",
+    "url": "https://flameengine.live/",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://x.com/FlameEngineX",
+    "source": "dexscreener"
+   }
+  ]
+ },
+ "github": null,
+ "page": {
+  "ok": false,
+  "status": 0,
+  "finalUrl": "https://flameengine.live/",
+  "contentType": null,
+  "body": "",
+  "bytes": 0,
+  "truncated": false,
+  "redirects": [],
+  "blocked": "robots disallow; page not fetched",
+  "elapsedMs": 119
+ },
+ "sitemap": null,
+ "http": {
+  "https://rdap.org/domain/flameengine.live": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"expiration\",\"eventDate\":\"2027-10-18T14:50:29.259Z\"},{\"eventAction\":\"registration\",\"eventDate\":\"2026-10-18T14:50:29.259Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-10-18T14:50:29.621Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:37:59.472Z\"}],\"redacted\":[{\"name\":{\"type\":\"Registry Domain ID\"},\"prePath\":\"$.handle\",\"pathLang\":\"jsonpath\",\"method\":\"removal\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"HOSTINGER operations, UAB\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"\"],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+370.64503378\"],[\"email\",{},\"text\",\"abuse@hostinger.com\"]]]}]}]}"
+  }
+ }
+}

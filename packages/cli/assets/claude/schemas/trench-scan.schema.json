@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dexterm/claude-layer/trench-scan",
+  "title": "Trench scan output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill", "skill_version", "scanned", "candidates", "skipped", "injection_detected", "sources_used", "summary"],
+  "properties": {
+    "skill": { "type": "string", "enum": ["trench-scan"] },
+    "skill_version": { "type": "string" },
+    "scanned": { "type": "integer", "minimum": 0 },
+    "summary": { "type": "string", "maxLength": 400, "description": "One short line per candidate plus one skipped-count line. No intro, no disclaimer line" },
+    "candidates": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["mint", "verdict", "confidence", "reasons", "facts"],
+        "properties": {
+          "mint": { "type": "string" },
+          "symbol": { "type": "string" },
+          "verdict": { "type": "string", "enum": ["WATCH", "SPECULATIVE", "AVOID", "INSUFFICIENT_DATA"] },
+          "bias": { "type": "string", "enum": ["long", "short", "avoid", "wait"], "description": "Quick directional lean for this candidate" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "reasons": { "type": "array", "items": { "type": "string", "maxLength": 120 }, "maxItems": 5 },
+          "facts": {
+            "type": "array",
+            "maxItems": 8,
+            "items": { "type": "object", "additionalProperties": false, "required": ["claim", "tool", "field", "value"], "properties": { "claim": { "type": "string", "maxLength": 120 }, "tool": { "type": "string" }, "field": { "type": "string" }, "value": { "type": ["number", "string", "boolean", "null"] } } }
+          }
+        }
+      }
+    },
+    "skipped": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["mint", "reason"], "properties": { "mint": { "type": "string" }, "reason": { "type": "string", "maxLength": 120 } } }
+    },
+    "proposals": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "type": "object", "additionalProperties": false, "required": ["type", "text"], "properties": { "type": { "type": "string", "enum": ["alert", "note", "watchlist"] }, "text": { "type": "string", "maxLength": 200 }, "mint": { "type": "string" } } }
+    },
+    "injection_detected": { "type": "boolean" },
+    "results": {
+      "type": "array",
+      "maxItems": 20,
+      "description": "The scan's ranked coins as a list the app renders as a live table (prices/liq/vol from its data layer by mint, never your text). One entry per WATCH/SPECULATIVE candidate, best first; only mints the screener returned.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["mint", "reason"],
+        "properties": {
+          "mint": { "type": "string" },
+          "symbol": { "type": "string", "maxLength": 32 },
+          "reason": { "type": "string", "maxLength": 100 }
+        }
+      }
+    },
+    "filter_applied": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["query"],
+      "properties": {
+        "query": { "type": "string", "maxLength": 120 },
+        "notes": { "type": "string", "maxLength": 160 }
+      }
+    },
+    "sources_used": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["tool"], "properties": { "tool": { "type": "string" }, "source": { "type": "string" }, "age_sec": { "type": ["number", "null"] } } } }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "mint": "CLean1111111111111111111111111111111111111",
+  "interval": "1h",
+  "now": 1760000000000,
+  "market": {
+    "token": { "mint": "CLean1111111111111111111111111111111111111", "symbol": "<untrusted source=\"jupiter:symbol\" kind=\"symbol\">VRNQ</untrusted>", "name": "<untrusted source=\"jupiter:name\" kind=\"name\">Veritas Network</untrusted>", "launchpad": "pump.fun", "createdAt": 1759900000000, "verified": false },
+    "pair": { "priceUsd": 0.0042, "mcap": 4200000, "mcapResolved": 4200000, "liquidityUsd": 180000, "volume": { "h1": 90000, "h24": 1200000 }, "txns": { "h1": { "buys": 320, "sells": 210 } }, "priceChange": { "h1": 6.2, "h24": 41.0 }, "fetchedAt": 1759999997000, "ageSec": 3, "source": "dexscreener" },
+    "stats": { "holderCount": 2100, "holders24hDelta": 14, "organicScore": 72, "perWindow": { "h1": { "numTraders": 410, "numNetBuyers": 90 } }, "fetchedAt": 1759999960000, "ageSec": 40, "source": "jupiter" },
+    "audit": { "mintAuthority": false, "freezeAuthority": false, "top10Pct": 18.2, "devPct": 3.1, "devMints": 1, "lpLockedPct": 100, "rugScore": 12, "fetchedAt": 1759999960000, "ageSec": 40, "source": "jupiter" }
+  },
+  "concentration": { "mint": "CLean1111111111111111111111111111111111111", "top10PctExLp": 16.0, "holderCount": 2100, "ageSec": 42, "source": "helius" },
+  "security": { "mint": "CLean1111111111111111111111111111111111111", "scoreNormalised": 12, "lpLockedPct": 100, "tokenProgram": "Tokenkeg", "risks": [], "ageSec": 300, "source": "rugcheck" },
+  "candles": { "mint": "CLean1111111111111111111111111111111111111", "bars": 120, "summary": { "changePct": 38.5, "drawdownFromHighPct": -9.1 }, "ageSec": 20, "source": "geckoterminal" },
+  "tape": { "mint": "CLean1111111111111111111111111111111111111", "count": 190, "buys": 120, "sells": 70, "buyUsd": 48000, "sellUsd": 31000, "distinctWallets": 95, "top2WalletVolumeSharePct": 18.0, "ageSec": 15, "source": "geckoterminal" },
+  "creator": { "mint": "CLean1111111111111111111111111111111111111", "creator": "Dev1111", "creators": ["Dev1111"], "devHistory": null, "snipers": null, "bundledPct": null, "tier": "needs-key" },
+  "availability": { "hasPrice": true, "hasLiquidity": true, "canVerdict": true, "present": ["market", "holders/concentration", "security", "candles", "tape"], "missing": [], "knownUnavailable": ["dev-history: prior rugs need a Helius key"] }
+}

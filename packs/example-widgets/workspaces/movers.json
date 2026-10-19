@@ -1,0 +1,8 @@
+{
+  "name": "movers",
+  "description": "the screener with the MOVERS widget beside it (the widget opens only after you enabled it)",
+  "start": "screener",
+  "popups": [
+    { "kind": "widget", "widget": "example-widgets/movers", "x": 0.66, "y": 0.05, "w": 0.32, "h": 0.5 }
+  ]
+}

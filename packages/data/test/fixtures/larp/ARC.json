@@ -1,0 +1,110 @@
+{
+ "tag": "ARC",
+ "group": "real",
+ "mint": "61V8vBaqAGMpgDQi4JcAwo1dmBGHsyhzodcPqnEVpump",
+ "symbol": "arc",
+ "name": "AI Rig Complex",
+ "createdAt": 1733864951000,
+ "capturedAt": "2026-10-18T23:14:39.547Z",
+ "label": {
+  "reviewer": "REAL",
+  "acceptable": [
+   "REAL_PRODUCT",
+   "EARLY_BUT_REAL",
+   "UNVERIFIABLE"
+  ],
+  "note": "JS shell, docs 404; rig framework"
+ },
+ "pairs": [
+  "J3b6dvheS2Y1cbMtVz5TCWXNegSjJDbUKxdUVDPoqmS7"
+ ],
+ "links": {
+  "website": "https://www.arc.fun/",
+  "all": [
+   {
+    "kind": "website",
+    "url": "https://www.arc.fun/",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "website",
+    "url": "https://www.arc.fun/manifesto.html",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "github",
+    "url": "https://github.com/0xPlaygrounds/rig",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "x",
+    "url": "https://x.com/arcdotfun",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "telegram",
+    "url": "https://t.me/arcfunportal",
+    "source": "dexscreener"
+   },
+   {
+    "kind": "telegram",
+    "url": "https://t.me/+Blnohzq1E6RhOWJh",
+    "source": "jupiter"
+   }
+  ]
+ },
+ "github": {
+  "url": "https://github.com/0xPlaygrounds/rig",
+  "source": "advertised"
+ },
+ "page": {
+  "ok": true,
+  "status": 200,
+  "finalUrl": "https://www.arc.fun/",
+  "contentType": "text/html; charset=utf-8",
+  "body": "<!DOCTYPE html><!--9e_Qu9fNDSHz7hP09qsbI--><html lang=\"en\" class=\"\" style=\"\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no\"/><link rel=\"preload\" href=\"/_next/static/media/3703c28dcda155b1-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/5c0c2bcbaa4149ca-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"preload\" href=\"/_next/static/media/e4af272ccee01ff0-s.p.woff2\" as=\"font\" crossorigin=\"\" type=\"font/woff2\"/><link rel=\"stylesheet\" href=\"/_next/static/css/b6c5b8cf9db402e1.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/eda351a9530ca384.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/64aea0ca7d21c633.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/css/443bcb7f08da377e.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-ae24d139aa85a622.js\"/><script src=\"/_next/static/chunks/4bd1b696-182b6b13bdad92e3.js\" async=\"\"></script><script src=\"/_next/static/chunks/1255-78b7297576c09898.js\" async=\"\"></script><script src=\"/_next/static/chunks/main-app-b7ac91ae224968d9.js\" async=\"\"></script><script src=\"/_next/static/chunks/9da6db1e-7f3bee505a2c18d7.js\" async=\"\"></script><script src=\"/_next/static/chunks/1356-ce50429b522c9f80.js\" async=\"\"></script><script src=\"/_next/static/chunks/2619-dc8b38cdf46220b7.js\" async=\"\"></script><script src=\"/_next/static/chunks/1045-120aa1aa4c9bf55b.js\" async=\"\"></script><script src=\"/_next/static/chunks/8233-ba5e410b589c5da1.js\" async=\"\"></script><script src=\"/_next/static/chunks/7995-d610d6e823d7fd24.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/layout-2799d57428cd8347.js\" async=\"\"></script><script src=\"/_next/static/chunks/94730671-9806156f34498aec.js\" async=\"\"></script><script src=\"/_next/static/chunks/6283-b0e3aa4cd87bb25e.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/error-744d454d1df91e98.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/not-found-1a9b2d558aece2a9.js\" async=\"\"></script><script src=\"/_next/static/chunks/496-8e68a1f8370d1399.js\" async=\"\"></script><script src=\"/_next/static/chunks/app/(home)/page-281f0b5e5be3d602.js\" async=\"\"></script><link rel=\"preload\" href=\"https://www.googletagmanager.com/gtm.js?id=GTM-NCCJL9L9\" as=\"script\"/><meta name=\"next-size-adjust\" content=\"\"/><title>ARC - AI Rig Complex</title><meta name=\"description\" content=\"Arc Registry - A comprehensive overview of Arc&#x27;s ecosystem partners and agents.\"/><link rel=\"manifest\" href=\"/site.webmanifest\"/><meta name=\"robots\" content=\"index, follow\"/><meta property=\"og:title\" content=\"Arc Registry\"/><meta property=\"og:description\" content=\"Arc Registry - A comprehensive overview of Arc&#x27;s ecosystem partners and agents.\"/><meta property=\"og:url\" content=\"https://arc.io\"/><meta property=\"og:site_name\" content=\"Arc Registry\"/><meta property=\"og:locale\" content=\"en_US\"/><meta property=\"og:image\" content=\"https://assets.dev.arc.fun/dev/assets/arc_logo_navyblue.svg\"/><meta property=\"og:type\" content=\"website\"/><meta name=\"twitter:card\" content=\"summary_large_image\"/><meta name=\"twitter:title\" content=\"Arc Registry\"/><meta name=\"twitter:description\" content=\"Arc Registry - A comprehensive overview of Arc&#x27;s ecosystem partners and agents.\"/><meta name=\"twitter:image\" content=\"https://assets.dev.arc.fun/dev/assets/arc_logo_navyblue.svg\"/><link rel=\"icon\" href=\"https://assets.dev.arc.fun/dev/assets/arc_logo_wordmark.webp\"/><link rel=\"apple-touch-icon\" href=\"https://assets.dev.arc.fun/dev/assets/arc_logo_wordmark.webp\"/><script src=\"/_next/static/chunks/polyfills-42372ed130431b0a.js\" noModule=\"\"></script></head><body class=\"\"><div hidden=\"\"><!--$--><!--/$--></div><!--$!--><template data-dgst=\"BAILOUT_TO_CLIENT_SIDE_RENDERING\"></template><!--/$--><script src=\"/_next/static/chunks/webpack-ae24d139aa85a622.js\" id=\"_R_\" async=\"\"></script><script></script><script></script><script></script><script>self.__next_f.push([1,\"17:\\\"$12:metadata\\\"\\n\"])</script></body></html>",
+  "bytes": 4177,
+  "truncated": false,
+  "redirects": [],
+  "blocked": null,
+  "elapsedMs": 1156,
+  "compacted": true
+ },
+ "sitemap": {
+  "status": 200,
+  "ok": true,
+  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<sitemap><loc>https://arc.fun/sitemap-0.xml</loc></sitemap>\n</sitemapindex>"
+ },
+ "http": {
+  "https://rdap.org/domain/arc.fun": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"events\":[{\"eventAction\":\"registration\",\"eventActor\":\"namecheap\",\"eventDate\":\"2024-11-16T19:33:29.000Z\"},{\"eventAction\":\"expiration\",\"eventDate\":\"2027-11-16T23:59:59.000Z\"},{\"eventAction\":\"last changed\",\"eventDate\":\"2026-10-17T05:55:51.726Z\"},{\"eventAction\":\"last update of RDAP database\",\"eventDate\":\"2026-10-18T23:37:51.966Z\"}],\"redacted\":[{\"name\":{\"type\":\"Registrant Contact\"},\"prePath\":\"$.entities[?(@.roles[0]=='registrant')]\",\"pathLang\":\"jsonpath\",\"method\":\"removal\"}],\"entities\":[{\"roles\":[\"registrar\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"NameCheap, Inc.\"],[\"adr\",{\"cc\":\"US\"},\"text\",[\"\",\"\",\"4600 East Washington Street, Suite 300  \",\"Phoenix\",\"Arizona\",\"85034\",\"\"]],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+1.6027723958\"],[\"tel\",{\"type\":\"fax\"},\"uri\",\"tel:+1.3102593259\"],[\"email\",{},\"text\",\"registry@namecheap.com\"]]],\"entities\":[{\"roles\":[\"abuse\"],\"vcardArray\":[\"vcard\",[[\"version\",{},\"text\",\"4.0\"],[\"fn\",{},\"text\",\"Legal&Abuse Team\"],[\"org\",{},\"text\",\"NameCheap, Inc.\"],[\"adr\",{\"cc\":\"US\"},\"text\",[\"\",\"\",[\"4600 East Washington Street, Suite 300\",\"\",\"\"],\"Phoenix\",\"Arizona\",\"85034\",\"\"]],[\"tel\",{\"type\":\"voice\"},\"uri\",\"tel:+1.9854014545\"],[\"email\",{},\"text\",\"abuse@namecheap.com\"]]]}]}]}"
+  },
+  "https://api.github.com/repos/0xPlaygrounds/rig": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"created_at\":\"2024-06-05T13:42:28Z\",\"pushed_at\":\"2026-10-18T23:20:16Z\",\"stargazers_count\":8910,\"open_issues_count\":92,\"archived\":false,\"fork\":false,\"homepage\":\"https://rig.rs\",\"description\":\"⚙️🦀 Build modular and scalable LLM Applications in Rust\"}"
+  },
+  "https://api.github.com/repos/0xPlaygrounds/rig/commits?per_page=5": {
+   "ok": true,
+   "status": 200,
+   "body": "[{\"sha\":\"b558b7e4106ef3f425830949eb5a82a3cc5d5c33\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T23:10:17Z\"}}},{\"sha\":\"8937d58af639294fbe6aabec4c2dd71542c7dd71\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T19:09:06Z\"}}},{\"sha\":\"5bada84e36ab5b4530d3d2cd425cf148233851ae\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T09:23:28Z\"}}},{\"sha\":\"7b74902dbf0c26424daec5a46685552209b1cfab\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T05:18:57Z\"}}},{\"sha\":\"b719fb6b0aa1ad88c0b7fd2c856e7d9512bb3b35\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T05:18:55Z\"}}}]"
+  },
+  "https://api.github.com/repos/0xPlaygrounds/rig/commits?since=2024-12-10T21%3A09%3A11.000Z&per_page=10": {
+   "ok": true,
+   "status": 200,
+   "body": "[{\"sha\":\"b558b7e4106ef3f425830949eb5a82a3cc5d5c33\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T23:10:17Z\"}}},{\"sha\":\"8937d58af639294fbe6aabec4c2dd71542c7dd71\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T19:09:06Z\"}}},{\"sha\":\"5bada84e36ab5b4530d3d2cd425cf148233851ae\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T09:23:28Z\"}}},{\"sha\":\"7b74902dbf0c26424daec5a46685552209b1cfab\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T05:18:57Z\"}}},{\"sha\":\"b719fb6b0aa1ad88c0b7fd2c856e7d9512bb3b35\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T05:18:55Z\"}}},{\"sha\":\"bab7433114bca127316c58a44c09980d416516eb\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T04:17:50Z\"}}},{\"sha\":\"3998046717c55a2a8f91aacfb479d87a81a9a4d3\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T03:49:22Z\"}}},{\"sha\":\"d9d1eb221f4d4d41ef57a633535a6740b3d1eaf1\",\"commit\":{\"committer\":{\"date\":\"2026-10-18T02:04:14Z\"}}},{\"sha\":\"e034438fa09acfd124110aa8d5ebaccf59035b4b\",\"commit\":{\"committer\":{\"date\":\"2026-10-17T21:03:05Z\"}}},{\"sha\":\"c73622dfca02bfe55d29a6a0612e181119cab9b8\",\"commit\":{\"committer\":{\"date\":\"2026-10-17T03:05:35Z\"}}}]"
+  },
+  "https://api.github.com/repos/0xPlaygrounds/rig/contributors?per_page=100": {
+   "ok": true,
+   "status": 200,
+   "body": "[{\"login\":\"contributor-1\"},{\"login\":\"contributor-2\"},{\"login\":\"contributor-3\"},{\"login\":\"contributor-4\"},{\"login\":\"contributor-5\"},{\"login\":\"contributor-6\"},{\"login\":\"contributor-7\"},{\"login\":\"contributor-8\"},{\"login\":\"contributor-9\"},{\"login\":\"contributor-10\"},{\"login\":\"contributor-11\"},{\"login\":\"contributor-12\"},{\"login\":\"contributor-13\"},{\"login\":\"contributor-14\"},{\"login\":\"contributor-15\"},{\"login\":\"contributor-16\"},{\"login\":\"contributor-17\"},{\"login\":\"contributor-18\"},{\"login\":\"contributor-19\"},{\"login\":\"contributor-20\"},{\"login\":\"contributor-21\"},{\"login\":\"contributor-22\"},{\"login\":\"contributor-23\"},{\"login\":\"contributor-24\"},{\"login\":\"contributor-25\"},{\"login\":\"contributor-26\"},{\"login\":\"contributor-27\"},{\"login\":\"contributor-28\"},{\"login\":\"contributor-29\"},{\"login\":\"contributor-30\"},{\"login\":\"contributor-31\"},{\"login\":\"contributor-32\"},{\"login\":\"contributor-33\"},{\"login\":\"contributor-34\"},{\"login\":\"contributor-35\"},{\"login\":\"contributor-36\"},{\"login\":\"contributor-37\"},{\"login\":\"contributor-38\"},{\"login\":\"contributor-39\"},{\"login\":\"contributor-40\"},{\"login\":\"contributor-41\"},{\"login\":\"contributor-42\"},{\"login\":\"contributor-43\"},{\"login\":\"contributor-44\"},{\"login\":\"contributor-45\"},{\"login\":\"contributor-46\"},{\"login\":\"contributor-47\"},{\"login\":\"contributor-48\"},{\"login\":\"contributor-49\"},{\"login\":\"contributor-50\"},{\"login\":\"contributor-51\"},{\"login\":\"contributor-52\"},{\"login\":\"contributor-53\"},{\"login\":\"contributor-54\"},{\"login\":\"contributor-55\"},{\"login\":\"contributor-56\"},{\"login\":\"contributor-57\"},{\"login\":\"contributor-58\"},{\"login\":\"contributor-59\"},{\"login\":\"contributor-60\"},{\"login\":\"contributor-61\"},{\"login\":\"contributor-62\"},{\"login\":\"contributor-63\"},{\"login\":\"contributor-64\"},{\"login\":\"contributor-65\"},{\"login\":\"contributor-66\"},{\"login\":\"contributor-67\"},{\"login\":\"contributor-68\"},{\"login\":\"contributor-69\"},{\"login\":\"contributor-70\"},{\"login\":\"contributor-71\"},{\"login\":\"contributor-72\"},{\"login\":\"contributor-73\"},{\"login\":\"contributor-74\"},{\"login\":\"contributor-75\"},{\"login\":\"contributor-76\"},{\"login\":\"contributor-77\"},{\"login\":\"contributor-78\"},{\"login\":\"contributor-79\"},{\"login\":\"contributor-80\"},{\"login\":\"contributor-81\"},{\"login\":\"contributor-82\"},{\"login\":\"contributor-83\"},{\"login\":\"contributor-84\"},{\"login\":\"contributor-85\"},{\"login\":\"contributor-86\"},{\"login\":\"contributor-87\"},{\"login\":\"contributor-88\"},{\"login\":\"contributor-89\"},{\"login\":\"contributor-90\"},{\"login\":\"contributor-91\"},{\"login\":\"contributor-92\"},{\"login\":\"contributor-93\"},{\"login\":\"contributor-94\"},{\"login\":\"contributor-95\"},{\"login\":\"contributor-96\"},{\"login\":\"contributor-97\"},{\"login\":\"contributor-98\"},{\"login\":\"contributor-99\"},{\"login\":\"contributor-100\"}]"
+  },
+  "https://api.github.com/repos/0xPlaygrounds/rig/readme": {
+   "ok": true,
+   "status": 200,
+   "body": "{\"content\":\"cnVucyBpdC4gSXRzIGNvZGluZyB0b29scyAoYHJlYWRgLCBgd3JpdGVgLCBgZWRpdGAsIGBzZWFyY2hgLCBgc2hlbGxgKSBhcmUgdGhlCmByZWFkYCwgYGVkaXRgLCBgd3JpdGVgIGFuZCBgc2VhcmNoYCBhY3Qgb24gdGhlIGZpbGUgdGhlcmUsIGFuZCBgc2hlbGxgIHdpdGgKW3ZlY3Rvci1zZWFyY2ggZXhhbXBsZV0oZXhhbXBsZXMvdmVjdG9yX3NlYXJjaC9zcmMvbWFpbi5ycyku\",\"encoding\":\"base64\"}"
+  }
+ }
+}

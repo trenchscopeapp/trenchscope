@@ -1,0 +1,9 @@
+{
+  "name": "tips",
+  "version": "1.0.0",
+  "api": 1,
+  "description": "Jito tip floor as a popup widget: a page the popup host serves, fed the public rows + theme view models over the host's socket. Never runs in the terminal process.",
+  "widgets": [
+    { "id": "tips", "title": "JITO TIPS", "page": "tips.html", "topics": ["rows", "theme"], "min": { "w": 24, "h": 5 } }
+  ]
+}
