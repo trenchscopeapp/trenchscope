@@ -241,7 +241,7 @@ test('MALICIOUS PACK: money-shaped or unknown rule actions, prototype keys in co
   }
   // the fixture page itself (plain <script>/<style>, no nonce) is fine, and a comment that merely mentions these is not read
   r = attempt((d) => writeFileSync(join(d, 'widgets', 'tips', 'tips.html'), `<!-- do not write nonce="__NONCE__", <script src=…>, <link> or @import -->${page}`));
-  assert.equal(r.error, null, r.error?.message);
+  assert.equal(r.error, null, r.error?.message ?? 'expected the fixture pack to install');
   rmSync(join(home, 'packs', 'trenches@1.0.0'), { recursive: true, force: true }); // that attempt installed; the keymap case below installs again
   // a keymap that rebinds confirm / quit / panic: the pack still inspects (it is only shown), install never merges it, and the explicit merge path refuses it
   const kd = copyPack();

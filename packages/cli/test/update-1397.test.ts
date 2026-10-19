@@ -85,7 +85,7 @@ test('trenchscope update: newer version → the exact command for each install m
     const env = { DEXTERM_HOME: home() };
     const b = bufIo(env);
     const code = await updateCommand([], b.io, { ...deps, current: '0.1.1', now: 1_000, fetchFn: replay(world('0.1.2')).fetchFn });
-    assert.equal(code, 0, deps?.install);
+    assert.equal(code, 0, deps?.install ?? 'unknown install');
     assert.match(b.out(), /^trenchscope 0\.1\.1 · installed via /);
     assert.match(b.out(), /trenchscope 0\.1\.2 is available\. Upgrade with:/);
     for (const l of lines) assert.ok(b.out().split('\n').includes(l), `${deps?.install}: ${l}\n${b.out()}`);

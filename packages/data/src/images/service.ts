@@ -292,7 +292,7 @@ export class ImageService {
         if (!j) return;
         clearTimeout(j.timer); this.jobs.delete(r.id); j.resolve(r);
       });
-      w.on('error', (e) => { this.failJobs(`worker error: ${e.message}`); this.breakWorker(); });
+      w.on('error', (e) => { this.failJobs(`worker error: ${e instanceof Error ? e.message : String(e)}`); this.breakWorker(); });
       w.on('exit', () => { if (this.worker === w) this.worker = null; this.failJobs('worker exited'); });
       this.worker = w;
       return w;

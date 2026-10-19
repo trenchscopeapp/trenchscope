@@ -12,13 +12,14 @@
     "test": "npm run typecheck && node --test \"packages/*/test/*.test.ts\" && npm run test:serial && npm run test:perf",
     "test:serial": "node scripts/test-lane.mjs serial",
     "test:perf": "node scripts/test-lane.mjs perf",
-    "typecheck": "tsc -p tsconfig.json",
+    "typecheck": "node node_modules/typescript/bin/tsc -p tsconfig.json",
     "snap:update": "node packages/cli/tools/snapshots.mjs --update",
     "trenchscope": "node packages/cli/bin/trenchscope.mjs",
     "dexterm": "node packages/cli/bin/dexterm.mjs"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "typescript": "^5.9.0"
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "typescript-parser": "npm:typescript@6.0.3"
   }
 }

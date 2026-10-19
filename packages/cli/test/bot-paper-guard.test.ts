@@ -9,7 +9,9 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import ts from 'typescript';
+// TypeScript 7's native compiler no longer exports the JavaScript parser API.
+// Keep the graph guard on the supported 6.x parser while tsc uses 7.x.
+import ts from 'typescript-parser';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const PACKAGES = resolve(HERE, '..', '..');
