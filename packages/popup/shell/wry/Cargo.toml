@@ -9,7 +9,7 @@ tao = "0.37"
 # task-1358 r4: `mac-proxy` = WKWebsiteDataStore.proxyConfigurations (macOS 14+), so every connection the WebView makes
 # — including a runtime <link rel=preconnect>, which no CSP directive covers — goes through the host's loopback sink proxy
 wry = { version = "0.57", features = ["mac-proxy"] }
-global-hotkey = "0.8"
+global-hotkey = "0.9"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 # navigation pin: parsed origin comparison (already a transitive dependency of wry; pinned to the locked 2.5.x)
