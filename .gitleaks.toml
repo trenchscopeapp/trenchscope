@@ -37,3 +37,13 @@ regexes = ['''idempotency_key: '(esc-[0-9]{8}|inject-key-[0-9]{4})'[ ,}]''']
 description = "packages/cli/test/x-ui-1357.test.ts: `access_token: 'at-xyz-1234567890'` is the fake X OAuth token a test stores to render the logged-in status line (task-1375); it is written only into the test's temp home dir."
 regexTarget = "line"
 regexes = ['''store\.setTokens\(\{ access_token: 'at-xyz-1234567890', refresh_token: 'rt-1', ''']
+
+[[allowlists]]
+description = "Shrine and Solana Tracker key tests (shrine.test.ts, shrine-chart.test.ts, solanatracker.test.ts): `shr_test_…`, `trk_test_…` and `envkey_…` are obviously fake keys that exercise key loading and redaction; they are written only into each test's temp home dir."
+regexTarget = "line"
+regexes = ['''const KEY = '(shr|trk)_test_0123456789abcdef';''', '''DEXTERM_SOLANATRACKER_KEY: 'envkey_12345678' ''']
+
+[[allowlists]]
+description = "packages/data/test/fixtures/larp/WIF.json: a recorded copy of a token's public website for the LARP eval. The Google reCAPTCHA `sitekey` in it is a public site key that every visitor's browser receives; it is not a secret."
+regexTarget = "line"
+regexes = [''''sitekey': '6LewU34UAAAAAHvXqFOcQlm8z1MP1xpGAZCYEeZY'''']
