@@ -7,8 +7,8 @@
   "license": "AGPL-3.0-only",
   "type": "module",
   "bin": {
-    "trenchscope": "./dist/packages/cli/bin/trenchscope.mjs",
-    "dexterm": "./dist/packages/cli/bin/dexterm.mjs"
+    "trenchscope": "dist/packages/cli/bin/trenchscope.mjs",
+    "dexterm": "dist/packages/cli/bin/dexterm.mjs"
   },
   "exports": {
     ".": "./dist/packages/cli/src/index.js"
