@@ -232,6 +232,35 @@ function rpc(child: ReturnType<typeof spawn>, id: number, method: string, params
   });
 }
 
+test('stdio MCP reports the Trenchscope identity and flags failed tool calls', async () => {
+  await withHome(async (home) => {
+    const trace = path.join(home, 'trace.jsonl');
+    const child = spawn(process.execPath, [BIN], { env: { ...process.env, HOME: home, DEXTERM_HOME: home, DEXTERM_DB_PATH: ':memory:', DEXTERM_TRACE: trace }, stdio: ['pipe', 'pipe', 'pipe'] });
+    try {
+      const init = await rpc(child, 1, 'initialize', {});
+      assert.equal((init.result as { serverInfo: { name: string } }).serverInfo.name, 'trenchscope');
+      const cases = [
+        { name: 'kb_lookup', arguments: { id: 'glossary' }, isError: false },
+        { name: 'fetch_page', arguments: { url: 'file:///etc/passwd' }, isError: true },
+        { name: 'kb_lookup', arguments: { id: 'missing-entry' }, isError: true },
+        // Malformed input throws during String conversion, exercising the handler's catch path offline.
+        { name: 'kb_search', arguments: { query: { toString: null } }, isError: true },
+        { name: 'kb_search', arguments: { query: 'zzzznomatchzzzz' }, isError: false },
+      ];
+      for (const [i, c] of cases.entries()) {
+        const response = await rpc(child, i + 2, 'tools/call', { name: c.name, arguments: c.arguments });
+        assert.equal(response.error, undefined, c.name);
+        const result = response.result as { isError: boolean; content: Array<{ type: string; text: string }> };
+        assert.equal(result.isError, c.isError, c.name);
+        assert.equal(result.content[0].type, 'text');
+        assert.equal(Boolean(JSON.parse(result.content[0].text).error), c.isError, c.name);
+      }
+      const records = fs.readFileSync(trace, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+      assert.deepEqual(records.map((r) => r.isError), cases.map((c) => c.isError));
+    } finally { child.kill(); }
+  });
+});
+
 test('the running stdio MCP server picks up a KB edit and a new skill between two calls (no restart)', async () => {
   await withHome(async (home) => {
     const child = spawn(process.execPath, [BIN], { env: { ...process.env, HOME: home, DEXTERM_HOME: home, DEXTERM_DB_PATH: ':memory:' }, stdio: ['pipe', 'pipe', 'pipe'] });

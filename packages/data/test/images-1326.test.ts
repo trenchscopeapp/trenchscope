@@ -21,6 +21,16 @@ import {
 const here = dirname(fileURLToPath(import.meta.url));
 const FIX = resolve(here, '..', 'fixtures', 'images');
 
+test('fetchBytes bounds stalled DNS and handles an already-aborted caller', async () => {
+  const keep = setInterval(() => {}, 100);
+  try {
+    const result = await fetchBytes('https://stalled-dns.invalid/logo.png', { resolve: () => new Promise(() => {}), timeoutMs: 20 });
+    assert.equal(result.ok, false); assert.match(result.reason!, /timed out/);
+    const aborted = await fetchBytes('https://aborted.invalid/logo.png', { signal: AbortSignal.abort(), resolve: async () => ['93.184.216.34'] });
+    assert.equal(aborted.ok, false); assert.match(aborted.reason!, /timed out/);
+  } finally { clearInterval(keep); }
+});
+
 // ---------------------------------------------------------------------------------------------- PNG builders
 const SIG = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
 const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();

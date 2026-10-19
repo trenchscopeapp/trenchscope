@@ -23,6 +23,6 @@ test('registry description stays inside the official 100-character limit', () =>
 });
 
 test('MCP initialize reports the release package version', () => {
-  assert.equal(SERVER_INFO.name, 'dexterm');
+  assert.equal(SERVER_INFO.name, 'trenchscope');
   assert.equal(SERVER_INFO.version, cliPackage.version);
 });

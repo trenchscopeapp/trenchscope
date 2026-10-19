@@ -22,7 +22,7 @@ function fakeIo(env: Record<string, string> = {}): { io: Io; out: () => string; 
   return { io, out: () => out.join(''), err: () => err.join('') };
 }
 
-const CMD = { command: 'dexterm', args: ['mcp'] };
+const CMD = { command: 'trenchscope', args: ['mcp'] };
 
 test('planJson: adds, is idempotent, updates, and preserves every other key', () => {
   const entry = serverEntryJson(CMD);
@@ -34,8 +34,8 @@ test('planJson: adds, is idempotent, updates, and preserves every other key', ()
   const merged = planJson(existing, 'mcpServers', entry);
   const obj = JSON.parse(merged.text) as { mcpServers: Record<string, unknown>; theme: string };
   assert.ok(obj.mcpServers.other, 'other servers are preserved'); assert.equal(obj.theme, 'dark', 'other keys are preserved');
-  assert.deepEqual(obj.mcpServers.dexterm, entry);
-  const diff = planJson(JSON.stringify({ mcpServers: { dexterm: { command: 'old', args: [] } } }), 'mcpServers', entry);
+  assert.deepEqual(obj.mcpServers.trenchscope, entry);
+  const diff = planJson(JSON.stringify({ mcpServers: { trenchscope: { command: 'old', args: [] } } }), 'mcpServers', entry);
   assert.equal(diff.was, 'different'); assert.ok(diff.changed);
   assert.throws(() => planJson('{not valid json', 'mcpServers', entry), /not valid JSON/);
 });
@@ -43,10 +43,10 @@ test('planJson: adds, is idempotent, updates, and preserves every other key', ()
 test('planToml: appends when absent, no-op when present, never clobbers a different block', () => {
   const block = serverEntryToml(CMD);
   const add = planToml(null, block);
-  assert.ok(add.changed && add.text.includes('[mcp_servers.dexterm]'));
+  assert.ok(add.changed && add.text.includes('[mcp_servers.trenchscope]'));
   const same = planToml(add.text, block);
   assert.ok(!same.changed && same.was === 'same');
-  const conflict = planToml('[mcp_servers.dexterm]\ncommand = "other"\nargs = []\n', block);
+  const conflict = planToml('[mcp_servers.trenchscope]\ncommand = "other"\nargs = []\n', block);
   assert.ok(!conflict.changed && conflict.conflict, 'a differing block is left untouched');
 });
 
@@ -64,8 +64,8 @@ test('install writes a JSON client config, is idempotent, and backs up before ch
   const a = fakeIo();
   assert.equal(await runMcp(['install', 'claude-code', '--config', file, '--yes'], a.io), 0, a.err());
   assert.ok(existsSync(file));
-  const cfg = JSON.parse(readFileSync(file, 'utf8')) as { mcpServers: { dexterm: { command: string; args: string[] } } };
-  assert.deepEqual(cfg.mcpServers.dexterm, serverEntryJson(CMD));
+  const cfg = JSON.parse(readFileSync(file, 'utf8')) as { mcpServers: { trenchscope: { command: string; args: string[] } } };
+  assert.deepEqual(cfg.mcpServers.trenchscope, serverEntryJson(CMD));
 
   const b = fakeIo();
   assert.equal(await runMcp(['install', 'claude-code', '--config', file, '--yes'], b.io), 0);
@@ -73,7 +73,7 @@ test('install writes a JSON client config, is idempotent, and backs up before ch
   assert.equal(readdirSync(dir).filter((f) => f.includes('.bak-')).length, 0, 'an idempotent re-run makes no backup');
 
   // a changed entry is updated AND the old file is backed up first.
-  writeFileSync(file, JSON.stringify({ mcpServers: { dexterm: { command: 'old', args: [] } } }));
+  writeFileSync(file, JSON.stringify({ mcpServers: { trenchscope: { command: 'old', args: [] } } }));
   const c = fakeIo();
   assert.equal(await runMcp(['install', 'claude-code', '--config', file, '--yes'], c.io), 0);
   assert.match(c.out(), /backed up/);
@@ -92,14 +92,14 @@ test('install on a non-TTY without --yes writes nothing', async () => {
 test('install --print prints the snippet and writes nothing', async () => {
   const a = fakeIo();
   assert.equal(await runMcp(['install', 'codex', '--print'], a.io), 0);
-  assert.match(a.out(), /\[mcp_servers\.dexterm\]/);
+  assert.match(a.out(), /\[mcp_servers.trenchscope\]/);
 });
 
 test('install writes codex TOML idempotently', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'dexterm-mcp-'));
   const file = join(dir, 'config.toml');
   await runMcp(['install', 'codex', '--config', file, '--yes'], fakeIo().io);
-  assert.ok(readFileSync(file, 'utf8').includes('[mcp_servers.dexterm]'));
+  assert.ok(readFileSync(file, 'utf8').includes('[mcp_servers.trenchscope]'));
   const b = fakeIo();
   await runMcp(['install', 'codex', '--config', file, '--yes'], b.io);
   assert.match(b.out(), /already configured/i);
@@ -116,8 +116,20 @@ test('doctor spawns the server and lists the tools the agent sees (incl. larp_ch
   const rc = await runMcp(['doctor', '--node'], a.io);
   assert.equal(rc, 0, a.err());
   const text = a.out();
-  assert.match(text, /connected to dexterm/);
+  assert.match(text, /connected to trenchscope/);
   assert.match(text, /larp_check/, 'the widened LARP tool is advertised');
   const m = /tools \((\d+)\)/.exec(text);
   assert.ok(m && Number(m[1]) >= 25, `doctor should list at least 25 tools (saw ${m?.[1]})`);
+});
+
+test('install keeps an older "dexterm" entry and says it is there (no silent duplicate after the rename)', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'dexterm-mcp-'));
+  const file = join(dir, '.mcp.json');
+  writeFileSync(file, JSON.stringify({ mcpServers: { dexterm: { command: 'dexterm', args: ['mcp'] } } }));
+  const a = fakeIo();
+  assert.equal(await runMcp(['install', 'claude-code', '--config', file, '--yes'], a.io), 0, a.err());
+  const cfg = JSON.parse(readFileSync(file, 'utf8')) as { mcpServers: Record<string, unknown> };
+  assert.ok(cfg.mcpServers.dexterm, 'the older entry is not deleted');
+  assert.deepEqual(cfg.mcpServers.trenchscope, serverEntryJson(CMD));
+  assert.match(a.out(), /older "dexterm" entry/);
 });

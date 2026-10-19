@@ -58,6 +58,28 @@ trenchscope ships a read-only MCP server: your agent gets the same token dossier
 
 `trenchscope mcp doctor` checks the connection.
 
+### Claude.ai connector and interactive views
+
+In Claude.ai, open **Settings > Connectors > Add custom connector** and enter:
+
+- **Name:** `Trenchscope`
+- **MCP server URL:** `https://trenchscope-mcp-production.up.railway.app/mcp`
+
+Then enable Trenchscope in a conversation and ask: **Show trending Solana tokens**, or
+**Open a dossier for this mint: <address>**. Compatible MCP Apps clients display a styled
+screener with token logos, clickable Solscan contract links, search and gainers/losers filters. Token dossiers include clickable creator/holder wallets, an animated price chart with pointer and keyboard inspection,
+security indicators, source ages and missing-data notices. Refresh and token selection
+call the same read-only tools through the host. Other clients receive ordinary tool data.
+
+The hosted service exposes 17 public analysis and knowledge tools. Terminal navigation,
+local screen state, recorded account history and paper-trading tools stay local. Public
+data requires no login or API key. The service has a shared request budget; a busy server
+returns HTTP 429 with `Retry-After`.
+
+Railway builds `Dockerfile.mcp` using `railway.json`, serves `/mcp`, and checks `/health`.
+Its service follows this repository's `main` branch. Local preview: `node scripts/mcp-app-preview.mjs`,
+then open `http://127.0.0.1:3422` (live data) or add `?sample=1` (labelled sample data).
+
 ### From a checkout
 
 ```sh

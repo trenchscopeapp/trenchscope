@@ -4,6 +4,25 @@ const ATTR_BOLD = 1, ATTR_DIM = 2, ATTR_ITALIC = 4, ATTR_UNDERLINE = 8;
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// WCAG contrast between two #rrggbb colours
+function contrast(a, b) {
+  const lum = (hex) => {
+    const n = parseInt(hex.slice(1), 16);
+    const ch = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+    return 0.2126 * ch((n >> 16) & 255) + 0.7152 * ch((n >> 8) & 255) + 0.0722 * ch(n & 255);
+  };
+  const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
+  return (x + 0.05) / (y + 0.05);
+}
+
+/** Styles whose glyphs are effectively invisible on their own background (the app's decrypt effect fades
+ * characters in from about 1.2:1). On the page they draw as empty cells: nothing visible is lost. */
+function ghosts(doc) {
+  const set = new Set();
+  doc.styles.forEach(([fg, bg], i) => { if (/^#[0-9a-f]{6}$/i.test(fg) && /^#[0-9a-f]{6}$/i.test(bg) && contrast(fg, bg) < 1.4) set.add(i); });
+  return set;
+}
+
 function styleSheet(doc, scope) {
   let css = '';
   doc.styles.forEach(([fg, bg, at], i) => {
@@ -46,6 +65,7 @@ export class Tour {
     this.list = chapters ? doc.chapters.filter((c) => chapters.includes(c.id)) : doc.chapters;
     this.scope = `[data-tour="${pre.dataset.tour}"]`;
     styleSheet(doc, this.scope);
+    this.ghosts = ghosts(doc);
     const [x0, x1, y0, y1] = crop ?? [0, doc.w, 0, doc.h];
     this.x0 = x0; this.x1 = x1; this.y0 = y0; this.y1 = y1;
     this.cache = new Map();
@@ -54,6 +74,7 @@ export class Tour {
     for (let y = y0; y < y1; y++) { const d = document.createElement('div'); pre.appendChild(d); this.lines.push({ el: d, id: -1 }); }
     this.ch = 0; this.fr = 0; this.left = 0; this.clock = 0;
     this.playing = false; this.raf = 0; this.last = 0;
+    this.hold = false; this.onHold = null;
     this.show(0, 0);
   }
 
@@ -65,7 +86,7 @@ export class Tour {
     for (const [text, s] of this.doc.rows[id]) {
       const chars = Array.from(text);
       const a = Math.max(this.x0 - col, 0), b = Math.min(this.x1 - col, chars.length);
-      if (b > a) html += `<span class="s${s}" style="width:${b - a}ch">${cellText(chars.slice(a, b))}</span>`;
+      if (b > a) html += `<span class="s${s}" style="width:${b - a}ch">${this.ghosts.has(s) ? ' '.repeat(b - a) : cellText(chars.slice(a, b))}</span>`;
       col += chars.length;
       if (col >= this.x1) break;
     }
@@ -103,6 +124,8 @@ export class Tour {
     for (const [at, key] of c.keys) if (at === this.clock) this.onKey?.(key);
     if (this.left > 0) return;
     if (this.fr + 1 < c.frames.length) { this.fr += 1; this.left = c.frames[this.fr][1]; this.paint(); return; }
+    // a held chapter (picked by hand) rests on its last frame; the next step after resuming moves on
+    if (this.hold) { this.hold = false; this.left = 1; this.clock -= 1; this.pause(); this.onHold?.(); return; }
     let next = this.ch + 1;
     if (next >= this.list.length) next = Math.min(this.loopFrom, this.list.length - 1);
     this.show(next, 0);
@@ -119,7 +142,7 @@ export class Tour {
       if (!this.playing) return;
       acc += Math.min(250, now - this.last);
       this.last = now;
-      while (acc >= dt) { acc -= dt; this.step(); }
+      while (acc >= dt && this.playing) { acc -= dt; this.step(); }
       this.onChapter?.(this.ch, this.progress());
       this.raf = requestAnimationFrame(loop);
     };

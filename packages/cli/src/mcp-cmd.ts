@@ -28,8 +28,12 @@ function has(rest: string[], name: string): boolean { return rest.includes(name)
 /** The stdio command a client should run to reach this server. `trenchscope mcp` once trenchscope is on PATH. */
 export interface McpCommand { command: string; args: string[] }
 
+/** The name the server is registered under in each client's config (it was `dexterm` before the rename). */
+export const SERVER_KEY = 'trenchscope';
+const OLD_SERVER_KEY = 'dexterm';
+
 export function defaultCommand(env: NodeJS.ProcessEnv, useNode: boolean): McpCommand {
-  if (!useNode) return { command: 'dexterm', args: ['mcp'] };
+  if (!useNode) return { command: 'trenchscope', args: ['mcp'] };
   // Fallback for when trenchscope is not on PATH: run this repo's server bin with the current node.
   return { command: process.execPath, args: [mcpBinPath(), 'mcp'] };
 }
@@ -92,7 +96,7 @@ export const CLIENTS: readonly ClientSpec[] = [
 
 export function clientById(id: string): ClientSpec | undefined { return CLIENTS.find((c) => c.id === id); }
 
-/** The JSON object a json-format client expects under its server map, for `dexterm`. */
+/** The JSON object a json-format client expects under its server map, for `trenchscope`. */
 export function serverEntryJson(cmd: McpCommand): Record<string, unknown> {
   return { command: cmd.command, args: cmd.args };
 }
@@ -100,7 +104,7 @@ export function serverEntryJson(cmd: McpCommand): Record<string, unknown> {
 /** The TOML block a codex-style client expects. */
 export function serverEntryToml(cmd: McpCommand): string {
   const args = cmd.args.map((a) => JSON.stringify(a)).join(', ');
-  return `[mcp_servers.dexterm]\ncommand = ${JSON.stringify(cmd.command)}\nargs = [${args}]\n`;
+  return `[mcp_servers.${SERVER_KEY}]\ncommand = ${JSON.stringify(cmd.command)}\nargs = [${args}]\n`;
 }
 
 /** Plan a JSON merge: returns the new file text and whether anything changes. Preserves every other key. */
@@ -111,17 +115,17 @@ export function planJson(existingText: string | null, keyPath: string, entry: Re
     catch { throw new Error('the existing config is not valid JSON — fix or move it, then re-run'); }
   }
   const map = (obj[keyPath] && typeof obj[keyPath] === 'object' && !Array.isArray(obj[keyPath])) ? obj[keyPath] as Record<string, unknown> : {};
-  const prev = map.dexterm;
+  const prev = map[SERVER_KEY];
   const was: 'absent' | 'same' | 'different' = prev === undefined ? 'absent' : JSON.stringify(prev) === JSON.stringify(entry) ? 'same' : 'different';
-  const next = { ...obj, [keyPath]: { ...map, dexterm: entry } };
+  const next = { ...obj, [keyPath]: { ...map, [SERVER_KEY]: entry } };
   return { text: JSON.stringify(next, null, 2) + '\n', changed: was !== 'same', was };
 }
 
-/** Plan a TOML merge: append the trenchscope block when there is no [mcp_servers.dexterm] yet; never clobber. */
+/** Plan a TOML merge: append the trenchscope block when there is no [mcp_servers.trenchscope] yet; never clobber. */
 export function planToml(existingText: string | null, block: string): { text: string; changed: boolean; was: 'absent' | 'same' | 'different'; conflict: boolean } {
   const cur = existingText ?? '';
   if (cur.includes(block.trim())) return { text: cur, changed: false, was: 'same', conflict: false };
-  if (/\[mcp_servers\.dexterm\]/.test(cur)) return { text: cur, changed: false, was: 'different', conflict: true };
+  if (cur.includes(`[mcp_servers.${SERVER_KEY}]`)) return { text: cur, changed: false, was: 'different', conflict: true };
   const sep = cur.length && !cur.endsWith('\n\n') ? (cur.endsWith('\n') ? '\n' : '\n\n') : '';
   return { text: cur + sep + block, changed: true, was: 'absent', conflict: false };
 }
@@ -159,7 +163,7 @@ async function install(rest: string[], io: Io): Promise<number> {
   const forcePrint = spec.format === 'print' && !override;
 
   // The snippet we would add, always shown.
-  const snippet = spec.format === 'toml' ? serverEntryToml(cmd) : JSON.stringify({ [spec.keyPath]: { dexterm: serverEntryJson(cmd) } }, null, 2);
+  const snippet = spec.format === 'toml' ? serverEntryToml(cmd) : JSON.stringify({ [spec.keyPath]: { [SERVER_KEY]: serverEntryJson(cmd) } }, null, 2);
   out(`trenchscope MCP server for ${spec.label}:`);
   out('');
   out(indent(snippet));
@@ -185,8 +189,12 @@ async function install(rest: string[], io: Io): Promise<number> {
   out('');
   out(`target: ${target}${existed ? '' : ' (new file)'}`);
   if (plan.conflict) {
-    out('a [mcp_servers.dexterm] section already exists and differs; not modifying it. Review it by hand, or edit it to match the snippet above.');
+    out(`a [mcp_servers.${SERVER_KEY}] section already exists and differs; not modifying it. Review it by hand, or edit it to match the snippet above.`);
     return 0;
+  }
+  // An entry from before the rename is left alone (it may be customised); say so, so the server is not listed twice unawares.
+  if (existingText && (existingText.includes(`[mcp_servers.${OLD_SERVER_KEY}]`) || existingText.includes(`"${OLD_SERVER_KEY}":`))) {
+    out(`note: this config also has an older "${OLD_SERVER_KEY}" entry from before the rename; remove it if you do not want the server listed twice.`);
   }
   if (!plan.changed) { out('already configured — nothing to change (idempotent).'); return 0; }
   out(plan.was === 'different' ? 'this UPDATES the existing trenchscope entry.' : existed ? 'this ADDS a trenchscope entry (your other servers are preserved).' : 'this CREATES the config file with a trenchscope entry.');
@@ -219,7 +227,7 @@ async function doctor(rest: string[], io: Io): Promise<number> {
   // Prefer the command install writes (`trenchscope mcp`); fall back to this repo's node bin when trenchscope is
   // not on PATH (e.g. a dev checkout). Either way this is a real stdio child, not an in-process shortcut.
   const useNode = has(rest, '--node');
-  const cmd = useNode ? defaultCommand(io.env, true) : { command: 'dexterm', args: ['mcp'] };
+  const cmd = defaultCommand(io.env, useNode);
   out(`trenchscope mcp doctor — spawning: ${cmd.command} ${cmd.args.join(' ')}`);
 
   const result = await probe(cmd, io.env).catch((e) => ({ error: (e as Error).message }));

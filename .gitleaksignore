@@ -1,0 +1,5 @@
+# A third-party RPC credential embedded in the QINU public-website recording.
+# The current fixture is redacted. These exact historical findings are retained
+# without rewriting shared Git history. New findings remain failures.
+39ee84ca9ea605414b9984586386f0381a731be2:packages/data/test/fixtures/larp/QINU.json:generic-api-key:61
+ae339085321bd44e138f1dbc48ccd5b0713032db:packages/data/test/fixtures/larp/QINU.json:generic-api-key:61

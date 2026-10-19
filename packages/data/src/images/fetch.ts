@@ -10,7 +10,7 @@ import { request as httpRequest } from 'node:http';
 import { request as httpsRequest } from 'node:https';
 import { isIP } from 'node:net';
 import type { IncomingMessage } from 'node:http';
-import { assertPublicUrl, publicAddresses, SsrfError, type DnsResolver } from '../larp/safe-fetch.ts';
+import { assertPublicUrl, publicAddresses, bounded, SsrfError, type DnsResolver } from '../larp/safe-fetch.ts';
 import { lookup as dnsLookup } from 'node:dns';
 import { promisify } from 'node:util';
 
@@ -134,7 +134,7 @@ export async function fetchBytes(rawUrl: string, opts: FetchBytesOptions = {}): 
     let current = rawUrl;
     for (let hop = 0; hop <= maxRedirects; hop++) {
       let u: URL;
-      try { u = await assertPublicUrl(current, resolve); } catch (e) { return fail(e instanceof SsrfError ? e.reason : String(e)); }
+      try { u = await bounded(assertPublicUrl(current, resolve), ctl.signal); } catch (e) { return fail(ctl.signal.aborted ? 'timed out' : e instanceof SsrfError ? e.reason : String(e)); }
       if (ctl.signal.aborted) return fail('timed out', 0, current);
       let res: RawResponse;
       try {

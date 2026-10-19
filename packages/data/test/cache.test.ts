@@ -7,6 +7,17 @@ import { Cache, TTL, defaultDbPath } from '../src/cache.ts';
 import { FakeClock, flushMicrotasks } from '../src/clock.ts';
 import './helpers.ts';
 
+test('trim bounds a public cache by newest entries and prune removes expired entries', () => {
+  const c = new Cache({ clock: new FakeClock(1000) });
+  try {
+    for (let i = 0; i < 20; i++) c.set('public', String(i), i, { ttlMs: 10, fetchedAt: i });
+    assert.equal(c.trim(5), 15); assert.equal(c.count(), 5);
+    assert.equal(c.get('public', '0'), undefined); assert.equal(c.get('public', '19')?.value, 19);
+    assert.equal(c.prune(0), 5); assert.equal(c.count(), 0);
+    assert.throws(() => c.trim(-1));
+  } finally { c.close(); }
+});
+
 test('get/set with TTL: fresh, then stale, with age and source', async () => {
   const clock = new FakeClock(1_000);
   const c = new Cache({ clock });

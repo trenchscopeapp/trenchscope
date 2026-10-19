@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>trenchscope market</title>
+<style>
+:root{color-scheme:dark;--bg:#0a0a0a;--panel:#141414;--ink:#ededed;--muted:#a6a6a6;--line:#2c2c2c;--up:#7cc794;--down:#e8847c;--warn:#d9b46a;font-size:14px;line-height:1.5;font-family:"Spline Sans Mono", ui-monospace, "SF Mono", Menlo, monospace}
+:root[data-theme=light]{color-scheme:light;--bg:#fafafa;--panel:#efefef;--ink:#171717;--muted:#575757;--line:#d0d0d0;--up:#25673c;--down:#a0322b;--warn:#775114}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);padding:20px;overflow-wrap:anywhere}::selection{background:var(--ink);color:var(--bg)}button,input,select{font:inherit;color:inherit}button,select{min-height:44px;border:1px solid var(--line);border-radius:6px;background:var(--bg);padding:8px 12px;touch-action:manipulation}button{white-space:nowrap;flex-shrink:0;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}button:disabled{cursor:wait;opacity:.55}button:active{background:var(--panel)}button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}:focus-visible{outline:2px solid var(--ink);outline-offset:3px}input{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;min-height:44px;min-width:0;width:100%;font-size:16px}input::placeholder{color:var(--muted)}h1,h2,p{margin:0}h1{font-size:20px;line-height:1.2;letter-spacing:-.03em}h2{font-size:18px;letter-spacing:-.02em}small,.muted{color:var(--muted)}header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line)}.brand{font-size:18px;font-weight:700;letter-spacing:-.04em}.tag{font-size:12px;border:1px solid var(--line);padding:4px 7px;border-radius:4px}.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:22px 0 18px}.heading small{display:block;margin-top:6px}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:16px 0}.toolbar label{flex:1;min-width:160px}.filters{display:flex;gap:6px}.table-wrap{overflow-x:auto;scrollbar-color:var(--muted) var(--bg)}table{border-collapse:collapse;width:100%;table-layout:fixed}th,td{text-align:right;padding:13px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;vertical-align:middle;white-space:nowrap}th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:400}th:first-child,td:first-child{text-align:left;width:28%;padding-left:0}td:last-child,th:last-child{padding-right:0}.token{display:block;text-align:left;border:0;padding:0;background:transparent;max-width:100%;font-weight:600;border-radius:2px}.token-name{display:block;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.token small{display:block;font-size:11px;font-weight:400;color:var(--muted)}.up{color:var(--up)}.down{color:var(--down)}.warning{color:var(--warn)}#notice{margin-top:16px;white-space:pre-line}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0}.metric{background:var(--bg);padding:16px;min-width:0}.metric dt{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.metric dd{margin:6px 0 0;font-size:19px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.address{font-size:12px;color:var(--muted);word-break:break-all;margin-top:8px;user-select:all}.section{border-top:1px solid var(--line);padding:20px 0 0;margin-top:20px}.section h2{font-size:14px;margin-bottom:12px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}.fact{display:flex;justify-content:space-between;gap:12px}.fact span:first-child{color:var(--muted)}.fact span:last-child{text-align:right;font-variant-numeric:tabular-nums}ul{padding-left:18px;margin:8px 0}li{margin:6px 0}.state{padding:32px 0;color:var(--muted)}.chart{display:flex;align-items:flex-end;gap:3px;height:135px;padding:12px 0 0}.chart i{display:block;flex:1;background:var(--muted);min-width:2px}.chart-caption{display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--muted);margin-top:8px}footer{border-top:1px solid var(--line);padding-top:14px;margin-top:22px;font-size:11px;color:var(--muted)}[hidden]{display:none!important}@media(hover:hover) and (pointer:fine){button:hover{background:var(--panel)}button[aria-pressed=true]:hover{background:var(--ink)}.token:hover{text-decoration:underline}tr:hover td{background:var(--panel)}}@media(max-width:480px){body{padding:16px}.tag{font-size:11px}.heading{gap:8px}.heading h1{font-size:18px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:13px}.metric dd{font-size:17px}.facts{grid-template-columns:1fr}.optional{display:none}.toolbar{gap:8px}.toolbar label{flex-basis:100%}th,td{padding:12px 5px;font-size:12px}th{font-size:11px}th:first-child,td:first-child{width:30%}th:nth-child(2),td:nth-child(2){width:28%}th:nth-child(3),td:nth-child(3){width:20%}th:nth-child(4),td:nth-child(4){width:22%}td{font-size:11px}.unavailable{font-size:0}.unavailable:after{content:"n/a";font-size:11px}.filters{flex:1}.filters button{flex:1;padding:8px}.heading button{padding:8px}.token small{font-size:11px}}
+</style>
+<style>
+.token{display:flex;align-items:center;gap:8px}.logo{width:30px;height:30px;flex-shrink:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;display:grid;place-items:center;background:var(--panel);font-size:11px}.logo img,.logo span{grid-area:1/1}.logo img{width:100%;height:100%;object-fit:cover}.token-name{min-width:0}a{color:var(--muted);text-underline-offset:3px}a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}.ca-link{display:inline-flex;align-items:center;min-height:44px;font-size:11px}.token-heading{display:flex;align-items:center;gap:12px;margin-bottom:8px}.token-heading .logo{width:44px;height:44px}.address a{color:var(--ink);display:inline-block;min-height:44px;line-height:1.8}.wallets{display:grid;gap:12px}.wallets a{min-height:44px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;font-size:12px;word-break:break-all}.chart-value{font-size:12px;color:var(--muted);margin:8px 0;min-height:20px}svg{touch-action:pan-y}
+@media(max-width:480px){.logo{width:24px;height:24px}.token{gap:6px}.ca-link{font-size:11px}}
+</style>
+</head>
+<body>
+<header><span class="brand">trenchscope</span><span class="tag">SOLANA / READ ONLY</span></header>
+<main id="main" aria-busy="true">
+  <div class="heading"><div><h1 id="title">Market view</h1><small id="subtitle">Waiting for Claude to send market data.</small></div><button id="refresh" hidden>Refresh</button></div>
+  <p id="notice" role="status" aria-live="polite"></p>
+  <section id="screener" aria-label="Token screener" hidden>
+    <div class="toolbar"><div class="filters" role="group" aria-label="Price direction"><button data-filter="all" aria-pressed="true">All</button><button data-filter="up" aria-pressed="false">Gainers</button><button data-filter="down" aria-pressed="false">Losers</button></div><label><span class="muted" style="position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden">Filter tokens</span><input id="search" type="search" placeholder="Filter symbol or mint" autocomplete="off"></label></div>
+    <div class="table-wrap"><table><caption hidden>Solana tokens, prices in USD. Activate a token to open its dossier.</caption><thead><tr><th scope="col">Token</th><th scope="col">Price</th><th scope="col">1h %</th><th scope="col">Mkt cap</th><th scope="col" class="optional">Liquidity</th><th scope="col" class="optional">Vol / 1h</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="state" hidden>No tokens match. Clear the filter or choose All.</p>
+  </section>
+  <section id="detail" aria-label="Token dossier" hidden></section>
+</main>
+<footer id="footer">Public market data. Missing values mean unavailable, never zero.</footer>
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const pending = new Map(); const seenCharts = new Set(); let seq = 0, connected = false, hostTools = false, hostLinks = false, images = {}, currentName = '', currentArgs = {}, lastData = null, filter = 'all', busy = false, disposed = false;
+  // The parent can be an opaque-origin sandbox. Validate source; never accept messages from sibling frames.
+  const post = (message) => window.parent.postMessage({ jsonrpc: '2.0', ...message }, '*');
+  function request(method, params) {
+    return new Promise((resolve, reject) => {
+      const id = 'trenchscope-' + (++seq);
+      const timer = setTimeout(() => { pending.delete(id); reject(new Error('The host did not respond. Try again.')); }, 45000);
+      pending.set(id, { resolve, reject, timer }); post({ id, method, params });
+    });
+  }
+  const notify = (method, params = {}) => { if (connected) post({ method, params }); };
+  const finite = (v) => typeof v === 'number' && Number.isFinite(v);
+  const money = (v, compact = false) => !finite(v) ? 'Unavailable' : new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: compact ? 'compact' : 'standard', maximumSignificantDigits: v < 1 ? 4 : 6 }).format(v);
+  const number = (v) => finite(v) ? new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 }).format(v) : 'Unavailable';
+  const percent = (v) => finite(v) ? (v > 0 ? '+' : '') + number(v) + '%' : 'Unavailable';
+  const plain = (v) => String(v ?? '').replace(/<untrusted\b[^>]*>([\s\S]*?)<\/untrusted>/g, '$1').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&quot;/g, '"');
+  function el(tag, text, cls) { const node = document.createElement(tag); if (text !== undefined) node.textContent = String(text); if (cls) node.className = cls; return node; }
+  function logo(mint, symbol) {
+    const node = el('span', undefined, 'logo'); const fallback = el('span', plain(symbol || '?').slice(0, 2)); node.append(fallback); node.title = 'Token image unavailable';
+    const src = images[mint];
+    if (typeof src === 'string' && /^data:image\/(png|jpeg|gif|webp);base64,[A-Za-z0-9+/=]+$/.test(src)) {
+      const img = el('img'); img.alt = ''; img.width = 44; img.height = 44;
+      img.onload = () => { fallback.hidden = true; node.title = plain(symbol) + ' token image'; };
+      img.onerror = () => { img.remove(); fallback.hidden = false; node.title = 'Token image unavailable'; };
+      img.src = src; node.append(img);
+    }
+    return node;
+  }
+  function explorer(address, kind = 'account', short = false) {
+    if (typeof address !== 'string' || !/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(address)) return el('span', 'Unavailable');
+    const label = short ? address.slice(0, 4) + '…' + address.slice(-4) : address;
+    const link = el('a', label); link.href = 'https://solscan.io/' + kind + '/' + address; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.title = 'Open ' + address + ' on Solscan';
+    link.setAttribute('aria-label', 'Open ' + (kind === 'token' ? 'contract ' : 'wallet ') + address + ' on Solscan');
+    link.addEventListener('click', (event) => { if (hostLinks) { event.preventDefault(); request('ui/open-link', { url: link.href }).catch((error) => notice(error.message, true)); } });
+    return link;
+  }
+  function notice(text, warning = false) { $('notice').textContent = plain(text); $('notice').className = warning ? 'warning' : 'muted'; }
+  function setBusy(value) { busy = value; $('main').setAttribute('aria-busy', String(value)); $('refresh').disabled = value; $('refresh').textContent = value ? 'Loading…' : 'Refresh'; }
+  function updated(data) { const time = finite(data.now) ? new Date(data.now).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) : null; return time ? 'Snapshot ' + time + '. Refresh to update.' : 'Source timestamps unavailable. Refresh to update.'; }
+  function showRows() {
+    const query = $('search').value.toLowerCase().trim();
+    const rows = (lastData?.rows || []).filter((r) => {
+      const change = r.priceChange?.h1;
+      return (!query || (plain(r.symbol) + ' ' + r.mint).toLowerCase().includes(query)) && (filter === 'all' || (finite(change) && (filter === 'up' ? change > 0 : change < 0)));
+    });
+    $('rows').replaceChildren();
+    for (const row of rows) {
+      const tr = el('tr'); const first = el('td'); const button = el('button', undefined, 'token');
+      button.append(logo(row.mint, row.symbol), el('span', plain(row.symbol) || 'Unknown', 'token-name'));
+      button.title = plain(row.symbol) + ' / ' + row.mint; button.disabled = !hostTools || busy;
+      button.addEventListener('click', () => load('get_dossier', { mint: row.mint }));
+      const ca = explorer(row.mint, 'token', true); ca.classList.add('ca-link'); first.append(button, ca); tr.append(first);
+      const change = row.priceChange?.h1;
+      for (const [i, value] of [money(row.priceUsd), percent(change), money(row.mcap, true), money(row.liquidityUsd, true), money(row.volH1, true)].entries()) {
+        const td = el('td', value, i > 2 ? 'optional' : '');
+        if (value === 'Unavailable') { td.classList.add('unavailable'); td.title = 'Unavailable'; }
+        if (i === 1 && finite(change)) td.classList.add(change >= 0 ? 'up' : 'down'); tr.append(td);
+      }
+      $('rows').append(tr);
+    }
+    $('empty').hidden = rows.length > 0;
+    if (!lastData?.rows?.length) $('empty').textContent = 'No tokens returned. Refresh to try again.';
+    $('subtitle').textContent = rows.length + ' of ' + (lastData?.rows?.length || 0) + ' tokens / ' + updated(lastData);
+  }
+  function section(title) { const node = el('section', undefined, 'section'); node.append(el('h2', title)); $('detail').append(node); return node; }
+  function facts(parent, items) { const list = el('div', undefined, 'facts'); for (const [label, value] of items) { const row = el('div', undefined, 'fact'); row.append(el('span', label), el('span', value)); list.append(row); } parent.append(list); }
+  function detail(data) {
+    const market = data.market || data; const token = market.token || {}; const pair = market.pair || {}; const audit = market.audit || {}; const security = data.security || {}; const concentration = data.concentration || {};
+    $('detail').replaceChildren(); $('title').textContent = plain(token.symbol) || 'Token dossier';
+    $('subtitle').textContent = (plain(token.name) ? plain(token.name) + ' / ' : '') + updated(data);
+    const mint = data.mint || token.mint || currentArgs.mint || '';
+    const identity = el('div', undefined, 'token-heading'); identity.append(logo(mint, token.symbol), el('span', plain(token.name) || plain(token.symbol) || 'Unknown token')); $('detail').append(identity);
+    const address = el('p', undefined, 'address'); address.append(el('span', 'CA / '), explorer(mint, 'token')); $('detail').append(address);
+    const metrics = el('dl', undefined, 'metrics');
+    for (const [label, value] of [['Price', money(pair.priceUsd)], ['Market cap', money(pair.mcapResolved?.value ?? pair.mcap, true)], ['Liquidity', money(pair.liquidityUsd, true)], ['1h change', percent(pair.priceChange?.h1)], ['1h volume', money(pair.volume?.h1, true)], ['Holders', number(concentration.holderCount ?? market.stats?.holderCount)]]) { const group = el('div', undefined, 'metric'); group.append(el('dt', label), el('dd', value)); metrics.append(group); }
+    $('detail').append(metrics);
+    const authority = (value) => value === null || value === undefined ? 'Unknown' : value === false ? 'Revoked' : 'Active';
+    facts(section('Security & concentration'), [['Mint authority', authority(audit.mintAuthority)], ['Freeze authority', authority(audit.freezeAuthority)], ['Top 10 share', finite(concentration.top10PctExLp ?? audit.top10Pct) ? number(concentration.top10PctExLp ?? audit.top10Pct) + '%' : 'Unavailable'], ['LP locked', finite(security.lpLockedPct ?? audit.lpLockedPct) ? number(security.lpLockedPct ?? audit.lpLockedPct) + '%' : 'Unavailable']]);
+    const risks = (security.risks || []).slice(0, 8);
+    if (risks.length) { const list = el('ul'); for (const risk of risks) list.append(el('li', plain(risk.name || risk.description || risk), 'warning')); section('Reported risks').append(list); }
+    const candles = data.candles;
+    if (candles && !candles.error) {
+      const points = (candles.candles || []).filter((c) => finite(c.c) && finite(c.t)).slice(-24);
+      if (points.length > 1) {
+        const panel = section('Closing prices / ' + (data.interval || '1h'));
+        const low = Math.min(...points.map((c) => c.c)), high = Math.max(...points.map((c) => c.c));
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 720 150'); svg.setAttribute('role', 'img');
+        svg.setAttribute('aria-label', points.length + ' closing prices, from ' + money(points[0].c) + ' to ' + money(points[points.length - 1].c));
+        svg.style.cssText = 'display:block;width:100%;height:150px;color:var(--ink);overflow:visible';
+        svg.style.color = points[points.length - 1].c >= points[0].c ? 'var(--up)' : 'var(--down)';
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+        line.setAttribute('points', points.map((c, i) => (8 + i / (points.length - 1) * 704) + ',' + (high === low ? 75 : 138 - (c.c - low) / (high - low) * 126)).join(' '));
+        line.setAttribute('fill', 'none'); line.setAttribute('stroke', 'currentColor'); line.setAttribute('stroke-width', '2'); line.setAttribute('vector-effect', 'non-scaling-stroke'); svg.append(line);
+        const caption = el('div', undefined, 'chart-caption'); caption.append(el('span', 'Low ' + money(low)), el('span', 'High ' + money(high)));
+        panel.append(svg, caption);
+        const value = el('p', 'Move across the chart to inspect a close.', 'chart-value'); panel.append(value);
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); marker.setAttribute('r', '4'); marker.setAttribute('fill', 'currentColor'); marker.setAttribute('visibility', 'hidden'); svg.append(marker);
+        const crosshair = document.createElementNS('http://www.w3.org/2000/svg', 'line'); crosshair.setAttribute('y1', '8'); crosshair.setAttribute('y2', '142'); crosshair.setAttribute('stroke', 'currentColor'); crosshair.setAttribute('stroke-dasharray', '3 5'); crosshair.setAttribute('opacity', '.35'); crosshair.setAttribute('visibility', 'hidden'); svg.prepend(crosshair);
+        svg.setAttribute('tabindex', '0'); svg.setAttribute('aria-label', svg.getAttribute('aria-label') + '. Use left and right arrow keys to inspect prices.');
+        let inspected = points.length - 1;
+        const inspect = (i) => { inspected = Math.max(0, Math.min(points.length - 1, i)); const point = points[inspected]; const x = 8 + inspected / (points.length - 1) * 704; const y = high === low ? 75 : 138 - (point.c - low) / (high - low) * 126; marker.setAttribute('cx', x); marker.setAttribute('cy', y); marker.setAttribute('visibility', 'visible'); crosshair.setAttribute('x1', x); crosshair.setAttribute('x2', x); crosshair.setAttribute('visibility', 'visible'); value.textContent = new Date(point.t).toLocaleString() + ' / Close ' + money(point.c); };
+        svg.addEventListener('pointermove', (event) => { const bounds = svg.getBoundingClientRect(); inspect(Math.round((event.clientX - bounds.left) / bounds.width * (points.length - 1))); });
+        svg.addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); inspect(inspected + (event.key === 'ArrowRight' ? 1 : -1)); } });
+        // Reveal a newly opened token's actual history once. Refreshes keep the chart immediate.
+        if (!seenCharts.has(mint) && !matchMedia('(prefers-reduced-motion: reduce)').matches) svg.animate([{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0 0 0)' }], { duration: 260, easing: 'cubic-bezier(.16,1,.3,1)' });
+        seenCharts.add(mint);
+        panel.append(el('small', points.length + ' closes, ' + (candles.source || 'source unavailable') + '. ' + (finite(candles.ageSec) ? number(candles.ageSec) + 's old.' : 'Age unknown.')));
+      }
+      const summary = candles.summary || candles;
+      const items = [['Open', money(summary.first)], ['Last close', money(summary.last)], ['High', money(summary.high)], ['Low', money(summary.low)], ['Change', percent(summary.changePct)], ['From high', percent(summary.drawdownFromHighPct)]];
+      if (items.length) facts(section('Price history / ' + (data.interval || '1h')), items);
+    }
+    const missing = [...(data.availability?.missing || []), ...(data.availability?.knownUnavailable || [])];
+    const creator = data.creator?.creator || audit.devAddress;
+    const holders = (concentration.holders || []).filter((holder) => holder.owner || holder.address).slice(0, 8);
+    if (creator || holders.length) {
+      const wallets = el('div', undefined, 'wallets');
+      if (creator) { const group = el('div'); group.append(el('small', 'Creator / '), explorer(creator)); wallets.append(group); }
+      for (const holder of holders) { const link = explorer(holder.owner || holder.address); link.append(el('span', finite(holder.pct) ? number(holder.pct) + '%' : 'Share unavailable', 'muted')); wallets.append(link); }
+      section('Creator & largest holders').append(wallets);
+    }
+    if (missing.length) { const list = el('ul'); for (const item of missing) list.append(el('li', plain(item))); section('Unavailable data').append(list); }
+    const ages = [['Market', market.pair?.ageSec], ['Holders', concentration.ageSec], ['Security', security.ageSec]].map(([label, age]) => label + ': ' + (finite(age) ? number(age) + 's old' : 'age unknown')).join(' / ');
+    $('footer').textContent = ages + '. Public data; risk indicators are not a safety guarantee.';
+    if (hostTools) { const back = el('button', 'Show screener'); back.style.marginTop = '20px'; back.addEventListener('click', () => load('screener_query', { preset: 'trending', limit: 10 })); $('detail').append(back); }
+  }
+  function render(result) {
+    let data = result.structuredContent;
+    if (!data) { try { data = JSON.parse((result.content || []).find((c) => c.type === 'text')?.text || '{}'); } catch { throw new Error('The tool returned an unreadable result. Refresh to try again.'); } }
+    if (result.isError || data.error) throw new Error(plain(data.error || 'The tool could not complete. Try again.'));
+    images = result._meta?.images || {}; lastData = data; notice(''); $('screener').hidden = !Array.isArray(data.rows); $('detail').hidden = Array.isArray(data.rows);
+    if (Array.isArray(data.rows)) {
+      $('title').textContent = (data.preset === 'new' ? 'New pairs' : 'Trending tokens'); showRows();
+      const errors = Object.entries(data.errors || {}).map(([source, error]) => source + ': ' + plain(error)); if (errors.length) notice('Some sources are unavailable. ' + errors.join(' / '), true);
+      $('footer').textContent = 'Prices in USD / 1h change / Public data. Missing values mean unavailable, never zero.';
+    } else detail(data);
+    $('refresh').hidden = !hostTools || !currentName;
+  }
+  async function load(name, args) {
+    if (busy || !connected || !hostTools) return;
+    setBusy(true); notice('Fetching ' + (name === 'get_dossier' ? 'token dossier' : 'market data') + '…');
+    try { const result = await request('tools/call', { name, arguments: args }); currentName = name; currentArgs = args; render(result); }
+    catch (error) { notice(error.message, true); }
+    finally { setBusy(false); if (lastData?.rows && !$('screener').hidden) showRows(); }
+  }
+  $('refresh').addEventListener('click', () => load(currentName, currentArgs));
+  $('search').addEventListener('input', showRows);
+  // Adapted from Osmo Basic Filter Setup: immediate, accessible filtering for live data; no delayed transition.
+  document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => { filter = button.dataset.filter; document.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b === button))); showRows(); }));
+  function context(value) { if (value?.theme === 'light' || value?.theme === 'dark') document.documentElement.dataset.theme = value.theme; }
+  function onMessage(event) {
+    if (event.source !== window.parent || disposed || !event.data || event.data.jsonrpc !== '2.0') return;
+    const message = event.data;
+    if (pending.has(message.id)) { const p = pending.get(message.id); clearTimeout(p.timer); pending.delete(message.id); message.error ? p.reject(new Error(message.error.message || 'Host request failed')) : p.resolve(message.result); return; }
+    if (message.method === 'ping') { post({ id: message.id, result: {} }); return; }
+    if (!connected) return;
+    if (message.method === 'ui/notifications/tool-input') { currentArgs = message.params?.arguments || {}; setBusy(true); notice('Loading market data…'); }
+    if (message.method === 'ui/notifications/tool-result') { setBusy(false); try { render(message.params || {}); } catch (error) { notice(error.message, true); } }
+    if (message.method === 'ui/notifications/tool-cancelled') { setBusy(false); notice('Request cancelled. Ask Claude to try again.', true); }
+    if (message.method === 'ui/notifications/host-context-changed') context(message.params);
+    if (message.method === 'ui/resource-teardown') { disposed = true; observer.disconnect(); for (const p of pending.values()) { clearTimeout(p.timer); p.reject(new Error('View closed')); } pending.clear(); post({ id: message.id, result: {} }); window.removeEventListener('message', onMessage); }
+  }
+  window.addEventListener('message', onMessage);
+  let lastHeight = 0;
+  const observer = new ResizeObserver(() => { const height = Math.ceil(document.documentElement.getBoundingClientRect().height); if (height !== lastHeight) { lastHeight = height; notify('ui/notifications/size-changed', { height }); } });
+  if (window.parent === window) { setBusy(false); notice('This view opens inside a compatible MCP client. Add the Trenchscope connector and ask for trending tokens.'); }
+  else request('ui/initialize', { appInfo: { name: 'trenchscope', version: '1.0.0' }, appCapabilities: { availableDisplayModes: ['inline'] }, protocolVersion: '2026-01-26' }).then((result) => {
+    connected = true; hostTools = !!result.hostCapabilities?.serverTools; hostLinks = !!result.hostCapabilities?.openLinks; context(result.hostContext); currentName = result.hostContext?.toolInfo?.tool?.name || '';
+    post({ method: 'ui/notifications/initialized' }); observer.observe(document.body);
+    setBusy(false);
+  }).catch((error) => { setBusy(false); notice(error.message, true); });
+})();
+</script>
+</body>
+</html>

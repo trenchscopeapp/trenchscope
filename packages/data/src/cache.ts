@@ -142,6 +142,13 @@ export class Cache {
     return Number(row.n);
   }
 
+  /** Keep only the newest entries in a long-running public service. Local clients opt in explicitly. */
+  trim(maxEntries: number): number {
+    if (!Number.isSafeInteger(maxEntries) || maxEntries < 0) throw new Error('maxEntries must be a non-negative integer');
+    const res = this.db.prepare('DELETE FROM cache WHERE (ns, key) IN (SELECT ns, key FROM cache ORDER BY fetched_at DESC, ns, key LIMIT -1 OFFSET ?)').run(maxEntries);
+    return Number(res.changes);
+  }
+
   /**
    * Cached load with coalescing (identical concurrent loads share one promise)
    * and stale-while-revalidate. On loader failure a stale value is served with

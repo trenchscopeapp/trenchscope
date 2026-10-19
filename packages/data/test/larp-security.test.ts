@@ -2,8 +2,27 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { safeFetch, blockedIp } from '../src/larp/safe-fetch.ts';
 import { fetchPage, robotsAllows } from '../src/larp/robots.ts';
+import http from 'node:http';
+import { syncBuiltinESMExports } from 'node:module';
+import { PassThrough } from 'node:stream';
+import { EventEmitter } from 'node:events';
 
 const resolve = async () => ['93.184.216.34'];
+
+test('malformed native HTTP status is a caught fetch failure, never an uncaught callback exception', async (t) => {
+  const original = http.request;
+  t.mock.method(http, 'request', (_url: unknown, _options: unknown, callback: (response: unknown) => void) => {
+    const req = new EventEmitter() as EventEmitter & { end: () => void };
+    req.end = () => { queueMicrotask(() => callback(Object.assign(new PassThrough(), { statusCode: 600, headers: {} }))); };
+    return req;
+  });
+  syncBuiltinESMExports();
+  try {
+    const result = await safeFetch('http://bad-status.invalid/', { resolve });
+    assert.equal(result.ok, false);
+    assert.match(result.blocked!, /status|range/i);
+  } finally { http.request = original; syncBuiltinESMExports(); }
+});
 
 test('native socket rejects DNS rebinding after the preliminary public lookup', async () => {
   let calls = 0;

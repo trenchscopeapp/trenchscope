@@ -95,8 +95,8 @@ const KB_DIR = path.join(ASSETS, 'kb', 'entries');
 export const BUNDLED_KB_DIR = KB_DIR;
 const logSkip = (kind: string) => (s: SkippedFile) => { process.stderr.write(`trenchscope ${kind}: skipped ${s.file}: ${s.reason}\n`); };
 const KB_STORE = new OverlayStore({ kind: 'kb', bundled: [{ dir: KB_DIR, layout: 'flat' }], home: () => dextermHome(process.env), onSkip: logSkip('kb') });
-const kbAll = (): KbEntry[] => KB_STORE.get().entries;
-const kbIndex = () => kbAll().map((e) => ({ id: e.id, title: e.meta.title, tags: e.meta.tags ?? [], confidence: e.meta.confidence, bytes: e.bytes, origin: e.origin }));
+const kbAll = (bundledOnly = false): KbEntry[] => bundledOnly ? KB_STORE.bundled() : KB_STORE.get().entries;
+const kbIndex = (bundledOnly = false) => kbAll(bundledOnly).map((e) => ({ id: e.id, title: e.meta.title, tags: e.meta.tags ?? [], confidence: e.meta.confidence, bytes: e.bytes, origin: e.origin }));
 
 function kbView(e: KbEntry, { full = true } = {}): Record<string, unknown> {
   const user = e.origin === 'user';
@@ -119,9 +119,9 @@ function kbView(e: KbEntry, { full = true } = {}): Record<string, unknown> {
   };
 }
 function tokenise(s: string): string[] { return (s.toLowerCase().match(/[a-z0-9][a-z0-9\-]+/g) ?? []); }
-function kbSearch(q: string, limit = 5): Array<Record<string, unknown>> {
+function kbSearch(q: string, limit = 5, bundledOnly = false): Array<Record<string, unknown>> {
   const terms = tokenise(q);
-  const scored = kbAll().map((e) => {
+  const scored = kbAll(bundledOnly).map((e) => {
     const hay = `${e.meta.title} ${((e.meta.tags as string[]) ?? []).join(' ')} ${e.body}`.toLowerCase();
     const titleHay = `${e.meta.title} ${((e.meta.tags as string[]) ?? []).join(' ')}`.toLowerCase();
     let score = 0;
@@ -193,7 +193,7 @@ const CASES: Array<Record<string, unknown>> = fs.existsSync(CASES_FILE)
 const SKILLS_DIR = path.join(ASSETS, 'skills');
 /** The MCP server's shipped skills directory (read-only). */
 export const BUNDLED_SKILLS_DIR = SKILLS_DIR;
-const skillsAll = (): KbEntry[] => SKILL_STORE.get().entries;
+const skillsAll = (bundledOnly = false): KbEntry[] => bundledOnly ? SKILL_STORE.bundled() : SKILL_STORE.get().entries;
 function skillName(e: KbEntry): string { return (e.meta.name as string) || e.id; }
 function skillArgs(e: KbEntry): Array<{ name: string; required: boolean }> {
   const list = Array.isArray(e.meta.arguments) ? (e.meta.arguments as string[]) : [];
@@ -223,31 +223,31 @@ function skillPromptText(e: KbEntry, args: Record<string, unknown> = {}): string
 }
 
 /** MCP prompts: one per skill (bundled + user), with its declared arguments. */
-export function listPrompts(): Array<Record<string, unknown>> {
-  return skillsAll().map((e) => ({ name: skillName(e), description: skillDescription(e), arguments: skillArgs(e), origin: e.origin }));
+export function listPrompts(bundledOnly = false): Array<Record<string, unknown>> {
+  return skillsAll(bundledOnly).map((e) => ({ name: skillName(e), description: skillDescription(e), arguments: skillArgs(e), origin: e.origin }));
 }
 /** The prompt messages for a skill, with its arguments substituted. */
-export function getPrompt(name: string, args: Record<string, unknown> = {}): { description: string; messages: Array<Record<string, unknown>> } | { error: string } {
-  const e = skillsAll().find((x) => skillName(x) === name);
+export function getPrompt(name: string, args: Record<string, unknown> = {}, bundledOnly = false): { description: string; messages: Array<Record<string, unknown>> } | { error: string } {
+  const e = skillsAll(bundledOnly).find((x) => skillName(x) === name);
   if (!e) return { error: `no such prompt ${name}` };
   return { description: skillDescription(e), messages: [{ role: 'user', content: { type: 'text', text: skillPromptText(e, args) } }] };
 }
 
 /** MCP resources: one per KB entry, case and skill. URIs are opaque ids, never filesystem paths. */
-export function resourceList(): Array<Record<string, unknown>> {
+export function resourceList(bundledOnly = false): Array<Record<string, unknown>> {
   return [
-    ...kbAll().map((e) => ({ uri: `dexterm://kb/${e.id}`, name: e.origin === 'user' ? `${e.id} (user)` : String(e.meta.title ?? e.id), mimeType: 'text/markdown', description: 'knowledge-base entry (mechanics/patterns; never facts about a live token)' })),
+    ...kbAll(bundledOnly).map((e) => ({ uri: `dexterm://kb/${e.id}`, name: e.origin === 'user' ? `${e.id} (user)` : String(e.meta.title ?? e.id), mimeType: 'text/markdown', description: 'knowledge-base entry (mechanics/patterns; never facts about a live token)' })),
     ...CASES.map((c) => ({ uri: `dexterm://case/${c.id}`, name: String(c.title ?? c.id), mimeType: 'application/json', description: 'historical case file (verified on-chain references + outcome)' })),
-    ...skillsAll().map((e) => ({ uri: `dexterm://skill/${skillName(e)}`, name: skillName(e), mimeType: 'text/markdown', description: skillDescription(e) || 'trenchscope agent skill' })),
+    ...skillsAll(bundledOnly).map((e) => ({ uri: `dexterm://skill/${skillName(e)}`, name: skillName(e), mimeType: 'text/markdown', description: skillDescription(e) || 'trenchscope agent skill' })),
   ];
 }
-export function resourceRead(uri: string): { contents: Array<Record<string, unknown>> } | { error: string } {
+export function resourceRead(uri: string, bundledOnly = false): { contents: Array<Record<string, unknown>> } | { error: string } {
   const m = /^dexterm:\/\/(kb|case|skill)\/(.+)$/.exec(uri);
   if (!m) return { error: `unknown resource uri ${JSON.stringify(uri.slice(0, 80))}` };
   const [, kind, id] = m;
-  if (kind === 'kb') { const e = kbAll().find((x) => x.id === id); return e ? { contents: [{ uri, mimeType: 'text/markdown', text: JSON.stringify(kbView(e)) }] } : { error: 'no such kb entry' }; }
+  if (kind === 'kb') { const e = kbAll(bundledOnly).find((x) => x.id === id); return e ? { contents: [{ uri, mimeType: 'text/markdown', text: JSON.stringify(kbView(e)) }] } : { error: 'no such kb entry' }; }
   if (kind === 'case') { const c = CASES.find((x) => x.id === id); return c ? { contents: [{ uri, mimeType: 'application/json', text: JSON.stringify(c) }] } : { error: 'no such case' }; }
-  const e = skillsAll().find((x) => skillName(x) === id);
+  const e = skillsAll(bundledOnly).find((x) => skillName(x) === id);
   return e ? { contents: [{ uri, mimeType: 'text/markdown', text: e.origin === 'user' ? skillPromptText(e) : e.body }] } : { error: 'no such skill' };
 }
 
@@ -393,8 +393,10 @@ export class McpTools {
   private readonly paperDesk: () => Promise<PaperAgentDesk | null>;
   /** True while a spectator surface is watching this server (task-1443: paper WRITE calls refuse otherwise). */
   private readonly watched: () => boolean;
-  constructor(data: DataLayer, screenState: () => Record<string, unknown>, channel: ActionChannel | null = null, dbPath: string | null = null, paper: { desk: () => Promise<PaperAgentDesk | null>; watched: () => boolean } | null = null) {
+  private readonly bundledOnly: boolean;
+  constructor(data: DataLayer, screenState: () => Record<string, unknown>, channel: ActionChannel | null = null, dbPath: string | null = null, paper: { desk: () => Promise<PaperAgentDesk | null>; watched: () => boolean } | null = null, bundledOnly = false) {
     this.data = data;
+    this.bundledOnly = bundledOnly;
     this.screenState = screenState;
     this.channel = channel;
     this.dbPath = dbPath && dbPath !== ':memory:' ? dbPath : null;
@@ -792,7 +794,9 @@ export class McpTools {
           this.call('get_dev_history', { mint }).catch((e) => ({ error: err(e) })),
         ]);
         const dossier = buildDossier({ mint, interval, token, holders, rugcheck: rug, trades, candles, devHistory });
+        for (const [memoKey, memoValue] of this.dossierMemo) if (Date.now() - memoValue.t >= DOSSIER_TTL_MS) this.dossierMemo.delete(memoKey);
         this.dossierMemo.set(key, { t: Date.now(), v: dossier });
+        while (this.dossierMemo.size > 128) this.dossierMemo.delete(this.dossierMemo.keys().next().value!);
         return dossier;
       }
 
@@ -1000,12 +1004,12 @@ export class McpTools {
       }
 
       case 'kb_lookup': {
-        const e = kbAll().find((x) => x.id === args.id);
-        if (!e) return { error: `no KB entry ${String(args.id).slice(0, 64)}`, available: kbIndex().map((x) => x.id) };
+        const e = kbAll(this.bundledOnly).find((x) => x.id === args.id);
+        if (!e) return { error: `no KB entry ${String(args.id).slice(0, 64)}`, available: kbIndex(this.bundledOnly).map((x) => x.id) };
         return kbView(e);
       }
       case 'kb_search':
-        return { query: String(args.query ?? '').slice(0, 200), results: kbSearch(String(args.query ?? ''), Number(args.limit ?? 5)) };
+        return { query: String(args.query ?? '').slice(0, 200), results: kbSearch(String(args.query ?? ''), Number(args.limit ?? 5), this.bundledOnly) };
       case 'case_lookup': {
         if (!args.id) return { cases: CASES.map((c) => ({ id: c.id, title: c.title, pattern: c.pattern, outcome: c.outcome, verified: (c.verification as { status?: string } | undefined)?.status ?? 'unverified' })) };
         const c = CASES.find((x) => x.id === args.id);
@@ -1137,7 +1141,7 @@ function packageVersion(): string {
   return '0.0.0';
 }
 
-export const SERVER_INFO = { name: 'dexterm', version: packageVersion() };
+export const SERVER_INFO = { name: 'trenchscope', version: packageVersion() };
 
 function screenStateFromEnv(): Record<string, unknown> {
   const raw = process.env.DEXTERM_SCREEN_STATE;
@@ -1209,10 +1213,11 @@ export async function runStdioServer(opts: { argv?: string[] } = {}): Promise<vo
         let result: Record<string, unknown>;
         try { result = await tools.call(name, args); } catch (e) { result = { error: err(e) }; }
         const text = JSON.stringify(result);
+        const isError = Boolean(result.error);
         const ms = Date.now() - t0;
-        appendTrace({ t: Date.now(), tool: name, args, ms, bytes: Buffer.byteLength(text), isError: Boolean((result as { error?: unknown }).error) });
+        appendTrace({ t: Date.now(), tool: name, args, ms, bytes: Buffer.byteLength(text), isError });
         if (spectator.active()) spectator.record({ tool: name, args, result, ms });
-        return reply({ content: [{ type: 'text', text }], isError: false });
+        return reply({ content: [{ type: 'text', text }], isError });
       }
       case 'resources/list': return reply({ resources: resourceList() });
       case 'resources/read': {

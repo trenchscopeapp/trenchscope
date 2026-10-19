@@ -21,6 +21,15 @@
         ],
         "createdAt": "2026-10-19T00:49:21.942Z",
         "reason": "user asked for a full width and height animated ASCII background (2026-10-18); the panning layers are aria-hidden decoration carrying no content, static under reduced motion"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-10-19T20:05:42.063Z",
+        "reason": "Agent: existing live playback status pips use the app green to distinguish running from paused; preserve the accepted terminal demo during this narrow FAQ/copy refinement"
       }
     ]
   }

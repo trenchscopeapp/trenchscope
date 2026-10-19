@@ -3,7 +3,7 @@
 //   from the right edge, one cell step at a time like the terminal, drawn in glyphs picked by brightness
 //   on the GPU. The cursor lifts the ridge under it; the tour's key presses send a ring through it.
 //   Without WebGL2 the ASCII Magic plates and the canvas glyph field stay as they are.
-// - reveals: headings typed in by a cursor, list rows wiped in, mono labels decrypted in the app's
+// - reveals: headings wipe in, list rows wipe in, mono labels decrypt in the app's
 //   own hex glyphs (after React Bits Decrypted Text), install commands typed once, a keycap wave.
 // - sparks: line sparks on click (after React Bits Click Spark); magnet on the primary action
 //   (after React Bits Magnet); a glare on the screen glass that follows the pointer (after Glare Hover).
@@ -118,11 +118,34 @@ function market(seed) {
 // replaces) are never fetched; any failure here takes the mark off and the plates load as the fallback.
 const plates = () => document.documentElement.classList.remove('webgl2');
 
+/** Which WebGL2 renderer this machine has, asked from a worker so the (slow, on software) context creation never
+ * blocks the page: 'hardware', 'software', 'none', or 'unknown' when a worker cannot answer. */
+export function gpuKind() {
+  if (typeof Worker === 'undefined' || typeof OffscreenCanvas === 'undefined') return Promise.resolve('unknown');
+  const src = "try{const c=new OffscreenCanvas(1,1);const g=c.getContext('webgl2');if(!g){postMessage('none')}else{const i=g.getExtension('WEBGL_debug_renderer_info');postMessage(i?String(g.getParameter(i.UNMASKED_RENDERER_WEBGL)):'?')}}catch(e){postMessage('?')}";
+  return new Promise((resolve) => {
+    let url = '';
+    try {
+      url = URL.createObjectURL(new Blob([src], { type: 'text/javascript' }));
+      const w = new Worker(url);
+      const done = (kind) => { clearTimeout(t); w.terminate(); URL.revokeObjectURL(url); resolve(kind); };
+      const t = setTimeout(() => done('unknown'), 3000);
+      w.onmessage = (e) => done(e.data === 'none' ? 'none' : e.data === '?' ? 'unknown' : /swiftshader|llvmpipe|softpipe|software|basic render driver/i.test(e.data) ? 'software' : 'hardware');
+      w.onerror = () => done('unknown');
+    } catch { if (url) URL.revokeObjectURL(url); resolve('unknown'); }
+  });
+}
+
 export function liveTrench(root) {
   const canvas = root.querySelector('[data-gl]');
   if (!canvas) { plates(); return null; }
   const gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: false, powerPreference: 'low-power' });
   if (!gl) { plates(); return null; }
+  // A software rasteriser (no GPU acceleration) draws every frame on the CPU and stalls the page. Those machines
+  // keep the light canvas glyph field (main.js) and skip both the shader and the 600 KB of raster plates.
+  const info = gl.getExtension('WEBGL_debug_renderer_info');
+  const renderer = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+  if (/swiftshader|llvmpipe|softpipe|software|basic render driver/i.test(renderer)) { gl.getExtension('WEBGL_lose_context')?.loseContext(); return null; }
   let prog;
   try {
     prog = gl.createProgram();
@@ -153,6 +176,7 @@ export function liveTrench(root) {
 
   let W = 0, H = 0, dpr = 1, cellW = 9, cellH = 16, cols = 0, shift = 0, last = 0, lo = 0, hi = 0, raf = 0;
   let mouse = [-1, -1], pulse = [0, 0, -1], pulseAt = 0, running = false, t0 = performance.now();
+  let ridgeTop = 0.57, failed = false;
   const mobile = () => innerWidth < 768;
 
   function atlas() {
@@ -174,11 +198,16 @@ export function liveTrench(root) {
   }
 
   function size() {
+    if (failed || gl.isContextLost()) return;
     dpr = Math.min(2, window.devicePixelRatio || 1);
     cellW = mobile() ? 7 : 9; cellH = mobile() ? 13 : 16;
     W = Math.round(innerWidth * dpr); H = Math.round(innerHeight * dpr);
     canvas.width = W; canvas.height = H;
     cols = Math.ceil(innerWidth / cellW);
+    // Keep the live ridge above the demo as the opening layout becomes more compact.
+    const stage = document.querySelector('.stage');
+    const stageTop = stage ? stage.getBoundingClientRect().top + scrollY : innerHeight * 0.57 + 32;
+    ridgeTop = Math.max(0.24, Math.min(mobile() ? 0.62 : 0.57, (stageTop - 32) / innerHeight));
     gl.viewport(0, 0, W, H);
     atlas();
     upload(true);
@@ -192,7 +221,7 @@ export function liveTrench(root) {
     let a = Infinity, b = -Infinity;
     for (const k of vis) { a = Math.min(a, k.l); b = Math.max(b, k.h); }
     if (snap || !hi) { lo = a; hi = b; } else { lo += (a - lo) * 0.08; hi += (b - hi) * 0.08; }
-    const top = mobile() ? 0.62 : 0.57, span = mobile() ? 0.2 : 0.27;
+    const top = ridgeTop, span = mobile() ? 0.2 : 0.27;
     const yOf = (p) => top + (1 - (p - lo) / (hi - lo || 1)) * span;
     vis.forEach((k, i) => { series.set([yOf(k.o), yOf(k.c), yOf(k.h), yOf(k.l)], i * 4); });
     last = vis.length - 1;
@@ -246,7 +275,7 @@ export function liveTrench(root) {
     upload(false);
     draw(now);
   }
-  const start = () => { if (running || reduced || document.hidden) return; running = true; raf = requestAnimationFrame(frame); };
+  const start = () => { if (failed || gl.isContextLost() || running || reduced || document.hidden) return; running = true; raf = requestAnimationFrame(frame); };
   const stop = () => { running = false; cancelAnimationFrame(raf); };
 
   if (finePointer && !reduced) {
@@ -259,11 +288,19 @@ export function liveTrench(root) {
     pulseAt = performance.now();
   });
   let rt = 0;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(size, 150); });
+  const resize = () => { clearTimeout(rt); rt = setTimeout(size, 150); };
+  addEventListener('resize', resize);
+  const hero = document.querySelector('.hero');
+  const heroObserver = hero ? new ResizeObserver(resize) : null;
+  heroObserver?.observe(hero);
   document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
-  canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); stop(); root.classList.remove('gl'); plates(); });
+  canvas.addEventListener('webglcontextlost', (e) => {
+    e.preventDefault(); failed = true; stop(); clearTimeout(rt); heroObserver?.disconnect();
+    root.classList.remove('gl'); plates();
+  });
 
   return document.fonts.load('400 16px "JetBrains Mono"').catch(() => {}).then(() => {
+    if (failed || gl.isContextLost()) { root.classList.remove('gl'); plates(); return null; }
     size();
     root.classList.add('gl');
     start();
@@ -297,30 +334,9 @@ function decrypt(el, ms = 520) {
   requestAnimationFrame(step);
 }
 
-/** Type a pre's lines once at a terminal's pace; the copy button always copies the full text. */
-function type(pre, ms = 26) {
-  const html = pre.innerHTML;
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  const full = tmp.textContent;
-  let n = 0, stopped = false;
-  // picking another tab mid-type hands the block back to the tabs at once
-  pre.closest('[data-install]')?.addEventListener('click', () => { stopped = true; pre.removeAttribute('aria-busy'); }, { once: true, capture: true });
-  pre.setAttribute('aria-busy', 'true');
-  const tick = () => {
-    if (stopped) return;
-    n += 1;
-    pre.textContent = full.slice(0, n);
-    pre.insertAdjacentHTML('beforeend', '<span class="type-cur" aria-hidden="true"></span>');
-    if (n < full.length) setTimeout(tick, full[n - 1] === '\n' ? ms * 8 : ms);
-    else { pre.innerHTML = html; pre.removeAttribute('aria-busy'); }
-  };
-  tick();
-}
-
 export function reveals() {
   if (reduced) return;
-  // headings: a block cursor types them in, left to right
+  // headings reveal left to right without decorative carets
   const heads = [...document.querySelectorAll('.h2, .display')];
   heads.forEach((h) => { if (!inView(h)) h.classList.add('fx-wait'); });
   // a clipped element never intersects, so watch each heading's section and type its heading in
@@ -339,25 +355,18 @@ export function reveals() {
   once(lists, (list) => [...list.children].forEach((r) => r.classList.add('fx-in')), 0.15);
 
   // mono labels decrypt in the app's own glyphs
-  const mono = [...document.querySelectorAll('.states code, .table td:last-child, .foot-in > span:not(.foot-end), .frame-bar span:first-child')];
+  const mono = [...document.querySelectorAll('.states code, .table td:last-child, .foot-in > span:not(.foot-end)')];
   once(mono.filter((el) => !inView(el)), (el) => decrypt(el), 0.6);
 
   // keycaps press in a wave when the keys arrive
   once([document.querySelector('.keylist')].filter(Boolean), (list) => {
     list.querySelectorAll('.caps kbd').forEach((k, i) => setTimeout(() => { k.classList.add('fx-press'); setTimeout(() => k.classList.remove('fx-press'), 260); }, 380 + i * 70));
   }, 0.35);
-
-  // install commands type once: the hero right away, the closing block when it arrives
-  const pres = [...document.querySelectorAll('[data-install] [data-cmd-out]')];
-  pres.forEach((pre) => {
-    if (inView(pre)) setTimeout(() => type(pre), 500);
-    else once([pre], (p) => type(p), 0.6);
-  });
 }
 
 // ---------------------------------------------------------------- sparks, magnet, glare
 // sparks pop in the app's state colours: mostly up green, a little down red, ink between
-const SPARK = ['#52e08a', '#ededed', '#52e08a', '#ff6a5c', '#52e08a', '#ededed', '#52e08a', '#ededed'];
+const SPARK = ['#4ade80', '#edf2ee', '#4ade80', '#f2877e', '#4ade80', '#edf2ee', '#4ade80', '#edf2ee'];
 
 export function sparks() {
   if (reduced || !finePointer) return;

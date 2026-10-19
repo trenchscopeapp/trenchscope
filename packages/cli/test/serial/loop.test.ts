@@ -21,15 +21,16 @@ const KANA = new RegExp(`[${KATAKANA}]`);
 function fakeTty(env: NodeJS.ProcessEnv) {
   let out = '';
   let err = '';
+  let writes = 0;
   const rawCalls: boolean[] = [];
-  const stdout = new Writable({ write(chunk, _enc, cb) { out += chunk.toString(); cb(); } }) as unknown as NodeJS.WriteStream & { fd: 1 };
+  const stdout = new Writable({ write(chunk, _enc, cb) { out += chunk.toString(); writes += 1; cb(); } }) as unknown as NodeJS.WriteStream & { fd: 1 };
   const stderr = new Writable({ write(chunk, _enc, cb) { err += chunk.toString(); cb(); } }) as unknown as NodeJS.WriteStream & { fd: 2 };
   Object.assign(stdout, { isTTY: true, columns: 140, rows: 40 });
   Object.assign(stderr, { isTTY: true });
   const stdin = new PassThrough() as unknown as NodeJS.ReadStream & { fd: 0 };
   Object.assign(stdin, { isTTY: true, setRawMode(v: boolean) { rawCalls.push(v); return stdin; } });
   const io: Io = { stdout, stderr, stdin, env: { DEXTERM_OFFLINE: '1', COLORTERM: 'truecolor', ...env } };
-  return { io, out: () => out, err: () => err, rawCalls, type: (s: string) => { (stdin as unknown as PassThrough).write(s); } };
+  return { io, out: () => out, err: () => err, writes: () => writes, rawCalls, type: (s: string) => { (stdin as unknown as PassThrough).write(s); } };
 }
 
 function fakeProc() {
@@ -117,10 +118,13 @@ laneTest('--no-boot and --calm start straight on the screener without a transiti
     assert.doesNotMatch(t.out(), /JACKING IN/);
     assert.doesNotMatch(t.out(), /WELCOME TO TRENCHSCOPE/, 'a later launch skips the welcome card');
     assert.match(t.out(), /◉ live · calm/);
-    const n0 = t.out().length;
+    // Count paints, not bytes: one paint is one write, and a data tick repaints every row whose price moved
+    // (about 33 KB at 140x40 in the mono theme), so a byte bound broke whenever two ticks fell in the window.
+    // Data ticks run at 2 Hz, so 1.2 s holds at most 3; an animating screen would write dozens.
+    const w0 = t.writes();
     await new Promise((r) => setTimeout(r, 1200));
-    const bytes = t.out().length - n0;
-    assert.ok(bytes < 60_000, `calm mode wrote ${bytes} bytes in 1.2 s (data ticks only)`);
+    const paints = t.writes() - w0;
+    assert.ok(paints <= 3, `calm mode painted ${paints} times in 1.2 s (data ticks only: at most 3 at 2 Hz)`);
     assert.doesNotMatch(t.out(), KANA);
     t.type('q');
     assert.equal(await run, 0);

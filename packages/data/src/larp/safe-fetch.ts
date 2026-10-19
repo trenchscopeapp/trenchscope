@@ -190,14 +190,20 @@ function pinnedFetch(resolve: DnsResolver): typeof fetch {
           }, (err: Error) => cb(err, '', 4));
         },
       }, (res) => {
-        const headers = new Headers();
-        for (const [key, value] of Object.entries(res.headers)) {
-          if (value !== undefined) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
+        try {
+          const headers = new Headers();
+          for (const [key, value] of Object.entries(res.headers)) {
+            if (value !== undefined) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
+          }
+          const status = res.statusCode ?? 502;
+          if ([204, 205, 304].includes(status)) {
+            res.destroy(); yes(new Response(null, { status, headers }));
+          } else yes(new Response(Readable.toWeb(res) as ReadableStream<Uint8Array>, { status, headers }));
+        } catch (error) {
+          // Node accepts upstream status codes that WHATWG Response rejects. Never throw out of the callback.
+          res.destroy();
+          no(error);
         }
-        const status = res.statusCode ?? 502;
-        if ([204, 205, 304].includes(status)) {
-          res.destroy(); yes(new Response(null, { status, headers }));
-        } else yes(new Response(Readable.toWeb(res) as ReadableStream<Uint8Array>, { status, headers }));
       });
       req.on('error', no);
       req.end();
@@ -205,8 +211,8 @@ function pinnedFetch(resolve: DnsResolver): typeof fetch {
   }) as typeof fetch;
 }
 
-async function bounded<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
-  signal.throwIfAborted();
+export async function bounded<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
+  if (signal.aborted) { void promise.catch(() => {}); signal.throwIfAborted(); }
   return new Promise((yes, no) => {
     const abort = () => no(signal.reason);
     signal.addEventListener('abort', abort, { once: true });

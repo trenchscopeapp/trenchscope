@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>trenchscope</title>
 <meta name="description" content="A terminal for the trenches. Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens.">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#080a09">
 <meta property="og:type" content="website">
 <meta property="og:title" content="trenchscope: a terminal for the trenches">
 <meta property="og:description" content="Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens. Paper trading by default.">
@@ -24,12 +24,16 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script>if ('WebGL2RenderingContext' in window) document.documentElement.classList.add('webgl2');</script>
-<link rel="stylesheet" href="styles.css">
+<!-- Spline Sans and Spline Sans Mono are self-hosted and preloaded so the first paint already has them; JetBrains Mono (terminal cells only) loads without blocking -->
+<link rel="preload" href="assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/spline-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"></noscript>
+<script>document.documentElement.classList.add('js'); if ('WebGL2RenderingContext' in window) document.documentElement.classList.add('webgl2');</script>
+<link rel="stylesheet" href="styles.css?v=20261019-fonts1">
 <link rel="preload" href="tour.json" as="fetch" crossorigin media="(min-width: 768px)">
 <link rel="preload" href="tour-narrow.json" as="fetch" crossorigin media="(max-width: 767px)">
-<script type="module" src="main.js"></script>
+<script type="module" src="main.js?v=20261019-fonts1"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -43,10 +47,11 @@
 
 <header class="bar">
   <div class="wrap bar-in">
-    <a class="mark" href="#top" aria-label="trenchscope, top of page">trenchscope<i aria-hidden="true"></i></a>
+    <a class="mark" href="#top" aria-label="trenchscope, top of page">trenchscope</a>
     <nav class="nav" aria-label="Sections">
       <a href="#tour">Tour</a><a href="#analyst">Analyst</a><a href="#keys">Keys</a><a href="#safety">Safety</a><a href="#sources">Sources</a>
     </nav>
+    <a class="xlink xlink-gh" href="https://github.com/trenchscopeapp/trenchscope" target="_blank" rel="noopener" aria-label="trenchscope source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
     <a class="xlink" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
     <a class="btn btn-ink" href="#install">Install</a>
   </div>
@@ -54,72 +59,126 @@
 
 <main id="main">
   <section class="hero wrap" id="top">
-    <h1 class="h1">A terminal for the trenches<span class="pop">.</span><i class="h1-cur" aria-hidden="true"></i></h1>
-    <div class="hero-sub">
-      <p class="lede">Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens. Paper trading by default.</p>
-      <div class="install" data-install>
-        <div class="install-tabs">
-          <div class="install-tablist" role="tablist" aria-label="Install method">
-            <button role="tab" aria-selected="true" data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor" data-note="macOS and Linux. No sudo; fetches a verified Node if yours is missing.">curl</button>
-            <button role="tab" aria-selected="false" data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor" data-note="Windows PowerShell. Offers to install Node with winget if it is missing.">windows</button>
-            <button role="tab" aria-selected="false" data-cmd="npm i -g trenchscope&#10;trenchscope doctor" data-note="Node 22.18 or newer. No build step.">npm</button>
-            <button role="tab" aria-selected="false" data-cmd="claude mcp add trenchscope -- npx -y trenchscope mcp&#10;codex mcp add trenchscope -- npx -y trenchscope mcp" data-note="Gives your own Claude Code or Codex the read-only tools. They can never sign or send.">claude</button>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="h1">A terminal for <br class="br-wide">the trenches<span class="pop">.</span></h1>
+        <p class="lede">Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens.</p>
+        <div class="hero-meta">
+          <p class="paper"><i aria-hidden="true"></i>Paper trading by default</p>
+          <a class="explore" href="#tour">Explore the terminal</a>
+        </div>
+      </div>
+      <!-- install: React Bits Spotlight Card frame, a Rubber Segment platform switch, Osmo Typewriter command, Osmo Button 069 copy -->
+      <div class="inst" data-install>
+        <span class="inst-light" aria-hidden="true"></span>
+        <div class="inst-head">
+          <p class="inst-title">Install trenchscope</p>
+          <div class="seg" role="tablist" aria-label="Install method">
+            <span class="seg-thumb" aria-hidden="true"></span>
+            <button class="seg-item" role="tab" aria-selected="true" data-os="unix" data-show="curl -fsSL …/install.sh | bash" data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor" data-note="no sudo" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" data-src-label="install.sh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>mac/linux</button>
+            <button class="seg-item" role="tab" aria-selected="false" data-os="win" data-show="irm …/install.ps1 | iex" data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor" data-note="Node via winget" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.ps1" data-src-label="install.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>windows</button>
+            <button class="seg-item" role="tab" aria-selected="false" data-show="npm i -g trenchscope" data-cmd="npm i -g trenchscope&#10;trenchscope doctor" data-note="Node 22.18+" data-src="https://www.npmjs.com/package/trenchscope" data-src-label="npm package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>npm</button>
           </div>
-          <button class="install-copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg><span data-copy-word>copy</span></button>
         </div>
-        <div class="install-panel" role="tabpanel" tabindex="0" data-panel>
-          <pre class="install-cmd" data-cmd-out></pre>
-          <p class="install-note" data-note-out>macOS and Linux. No sudo; fetches a verified Node if yours is missing.</p>
+        <div class="cmdbar" role="tabpanel" tabindex="0" data-panel>
+          <span class="ps" aria-hidden="true">$</span>
+          <code class="cmd" data-cmd-show>curl -fsSL …/install.sh | bash</code>
+          <span class="sr" data-cmd-full>curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash, then trenchscope doctor</span>
+          <button class="copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="copy-outline"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></g><path class="copy-check" d="m3 8 3 3 7-7"/></svg><span data-copy-word role="status" aria-live="polite">Copy</span></button>
         </div>
+        <p class="inst-meta"><span>Then run <code>trenchscope doctor</code><span class="dot" aria-hidden="true"> · </span><span data-note-out>no sudo</span></span><a data-src-out href="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2H4.5A1.5 1.5 0 0 0 3 3.5v9A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V6z"/><path d="M9 2v4h4"/></svg><span data-src-label-out>install.sh</span></a></p>
+        <span class="inst-edge" aria-hidden="true"></span>
       </div>
     </div>
   </section>
 
+  <!-- the stage, after Trial's DeviceStage: the app in a graphite bezel, lit from below, tilted back until hover.
+       The chapter rail lives in the bezel, so the controls and the screen read as one device. -->
   <section class="stage" id="tour" aria-label="Tour of the app">
     <div class="wrap">
       <div class="stage-scene">
-        <div class="stage-tilt">
-          <div class="stage-lean" data-lean>
-            <figure class="bezel" role="img" aria-label="trenchscope running in a terminal: the launch screen, the screener, a token with the analyst answering, new pairs, the analyst full screen and the watchlist, one after another.">
-              <div class="screen">
-                <div class="screen-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="screen-title">trenchscope</span><span class="screen-size" data-size>160×46</span></div>
-                <div class="screen-body" data-fit>
-                  <pre class="cells" data-tour="main" aria-hidden="true"></pre>
-                </div>
-                <div class="hud" data-hud aria-hidden="true"><kbd data-hud-key></kbd><span data-hud-label></span></div>
+        <div class="stage-lean" data-lean>
+          <div class="bezel">
+            <div class="rail">
+              <nav class="tabs" data-chapters aria-label="Screens in the tour"><i class="tabs-pill" data-pill aria-hidden="true"></i></nav>
+              <p class="rail-cap" data-chapter-cap>Every screen is trenchscope itself</p>
+              <button class="stage-toggle" type="button" data-toggle aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-pause><path d="M5.5 3.5v9M10.5 3.5v9"/></svg><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-play hidden><path d="M5 3.2v9.6l7.5-4.8z"/></svg><span data-toggle-word>Pause</span></button>
+            </div>
+            <figure class="screen" role="img" aria-label="trenchscope running in a terminal: the launch screen, the screener, a token with the analyst answering, new pairs, the analyst full screen and the watchlist, one after another.">
+              <div class="screen-body" data-fit>
+                <pre class="cells" data-tour="main" aria-hidden="true"></pre>
+                <p class="screen-msg screen-wait" data-wait>loading the tour</p>
+                <noscript><p class="screen-msg">The tour needs JavaScript. Every screen in it is trenchscope itself: install it and run <code>trenchscope --fixtures</code> to see them with sample data.</p></noscript>
               </div>
+              <div class="screen-progress" aria-hidden="true"><i data-progress></i></div>
+              <div class="hud" data-hud aria-hidden="true"><kbd data-hud-key></kbd><span data-hud-label></span></div>
             </figure>
           </div>
         </div>
       </div>
-      <div class="rail">
-        <ol class="chapters" data-chapters aria-label="Screens in the tour"></ol>
-        <div class="rail-foot">
-          <p class="caption">Sample data. Every frame is drawn by trenchscope itself, cell for cell.</p>
-          <button class="ghost" type="button" data-toggle aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-pause><path d="M5 3.5v9M11 3.5v9"/></svg><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-play hidden><path d="M5 3.2v9.6l7.5-4.8z"/></svg><span data-toggle-word>Pause</span></button>
+      <p class="caption"><i class="live" data-live></i><span data-caption>Sample data, drawn by trenchscope cell for cell</span><span class="caption-size" aria-hidden="true">· <span data-size>160×46</span></span></p>
+      <!-- what just happened on screen: the current chapter's events from the same sample session, swapped as the chapter changes -->
+      <ul class="events" data-events aria-label="Events in this screen">
+        <li><span class="kind">screen</span>vol24 &gt; 250K<span class="d">34 tokens</span></li>
+        <li class="tone-up"><span class="kind">24h</span>SIGMA<span class="d">▲45.3%</span></li>
+        <li class="tone-dn"><span class="kind">24h</span>GOAT<span class="d">▼61.8%</span></li>
+        <li><span class="kind">risk</span>GIGA<span class="d">p(rug) 0.02</span></li>
+        <li class="tone-up"><span class="kind">safety</span>GIGA<span class="d">mint and freeze revoked</span></li>
+      </ul>
         </div>
-      </div>
-    </div>
   </section>
 
   <section class="section wrap analyst" id="analyst" aria-labelledby="h-analyst">
     <div class="analyst-copy">
       <h2 class="h2" id="h-analyst">Your analyst reads the screen you are reading<span class="pop">.</span></h2>
       <p class="sub">Press <kbd class="key-inline">a</kbd> and your own claude or codex login gets the same tool results, through a read-only MCP server.</p>
-      <dl class="rules">
-        <div><dt>Labelled</dt><dd>Every answer is marked model output, with the age of every number it used.</dd></div>
-        <div><dt>Untrusted input</dt><dd>Token names, descriptions and fetched pages reach the model wrapped as untrusted text.</dd></div>
-        <div><dt>Read-only</dt><dd>It has no build, sign or send tool. The most it can do is open a paper ticket.</dd></div>
-        <div><dt>Your login</dt><dd>Usage goes to your own account. Everything else works without it.</dd></div>
+      <dl class="rules rule-cards">
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.5 2.5h5.2l5.8 5.8-5.2 5.2-5.8-5.8z"/><circle cx="5.4" cy="5.4" r="0.9"/></svg></span>Labelled</dt><dd>Every answer is marked model output, with the age of every number it used.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 1.75 13.25 3.6v4.1c0 3.1-2.2 5.4-5.25 6.55C4.95 13.1 2.75 10.8 2.75 7.7V3.6z"/><path d="M6 8h4"/></svg></span>Untrusted input</dt><dd>Token names, descriptions and fetched pages reach the model wrapped as untrusted text.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.75 8S4.1 3.75 8 3.75 14.25 8 14.25 8 11.9 12.25 8 12.25 1.75 8 1.75 8z"/><circle cx="8" cy="8" r="1.9"/></svg></span>Read-only</dt><dd>It has no build, sign or send tool. The most it can do is open a paper ticket.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="2.6"/><path d="M2.9 13.75c.7-2.4 2.7-3.9 5.1-3.9s4.4 1.5 5.1 3.9"/></svg></span>Your login</dt><dd>Usage goes to your own account. Everything else works without it.</dd></div>
       </dl>
-    </div>
-    <figure class="frame analyst-frame">
-      <div class="frame-in">
-        <div class="frame-bar"><span>token screen · analyst panel</span><span>live render</span></div>
-        <div class="crop" data-fit-crop><pre class="cells" data-tour="crop" aria-hidden="true"></pre></div>
+      <div class="agents" data-agents data-mode="cli">
+          <span class="inst-light" aria-hidden="true"></span>
+          <div class="agents-head">
+            <div class="agents-what">
+              <p class="agents-title" data-agent-title>Connect Claude Code</p>
+              <p class="agents-step" data-agent-step>Run this in your terminal</p>
+            </div>
+            <div class="seg agents-mode" role="group" aria-label="Show as">
+              <span class="seg-thumb" aria-hidden="true"></span>
+              <button class="seg-item" type="button" aria-pressed="true" data-mode="cli">cli</button>
+              <button class="seg-item" type="button" aria-pressed="false" data-mode="config">config</button>
+            </div>
+          </div>
+          <div class="seg agents-rail" role="tablist" aria-label="Your agent">
+            <span class="seg-thumb" aria-hidden="true"></span>
+            <button class="seg-item" role="tab" type="button" aria-selected="true" tabindex="0" data-agent="claude" aria-label="Claude Code" title="Claude Code"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.724-.491-.364-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.145-.103.019-.073-.164-.274-1.355-2.446-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 01-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.264 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.657-.851-.747-1.926-1.62h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.012-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312-.006.006z"></path></svg><span class="agent-name">Claude</span></button>
+            <button class="seg-item" role="tab" type="button" aria-selected="false" tabindex="-1" data-agent="codex" aria-label="Codex" title="Codex"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M9.205 8.658v-2.26c0-.19.072-.333.238-.428l4.543-2.616c.619-.357 1.356-.523 2.117-.523 2.854 0 4.662 2.212 4.662 4.566 0 .167 0 .357-.024.547l-4.71-2.759a.797.797 0 00-.856 0l-5.97 3.473zm10.609 8.8V12.06c0-.333-.143-.57-.429-.737l-5.97-3.473 1.95-1.118a.433.433 0 01.476 0l4.543 2.617c1.309.76 2.189 2.378 2.189 3.948 0 1.808-1.07 3.473-2.76 4.163zM7.802 12.703l-1.95-1.142c-.167-.095-.239-.238-.239-.428V5.899c0-2.545 1.95-4.472 4.591-4.472 1 0 1.927.333 2.712.928L8.23 5.067c-.285.166-.428.404-.428.737v6.898zM12 15.128l-2.795-1.57v-3.33L12 8.658l2.795 1.57v3.33L12 15.128zm1.796 7.23c-1 0-1.927-.332-2.712-.927l4.686-2.712c.285-.166.428-.404.428-.737v-6.898l1.974 1.142c.167.095.238.238.238.428v5.233c0 2.545-1.974 4.472-4.614 4.472zm-5.637-5.303l-4.544-2.617c-1.308-.761-2.188-2.378-2.188-3.948A4.482 4.482 0 014.21 6.327v5.423c0 .333.143.571.428.738l5.947 3.449-1.95 1.118a.432.432 0 01-.476 0zm-.262 3.9c-2.688 0-4.662-2.021-4.662-4.519 0-.19.024-.38.047-.57l4.686 2.71c.286.167.571.167.856 0l5.97-3.448v2.26c0 .19-.07.333-.237.428l-4.543 2.616c-.619.357-1.356.523-2.117.523zm5.899 2.83a5.947 5.947 0 005.827-4.756C22.287 18.339 24 15.84 24 13.296c0-1.665-.713-3.282-1.998-4.448.119-.5.19-.999.19-1.498 0-3.401-2.759-5.947-5.946-5.947-.642 0-1.26.095-1.88.31A5.962 5.962 0 0010.205 0a5.947 5.947 0 00-5.827 4.757C1.713 5.447 0 7.945 0 10.49c0 1.666.713 3.283 1.998 4.448-.119.5-.19 1-.19 1.499 0 3.401 2.759 5.946 5.946 5.946.642 0 1.26-.095 1.88-.309a5.96 5.96 0 004.162 1.713z"></path></svg><span class="agent-name">Codex</span></button>
+            <button class="seg-item" role="tab" type="button" aria-selected="false" tabindex="-1" data-agent="cursor" aria-label="Cursor" title="Cursor"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z"></path></svg><span class="agent-name">Cursor</span></button>
+            <button class="seg-item" role="tab" type="button" aria-selected="false" tabindex="-1" data-agent="gemini" aria-label="Gemini CLI" title="Gemini CLI"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M20.616 10.835a14.147 14.147 0 01-4.45-3.001 14.111 14.111 0 01-3.678-6.452.503.503 0 00-.975 0 14.134 14.134 0 01-3.679 6.452 14.155 14.155 0 01-4.45 3.001c-.65.28-1.318.505-2.002.678a.502.502 0 000 .975c.684.172 1.35.397 2.002.677a14.147 14.147 0 014.45 3.001 14.112 14.112 0 013.679 6.453.502.502 0 00.975 0c.172-.685.397-1.351.677-2.003a14.145 14.145 0 013.001-4.45 14.113 14.113 0 016.453-3.678.503.503 0 000-.975 13.245 13.245 0 01-2.003-.678z"></path></svg><span class="agent-name">Gemini</span></button>
+            <button class="seg-item" role="tab" type="button" aria-selected="false" tabindex="-1" data-agent="vscode" aria-label="VS Code (Copilot)" title="VS Code (Copilot)"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M19.245 5.364c1.322 1.36 1.877 3.216 2.11 5.817.622 0 1.2.135 1.592.654l.73.964c.21.278.323.61.323.955v2.62c0 .339-.173.669-.453.868C20.239 19.602 16.157 21.5 12 21.5c-4.6 0-9.205-2.583-11.547-4.258-.28-.2-.452-.53-.453-.868v-2.62c0-.345.113-.679.321-.956l.73-.963c.392-.517.974-.654 1.593-.654l.029-.297c.25-2.446.81-4.213 2.082-5.52 2.461-2.54 5.71-2.851 7.146-2.864h.198c1.436.013 4.685.323 7.146 2.864zm-7.244 4.328c-.284 0-.613.016-.962.05-.123.447-.305.85-.57 1.108-1.05 1.023-2.316 1.18-2.994 1.18-.638 0-1.306-.13-1.851-.464-.516.165-1.012.403-1.044.996a65.882 65.882 0 00-.063 2.884l-.002.48c-.002.563-.005 1.126-.013 1.69.002.326.204.63.51.765 2.482 1.102 4.83 1.657 6.99 1.657 2.156 0 4.504-.555 6.985-1.657a.854.854 0 00.51-.766c.03-1.682.006-3.372-.076-5.053-.031-.596-.528-.83-1.046-.996-.546.333-1.212.464-1.85.464-.677 0-1.942-.157-2.993-1.18-.266-.258-.447-.661-.57-1.108-.32-.032-.64-.049-.96-.05zm-2.525 4.013c.539 0 .976.426.976.95v1.753c0 .525-.437.95-.976.95a.964.964 0 01-.976-.95v-1.752c0-.525.437-.951.976-.951zm5 0c.539 0 .976.426.976.95v1.753c0 .525-.437.95-.976.95a.964.964 0 01-.976-.95v-1.752c0-.525.437-.951.976-.951zM7.635 5.087c-1.05.102-1.935.438-2.385.906-.975 1.037-.765 3.668-.21 4.224.405.394 1.17.657 1.995.657h.09c.649-.013 1.785-.176 2.73-1.11.435-.41.705-1.433.675-2.47-.03-.834-.27-1.52-.63-1.813-.39-.336-1.275-.482-2.265-.394zm6.465.394c-.36.292-.6.98-.63 1.813-.03 1.037.24 2.06.675 2.47.968.957 2.136 1.104 2.776 1.11h.044c.825 0 1.59-.263 1.995-.657.555-.556.765-3.187-.21-4.224-.45-.468-1.335-.804-2.385-.906-.99-.088-1.875.058-2.265.394zM12 7.615c-.24 0-.525.015-.84.044.03.16.045.336.06.526l-.001.159a2.94 2.94 0 01-.014.25c.225-.022.425-.027.612-.028h.366c.187 0 .387.006.612.028-.015-.146-.015-.277-.015-.409.015-.19.03-.365.06-.526a9.29 9.29 0 00-.84-.044z"></path></svg><span class="agent-name">VS Code</span></button>
+          </div>
+          <div class="agents-code" role="tabpanel" id="agents-panel" tabindex="-1">
+            <span class="ps" aria-hidden="true">$</span>
+            <code class="cmd" data-agent-code>claude mcp add trenchscope -- npx -y trenchscope mcp</code>
+            <div class="agents-actions">
+              <a class="copy copy-ghost" data-agent-open hidden href="cursor://anysphere.cursor-deeplink/mcp/install?name=trenchscope&amp;config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInRyZW5jaHNjb3BlIiwibWNwIl19" target="_blank" rel="noopener">Open</a>
+              <button class="copy" type="button" data-agent-copy aria-label="Copy"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="copy-outline"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></g><path class="copy-check" d="m3 8 3 3 7-7"/></svg><span data-copy-word role="status" aria-live="polite">Copy</span></button>
+            </div>
+          </div>
+          <p class="inst-meta"><span>The same read-only tools; it can never sign or send. Check it with <code>trenchscope mcp doctor</code></span></p>
+          <span class="inst-edge" aria-hidden="true"></span>
       </div>
-      <figcaption class="sr">The analyst panel answering a question about a sample token, with the tool calls it made and their timings.</figcaption>
-    </figure>
+    </div>
+    <!-- the analyst panel in its own small device, leaning toward the copy until hover -->
+    <div class="analyst-stage">
+      <figure class="bezel analyst-frame">
+        <div class="device-bar"><span><i class="live"></i>token screen · analyst panel</span><span>sample render</span></div>
+        <div class="screen"><div class="crop" data-fit-crop><pre class="cells" data-tour="crop" aria-hidden="true"></pre></div></div>
+        <figcaption class="sr">The analyst panel answering a question about a sample token, with the tool calls it made and their timings.</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="section wrap keys" id="keys" aria-labelledby="h-keys">
@@ -142,15 +201,16 @@
   <section class="section wrap safety" id="safety" aria-labelledby="h-safety">
     <h2 class="display" id="h-safety">It never holds your keys<span class="pop">.</span></h2>
     <div class="safety-body">
-      <dl class="rules rules-wide">
-        <div><dt>Paper first</dt><dd>Every run starts on the simulated wallet. Live is devnet unless you start with <code>--mainnet</code>.</dd></div>
-        <div><dt>Signing</dt><dd>Nothing is sent without a keypress and your wallet's approval.</dd></div>
-        <div><dt>Caps</dt><dd>A separate signer refuses anything over your per-trade and daily caps.</dd></div>
-        <div><dt>The model</dt><dd>The analyst has no build, sign or send tool.</dd></div>
-        <div><dt>Network</dt><dd>Local servers bind <code>127.0.0.1</code> only.</dd></div>
-        <div><dt>Telemetry</dt><dd>None. No account, no crash reports, no update check.</dd></div>
+      <dl class="rules rule-cards">
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 1.75h5.5l2.75 2.75v9.75H4z"/><path d="M9.5 1.75V4.5h2.75M6 8h4M6 10.75h4"/></svg></span>Paper first</dt><dd>Every run starts on the simulated wallet. Live is devnet unless you start with <code>--mainnet</code>.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><circle cx="5.25" cy="10.75" r="2.75"/><path d="M7.2 8.8 13.5 2.5M11.25 4.75l1.75 1.75M9.75 6.25l1.25 1.25"/></svg></span>Signing</dt><dd>Nothing is sent without a keypress and your wallet's approval.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.25 11.5a5.75 5.75 0 1 1 11.5 0"/><path d="M8 11.5l2.75-3.25"/><path d="M2.25 13.75h11.5"/></svg></span>Caps</dt><dd>A separate local process, not the screen you type in, holds your per-trade and daily caps and refuses any transaction over them before it reaches your wallet.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><rect x="3.75" y="3.75" width="8.5" height="8.5" rx="1.5"/><path d="M6.25 1.75v2M9.75 1.75v2M6.25 12.25v2M9.75 12.25v2M1.75 6.25h2M1.75 9.75h2M12.25 6.25h2M12.25 9.75h2"/></svg></span>The model</dt><dd>The analyst has no build, sign or send tool.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="8.5" rx="1.5"/><path d="M5.5 13.75h5M8 11v2.75"/></svg></span>Network</dt><dd>Local servers bind <code>127.0.0.1</code> only.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.75 8S4.1 3.75 8 3.75c1.2 0 2.3.4 3.2 1M14.25 8s-2.35 4.25-6.25 4.25c-1.2 0-2.3-.4-3.2-1"/><path d="M2.5 13.5 13.5 2.5"/></svg></span>Telemetry</dt><dd>None. No account, no crash reports, no update check.</dd></div>
       </dl>
-      <p class="note"><b>Known issues.</b> Paper and live trading are experimental and have bugs we are still fixing. Do not rely on them yet. Nothing here is financial advice.</p>
+      <p class="note proof">Read every line: <a href="https://github.com/trenchscopeapp/trenchscope" target="_blank" rel="noopener">the source on GitHub</a>, AGPL-3.0, with a <a href="https://github.com/trenchscopeapp/trenchscope/blob/main/SECURITY.md" target="_blank" rel="noopener">security policy</a>.</p>
+      <p class="note note-warn"><b>Known issues.</b> Paper and live trading are experimental and have bugs we are still fixing. Do not rely on them yet. Nothing here is financial advice.</p>
     </div>
   </section>
 
@@ -180,29 +240,53 @@
   <section class="section wrap close" id="install" aria-labelledby="h-close">
     <div>
       <h2 class="h2" id="h-close">Open a terminal<span class="pop">.</span></h2>
-      <p class="sub">Run doctor first. It checks Node, your terminal, the optional claude login and every data source, and prints the exact fix for anything missing.</p>
+      <p class="sub">On a Mac, open Terminal from Spotlight. On Windows, open PowerShell from the Start menu. Run doctor first: it checks Node, your terminal, the optional claude login and every data source, and prints the exact fix for anything missing. Then <code>trenchscope</code> opens the app on paper.</p>
+      <div class="setup-faq" aria-label="Setup questions">
+        <!-- Osmo accordion pattern, adapted to native keyboard-accessible disclosures. -->
+        <details>
+          <summary>Do I need an API key?<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/><path class="faq-plus" d="M8 3v10"/></svg></summary>
+          <p>Core market data works without a key. An optional Helius RPC key unlocks holder data and a faster on-chain lane. Fields that need a missing key say <code>needs key</code>. <a href="#sources">See the data sources</a>.</p>
+        </details>
+        <details>
+          <summary>Do I need an AI subscription?<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/><path class="faq-plus" d="M8 3v10"/></svg></summary>
+          <p>The screener works without an AI login. The built-in analyst uses your own logged-in Claude Code or Codex account, and usage is billed to that account. <a href="#analyst">Connect your assistant</a>.</p>
+        </details>
+        <details>
+          <summary>Can the analyst send a trade?<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/><path class="faq-plus" d="M8 3v10"/></svg></summary>
+          <p>No. The analyst and MCP server have no build, sign or send tool. Every run starts on paper. A live trade needs your keypress and approval in your own wallet. <a href="#safety">Read the safety rules and known issues</a>.</p>
+        </details>
+        <details>
+          <summary>What if setup fails?<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/><path class="faq-plus" d="M8 3v10"/></svg></summary>
+          <p>Run <code>trenchscope doctor</code> in Terminal or PowerShell. It checks your setup and data sources, then prints the fix for anything missing. For an assistant connection, run <code>trenchscope mcp doctor</code>.</p>
+        </details>
+      </div>
     </div>
-    <div class="install install-lg" data-install>
-      <div class="install-tabs">
-          <div class="install-tablist" role="tablist" aria-label="Install method">
-          <button role="tab" aria-selected="true" data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor&#10;trenchscope" data-note="macOS and Linux. No sudo; fetches a verified Node if yours is missing.">curl</button>
-          <button role="tab" aria-selected="false" data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor&#10;trenchscope" data-note="Windows PowerShell. Offers to install Node with winget if it is missing.">windows</button>
-          <button role="tab" aria-selected="false" data-cmd="npm i -g trenchscope&#10;trenchscope doctor&#10;trenchscope" data-note="Node 22.18 or newer. No build step.">npm</button>
-          <button role="tab" aria-selected="false" data-cmd="claude mcp add trenchscope -- npx -y trenchscope mcp&#10;codex mcp add trenchscope -- npx -y trenchscope mcp" data-note="Gives your own Claude Code or Codex the read-only tools. They can never sign or send.">claude</button>
+    <div class="inst inst-close" data-install>
+      <span class="inst-light" aria-hidden="true"></span>
+      <div class="inst-head">
+        <p class="inst-title">Install trenchscope</p>
+        <div class="seg" role="tablist" aria-label="Install method">
+          <span class="seg-thumb" aria-hidden="true"></span>
+          <button class="seg-item" role="tab" aria-selected="true" data-os="unix" data-show="curl -fsSL …/install.sh | bash" data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor&#10;trenchscope" data-note="no sudo" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" data-src-label="install.sh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>mac/linux</button>
+          <button class="seg-item" role="tab" aria-selected="false" data-os="win" data-show="irm …/install.ps1 | iex" data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor&#10;trenchscope" data-note="Node via winget" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.ps1" data-src-label="install.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>windows</button>
+          <button class="seg-item" role="tab" aria-selected="false" data-show="npm i -g trenchscope" data-cmd="npm i -g trenchscope&#10;trenchscope doctor&#10;trenchscope" data-note="Node 22.18+" data-src="https://www.npmjs.com/package/trenchscope" data-src-label="npm package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>npm</button>
         </div>
-        <button class="install-copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></svg><span data-copy-word>copy</span></button>
       </div>
-      <div class="install-panel" role="tabpanel" tabindex="0" data-panel>
-        <pre class="install-cmd" data-cmd-out></pre>
-        <p class="install-note" data-note-out>macOS and Linux. No sudo; fetches a verified Node if yours is missing.</p>
+      <div class="cmdbar" role="tabpanel" tabindex="0" data-panel>
+        <span class="ps" aria-hidden="true">$</span>
+        <code class="cmd" data-cmd-show>curl -fsSL …/install.sh | bash</code>
+        <span class="sr" data-cmd-full>curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash, then trenchscope doctor, then trenchscope</span>
+        <button class="copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="copy-outline"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></g><path class="copy-check" d="m3 8 3 3 7-7"/></svg><span data-copy-word role="status" aria-live="polite">Copy</span></button>
       </div>
+      <p class="inst-meta"><span>Then run <code>trenchscope doctor</code> and <code>trenchscope</code><span class="dot" aria-hidden="true"> · </span><span data-note-out>no sudo</span></span><a data-src-out href="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2H4.5A1.5 1.5 0 0 0 3 3.5v9A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V6z"/><path d="M9 2v4h4"/></svg><span data-src-label-out>install.sh</span></a></p>
+      <span class="inst-edge" aria-hidden="true"></span>
     </div>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <span>trenchscope 0.1.5</span><span>live now</span><span class="foot-end">not financial advice<a class="xlink xlink-sm" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></span>
+    <span>trenchscope 0.1.5</span><span>live now</span><span class="foot-end">not financial advice<a class="xlink xlink-sm" href="https://github.com/trenchscopeapp/trenchscope" target="_blank" rel="noopener" aria-label="trenchscope source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a class="xlink xlink-sm" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></span>
   </div>
 </footer>
 </body>

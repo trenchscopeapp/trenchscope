@@ -56,6 +56,7 @@ Analyst, token detail, trade ticket, positions, plans.
   video; the selected row is a raised grey bar. No launchpad hues, no blue accent, no coral. The CLI theme is mono.
 - Type is one mono face on the site (owner, 2026-10-18), with a 2x 1-bit pixel hand cursor like the API site.
 - Colour pops (owner, 2026-10-18): the site may use the up/down/amber state colours at full strength for live and confirming moments; the ground stays black and white.
+- Decorative blinking carets are removed site-wide (owner, 2026-10-19). Keep the actual terminal rendering and pointer cursors.
 - No em dashes anywhere.
 - Design reference for the site's CLI visual (owner, 2026-10-18): Trial's landing components
   (`Projects/tape/components/docs/home.tsx`, `demos/device-stage.tsx`): the real app screen in a lit, tilted bezel,
