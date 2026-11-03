@@ -105,7 +105,7 @@ test('wilson: textbook values; n = 0 is null', () => {
   assert.equal(wilson(0, 0), null);
 });
 
-test('trenchscope backtest --subject larp: end to end on a temp recorder DB (human + --json), honest when nothing is recorded', () => {
+test('solgent backtest --subject larp: end to end on a temp recorder DB (human + --json), honest when nothing is recorded', () => {
   const dir = mkdtempSync(join(tmpdir(), 'dexterm-larp-'));
   const path = join(dir, 'history.db');
   try {

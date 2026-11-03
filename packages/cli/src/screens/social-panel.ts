@@ -1,4 +1,4 @@
-// trenchscope — the per-token SOCIAL panel + AI SUMMARY box (task-1330; INTEGRATIONS-DESIGN §5.2, mockups
+// solgent — the per-token SOCIAL panel + AI SUMMARY box (task-1330; INTEGRATIONS-DESIGN §5.2, mockups
 // social-panel-{176,120,90}.txt). Drawn by both token renderers (fixture + live) in place of the ON-CHAIN /
 // HOLDERS band when `state.tokenSocial` is on. Every post text here has been through the ingest firewall; the
 // table clips to the cell width, so a post can never overflow its row or carry an escape sequence.
@@ -68,7 +68,7 @@ export function renderSocialPanel(c: Canvas, x: number, y: number, w: number, h:
       : [colAge, colSrc, colAuthor, colTier, colCred, colVel, colPost, colLikes, colReposts, colDup, colFlag];
   if (posts.length === 0) {
     const xs = feed.status();
-    const why = xs.xState === 'logged-out' ? 'x-stream ○ logged out · trenchscope x login (your own X app) · keyless sources: news + on-chain rows'
+    const why = xs.xState === 'logged-out' ? 'x-stream ○ logged out · solgent x login (your own X app) · keyless sources: news + on-chain rows'
       : xs.xState === 'ok' ? 'x-stream ● logged in · nothing matched yet (search runs every 60 s for the open token)'
         : `${xBadge(feed)} · ${xs.xDetail} · keyless sources: news + on-chain rows`;
     c.textC(box.x, box.y + 1, box.w, `no posts yet · ${why}`, { fg: xs.xState === 'ok' || xs.xState === 'logged-out' ? t.muted : t.warn, bg, i: true });

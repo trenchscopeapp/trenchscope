@@ -1,5 +1,5 @@
-// trenchscope paper bot: one entry/exit as a firewalled AlertDelivery for the existing notifier (so whatever
-// channels the user enabled with `trenchscope alerts` get it). Pure. Every line says PAPER and carries no
+// solgent paper bot: one entry/exit as a firewalled AlertDelivery for the existing notifier (so whatever
+// channels the user enabled with `solgent alerts` get it). Pure. Every line says PAPER and carries no
 // recommendation: these are simulated fills, priced from live quotes.
 import { firewallText } from '@dexterm/data/core';
 import { sanitizeSpeech } from '@dexterm/voice';

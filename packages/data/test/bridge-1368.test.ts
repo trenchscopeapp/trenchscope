@@ -90,7 +90,7 @@ test('a busy preferred port is not an error: the bridge falls back to a random p
     assert.equal(r.status, 200);
     const html = await r.text();
     assert.match(html, new RegExp(`PORT=${u.port}[,;]`), 'the page talks back to the port it was actually served from');
-    assert.match(html, new RegExp(`<p class="warn">the usual trenchscope port 127\\.0\\.0\\.1:${port} was busy, so this page is on a one-off port \\(${u.port}\\)\\. Phantom may ask you to connect once`), 'the page SAYS it fell back (task-1368 (g) spec)');
+    assert.match(html, new RegExp(`<p class="warn">the usual solgent port 127\\.0\\.0\\.1:${port} was busy, so this page is on a one-off port \\(${u.port}\\)\\. Phantom may ask you to connect once`), 'the page SAYS it fell back (task-1368 (g) spec)');
     await p;
     assert.equal(opens, 1, 'the page is opened exactly once after a fallback (a second open would burn the single-use token)');
   } finally { await release(); }
@@ -268,7 +268,7 @@ test('fake Phantom on the WRONG account: the page refuses before signing, says w
   assert.deepEqual(prov.calls, ['connect'], 'signTransaction() was never called');
   assert.equal(byId.a.textContent, other);
   assert.equal(byId.r.className, 'bad');
-  assert.match(byId.r.textContent, /^✗ Phantom is on account Othe…1111 but trenchscope linked DexT…1111\. Switch accounts in Phantom and press Approve again/);
+  assert.match(byId.r.textContent, /^✗ Phantom is on account Othe…1111 but solgent linked DexT…1111\. Switch accounts in Phantom and press Approve again/);
   assert.equal(byId.go.disabled, false, 'Approve stays usable for a retry after switching accounts');
   assert.match(await outcome, /timed out/, 'nothing was signed or resolved');
 });

@@ -1,4 +1,4 @@
-// task-1421: the `trenchscope mcp` server's spectator sink resolved from the ~/.dexterm rendezvous (what an
+// task-1421: the `solgent mcp` server's spectator sink resolved from the ~/.dexterm rendezvous (what an
 // EXTERNAL client's server uses, since the running app cannot set its env). It must be inactive — and write
 // NOTHING — when no spectator surface is open, and append one JSONL record per call while one is.
 

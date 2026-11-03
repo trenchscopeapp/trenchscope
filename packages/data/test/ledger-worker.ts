@@ -1,5 +1,5 @@
 // task-1310 round 2 — worker for the cross-process daily-cap race test. Each worker opens its OWN
-// SQLite connection to one ledger file (= a separate trenchscope process), waits on a barrier, then runs
+// SQLite connection to one ledger file (= a separate solgent process), waits on a barrier, then runs
 // exactly one atomic `tryReserve`. The parent counts how many were admitted.
 import { workerData, parentPort } from 'node:worker_threads';
 import { CapLedger } from '../src/trade/caps.ts';

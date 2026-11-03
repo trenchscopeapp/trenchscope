@@ -332,7 +332,7 @@ test('roster popup: page served with a strict CSP, VM pushed on ready', async ()
     assert.equal(res.status, 200);
     const html = await res.text();
     assert.match(res.headers.get('content-security-policy') ?? '', /default-src 'none'/);
-    assert.match(html, /trenchscope · AGENTS/);
+    assert.match(html, /solgent · AGENTS/);
     const token = wsMeta(html);
     const c = await wsConnect(srv.port, token, srv.origin);
     c.send({ type: 'ready', page: 'roster', t: 1 });
@@ -350,7 +350,7 @@ test('narrative popup: page served with a strict CSP, deterministic board VM pus
     assert.equal(res.status, 200);
     const html = await res.text();
     assert.match(res.headers.get('content-security-policy') ?? '', /default-src 'none'/);
-    assert.match(html, /trenchscope · NARRATIVE/);
+    assert.match(html, /solgent · NARRATIVE/);
     const token = wsMeta(html);
     const c = await wsConnect(srv.port, token, srv.origin);
     c.send({ type: 'ready', page: 'narrative', t: 1 });

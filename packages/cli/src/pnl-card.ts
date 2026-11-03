@@ -1,7 +1,7 @@
-// trenchscope — PNL CARDS (task-1407). One key (`H` on the positions, token and followed-wallets screens) turns a coin's
+// solgent — PNL CARDS (task-1407). One key (`H` on the positions, token and followed-wallets screens) turns a coin's
 // RECORDED fills into a shareable result card: a 1200×675 (X card, 16:9) and a 1080×1080 (1:1) PNG plus a plain-text
 // version, saved to ~/.dexterm/exports. Share to X = save + copy the image to the OS clipboard + open X's compose
-// intent in the user's own browser with neutral text; the user pastes the image and posts. trenchscope never posts,
+// intent in the user's own browser with neutral text; the user pastes the image and posts. solgent never posts,
 // never holds X credentials and makes no network call here.
 //
 // Honesty rules, enforced by construction:
@@ -12,7 +12,7 @@
 //     the time window, the fee basis, what was excluded and the data ages printed on the card.
 //   - Wallet addresses (and LIVE tx signatures, which point at the wallet) are hidden unless `showWallet`; size is a
 //     band unless `exactSize`; no balance, no key, no file path is ever drawn.
-//   - Footer: "not financial advice" and the trenchscope URL. No performance claims beyond this one position's fills.
+//   - Footer: "not financial advice" and the solgent URL. No performance claims beyond this one position's fills.
 //
 // Rendering reuses the task-1401 exporter stack: a cell Canvas rasterized by @dexterm/tui (the 5×9 bitmap font) and
 // encoded by @dexterm/data. Big type (the stamp, the ticker, the PnL %) is the same font rasterized at a larger
@@ -95,7 +95,7 @@ export function paperCardInput(records: TradeRecord[], o: { mint: string; symbol
   return {
     source: 'paper', mint: o.mint, symbol: o.symbol ?? rs[0]?.symbol ?? '?', name: o.name ?? null, decimals: rs[0]?.decimals ?? null,
     fills: rs.map((r) => ({ t: r.t, side: r.side, solDelta: lamportsToSol(r.solDelta), tokenDelta: r.tokenDelta, feeSol: lamportsToSol(r.feeLamports), sig: null })),
-    ledger: 'trenchscope paper ledger', wallet: null, mark: o.mark ?? null,
+    ledger: 'solgent paper ledger', wallet: null, mark: o.mark ?? null,
     excluded: [], fees: 'simulated network fee included', image: o.image ?? null,
   };
 }
@@ -379,7 +379,7 @@ export function renderCard(s: CardStats, o: CardOptions = {}): CardRender {
   put(hx + 1, 0, '· PnL card', { fg: t.muted, bg: t.headBg }, 12);
   putR(W - 3, 0, fmtWhen(s.now), { fg: t.dim, bg: t.headBg });
   c.fill(0, H - 1, W, 1, ' ', { bg: t.headBg });
-  put(2, H - 1, aspect === 'wide' ? 'not financial advice · trading in trenchscope is experimental · from recorded fills' : 'not financial advice · trading in trenchscope is experimental', { fg: t.muted, bg: t.headBg }, W - 16);
+  put(2, H - 1, aspect === 'wide' ? 'not financial advice · trading in solgent is experimental · from recorded fills' : 'not financial advice · trading in solgent is experimental', { fg: t.muted, bg: t.headBg }, W - 16);
   putR(W - 3, H - 1, DEXTERM_URL, { fg: t.borderFocus, bg: t.headBg, b: true });
 
   // frame in the stamp colour (rows 1 .. H-2)
@@ -550,14 +550,14 @@ export function previewCanvas(r: CardRender): Canvas {
 export function cardText(s: CardStats, o: CardOptions = {}): string {
   const st = stampOf(s, THEMES.cyberspace);
   const L: string[] = [];
-  L.push(`trenchscope PnL card · ${st.big}${s.input.source === 'tracked' ? ' WALLET' : ''} (${st.line.toLowerCase()})`);
+  L.push(`solgent PnL card · ${st.big}${s.input.source === 'tracked' ? ' WALLET' : ''} (${st.line.toLowerCase()})`);
   L.push(`$${cleanText(s.input.symbol, 12)}${s.input.name ? ` · ${cleanText(s.input.name, 40)}` : ''} · mint ${short(s.input.mint)}${s.input.wallet ? ` · ${o.showWallet ? `wallet ${s.input.wallet}` : 'wallet hidden'}` : ''}`);
   L.push(`${s.kind} PnL ${fmtPnlPct(s.pnlPct)} (net of fees)${o.exactSize ? ` · ${signedSol(s.pnlSol)} on ${s.costInSol.toFixed(4)} SOL in` : ` · size ${sizeBand(s.costInSol)} (band)`}`);
   const dec = s.input.decimals !== null;
   const p = (v: number | null) => (v === null ? (dec ? '—' : 'n/a') : `${fmtPriceBare(v)} SOL`);
   L.push(`entry avg ${p(s.entryAvg)} · ${s.open ? `mark ${p(s.input.mark?.priceSol ?? null)}` : `exit avg ${p(s.exitAvg)}`} · hold ${fmtHold(s.holdMs)}${s.open ? ' (open)' : ''} · ${s.buys} buys · ${s.sells} sells`);
   L.push(...provenance(s, o));
-  L.push(st.note + ' Trading in trenchscope is experimental.');
+  L.push(st.note + ' Trading in solgent is experimental.');
   L.push(`not financial advice · ${DEXTERM_URL}`);
   return L.join('\n') + '\n';
 }
@@ -600,7 +600,7 @@ export interface ShareResult {
   message: string;
 }
 
-/** The OS command that puts a PNG file on the clipboard, or null where trenchscope has none (then the file is the way). */
+/** The OS command that puts a PNG file on the clipboard, or null where solgent has none (then the file is the way). */
 export function imageClipboardCommand(platform: NodeJS.Platform, env: NodeJS.ProcessEnv, path: string): { cmd: string; args: string[]; stdinFile?: string } | null {
   if (platform === 'darwin') {
     // the path is an argv item, never interpolated into the AppleScript source
@@ -673,6 +673,6 @@ export async function shareCard(s: CardStats, o: CardOptions, action: ShareActio
   const how = clipboard === 'image' ? 'image copied: paste it into the post' : `attach ${shown(files.wide)}`;
   return {
     files, clipboard, opened,
-    message: opened ? `X compose opened in your browser · ${how} · you post it, trenchscope posts nothing` : `could not open the browser · ${how} · compose: ${url}`,
+    message: opened ? `X compose opened in your browser · ${how} · you post it, solgent posts nothing` : `could not open the browser · ${how} · compose: ${url}`,
   };
 }

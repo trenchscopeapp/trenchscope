@@ -42,7 +42,7 @@ jobs:
           DEXTERM_OFFLINE: '1'
           # no NO_COLOR here: the effects tests (fx.test.ts) assert on colour output and fail under NO_COLOR
         run: timeout 20m npm test
-      - name: install smoke (npm pack -> npm i -g temp prefix -> dexterm --version, dexterm doctor)
+      - name: install smoke (npm pack -> npm i -g temp prefix -> solgent --version, solgent doctor)
         run: scripts/release/install-smoke.sh "$RUNNER_TEMP/install-smoke"
 
   # Native platforms are truthful gates: any supported-suite failure fails its job.
@@ -84,7 +84,7 @@ jobs:
         # no GNU `timeout` on macOS: the step timeout bounds the run instead
         timeout-minutes: 25
         run: npm test
-      - name: install smoke (npm pack -> npm i -g temp prefix -> dexterm --version, dexterm doctor)
+      - name: install smoke (npm pack -> npm i -g temp prefix -> solgent --version, solgent doctor)
         run: scripts/release/install-smoke.sh "$RUNNER_TEMP/install-smoke"
 
   lint-workflows:

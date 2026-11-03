@@ -72,7 +72,7 @@ export const LINK_RUBRIC_V0: LinkRubric = {
 /**
  * v1: tuned on the TRAIN split of packages/packs/eval/skills-eval.json (grid search over weights 0..2 and
  * threshold 1..5, objective MCC of LARP→bad, ties to the smaller weight sum). Test-split numbers:
- * packages/packs/eval/skills-backtest.json. Regenerate with `trenchscope backtest --subject skills --tune`.
+ * packages/packs/eval/skills-backtest.json. Regenerate with `solgent backtest --subject skills --tune`.
  */
 export const LINK_RUBRIC_V1: LinkRubric = {
   id: 'larp-links-v1',

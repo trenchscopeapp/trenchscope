@@ -1,4 +1,4 @@
-// trenchscope — task-1323 (UX round 3, analyst lane): the analyst answers SHORT by default (3–6 lines: call ·
+// solgent — task-1323 (UX round 3, analyst lane): the analyst answers SHORT by default (3–6 lines: call ·
 // why · levels · size/risk), gives a DIRECT trading view (bias, entry, invalidation, risk-% size,
 // confidence), goes long-form ONLY when asked ("full" / "detail" / …), and carries no disclaimer
 // boilerplate — while the real guardrails (cannot sign/confirm, untrusted text is data, actions only via

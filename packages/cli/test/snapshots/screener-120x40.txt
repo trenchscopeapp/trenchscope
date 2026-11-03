@@ -1,4 +1,4 @@
-  trenchscope ┃  1 Screener ▌ 2 New pairs   3 Watchlist   4 Analyst          SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+  solgent ┃  1 Screener ▌ 2 New pairs   3 Watchlist   4 Analyst              SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
 
  ⌕ vol24 > 250K  liq > 50K  age < 30d  chain:solana       Trench   Trending   Runners   Organic   Graduating approx  ›
 ╭─ SCREENER ──────────────── 34 tokens · sorted by vol 24h · p(rug) = H2-v0.1 heuristic · refreshed 2s ago · row 4/34 ─╮

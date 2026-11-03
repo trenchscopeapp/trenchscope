@@ -1,13 +1,13 @@
-// trenchscope — `trenchscope record` (task-1414): a HEADLESS collector that keeps the history recorder fed when
+// solgent — `solgent record` (task-1414): a HEADLESS collector that keeps the history recorder fed when
 // nobody has the TUI open. The recorder (task-1329) only grows while the interactive app runs; the backtest
 // (task-1401) is only worth re-running on fresh data, so this command runs the exact same recorder jobs
 // (observe snapshots + feed membership, the 1 h/2 h/6 h/24 h/72 h outcome sweeps, labels, retention) with no
 // TUI, to be driven by a user-level launchd LaunchAgent on the Mac mini.
 //
-//   trenchscope record [run] [--interval S] [--ticks N | --once] [--maintain S] [--max-db-mb N] [--no-newpairs] [--db PATH] [--verbose]
-//   trenchscope record install   [--interval S] [--max-db-mb N] [--load] [--dry-run]
-//   trenchscope record uninstall [--unload]
-//   trenchscope record status    [--db PATH]
+//   solgent record [run] [--interval S] [--ticks N | --once] [--maintain S] [--max-db-mb N] [--no-newpairs] [--db PATH] [--verbose]
+//   solgent record install   [--interval S] [--max-db-mb N] [--load] [--dry-run]
+//   solgent record uninstall [--unload]
+//   solgent record status    [--db PATH]
 //
 // SAFETY / BUDGETS: this builds the keyless live feed and the recorder exactly as the live app does, so every
 // request goes through the data layer's rate limiter + health gate and the sweep's own per-sweep / per-day caps
@@ -168,7 +168,7 @@ export interface PlistOptions {
   label: string;
   /** Absolute node executable. */
   nodePath: string;
-  /** Absolute path to the trenchscope bin (or the compiled CLI entry). */
+  /** Absolute path to the solgent bin (or the compiled CLI entry). */
   binPath: string;
   intervalMs: number;
   maxDbMb: number;
@@ -260,12 +260,12 @@ export function parseRun(argv: string[]): RunArgs | { error: string } {
   return a;
 }
 
-export const RECORD_USAGE = `trenchscope record: keep the history recorder fed with no TUI open (task-1414).
+export const RECORD_USAGE = `solgent record: keep the history recorder fed with no TUI open (task-1414).
 
-  trenchscope record [run] [--interval S] [--ticks N | --once] [--maintain S] [--max-db-mb N] [--no-newpairs] [--db PATH] [--verbose]
-  trenchscope record install   [--interval S] [--max-db-mb N] [--load] [--dry-run]
-  trenchscope record uninstall [--unload]
-  trenchscope record status    [--db PATH]
+  solgent record [run] [--interval S] [--ticks N | --once] [--maintain S] [--max-db-mb N] [--no-newpairs] [--db PATH] [--verbose]
+  solgent record install   [--interval S] [--max-db-mb N] [--load] [--dry-run]
+  solgent record uninstall [--unload]
+  solgent record status    [--db PATH]
 
 run        the collector loop: one keyless feed refresh per --interval (default 60 s) feeds the recorder
            (snapshots + feed membership + new pairs), recorder maintenance (outcome sweeps, labels, retention)
@@ -288,17 +288,17 @@ export async function recordCommand(argv: string[], io: RecordIo, deps: { engine
   if (sub === 'uninstall') return uninstall(rest, io);
   if (sub === 'status') return status(rest, io);
   if (sub === 'run') return run(rest, io, deps);
-  io.stderr.write(`trenchscope record: unknown subcommand "${sub}"\n\n${RECORD_USAGE}\n`);
+  io.stderr.write(`solgent record: unknown subcommand "${sub}"\n\n${RECORD_USAGE}\n`);
   return 2;
 }
 
 async function run(argv: string[], io: RecordIo, deps: { engine?: CollectorEngine; now?: () => number }): Promise<number> {
   const parsed = parseRun(argv);
-  if ('error' in parsed) { io.stderr.write(`trenchscope record: ${parsed.error}\n\n${RECORD_USAGE}\n`); return 2; }
+  if ('error' in parsed) { io.stderr.write(`solgent record: ${parsed.error}\n\n${RECORD_USAGE}\n`); return 2; }
   const now = deps.now ?? (() => Date.now());
   const dbPath = parsed.db ?? defaultDbPath(io.env);
-  if (!deps.engine && dbPath === ':memory:') { io.stderr.write('trenchscope record: an in-memory DB keeps no history; give a --db PATH\n'); return 2; }
-  if (!deps.engine && !recorderEnabled(io.env, false)) { io.stderr.write('trenchscope record: the recorder is disabled (DEXTERM_RECORDER=0); nothing to collect\n'); return 2; }
+  if (!deps.engine && dbPath === ':memory:') { io.stderr.write('solgent record: an in-memory DB keeps no history; give a --db PATH\n'); return 2; }
+  if (!deps.engine && !recorderEnabled(io.env, false)) { io.stderr.write('solgent record: the recorder is disabled (DEXTERM_RECORDER=0); nothing to collect\n'); return 2; }
 
   // SIGINT/SIGTERM-aware cancellable sleeper (launchd sends SIGTERM to stop the agent).
   const stop = (() => {
@@ -315,7 +315,7 @@ async function run(argv: string[], io: RecordIo, deps: { engine?: CollectorEngin
   const own = !deps.engine;
   const onSig = (): void => { io.stderr.write('\ndexterm record: stopping…\n'); stop.abort(); };
   if (own) { process.on('SIGINT', onSig); process.on('SIGTERM', onSig); }
-  if (parsed.verbose || parsed.ticks !== Infinity) io.stderr.write(`trenchscope record: db ${dbPath} · interval ${Math.round(parsed.intervalMs / 1000)}s · maintain ${Math.round(parsed.maintainMs / 1000)}s · cap ${parsed.maxDbBytes === null ? 'off' : `${Math.round(parsed.maxDbBytes / 1e6)} MB`} · newpairs ${parsed.noNewpairs ? 'off' : 'on'}\n`);
+  if (parsed.verbose || parsed.ticks !== Infinity) io.stderr.write(`solgent record: db ${dbPath} · interval ${Math.round(parsed.intervalMs / 1000)}s · maintain ${Math.round(parsed.maintainMs / 1000)}s · cap ${parsed.maxDbBytes === null ? 'off' : `${Math.round(parsed.maxDbBytes / 1e6)} MB`} · newpairs ${parsed.noNewpairs ? 'off' : 'on'}\n`);
 
   let result: CollectorRunResult;
   try {
@@ -337,9 +337,9 @@ function install(argv: string[], io: RecordIo): number {
     const t = argv[i];
     if (t === '--load') load = true;
     else if (t === '--dry-run') dry = true;
-    else if (t === '--interval') { const n = Number(argv[++i]); if (!Number.isFinite(n) || n < 1) { io.stderr.write('trenchscope record: --interval needs seconds ≥ 1\n'); return 2; } intervalMs = Math.round(n * 1000); }
-    else if (t === '--max-db-mb') { const n = Number(argv[++i]); if (!Number.isFinite(n) || n < 1) { io.stderr.write('trenchscope record: --max-db-mb needs a number ≥ 1\n'); return 2; } maxDbMb = n; }
-    else { io.stderr.write(`trenchscope record install: unknown option "${t}"\n`); return 2; }
+    else if (t === '--interval') { const n = Number(argv[++i]); if (!Number.isFinite(n) || n < 1) { io.stderr.write('solgent record: --interval needs seconds ≥ 1\n'); return 2; } intervalMs = Math.round(n * 1000); }
+    else if (t === '--max-db-mb') { const n = Number(argv[++i]); if (!Number.isFinite(n) || n < 1) { io.stderr.write('solgent record: --max-db-mb needs a number ≥ 1\n'); return 2; } maxDbMb = n; }
+    else { io.stderr.write(`solgent record install: unknown option "${t}"\n`); return 2; }
   }
   const path = plistPath(io.env);
   const logPath = join(dataDir(io.env), 'collector.log');
@@ -349,9 +349,9 @@ function install(argv: string[], io: RecordIo): number {
   mkdirSync(dirname(path), { recursive: true });
   mkdirSync(dirname(logPath), { recursive: true });
   writeFileSync(path, plist);
-  io.stdout.write(`wrote ${path}\nlog     ${logPath}\n\nEnable it (user-level, no sudo):\n  launchctl bootstrap gui/$(id -u) ${path}\n  launchctl kickstart -k gui/$(id -u)/${COLLECTOR_LABEL}\nStop/remove it:  trenchscope record uninstall --unload\n\nNOTE: a LaunchAgent does NOT start before you log in on this Mac; the collector runs only while logged in.\n`);
+  io.stdout.write(`wrote ${path}\nlog     ${logPath}\n\nEnable it (user-level, no sudo):\n  launchctl bootstrap gui/$(id -u) ${path}\n  launchctl kickstart -k gui/$(id -u)/${COLLECTOR_LABEL}\nStop/remove it:  solgent record uninstall --unload\n\nNOTE: a LaunchAgent does NOT start before you log in on this Mac; the collector runs only while logged in.\n`);
   if (load) return runLaunchctl(['bootstrap', `gui/${process.getuid?.() ?? 0}`, path], io);
-  io.stderr.write('trenchscope record: plist written but NOT loaded (pass --load, or run the launchctl command above) once you have checked it.\n');
+  io.stderr.write('solgent record: plist written but NOT loaded (pass --load, or run the launchctl command above) once you have checked it.\n');
   return 0;
 }
 
@@ -366,11 +366,11 @@ function uninstall(argv: string[], io: RecordIo): number {
 
 function status(argv: string[], io: RecordIo): number {
   let db: string | null = null;
-  for (let i = 0; i < argv.length; i++) { if (argv[i] === '--db') { db = argv[++i] ?? null; if (!db) { io.stderr.write('trenchscope record: --db needs a PATH\n'); return 2; } } }
+  for (let i = 0; i < argv.length; i++) { if (argv[i] === '--db') { db = argv[++i] ?? null; if (!db) { io.stderr.write('solgent record: --db needs a PATH\n'); return 2; } } }
   const path = plistPath(io.env);
   const installed = existsSync(path);
   const dbPath = db ?? defaultDbPath(io.env);
-  io.stdout.write(`LaunchAgent     ${installed ? `installed (${path})` : 'not installed (trenchscope record install)'}\n`);
+  io.stdout.write(`LaunchAgent     ${installed ? `installed (${path})` : 'not installed (solgent record install)'}\n`);
   io.stdout.write(`service note    LaunchAgents do not start before login; the collector runs only while logged in\n`);
   if (dbPath === ':memory:') { io.stdout.write('recorder        in-memory DB (no history)\n'); return 0; }
   let rec: Recorder | null = null;
@@ -386,7 +386,7 @@ function status(argv: string[], io: RecordIo): number {
       `span            ${when(s.oldestT)} → ${when(s.newestT)}`,
     ].join('\n') + '\n');
   } catch (e) {
-    io.stderr.write(`trenchscope record status: ${e instanceof Error ? e.message : String(e)}\n`);
+    io.stderr.write(`solgent record status: ${e instanceof Error ? e.message : String(e)}\n`);
     return 1;
   } finally { rec?.close(); }
   return 0;
@@ -396,11 +396,11 @@ function status(argv: string[], io: RecordIo): number {
 function runLaunchctl(args: string[], io: RecordIo): number {
   try {
     const r = spawnSync('launchctl', args, { stdio: 'inherit' });
-    if (r.status !== 0) { io.stderr.write(`trenchscope record: launchctl ${args[0]} exited ${r.status ?? 'null'}\n`); return 1; }
+    if (r.status !== 0) { io.stderr.write(`solgent record: launchctl ${args[0]} exited ${r.status ?? 'null'}\n`); return 1; }
     io.stdout.write(`launchctl ${args[0]} ok\n`);
     return 0;
   } catch (e) {
-    io.stderr.write(`trenchscope record: launchctl failed: ${e instanceof Error ? e.message : String(e)}\n`);
+    io.stderr.write(`solgent record: launchctl failed: ${e instanceof Error ? e.message : String(e)}\n`);
     return 1;
   }
 }

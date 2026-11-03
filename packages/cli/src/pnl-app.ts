@@ -1,11 +1,11 @@
-// trenchscope — PNL CARD glue for the app (task-1407). `H` on the token, positions and followed-wallets screens opens a
+// solgent — PNL CARD glue for the app (task-1407). `H` on the token, positions and followed-wallets screens opens a
 // preview of the coin's PnL card built from dexterm's own records:
 //   token      → that coin: LIVE when the signer's ledger has fills for it, else PAPER
 //   positions  → every coin with fills (newest activity first; ← → cycle), LIVE or PAPER as above
 //   follows    → the selected followed wallet's coins (TRACKED), newest first
 // In the preview: x share to X · t copy as text · s save only · a show/hide wallet · z exact size/band ·
 // f 16:9 ⇄ 1:1 · ← → other coin · esc close. Share = save + clipboard image + X compose intent in the user's own
-// browser (pnl-card.ts shareCard); trenchscope posts nothing. Nothing here trades, signs or edits a number.
+// browser (pnl-card.ts shareCard); solgent posts nothing. Nothing here trades, signs or edits a number.
 import { type Canvas, mix } from '@dexterm/tui';
 import type { AppState } from './state.ts';
 import {
@@ -70,7 +70,7 @@ function tradedCoins(state: AppState): { mint: string; symbol: string }[] {
 
 /** Open the preview for the current screen. Returns a reason when there is nothing to card. */
 export function openPnl(state: AppState): string | null {
-  if (!state.live) return 'PnL cards are made from recorded fills: run trenchscope live (not --fixtures / --replay)';
+  if (!state.live) return 'PnL cards are made from recorded fills: run solgent live (not --fixtures / --replay)';
   const base = { idx: 0, stats: null, error: null, busy: false, notice: null, opts: { aspect: 'wide' as const, showWallet: false, exactSize: false } };
   if (state.screen === 'follows') {
     const follows = state.copy?.follows() ?? [];

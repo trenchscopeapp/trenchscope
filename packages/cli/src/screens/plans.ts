@@ -1,4 +1,4 @@
-// trenchscope — ORDER PLANS & STANDING MANDATES screen (key O, task-1355; SPEC §6.13). Lists the conditional
+// solgent — ORDER PLANS & STANDING MANDATES screen (key O, task-1355; SPEC §6.13). Lists the conditional
 // order plans and standing mandates held in the signer trust domain, and lets the user arm (hold-to-confirm,
 // physical keypress only), cancel/revoke, and panic. The screen NEVER signs, holds a key, raises a cap, or
 // arms by anything but a captured physical keypress — voice and agents can only PROPOSE, never reach here.
@@ -49,7 +49,7 @@ export function renderPlans(c: Canvas, state: AppState): void {
 
   const rows: readonly (PlanRow | MandateRow)[] = tab === 'plans' ? plans : mandates;
   if (!rows.length) {
-    c.textC(box.x, box.y + 3, box.w, tab === 'plans' ? 'no order plans — propose one with `trenchscope plan propose`, or by voice ("buy this if it dips to 300k")' : 'no standing mandates — draft one with `trenchscope mandate draft`', { fg: t.muted, bg, i: true });
+    c.textC(box.x, box.y + 3, box.w, tab === 'plans' ? 'no order plans — propose one with `solgent plan propose`, or by voice ("buy this if it dips to 300k")' : 'no standing mandates — draft one with `solgent mandate draft`', { fg: t.muted, bg, i: true });
     c.textC(box.x, box.y + 5, box.w, 'a proposal is INERT until you arm it here with a physical keypress hold; nothing arms by voice or agent', { fg: t.dim, bg });
     footer(c, [['tab', 'plans/mandates'], ['esc', 'back'], ['q', 'quit']], t.name);
     return;
@@ -114,7 +114,7 @@ export function renderPlans(c: Canvas, state: AppState): void {
     c.textC(mbox.x, mbox.y, mbox.w, liveFire ? 'Switch plan fills back to the paper executor?' : 'Fire armed plans through the SIGNER from the capped fast wallet (devnet)?', { fg: t.text, bg: mbox.bg, b: true });
     c.textC(mbox.x, mbox.y + 2, mbox.w, liveFire ? 'fills are then simulated again at the tick price; nothing on chain' : 'real devnet lamports move (fees of a wrap-and-unwrap sized to the plan); the token leg is modelled — Jupiter has no devnet', { fg: liveFire ? t.muted : t.down, bg: mbox.bg });
     c.textC(mbox.x, mbox.y + 3, mbox.w, 'the signer re-checks policy, simulation, USD per-trade/daily caps and the 0.05 SOL per-fill ceiling on every fill', { fg: t.muted, bg: mbox.bg });
-    c.textC(mbox.x, mbox.y + 4, mbox.w, 'needs: a live run with the signer, `trenchscope wallet fast create`, no armed/filled plans · never mainnet · journaled', { fg: t.muted, bg: mbox.bg });
+    c.textC(mbox.x, mbox.y + 4, mbox.w, 'needs: a live run with the signer, `solgent wallet fast create`, no armed/filled plans · never mainnet · journaled', { fg: t.muted, bg: mbox.bg });
     c.textC(mbox.x, mbox.y + 6, mbox.w, 'Hold+release [enter]/[y] to switch (keypress only) · [esc] cancels · a pipe/agent/voice cannot', { fg: t.accent, bg: mbox.bg });
   }
 

@@ -1,4 +1,4 @@
-// trenchscope AI SCAN MODE (task-1324) — the pure engine: deterministic triggers, score + reasons,
+// solgent AI SCAN MODE (task-1324) — the pure engine: deterministic triggers, score + reasons,
 // thresholds, the scan state machine, analyst caps/cooldowns and the no-hop rule. See DESIGN.md.
 //
 // Pure: no I/O, no timers, no network. Every method takes `now` and data in and returns a decision

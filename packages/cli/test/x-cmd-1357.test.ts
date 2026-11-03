@@ -1,5 +1,5 @@
 import { posixPermissions } from '../../../scripts/test-support.ts';
-// task-1357 — `trenchscope x` against the loopback mock OAuth server: status/set-client-id/login/logout, and the
+// task-1357 — `solgent x` against the loopback mock OAuth server: status/set-client-id/login/logout, and the
 // invariant that no token ever reaches stdout/stderr. No real X calls (the mock is 127.0.0.1; fetch is blocked).
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
@@ -39,7 +39,7 @@ test('x status: nothing stored → tells the user what to create; help text ment
     assert.match(o.out, /client id: missing/);
     assert.match(o.out, /http:\/\/127\.0\.0\.1:41287\/callback/);
     assert.match(o.out, /not logged in/);
-    for (const s of ['status', 'set-client-id', 'login', 'logout']) assert.ok(X_HELP.includes(`trenchscope x ${s}`), s);
+    for (const s of ['status', 'set-client-id', 'login', 'logout']) assert.ok(X_HELP.includes(`solgent x ${s}`), s);
     assert.equal(await runX(['bogus'], o, { store }), 2);
     assert.match(o.err, /unknown subcommand/);
   } finally { rmSync(dir, { recursive: true, force: true }); }
@@ -115,7 +115,7 @@ test('x login: a wrong client id surfaces invalid_client with a hint, exit 1, no
     const open = (url: string) => { const st = new URL(url).searchParams.get('state') ?? ''; const r = request(`http://127.0.0.1:${port}/callback?state=${encodeURIComponent(st)}&code=x`, (res) => res.resume()); r.on('error', () => {}); r.end(); };
     assert.equal(await runX(['login'], o, { store, endpoints: mock.endpoints, port, loginTimeoutMs: 10_000, open }), 1);
     assert.match(o.err, /invalid_client/);
-    assert.match(o.err, /re-run `trenchscope x set-client-id`/);
+    assert.match(o.err, /re-run `solgent x set-client-id`/);
     assert.equal(store.tokens(), null);
   } finally { await mock.close(); rmSync(dir, { recursive: true, force: true }); }
 });

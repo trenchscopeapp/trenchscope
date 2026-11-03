@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "solgent": {
+      "command": "npx",
+      "args": ["-y", "solgent", "mcp"]
+    }
+  }
+}

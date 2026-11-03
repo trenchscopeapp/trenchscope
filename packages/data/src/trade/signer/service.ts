@@ -1,4 +1,4 @@
-// trenchscope T2 — the SIGNER SERVICE (task-1328, SPEC §6.5). The policy-owning side of the trade: it holds
+// solgent T2 — the SIGNER SERVICE (task-1328, SPEC §6.5). The policy-owning side of the trade: it holds
 // the caps, the daily-cap ledger, the kill switch, the plan registry, the wallet bridge and the live
 // fill ledger, and exposes exactly the small API the protocol names. It is transport-agnostic (the host
 // serves it over the authenticated stdio channel; tests call it directly).
@@ -139,7 +139,7 @@ export class SignerService {
 
   private linked(): { publicKey: string; linkedAt: number } {
     const w = this.links.get();
-    if (!w) throw new SignerError('no-wallet', 'no wallet is linked; run `trenchscope wallet link` (or /wallet link)');
+    if (!w) throw new SignerError('no-wallet', 'no wallet is linked; run `solgent wallet link` (or /wallet link)');
     return { publicKey: w.publicKey, linkedAt: w.linkedAt };
   }
 
@@ -283,7 +283,7 @@ export class SignerService {
     const base = { network: 'devnet' as const, maxSolPerFill: FAST_MAX_SOL_PER_FILL, createdAt: rec?.createdAt ?? null };
     if (!signer) {
       const reason = this.network() !== 'devnet' ? 'the fast wallet exists only on devnet; this signer is not on a devnet RPC'
-        : rec ? 'the fast wallet record could not be loaded' : 'no fast wallet: `trenchscope wallet fast create`';
+        : rec ? 'the fast wallet record could not be loaded' : 'no fast wallet: `solgent wallet fast create`';
       return { ...base, loaded: false, publicKey: rec?.publicKey ?? null, balanceLamports: null, reason };
     }
     let balance: string | null = null;
@@ -300,7 +300,7 @@ export class SignerService {
   async fill(params: unknown): Promise<PlanView> {
     const p = parseFillParams(params);
     if (this.network() !== 'devnet') throw new SignerError('network-mismatch', 'devnet fills run only on devnet');
-    if (!this.d.fastSigner) throw new SignerError('no-fast-wallet', 'no fast wallet is loaded; create one with `trenchscope wallet fast create` (devnet) and restart dexterm');
+    if (!this.d.fastSigner) throw new SignerError('no-fast-wallet', 'no fast wallet is loaded; create one with `solgent wallet fast create` (devnet) and restart dexterm');
     await this.feed?.ensureFresh();
     let built: BuiltPlan;
     try {

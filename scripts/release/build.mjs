@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// trenchscope release build (scripts/release/build.mjs). Zero dependencies, Node >= 22.18.
+// solgent release build (scripts/release/build.mjs). Zero dependencies, Node >= 22.18.
 //
 //   node scripts/release/build.mjs --out <dir> [--version <v>] [--ref <git ref>] [--npm]
 //

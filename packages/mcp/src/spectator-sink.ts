@@ -119,9 +119,9 @@ export function fileSpectatorSinkFromEnv(env: NodeJS.ProcessEnv): { sink: McpSpe
 }
 
 // ---------------------------------------------------------------------------------------------------
-// task-1421: the rendezvous for a `trenchscope mcp` server an EXTERNAL client (Claude Code, Cursor, Codex, …)
+// task-1421: the rendezvous for a `solgent mcp` server an EXTERNAL client (Claude Code, Cursor, Codex, …)
 // spawned. That server's env is set by the client, not by the running dexterm, so DEXTERM_SPECTATOR_FILE is
-// never set on it. Instead, a running trenchscope that has a spectator surface open writes a small rendezvous
+// never set on it. Instead, a running solgent that has a spectator surface open writes a small rendezvous
 // file under ~/.dexterm naming the JSONL channel + its token; the server reads it (mtime-cached) on each
 // tool call and appends there. When no surface is open the file is absent and the server writes NOTHING — so
 // there is no cost when nobody is watching. The channel is local (0600) and the record describes a completed
@@ -130,7 +130,7 @@ export function fileSpectatorSinkFromEnv(env: NodeJS.ProcessEnv): { sink: McpSpe
 /** The well-known rendezvous file name under ~/.dexterm. */
 export const MCP_SPECTATOR_RENDEZVOUS = 'mcp-spectator.json';
 
-/** The rendezvous a running trenchscope writes so an external `trenchscope mcp` server knows where to append. */
+/** The rendezvous a running solgent writes so an external `solgent mcp` server knows where to append. */
 export interface McpSpectatorRendezvous { file: string; token?: string; agent?: string }
 
 function spectatorHome(env: NodeJS.ProcessEnv): string {
@@ -139,7 +139,7 @@ function spectatorHome(env: NodeJS.ProcessEnv): string {
 
 export function rendezvousPath(env: NodeJS.ProcessEnv): string { return join(spectatorHome(env), MCP_SPECTATOR_RENDEZVOUS); }
 
-// task-1443: an EXTERNAL `trenchscope mcp` server has no DEXTERM_SCREEN_STATE (the running app did not spawn it), so it
+// task-1443: an EXTERNAL `solgent mcp` server has no DEXTERM_SCREEN_STATE (the running app did not spawn it), so it
 // could never validate a navigation call against "the tokens currently on screen" and every nav tool failed — the
 // following terminal never moved. While a terminal follows over MCP it publishes a reduced snapshot of its screen
 // (screen, visible rows, selection, the action allow-list; no wallet, positions, tickets or app settings) here,
@@ -181,7 +181,7 @@ export interface LiveSpectatorSink {
 }
 
 /**
- * Resolve the spectator sink for a `trenchscope mcp` server. DEXTERM_SPECTATOR_FILE (the running app spawned us,
+ * Resolve the spectator sink for a `solgent mcp` server. DEXTERM_SPECTATOR_FILE (the running app spawned us,
  * e.g. the in-app analyst) wins and is always active; otherwise the sink watches the rendezvous file under
  * ~/.dexterm and is active only while it exists, re-reading it (mtime-cached) each call. Never throws.
  */

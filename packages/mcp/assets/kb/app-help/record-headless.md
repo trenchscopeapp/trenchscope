@@ -1,6 +1,6 @@
 ---
 id: record-headless
-title: Keep the recorder running with the app closed (trenchscope record)
+title: Keep the recorder running with the app closed (solgent record)
 kind: app-help
 screen: all
 feature: recorder
@@ -29,6 +29,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope record` runs the history recorder with no terminal UI, so the data the backtests learn from keeps growing while trenchscope is closed. `trenchscope record status` shows what it has collected; `trenchscope record install --dry-run` prints the user-level LaunchAgent it would create (macOS, no sudo) and `trenchscope record uninstall` removes it. It uses the same free-tier request limits as the app, never trades, and a disk cap pauses new observations when the database gets large.
+`solgent record` runs the history recorder with no terminal UI, so the data the backtests learn from keeps growing while solgent is closed. `solgent record status` shows what it has collected; `solgent record install --dry-run` prints the user-level LaunchAgent it would create (macOS, no sudo) and `solgent record uninstall` removes it. It uses the same free-tier request limits as the app, never trades, and a disk cap pauses new observations when the database gets large.
 
-CLI: `trenchscope record`.
+CLI: `solgent record`.

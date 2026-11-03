@@ -1,6 +1,6 @@
 // Skill backtest harness (task-1401). Runs the replayable part of the default analyst skills over a recorded,
 // outcome-labelled eval set and reports per-grade precision/recall with 95 % Wilson intervals, on a TRAIN and a
-// held-out TEST split. Pure: input is the eval set JSON (built from a recorder DB by `trenchscope backtest
+// held-out TEST split. Pure: input is the eval set JSON (built from a recorder DB by `solgent backtest
 // --build-eval`), so every number is re-runnable offline.
 //
 // Which skills, and what is actually replayed:
@@ -325,7 +325,7 @@ export function skillBacktest(set: SkillEvalSet, opts: {
     larp: { before: runLarpSubject(set, opts.larpBefore), after: runLarpSubject(set, opts.larpAfter), rubric_before: opts.larpBefore, rubric_after: opts.larpAfter, tuned: opts.tuned?.larp ?? null },
     rug: { before: runRugSubject(set, opts.rugBefore), after: runRugSubject(set, opts.rugAfter), rules_before: opts.rugBefore, rules_after: opts.rugAfter, tuned: opts.tuned?.rug ?? null },
     not_measured: [
-      'larp-check model stage (fetch_page / check_domain / check_github and the model\'s judgement): pages from the past cannot be re-fetched as they were; measured forward only via `trenchscope backtest --subject larp` once ≥ 50 recorded verdicts match an outcome',
+      'larp-check model stage (fetch_page / check_domain / check_github and the model\'s judgement): pages from the past cannot be re-fetched as they were; measured forward only via `solgent backtest --subject larp` once ≥ 50 recorded verdicts match an outcome',
       'rug-check model output (rug_probability, bias): measured forward via `--subject pack_verdicts` from recorded verdicts',
       'trench-scan: no per-token labelled outcome',
     ],

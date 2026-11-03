@@ -1,5 +1,5 @@
 // Voice model downloader (task-1408). The whisper.cpp base.en model and the Piper en_GB-alan-medium
-// voice are NOT shipped (free-forever rule: no bundled large binaries, no keys). trenchscope downloads them
+// voice are NOT shipped (free-forever rule: no bundled large binaries, no keys). solgent downloads them
 // on request, and ONLY on request:
 //   - from the OFFICIAL source (the ggml-org / rhasspy repositories on Hugging Face),
 //   - after EXPLICIT user confirmation (never a silent auto-download),
@@ -7,7 +7,7 @@
 //     tampered download is rejected and never written into place.
 //
 // This module is pure logic + injected fetch/confirm/log, so it is unit-testable with a fake registry
-// and never touches the real network in tests. The CLI (`trenchscope voice download …`) wires the real
+// and never touches the real network in tests. The CLI (`solgent voice download …`) wires the real
 // global fetch, a readline y/N prompt, and stdout.
 
 import { createHash } from 'node:crypto';
@@ -45,7 +45,7 @@ export function specSizeMB(spec: ModelSpec): number {
 }
 
 /**
- * The downloadable voice models, keyed by id. `home` is the trenchscope home (~/.dexterm) so tests can
+ * The downloadable voice models, keyed by id. `home` is the solgent home (~/.dexterm) so tests can
  * point it at a temp dir. Checksums are pinned from the upstream Hugging Face LFS pointers (verified
  * 2026-10-16): ggerganov/whisper.cpp and rhasspy/piper-voices@v1.0.0.
  */

@@ -42,7 +42,7 @@
 
   function setData(next) {
     vm = next || {};
-    titleEl.textContent = `trenchscope · NARRATIVE ${vm.window ? vm.window.toUpperCase() : ''}`;
+    titleEl.textContent = `solgent · NARRATIVE ${vm.window ? vm.window.toUpperCase() : ''}`;
     metaEl.textContent = `${vm.tokens_total ?? 0} tokens · ${vm.unclassified_pct ?? 0}% unclassified · ${vm.copycats ?? 0} copycats · age ${vm.data_age ?? '—'} · lex v${vm.lexicon_version ?? '—'}`;
     limitsEl.textContent = vm.limits || 'model output: none (deterministic). Name-based: X/TG-only narratives are missed.';
     const n = (vm.rows || []).length;

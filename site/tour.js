@@ -1,4 +1,4 @@
-// The stage: plays frames rendered by trenchscope itself (packages/cli/tools/site-frames.mjs).
+// The stage: plays frames rendered by solgent itself (packages/cli/tools/site-frames.mjs).
 // Each frame is a list of row ids; a row is a list of [text, style] runs drawn as plain text.
 const ATTR_BOLD = 1, ATTR_DIM = 2, ATTR_ITALIC = 4, ATTR_UNDERLINE = 8;
 

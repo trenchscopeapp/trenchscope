@@ -1,4 +1,4 @@
-// trenchscope — the price display mode (task-1366): show USD price or MARKET CAP on every screen and both charts.
+// solgent — the price display mode (task-1366): show USD price or MARKET CAP on every screen and both charts.
 //
 // A DISPLAY mode only. Market cap = price × supply, where the supply is what the data layer already reports
 // (the row's mcap / price at the latest tick: the "supply ratio"). Historical candles are scaled by the CURRENT
@@ -184,24 +184,24 @@ export function togglePriceMode(state: AppState): string {
 }
 
 export interface DisplayIo { stdout: { write(s: string): unknown }; stderr: { write(s: string): unknown }; env: NodeJS.ProcessEnv }
-export const DISPLAY_USAGE = 'usage: trenchscope display [price|mcap]   show or set display.priceMode in ~/.dexterm/config.json ($ in the app toggles it)';
+export const DISPLAY_USAGE = 'usage: solgent display [price|mcap]   show or set display.priceMode in ~/.dexterm/config.json ($ in the app toggles it)';
 
-/** `trenchscope display [price|mcap]`: print the saved price display mode, or set it (journaled, actor user). No network. */
+/** `solgent display [price|mcap]`: print the saved price display mode, or set it (journaled, actor user). No network. */
 export function displayCommand(argv: string[], io: DisplayIo): number {
   const home = dextermHome(io.env);
   const [arg] = argv;
   const loaded = loadConfig(home);
   if (arg === undefined) {
-    if (!loaded.ok) { io.stderr.write(`trenchscope display: ${loaded.errors[0]}\n`); return 1; }
+    if (!loaded.ok) { io.stderr.write(`solgent display: ${loaded.errors[0]}\n`); return 1; }
     const m = configPriceMode(loaded.config);
     io.stdout.write(`display.priceMode = ${m}${m === 'mcap' ? ` (tables show MCAP; charts: ${MCAP_AXIS_LABEL}; tokens without a supply fall back to price)` : ' (USD price per token)'}\n`);
     return 0;
   }
-  if (!isPriceMode(arg)) { io.stderr.write(`trenchscope display: unknown mode ${JSON.stringify(arg.slice(0, 20))}\n${DISPLAY_USAGE}\n`); return 2; }
+  if (!isPriceMode(arg)) { io.stderr.write(`solgent display: unknown mode ${JSON.stringify(arg.slice(0, 20))}\n${DISPLAY_USAGE}\n`); return 2; }
   try {
     const op = loaded.config.display ? { op: 'add' as const, path: '/display/priceMode', value: arg } : { op: 'add' as const, path: '/display', value: { priceMode: arg } };
-    applyAndJournal(home, [op], { actor: 'user', why: `trenchscope display ${arg}` });
-  } catch (e) { io.stderr.write(`trenchscope display: ${(e as Error).message}\n`); return 1; }
+    applyAndJournal(home, [op], { actor: 'user', why: `solgent display ${arg}` });
+  } catch (e) { io.stderr.write(`solgent display: ${(e as Error).message}\n`); return 1; }
   io.stdout.write(`display.priceMode = ${arg} (saved to ${configPath(home)})\n`);
   return 0;
 }

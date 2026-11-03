@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
-<title>trenchscope market</title>
+<title>solgent market</title>
 <style>
 :root{color-scheme:dark;--bg:#0a0a0a;--panel:#141414;--ink:#ededed;--muted:#a6a6a6;--line:#2c2c2c;--up:#7cc794;--down:#e8847c;--warn:#d9b46a;font-size:14px;line-height:1.5;font-family:"Spline Sans Mono", ui-monospace, "SF Mono", Menlo, monospace}
 :root[data-theme=light]{color-scheme:light;--bg:#fafafa;--panel:#efefef;--ink:#171717;--muted:#575757;--line:#d0d0d0;--up:#25673c;--down:#a0322b;--warn:#775114}
@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-<header><span class="brand">trenchscope</span><span class="tag">SOLANA / READ ONLY</span></header>
+<header><span class="brand">solgent</span><span class="tag">SOLANA / READ ONLY</span></header>
 <main id="main" aria-busy="true">
   <div class="heading"><div><h1 id="title">Market view</h1><small id="subtitle">Waiting for Claude to send market data.</small></div><button id="refresh" hidden>Refresh</button></div>
   <p id="notice" role="status" aria-live="polite"></p>
@@ -36,7 +36,7 @@
   const post = (message) => window.parent.postMessage({ jsonrpc: '2.0', ...message }, '*');
   function request(method, params) {
     return new Promise((resolve, reject) => {
-      const id = 'trenchscope-' + (++seq);
+      const id = 'solgent-' + (++seq);
       const timer = setTimeout(() => { pending.delete(id); reject(new Error('The host did not respond. Try again.')); }, 45000);
       pending.set(id, { resolve, reject, timer }); post({ id, method, params });
     });
@@ -197,8 +197,8 @@
   window.addEventListener('message', onMessage);
   let lastHeight = 0;
   const observer = new ResizeObserver(() => { const height = Math.ceil(document.documentElement.getBoundingClientRect().height); if (height !== lastHeight) { lastHeight = height; notify('ui/notifications/size-changed', { height }); } });
-  if (window.parent === window) { setBusy(false); notice('This view opens inside a compatible MCP client. Add the Trenchscope connector and ask for trending tokens.'); }
-  else request('ui/initialize', { appInfo: { name: 'trenchscope', version: '1.0.0' }, appCapabilities: { availableDisplayModes: ['inline'] }, protocolVersion: '2026-01-26' }).then((result) => {
+  if (window.parent === window) { setBusy(false); notice('This view opens inside a compatible MCP client. Add the Solgent connector and ask for trending tokens.'); }
+  else request('ui/initialize', { appInfo: { name: 'solgent', version: '1.0.0' }, appCapabilities: { availableDisplayModes: ['inline'] }, protocolVersion: '2026-01-26' }).then((result) => {
     connected = true; hostTools = !!result.hostCapabilities?.serverTools; hostLinks = !!result.hostCapabilities?.openLinks; context(result.hostContext); currentName = result.hostContext?.toolInfo?.tool?.name || '';
     post({ method: 'ui/notifications/initialized' }); observer.observe(document.body);
     setBusy(false);

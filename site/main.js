@@ -1,10 +1,50 @@
 import { Tour } from './tour.js?v=20261019-ghost1';
-import { liveTrench, gpuKind, reveals, sparks, magnet, glare } from './fx.js?v=20261019-soft2';
+import { liveTrench, gpuKind, glare } from './fx.js?v=20261020-polish1';
+import { initBasicNavigationBar } from './nav.js?v=20261020-docs3';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const narrowQ = window.matchMedia('(max-width: 767px)');
+
+// Osmo Locomotive Scroll v5 setup. Touch and reduced motion retain native scrolling.
+const scrollPointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+let locomotiveScroll = null;
+function syncSmoothScroll() {
+  if (reduced.matches || !scrollPointer.matches) {
+    locomotiveScroll?.destroy();
+    locomotiveScroll = null;
+    return;
+  }
+  if (!locomotiveScroll && window.LocomotiveScroll) {
+    locomotiveScroll = new window.LocomotiveScroll({ lenisOptions: { lerp: 0.1, smoothWheel: true, syncTouch: false } });
+  }
+}
+addEventListener('load', syncSmoothScroll, { once: true });
+reduced.addEventListener('change', syncSmoothScroll);
+scrollPointer.addEventListener('change', syncSmoothScroll);
+addEventListener('pagehide', () => { locomotiveScroll?.destroy(); locomotiveScroll = null; });
+addEventListener('pageshow', syncSmoothScroll);
+document.addEventListener('click', (event) => {
+  const link = event.target.closest?.('a[href^="#"]');
+  if (!locomotiveScroll || !link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const id = link.getAttribute('href').slice(1);
+  const target = document.getElementById(id);
+  if (!target) return;
+  event.preventDefault();
+  const offset = -parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop || '0');
+  locomotiveScroll.scrollTo(target, { offset, duration: 0.8, onComplete: () => {
+    history.pushState(null, '', '#' + id);
+    if (!target.hasAttribute('tabindex')) {
+      target.setAttribute('tabindex', '-1');
+      target.addEventListener('blur', () => target.removeAttribute('tabindex'), { once: true });
+    }
+    target.focus({ preventScroll: true });
+  } });
+});
+
+// Osmo Basic Navigation Bar, shared with the docs page.
+initBasicNavigationBar();
 
 // Osmo's inline copy confirmation, shared by command and agent controls.
 function copyFeedback(button, content, source) {
@@ -20,6 +60,11 @@ function copyFeedback(button, content, source) {
     word.textContent = say('copy');
     button.removeAttribute('data-done');
     button.setAttribute('aria-label', label);
+    if (source.hasAttribute('data-copy-fallback')) {
+      source.textContent = source.dataset.copyOriginal;
+      delete source.dataset.copyFallback;
+      delete source.dataset.copyOriginal;
+    }
   };
   button.addEventListener('click', async () => {
     reset();
@@ -32,6 +77,9 @@ function copyFeedback(button, content, source) {
       button.setAttribute('aria-label', 'Copied to clipboard');
     } catch {
       if (attempt !== revision) return;
+      source.dataset.copyOriginal = source.textContent;
+      source.dataset.copyFallback = '';
+      source.textContent = content();
       const selection = window.getSelection();
       const range = document.createRange();
       range.selectNodeContents(source);
@@ -40,7 +88,7 @@ function copyFeedback(button, content, source) {
       word.textContent = say('retry');
       button.setAttribute('aria-label', 'Copy failed. Text selected for manual copying. Try again');
     }
-    timer = setTimeout(reset, 2000);
+    if (!source.hasAttribute('data-copy-fallback')) timer = setTimeout(reset, 2000);
   });
   return reset;
 }
@@ -52,48 +100,21 @@ const os = /win/i.test(platform) ? 'win' : 'unix';
 
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-// The command bar shows a short form of the command, typed in (Osmo Typewriter: a humanised delay per
-// character, a longer pause at the pipe). Copy always takes the full commands from the selected tab.
+// Commands respond immediately; the real terminal tour carries the page's authored motion.
 function typer(el) {
-  let timer = 0;
-  const caret = document.createElement('i');
-  caret.className = 'caret';
-  caret.setAttribute('aria-hidden', 'true');
-  return (text) => {
-    clearTimeout(timer);
-    if (reduced.matches) { el.textContent = text; el.append(caret); caret.setAttribute('data-blink', ''); return; }
-    const node = document.createTextNode('');
-    el.replaceChildren(node, caret);
-    caret.removeAttribute('data-blink');
-    let n = 0;
-    const step = () => {
-      if (n >= text.length) { caret.setAttribute('data-blink', ''); return; }
-      const ch = text[n++];
-      node.nodeValue += ch;
-      let d = 1000 / 70 + Math.random() * 18 - 6;
-      if (ch === ' ') d += Math.random() * 20;
-      if (ch === '|') d += 120 + Math.random() * 60;
-      if (Math.random() < 0.06) d += 40 + Math.random() * 50;
-      timer = setTimeout(step, Math.max(8, d));
-    };
-    timer = setTimeout(step, 160);
-  };
+  return (text) => { el.textContent = text; };
 }
 
-// React Bits Rubber Segment: the thumb stretches across the old and new slots, then lands on the new one.
+// Equal-width segments retarget from their current presentation without a delayed handoff.
 function rubber(thumb, tabs) {
-  let handoff = 0;
   const slot = (t) => ({ l: t.offsetLeft, w: t.offsetWidth });
   const set = (l, w) => { thumb.style.transform = `translateX(${l - 3}px)`; thumb.style.width = `${w}px`; };
-  const snap = (tab) => { clearTimeout(handoff); thumb.style.transition = 'none'; const s = slot(tab); set(s.l, s.w); };
+  const snap = (tab) => { thumb.style.transition = 'none'; const s = slot(tab); set(s.l, s.w); };
   const go = (from, to) => {
-    clearTimeout(handoff);
     if (reduced.matches || !from) { snap(to); return; }
-    const a = slot(from), b = slot(to);
-    const l = Math.min(a.l, b.l), r = Math.max(a.l + a.w, b.l + b.w);
-    thumb.style.transition = 'transform 190ms cubic-bezier(0.23, 1, 0.32, 1), width 190ms cubic-bezier(0.23, 1, 0.32, 1)';
-    set(l, r - l);
-    handoff = setTimeout(() => { thumb.style.transition = 'transform 300ms cubic-bezier(0.34, 1.36, 0.64, 1), width 300ms cubic-bezier(0.34, 1.36, 0.64, 1)'; set(b.l, b.w); }, 150);
+    const b = slot(to);
+    thumb.style.transition = 'transform 220ms var(--ease-energy)';
+    set(b.l, b.w);
   };
   return { go, snap };
 }
@@ -146,30 +167,6 @@ function spotlight(root) {
   addEventListener('pointerup', () => { if (st.down) { st.down = false; wake(); } });
 }
 
-// Osmo Button 069: on hover the word's letters rotate once around, then settle.
-function shuffle(button) {
-  const word = $('[data-copy-word]', button);
-  if (!finePointer.matches || reduced.matches) return;
-  let timer = 0, original = '';
-  const stop = () => {
-    clearInterval(timer); timer = 0;
-    if (original && !button.hasAttribute('data-done')) word.textContent = original;
-  };
-  button.addEventListener('pointerenter', () => {
-    if (button.hasAttribute('data-done') || timer) return;
-    original = word.textContent;
-    let s = original, tick = 0;
-    timer = setInterval(() => {
-      s = s.slice(-1) + s.slice(0, -1);
-      word.textContent = s;
-      if (++tick >= original.length) stop();
-    }, 46);
-  });
-  button.addEventListener('pointerleave', stop);
-  // stop before copy feedback writes its own word
-  button.addEventListener('pointerdown', () => { clearInterval(timer); timer = 0; if (original) word.textContent = original; });
-}
-
 $$('[data-install]').forEach((box, n) => {
   const show = $('[data-cmd-show]', box);
   const full = $('[data-cmd-full]', box);
@@ -217,26 +214,25 @@ $$('[data-install]').forEach((box, n) => {
     });
   });
   spotlight(box);
-  shuffle(copy);
 });
 
 // ---------------------------------------------------------------- agent hookup
-// One read-only server, `npx -y trenchscope mcp` (the form the README, the plugin and the MCP registry
-// entry use: it runs with or without trenchscope on PATH, which desktop apps often do not inherit).
-const MCP = { command: 'npx', args: ['-y', 'trenchscope', 'mcp'] };
+// One read-only server, `npx -y solgent mcp` (the form the README, the plugin and the MCP registry
+// entry use: it runs with or without solgent on PATH, which desktop apps often do not inherit).
+const MCP = { command: 'npx', args: ['-y', 'solgent', 'mcp'] };
 const json = (root, extra = {}) => {
   // two-space JSON with the args array kept on one line, the way people write these files
   const args = `[${MCP.args.map((a) => JSON.stringify(a)).join(', ')}]`;
   const lines = Object.entries({ command: MCP.command, ...extra }).map(([k, v]) => `      ${JSON.stringify(k)}: ${JSON.stringify(v)},`);
-  return `{\n  ${JSON.stringify(root)}: {\n    "trenchscope": {\n${lines.join('\n')}\n      "args": ${args}\n    }\n  }\n}`;
+  return `{\n  ${JSON.stringify(root)}: {\n    "solgent": {\n${lines.join('\n')}\n      "args": ${args}\n    }\n  }\n}`;
 };
-const cursorLink = `cursor://anysphere.cursor-deeplink/mcp/install?name=trenchscope&config=${btoa(JSON.stringify(MCP))}`;
+const cursorLink = `cursor://anysphere.cursor-deeplink/mcp/install?name=solgent&config=${btoa(JSON.stringify(MCP))}`;
 const AGENTS = {
-  claude: { name: 'Claude Code', cli: 'claude mcp add trenchscope -- npx -y trenchscope mcp', file: '.mcp.json in your project', config: json('mcpServers') },
-  codex: { name: 'Codex', cli: 'codex mcp add trenchscope -- npx -y trenchscope mcp', file: '~/.codex/config.toml', config: '[mcp_servers.trenchscope]\ncommand = "npx"\nargs = ["-y", "trenchscope", "mcp"]' },
+  claude: { name: 'Claude Code', cli: 'claude mcp add solgent -- npx -y solgent mcp', file: '.mcp.json in your project', config: json('mcpServers') },
+  codex: { name: 'Codex', cli: 'codex mcp add solgent -- npx -y solgent mcp', file: '~/.codex/config.toml', config: '[mcp_servers.solgent]\ncommand = "npx"\nargs = ["-y", "solgent", "mcp"]' },
   cursor: { name: 'Cursor', link: cursorLink, step: 'Open the link; Cursor asks before it adds the server', file: '~/.cursor/mcp.json', config: json('mcpServers') },
-  gemini: { name: 'Gemini CLI', cli: 'gemini mcp add -s user trenchscope npx -- -y trenchscope mcp', file: '~/.gemini/settings.json', config: json('mcpServers') },
-  vscode: { name: 'VS Code (Copilot)', cli: 'code --add-mcp "{\\"name\\":\\"trenchscope\\",\\"command\\":\\"npx\\",\\"args\\":[\\"-y\\",\\"trenchscope\\",\\"mcp\\"]}"', file: '.vscode/mcp.json in your workspace', config: json('servers') },
+  gemini: { name: 'Gemini CLI', cli: 'gemini mcp add -s user solgent npx -- -y solgent mcp', file: '~/.gemini/settings.json', config: json('mcpServers') },
+  vscode: { name: 'VS Code (Copilot)', cli: 'code --add-mcp "{\\"name\\":\\"solgent\\",\\"command\\":\\"npx\\",\\"args\\":[\\"-y\\",\\"solgent\\",\\"mcp\\"]}"', file: '.vscode/mcp.json in your workspace', config: json('servers') },
 };
 
 (function agents() {
@@ -245,6 +241,7 @@ const AGENTS = {
   const tabs = $$('[role="tab"]', root);
   const modes = $$('[data-mode]', root);
   const code = $('[data-agent-code]', root);
+  code.setAttribute('data-lenis-prevent', '');
   const title = $('[data-agent-title]', root);
   const step = $('[data-agent-step]', root);
   const open = $('[data-agent-open]', root);
@@ -295,11 +292,10 @@ const AGENTS = {
   new ResizeObserver(resnap).observe(root);
   document.fonts.ready.then(resnap);
   spotlight(root);
-  shuffle(copy);
 })();
 
 // ---------------------------------------------------------------- stage
-const KEY_LABEL = { trenchscope: 'launch', j: 'next row', '⏎': 'open the coin', a: 'ask the analyst', 2: 'new pairs', 3: 'watchlist' };
+const KEY_LABEL = { solgent: 'launch', j: 'next row', '⏎': 'open the coin', a: 'ask the analyst', 2: 'new pairs', 3: 'watchlist' };
 // what happens in each chapter, read off the same sample frames: [tone, kind, subject, detail]
 const EVENTS = {
   boot: [['up', 'link', 'dexscreener', 'pair search'], ['up', 'link', 'jupiter', 'tokens and prices'], ['up', 'link', 'geckoterminal', '60 hourly candles'], ['up', 'link', 'rugcheck', 'mint, freeze, LP'], ['', 'local', 'claude -p', 'your own login']],
@@ -371,7 +367,7 @@ async function stage() {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'tab';
-    b.innerHTML = `<span>${c.label}</span>${c.key ? `<kbd>${c.key === 'trenchscope' ? '$' : c.key}</kbd>` : ''}`;
+    b.innerHTML = `<span>${c.label}</span>${c.key ? `<kbd>${c.key === 'solgent' ? '$' : c.key}</kbd>` : ''}`;
     b.addEventListener('click', () => {
       tour.show(i, reduced.matches ? last(i) : 0);
       if (c.key) key(c.key);
@@ -386,14 +382,15 @@ async function stage() {
   // a chapter change crossfades out of a slight blur instead of cutting
   const fade = () => {
     if (reduced.matches || !pre.animate) return;
-    pre.animate([{ opacity: 0, filter: 'blur(3px)' }, { opacity: 1, filter: 'blur(0)' }], { duration: 520, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+    pre.getAnimations().forEach((animation) => animation.cancel());
+    pre.animate([{ opacity: 0.65 }, { opacity: 1 }], { duration: 180, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
   };
 
   const hud = $('[data-hud]');
   let hudTimer = 0;
   const key = (k) => {
-    $('[data-hud-key]', hud).textContent = k === 'trenchscope' ? '$' : k;
-    $('[data-hud-label]', hud).textContent = k === 'trenchscope' ? 'trenchscope' : KEY_LABEL[k] ?? '';
+    $('[data-hud-key]', hud).textContent = k === 'solgent' ? '$' : k;
+    $('[data-hud-label]', hud).textContent = k === 'solgent' ? 'solgent' : KEY_LABEL[k] ?? '';
     hud.setAttribute('data-on', '');
     clearTimeout(hudTimer);
     hudTimer = setTimeout(() => hud.removeAttribute('data-on'), 1500);
@@ -442,7 +439,7 @@ async function stage() {
     const go = visible && !byHand && !hover && !document.hidden;
     // the live dot and the caption say whether it is playing
     live.toggleAttribute('data-paused', byHand || hover);
-    caption.textContent = hover && !byHand ? 'Paused · move away to resume' : byHand ? 'Paused' : 'Sample data, drawn by trenchscope cell for cell';
+    caption.textContent = hover && !byHand ? 'Paused · move away to resume' : byHand ? 'Paused' : 'Sample data, drawn by solgent cell for cell';
     if (reduced.matches) {
       clearInterval(stepTimer);
       if (go) stepTimer = setInterval(stepStill, 5000);
@@ -520,9 +517,7 @@ async function crop() {
 
 // the live trench runs only on a hardware GPU; a software renderer keeps the light glyph field
 gpuKind().then((kind) => { if (kind !== 'software') liveTrench(document.querySelector('.ascii-bg')); });
-reveals();
-sparks();
-magnet();
+// Keep reading content continuously visible and controls stable under the pointer.
 glare(document.querySelector('.screen'));
 
 // the two screens load on their own, so one failing never blanks the other
@@ -532,7 +527,7 @@ const failed = (sel) => (err) => {
   const box = $(sel);
   box.closest('section').setAttribute('data-failed', '');
   box.style.height = '';
-  box.innerHTML = '<p class="screen-msg">The tour could not load. Every screen in it is trenchscope itself: install it and run <code>trenchscope --fixtures</code> to see them with sample data.</p>';
+  box.innerHTML = '<p class="screen-msg">The tour could not load. Every screen in it is solgent itself: install it and run <code>solgent --fixtures</code> to see them with sample data.</p>';
 };
 stage().catch(failed('[data-fit]'));
 crop().catch(failed('[data-fit-crop]'));

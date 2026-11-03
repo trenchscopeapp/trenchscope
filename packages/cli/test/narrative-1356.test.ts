@@ -1,4 +1,4 @@
-// task-1356: the NARRATIVE BOARD TUI screen renders a computed board, and the `trenchscope narrative`
+// task-1356: the NARRATIVE BOARD TUI screen renders a computed board, and the `solgent narrative`
 // subcommand prints the board / summary from the recorder DB. Offline, no model, no network.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -36,7 +36,7 @@ test('narrative screen: empty state is an honest "collecting" message, never a f
   assert.match(plain, /collecting narratives/);
 });
 
-test('trenchscope narrative: prints a board table from the recorder DB', () => {
+test('solgent narrative: prints a board table from the recorder DB', () => {
   const dir = mkdtempSync(join(tmpdir(), 'narr-1356-'));
   const dbPath = join(dir, 'dexterm.db');
   try {
@@ -63,7 +63,7 @@ test('trenchscope narrative: prints a board table from the recorder DB', () => {
   }
 });
 
-test('trenchscope narrative: a DB with no recorder tables fails cleanly, never a fake board', () => {
+test('solgent narrative: a DB with no recorder tables fails cleanly, never a fake board', () => {
   const dir = mkdtempSync(join(tmpdir(), 'narr-empty-'));
   const dbPath = join(dir, 'empty.db');
   try {

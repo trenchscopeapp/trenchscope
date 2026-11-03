@@ -31,7 +31,7 @@ export const DEFAULT_CANDLE_LIMIT = 300;
 /**
  * task-1314: the coarser timeframes derive exactly from a finer base, so two network fetches (1m, 1h)
  * cover all six tabs and a timeframe switch paints instantly from local aggregation. Each target period
- * is an integer multiple of its base and every trenchscope period divides the epoch evenly (minute/hour/day
+ * is an integer multiple of its base and every solgent period divides the epoch evenly (minute/hour/day
  * all start at a UTC boundary = floor(t/period)*period), so the derived buckets line up with the bars
  * GeckoTerminal would return natively. 1m and 1h are the base intervals (not derivable).
  */

@@ -1,4 +1,4 @@
-// trenchscope — alert delivery subsystem (task-1398). See DESIGN.md.
+// solgent — alert delivery subsystem (task-1398). See DESIGN.md.
 export * from './types.ts';
 export * from './format.ts';
 export * from './route.ts';

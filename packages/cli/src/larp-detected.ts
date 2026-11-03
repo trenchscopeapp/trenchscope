@@ -84,7 +84,7 @@ export function cardCanvas(row: FollowUp, d: FollowUpDataset, now: number): Canv
   c.text(4, 15, outcomeText(row.outcome).toUpperCase(), { fg: t.warn, b: true });
   c.text(4, 17, `${fmtAge(d.horizonSec)} follow-up · ${row.outcome.tier} · labeler evidence`, { fg: t.text });
   c.text(4, 20, datasetLine(d), { fg: t.muted }, c.w - 8);
-  c.text(4, 22, 'Sources: local trenchscope recorder · DexScreener + Jupiter · draft only', { fg: t.muted }, c.w - 8);
+  c.text(4, 22, 'Sources: local solgent recorder · DexScreener + Jupiter · draft only', { fg: t.muted }, c.w - 8);
   c.text(4, 23, 'Not financial advice.', { fg: t.muted });
   return c;
 }
@@ -97,7 +97,7 @@ export function historyDraft(row: FollowUp, d: FollowUpDataset, now: number): st
     '',
     datasetLine(d),
     '',
-    `Evidence: local trenchscope recorder; DexScreener + Jupiter; t0 data age ${fmtAge((now - row.t0) / 1000)} at export; ${row.outcome.tier}; coin ${shortMint(row.mint)}.`,
+    `Evidence: local solgent recorder; DexScreener + Jupiter; t0 data age ${fmtAge((now - row.t0) / 1000)} at export; ${row.outcome.tier}; coin ${shortMint(row.mint)}.`,
     '',
     'A risk flag is not a certificate. Draft only; a human decides whether to post. Not financial advice.',
   ].join('\n') + '\n';
@@ -142,10 +142,10 @@ function parse(argv: string[]): Record<string, string | true> {
   return out;
 }
 
-export const LARP_DETECTED_HELP = `trenchscope larp-detected: local high-risk draft/card pipeline; never posts or schedules
+export const LARP_DETECTED_HELP = `solgent larp-detected: local high-risk draft/card pipeline; never posts or schedules
 
-  trenchscope larp-detected --out DIR [--db PATH] [--horizon SEC] [--limit 3]
-  trenchscope larp-detected --live MINT --out DIR
+  solgent larp-detected --out DIR [--db PATH] [--horizon SEC] [--limit 3]
+  solgent larp-detected --live MINT --out DIR
 
 The grade is the H1 rug heuristic (a risk flag from market and holder data), not a LARP verdict: no website,
 domain or repo is checked, so the cards say HIGH RISK, never LARP.
@@ -163,12 +163,12 @@ function liveFeatures(row: EnrichedRow) {
 }
 
 async function liveCard(mint: string, outDir: string, dbPath: string, io: LarpDraftIo): Promise<number> {
-  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) { io.stderr.write('trenchscope larp-detected: --live needs a Solana mint\n'); return 2; }
+  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(mint)) { io.stderr.write('solgent larp-detected: --live needs a Solana mint\n'); return 2; }
   const dl = createDataLayer({ dbPath });
   try {
     const result = await dl.store.enrich([mint]);
     const row = result.rows[0];
-    if (!row) { io.stderr.write('trenchscope larp-detected: no current market record found for that mint\n'); return 2; }
+    if (!row) { io.stderr.write('solgent larp-detected: no current market record found for that mint\n'); return 2; }
     const now = Date.now(), model = h1Model(), score = model.score(liveFeatures(row));
     const c = new Canvas(92, 20, THEMES.cyberspace), t = c.theme;
     c.fill(0, 0, c.w, c.h, ' ', { bg: t.bg }); c.fill(0, 0, c.w, 3, ' ', { bg: t.headBg });
@@ -194,11 +194,11 @@ export async function larpDetectedCommand(argv: string[], io: LarpDraftIo): Prom
   const dbPath = typeof o.db === 'string' ? resolve(o.db) : (io.env.DEXTERM_DB_PATH || defaultDbPath(io.env));
   const outDir = typeof o.out === 'string' ? resolve(o.out) : resolve('marketing', 'larp-detected', new Date().toISOString().slice(0, 10));
   if (typeof o.live === 'string') return liveCard(o.live, outDir, dbPath, io);
-  if (!existsSync(dbPath)) { io.stderr.write(`trenchscope larp-detected: no recorder history at ${dbPath}\n`); return 2; }
+  if (!existsSync(dbPath)) { io.stderr.write(`solgent larp-detected: no recorder history at ${dbPath}\n`); return 2; }
   const horizon = typeof o.horizon === 'string' ? Number(o.horizon) : LARP_DRAFT_HORIZON;
-  if (!Number.isFinite(horizon) || horizon <= 0) { io.stderr.write('trenchscope larp-detected: --horizon must be positive seconds\n'); return 2; }
+  if (!Number.isFinite(horizon) || horizon <= 0) { io.stderr.write('solgent larp-detected: --horizon must be positive seconds\n'); return 2; }
   const db = openHistoryReadOnly(dbPath);
-  if (!db) { io.stderr.write('trenchscope larp-detected: recorder database could not be opened read-only\n'); return 2; }
+  if (!db) { io.stderr.write('solgent larp-detected: recorder database could not be opened read-only\n'); return 2; }
   try {
     const dataset = buildFollowUpDataset(exportRecorded(db, { labelledOnly: true }).records, horizon);
     if (dataset.flagged.length < LARP_DRAFT_MIN_SAMPLE) {

@@ -69,7 +69,7 @@ const doc = {
   schemaVersion: 1,
   sample,
   generatedAt: new Date().toISOString(),
-  pipeline: { name: sample ? 'trenchscope release pipeline (local dry run, SAMPLE)' : 'trenchscope release pipeline', workflow: args.workflow || '.github/workflows/release.yml', runUrl: args['run-url'] || info.ci?.runUrl || null, rescanSchedule: args['rescan-schedule'] || 'weekly (sunday 06:00 utc, .github/workflows/rescan.yml) and on every release' },
+  pipeline: { name: sample ? 'solgent release pipeline (local dry run, SAMPLE)' : 'solgent release pipeline', workflow: args.workflow || '.github/workflows/release.yml', runUrl: args['run-url'] || info.ci?.runUrl || null, rescanSchedule: args['rescan-schedule'] || 'weekly (sunday 06:00 utc, .github/workflows/rescan.yml) and on every release' },
   release: { version: info.version, tag: args.tag || info.ci?.refName || null, commit: info.commit, publishedAt: args['published-at'] || null, url: args['release-url'] || null },
   artifacts,
   supplyChain: supply,

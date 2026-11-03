@@ -1,5 +1,5 @@
 // task-1421: the running terminal follows an agent driving over MCP. End-to-end through the REAL MCP sink:
-// a fake MCP client records tool calls with resolveSpectatorSink (exactly what `trenchscope mcp` does), the
+// a fake MCP client records tool calls with resolveSpectatorSink (exactly what `solgent mcp` does), the
 // session tails the channel, an AGENT ACTIVITY row appears and the SCREEN model moves; pause/take-over/kill
 // and "any user keypress wins" behave; and a red-team agent cannot leak an address/key into a shared copy or
 // make injected text act.
@@ -131,7 +131,7 @@ test('kill removes the rendezvous so the server stops emitting', async () => {
   h.session.pump();
   h.session.kill();
   assert.equal(h.session.controlState, 'user');
-  assert.equal(h.sink.active(), false, 'the rendezvous is gone; a `trenchscope mcp` server would stop emitting');
+  assert.equal(h.sink.active(), false, 'the rendezvous is gone; a `solgent mcp` server would stop emitting');
   await h.session.stop();
 });
 

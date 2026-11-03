@@ -1,4 +1,4 @@
-// trenchscope — the customization layer's app adapter (task-1358 Tier 1: workspaces). Pure helpers over
+// solgent — the customization layer's app adapter (task-1358 Tier 1: workspaces). Pure helpers over
 // @dexterm/custom that the key handler, the interactive loop and the screens call: load config + workspaces
 // into `state.custom`, turn a workspace into a plan the loop applies (theme, intensity, screener preset /
 // filter / sort, token panel toggles, start screen, HUD popups), decide which popups to open, and hand the
@@ -20,7 +20,7 @@ import { presetSpec } from './screener/presets.ts';
 export interface CustomUi {
   home: string;
   config: DextermConfig;
-  /** Loader problems (the defaults are in use when non-empty). Shown once as a toast and by `trenchscope doctor`. */
+  /** Loader problems (the defaults are in use when non-empty). Shown once as a toast and by `solgent doctor`. */
   configErrors: string[];
   configNotes: string[];
   workspaces: WorkspaceFile[];
@@ -76,8 +76,8 @@ export function initCustom(env: NodeJS.ProcessEnv = process.env, now = Date.now(
     packs: null, packRules: [],
   };
   // task-1358 Tier 4: installed packs contribute namespaced workspaces (`<pack>/<name>`), themes (`<pack>-<name>`)
-  // and rules. Widgets stay registered DISABLED until `trenchscope pack widget … --enable`; a pack keymap is never
-  // merged here (only `trenchscope pack keymap <name> --merge` does, through the same validation as config.keymap).
+  // and rules. Widgets stay registered DISABLED until `solgent pack widget … --enable`; a pack keymap is never
+  // merged here (only `solgent pack keymap <name> --merge` does, through the same validation as config.keymap).
   if (loaded.config.packs?.length) {
     const packs = loadPacks(home, loaded.config);
     ui.packs = packs;
@@ -209,7 +209,7 @@ export interface PopupPlan { open: PopupKind[]; /** task-1358 Tier 5: pack widge
  * Which of a workspace's popups the loop should open now. Chart/bubbles/token need an open token (the
  * workspace says `mint: selected`); the roster window has no workspace binding yet and is reported, not
  * guessed. Already-open popups are left alone (never toggled closed). A `widget` popup opens only when the
- * user enabled that pack widget (`trenchscope pack widget <pack> <w> --enable`): a workspace can never consent for them.
+ * user enabled that pack widget (`solgent pack widget <pack> <w> --enable`): a workspace can never consent for them.
  */
 export function planPopupOpens(specs: readonly PopupSpec[], st: PopupStatus): PopupPlan {
   const out: PopupPlan = { open: [], widgets: [], skipped: [] };
@@ -222,7 +222,7 @@ export function planPopupOpens(specs: readonly PopupSpec[], st: PopupStatus): Po
       const ref = s.widget ?? '';
       if (!ref) out.skipped.push({ kind: 'widget', why: 'no widget named' });
       else if (!st.widgetEnabled) out.skipped.push({ kind: 'widget', why: `${ref}: widgets need live or replay mode` });
-      else if (!st.widgetEnabled(ref)) out.skipped.push({ kind: 'widget', why: `${ref} is not enabled (trenchscope pack widget ${ref.split('/').slice(0, 2).join(' ')} --enable)` });
+      else if (!st.widgetEnabled(ref)) out.skipped.push({ kind: 'widget', why: `${ref} is not enabled (solgent pack widget ${ref.split('/').slice(0, 2).join(' ')} --enable)` });
       else if (!st.widgetOpen?.(ref)) out.widgets.push(ref);
       continue;
     }

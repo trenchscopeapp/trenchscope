@@ -1,9 +1,9 @@
-// trenchscope — pack WIDGETS in the app (task-1358 Tier 5). A pack widget is an html page the popup host serves in a
+// solgent — pack WIDGETS in the app (task-1358 Tier 5). A pack widget is an html page the popup host serves in a
 // loopback HUD window under a hash-only CSP (r2: no nonce — every inline block is allow-listed by sha256, nothing is
 // substituted into the pack html), fed PUBLIC view models over the host's socket. This adapter is the whole of what a
 // widget can see:
 //   * which widgets exist and are ENABLED (config.plugins['<pack>/<widget>'].enabled — the user's consent from
-//     `trenchscope pack widget … --enable`; a pack cannot flip it);
+//     `solgent pack widget … --enable`; a pack cannot flip it);
 //   * the page bytes, read from the installed pack directory only after the pack re-hashes to its install record
 //     (a page edited after install is refused), never a symlink, never outside the pack, size-capped, and audited
 //     once more for loaders (<script src>, <link>, frames, <meta http-equiv>, @import, the __NONCE__ token);
@@ -50,8 +50,8 @@ export function widgetPage(ui: CustomUi | null | undefined, ref: string): { ok: 
   const r = parseWidgetRef(ref);
   if (!r) return { ok: false, reason: `bad widget ref "${ref}" (<pack>/<widget>[/<id>])` };
   const w = installedWidgets(ui).find((x) => x.key === r.key);
-  if (!w) return { ok: false, reason: `no installed widget ${r.key} (trenchscope pack list)` };
-  if (!w.enabled) return { ok: false, reason: `${r.key} is not enabled (trenchscope pack widget ${r.pack} ${r.name} --enable)` };
+  if (!w) return { ok: false, reason: `no installed widget ${r.key} (solgent pack list)` };
+  if (!w.enabled) return { ok: false, reason: `${r.key} is not enabled (solgent pack widget ${r.pack} ${r.name} --enable)` };
   const rec = (ui?.config.packs ?? []).find((p) => p.name === r.pack);
   if (!rec || !ui) return { ok: false, reason: `pack ${r.pack} has no install record` };
   const packDir = join(packsDir(ui.home), `${rec.name}@${rec.version}`);

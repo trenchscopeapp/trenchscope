@@ -116,7 +116,7 @@ test('config.keymap rebinds a global action and a screen action; the help card m
   assert.notEqual(s2.theme.name, 'mono', 't still cycles');
 });
 
-test('trenchscope theme list | init | show | check and trenchscope keymap', async () => {
+test('solgent theme list | init | show | check and solgent keymap', async () => {
   const home = tmp();
   const env = { DEXTERM_HOME: home };
   let io = fakeIo(env);

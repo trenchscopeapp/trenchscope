@@ -1,4 +1,4 @@
-// trenchscope — FOLLOWED WALLETS screen (key U, task-1360 copy trading Tier 1). The user's own follow list with each
+// solgent — FOLLOWED WALLETS screen (key U, task-1360 copy trading Tier 1). The user's own follow list with each
 // wallet's decoded activity (trades, FIFO realised PnL in SOL with a USD view at today's rate, win rate with its n,
 // early-entry score when a launch window was scanned, open positions) and the live ALERTS tape (a followed
 // wallet's buys and sells as the tracker saw them, with the lag). Every figure prints its sample. Labels are the
@@ -41,7 +41,7 @@ export function renderFollows(c: Canvas, state: AppState): void {
   if (!follows.length) {
     c.text(box.x + 1, cy + 1, 'no wallets followed yet.', { fg: t.muted, bg }); cy += 3;
     c.text(box.x + 1, cy, 'i                                     type a wallet address (and an optional label) to follow it', { fg: t.dim, bg }); cy += 1;
-    c.text(box.x + 1, cy, 'trenchscope follow add <addr> --name x    the same from a shell · follow list | stats <addr> | purge', { fg: t.dim, bg }); cy += 1;
+    c.text(box.x + 1, cy, 'solgent follow add <addr> --name x    the same from a shell · follow list | stats <addr> | purge', { fg: t.dim, bg }); cy += 1;
     c.text(box.x + 1, cy, 'alerts on its buys/sells appear as toasts anywhere · the tracker polls Helius history (free key)', { fg: t.dim, bg }); cy += 2;
     c.text(box.x + 1, cy, 'self-directed only: you pick the wallet, your caps, your keys · no pooled copy, no leader lists, no fees', { fg: t.dim, bg, i: true });
   } else {
@@ -160,7 +160,7 @@ export function renderFollows(c: Canvas, state: AppState): void {
     c.text(mbox.x + 1, y, `Mirror every BUY by ${name ?? shortAddr(w)} (${shortAddr(w)}) automatically?`, { fg: t.text, bg: mbg, b: true }, mbox.w - 2); y += 2;
     if (pol) {
       c.text(mbox.x + 1, y, `per mirror ≤ $${autoSizeCap(pol).toFixed(2)} (¼ of the $${Math.min(pol.perTradeUsd, pol.dailyUsd)} per-trade cap: auto fires at the hands-free tier) · $${pol.dailyUsd}/day · max ${pol.maxOpen} open · ${Math.round(pol.cooldownMs / 1000)} s cooldown`, { fg: t.muted, bg: mbg }, mbox.w - 2); y += 1;
-      c.text(mbox.x + 1, y, `size factor ${pol.k}× the leader · auto-disarm after ${pol.autoDisarmStreak} refused/failed mirrors · caps expire in ${Math.round(pol.ttlMs / 3600_000)} h · change caps: trenchscope follow auto <addr> …`, { fg: t.muted, bg: mbg }, mbox.w - 2); y += 2;
+      c.text(mbox.x + 1, y, `size factor ${pol.k}× the leader · auto-disarm after ${pol.autoDisarmStreak} refused/failed mirrors · caps expire in ${Math.round(pol.ttlMs / 3600_000)} h · change caps: solgent follow auto <addr> …`, { fg: t.muted, bg: mbg }, mbox.w - 2); y += 2;
     }
     c.text(mbox.x + 1, y, 'every mirror still passes the lag / drift / liquidity / age / leader checks, and the plan engine re-checks every cap signer-side', { fg: t.muted, bg: mbg }, mbox.w - 2); y += 1;
     c.text(mbox.x + 1, y, 'mirror-SELL is not built: you close every mirror yourself · auto is OFF again after every restart', { fg: t.warn, bg: mbg }, mbox.w - 2); y += 2;

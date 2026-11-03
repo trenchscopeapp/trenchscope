@@ -27,10 +27,10 @@ test('parseArgs: --no-recorder; HELP documents the switch, the env var and the s
   assert.equal(parseArgs(['--no-recorder']).noRecorder, true);
   assert.match(HELP, /--no-recorder/);
   assert.match(HELP, /DEXTERM_RECORDER=0/);
-  assert.match(HELP, /trenchscope recorder stats\|label\|prune\|export/);
+  assert.match(HELP, /solgent recorder stats\|label\|prune\|export/);
 });
 
-test('trenchscope recorder stats / export run against --db without network; a replay run writes no history rows', async () => {
+test('solgent recorder stats / export run against --db without network; a replay run writes no history rows', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'r01-main-'));
   const db = join(dir, 'dexterm.db');
   try {

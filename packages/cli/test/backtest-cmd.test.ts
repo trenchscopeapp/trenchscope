@@ -1,4 +1,4 @@
-// task-1356: `trenchscope backtest` CLI over a recorder DB. Builds a tiny real recorder DB (schema + two
+// task-1356: `solgent backtest` CLI over a recorder DB. Builds a tiny real recorder DB (schema + two
 // labelled t0 snapshots) on a temp file, runs the command end to end, and asserts honest metrics come
 // out. Also covers the empty/missing-history paths and the pure renderer. Offline; no network, no model.
 import { test } from 'node:test';
@@ -55,7 +55,7 @@ function insertOutcome(db: DatabaseSync, mint: string, t0: number, label: string
 test('--help prints usage and returns 0', () => {
   const o = io();
   assert.equal(backtestCommand(['--help'], o), 0);
-  assert.ok(o.out.includes('trenchscope backtest'));
+  assert.ok(o.out.includes('solgent backtest'));
 });
 
 test('a missing DB table returns 2 with a clear message', () => {

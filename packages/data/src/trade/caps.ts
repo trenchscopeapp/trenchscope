@@ -1,4 +1,4 @@
-// trenchscope T1 — signer-side trade caps (SPEC §6.0 invariant 3, §6.2 CL-04). The policy the UI, the
+// solgent T1 — signer-side trade caps (SPEC §6.0 invariant 3, §6.2 CL-04). The policy the UI, the
 // model, the voice router and a compromised popup CANNOT bypass: every real trade is re-checked here
 // against hard limits before anything is signed or submitted, and refused out of policy.
 //
@@ -319,7 +319,7 @@ function utcDay(now: number): string {
   return new Date(now).toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
 }
 
-/** Where the CLI keeps the daily-cap ledger (shared by every trenchscope process on this machine). */
+/** Where the CLI keeps the daily-cap ledger (shared by every solgent process on this machine). */
 export function defaultCapLedgerPath(): string {
   return join(homedir(), '.dexterm', 'trade-caps.sqlite');
 }

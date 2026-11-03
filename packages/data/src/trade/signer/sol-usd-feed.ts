@@ -1,4 +1,4 @@
-// trenchscope T2 — the signer's OWN SOL/USD feed (task-1328, closes "SOL/USD freshness check"). The UI's
+// solgent T2 — the signer's OWN SOL/USD feed (task-1328, closes "SOL/USD freshness check"). The UI's
 // number is never trusted: the signer fetches its own timestamped samples from two INDEPENDENT keyless
 // sources — DexScreener (DEX-derived) and CoinGecko (exchange-derived) — and `resolveSolUsd` applies the
 // freshness (60 s), plausibility and two-source-agreement rules at every plan and confirm. A sample is

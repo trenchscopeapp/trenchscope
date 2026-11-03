@@ -1,6 +1,6 @@
 // Per-source request budget meter (task-1309). Every free data source gives each user their own
 // per-IP quota (that is why a local client scales: there is no shared server quota). This meter
-// counts the requests trenchscope sends to each source — this session and today (persisted in the SQLite
+// counts the requests solgent sends to each source — this session and today (persisted in the SQLite
 // cache, so restarts keep counting) — and exposes a snapshot + header label so the budget is visible.
 // Optional soft daily caps let a cautious user bound a source; passing no cap means "unlimited, just
 // count" (the limiter already paces to the documented rpm). The meter never sees or stores any key.

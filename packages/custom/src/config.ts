@@ -5,7 +5,7 @@
 //
 // Failure model: a missing config is the defaults (nothing is written until the user saves something); an
 // unreadable or invalid config keeps the defaults and reports the error so the app can show a toast and
-// `trenchscope doctor` can name the file. Nothing here throws on I/O except `saveConfig` / `writeWorkspace`.
+// `solgent doctor` can name the file. Nothing here throws on I/O except `saveConfig` / `writeWorkspace`.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, renameSync, unlinkSync, statSync, appendFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';

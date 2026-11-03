@@ -1,9 +1,9 @@
-// trenchscope T1 — Jupiter keyless SWAP BUILD (SPEC §6.1 step 2). Separate file from the T0 quote-only
+// solgent T1 — Jupiter keyless SWAP BUILD (SPEC §6.1 step 2). Separate file from the T0 quote-only
 // `sources/jupiter-swap.ts` ON PURPOSE: that file is provably unable to reach a signable transaction
 // (the verifier key-scan relies on it), so the tx-building step lives here, clearly T1-gated.
 //
 // Flow: GET /swap/v1/quote (keyless, raw) -> POST /swap/v1/swap { quoteResponse, userPublicKey } ->
-// a base64 VersionedTransaction. trenchscope does NOT sign it; it hands the bytes to the wallet bridge.
+// a base64 VersionedTransaction. solgent does NOT sign it; it hands the bytes to the wallet bridge.
 //
 // IMPORTANT (design constraint): Jupiter's quote/swap liquidity is
 // MAINNET-only — there is no Jupiter devnet. So a Jupiter swap plan is a MAINNET plan. With the
@@ -90,7 +90,7 @@ export class JupiterSwapBuild {
 
   /**
    * Build an unsigned swap transaction for `userPublicKey` from a raw quote. KEYLESS. The returned
-   * bytes are an unsigned VersionedTransaction; trenchscope never signs — the wallet bridge does.
+   * bytes are an unsigned VersionedTransaction; solgent never signs — the wallet bridge does.
    */
   async buildSwap(args: { quote: RawQuote; userPublicKey: string; signal?: AbortSignal }): Promise<BuiltSwap> {
     if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(args.userPublicKey)) throw new Error('buildSwap needs a base58 public key');
@@ -99,7 +99,7 @@ export class JupiterSwapBuild {
       userPublicKey: args.userPublicKey,
       wrapAndUnwrapSol: true,
       dynamicComputeUnitLimit: true,
-      // Jupiter managed landing / priority-fee defaults; trenchscope never sets a fee it cannot cap.
+      // Jupiter managed landing / priority-fee defaults; solgent never sets a fee it cannot cap.
     };
     const r = await this.postJson<{ swapTransaction?: string; lastValidBlockHeight?: number; prioritizationFeeLamports?: number }>(`/swap/v1/swap`, body, args.signal);
     const tx = r?.swapTransaction;

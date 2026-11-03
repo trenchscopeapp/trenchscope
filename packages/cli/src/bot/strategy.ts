@@ -1,4 +1,4 @@
-// trenchscope paper bot: the entry filter and the exit rules. Pure functions over a ScreenerRow, so every
+// solgent paper bot: the entry filter and the exit rules. Pure functions over a ScreenerRow, so every
 // decision can be replayed from the row snapshot the journal stores with it.
 //
 // Two books run side by side on the same feed, the same caps and the same exit rules:

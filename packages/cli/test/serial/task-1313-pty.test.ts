@@ -1,4 +1,4 @@
-// trenchscope — task-1313 end-to-end pty proofs, split out of ../task-1313.test.ts by task-1424 so they run in the
+// solgent — task-1313 end-to-end pty proofs, split out of ../task-1313.test.ts by task-1424 so they run in the
 // serial lane (scripts/test-lane.mjs serial) instead of beside ~150 parallel test processes. The real binary runs
 // under action-pty.py with a fake `claude` on PATH; the assertions are the ones the parallel file had.
 import assert from 'node:assert/strict';

@@ -1,4 +1,4 @@
-// trenchscope — live WATCHLIST binding (task-1298, SPEC §4.5). The list persists in SQLite (WatchlistStore,
+// solgent — live WATCHLIST binding (task-1298, SPEC §4.5). The list persists in SQLite (WatchlistStore,
 // same DB file as the cache); prices refresh through Store.enrich (one DexScreener batch + Jupiter search
 // per 10 s for every watched mint); alert rules are only ever *proposed* here (price ±25 % vs entry on
 // add, liquidity −40 % on `b`) and need a `y` keypress to arm. Armed rules fire once into the alert log.

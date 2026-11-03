@@ -1,4 +1,4 @@
-// trenchscope popup host — the window layer behind the PopupHost interface (task-1290).
+// solgent popup host — the window layer behind the PopupHost interface (task-1290).
 //
 // Two implementations, chosen at runtime:
 //   * ShellPopupHost  — spawns the frameless wry shell (shell/wry) and speaks the stdio control protocol.

@@ -1,6 +1,6 @@
 ---
 id: standing-mandates
-title: Set a standing mandate (trenchscope mandate)
+title: Set a standing mandate (solgent mandate)
 kind: app-help
 screen: all
 feature: order-plans
@@ -28,6 +28,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope mandate list|add|remove|arm|disarm` sets a standing mandate — a longer-lived conditional rule bounded by a budget. As with plans, a model may only PROPOSE; arming needs your physical keypress and the signer-side caps bound it. The analyst can never arm a mandate or change its caps.
+`solgent mandate list|add|remove|arm|disarm` sets a standing mandate — a longer-lived conditional rule bounded by a budget. As with plans, a model may only PROPOSE; arming needs your physical keypress and the signer-side caps bound it. The analyst can never arm a mandate or change its caps.
 
-CLI: `trenchscope mandate`.
+CLI: `solgent mandate`.

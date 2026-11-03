@@ -19,7 +19,7 @@ export const RESERVED_ACTIONS = new Set(['quit', 'back', 'alert.confirm', 'alert
 export interface KeymapResult<A extends string = string> {
   bindings: BindingLike<A>[];
   errors: SchemaError[];
-  /** Actions whose keys differ from the defaults (for the `?` overlay's `·` marker and `trenchscope keymap`). */
+  /** Actions whose keys differ from the defaults (for the `?` overlay's `·` marker and `solgent keymap`). */
   overridden: Array<{ action: A; screen: string | null; keys: string[] }>;
 }
 
@@ -78,7 +78,7 @@ export function collisions<A extends string>(bindings: readonly BindingLike<A>[]
   return errors;
 }
 
-/** `trenchscope keymap`: one line per binding, user overrides marked with `·`. */
+/** `solgent keymap`: one line per binding, user overrides marked with `·`. */
 export function renderKeymap<A extends string>(r: KeymapResult<A>, screen?: string): string {
   const ov = new Set(r.overridden.map((o) => `${o.screen ?? ''}|${o.action}`));
   const rows = r.bindings.filter((b) => !screen || !b.screen || b.screen === screen);

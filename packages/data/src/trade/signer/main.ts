@@ -1,4 +1,4 @@
-// trenchscope T2 — the signer PROCESS entry (task-1328). `node main.ts [caps flags]`. Wires the real
+// solgent T2 — the signer PROCESS entry (task-1328). `node main.ts [caps flags]`. Wires the real
 // dependencies — its OWN HTTP client for Jupiter + RPC, its OWN SOL/USD feed, the wallet bridge (opens
 // the system browser for Phantom), the kill-switch file, the shared daily-cap ledger and the live fill
 // ledger — and serves the authenticated stdio channel until the parent closes it.

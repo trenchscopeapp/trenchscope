@@ -1,7 +1,7 @@
-// trenchscope T1 — `trenchscope wallet <link|unlink|status|panic|resume>` (SPEC §6.5). A non-TUI one-shot that
+// solgent T1 — `solgent wallet <link|unlink|status|panic|resume>` (SPEC §6.5). A non-TUI one-shot that
 // links a Phantom wallet through the loopback bridge (keys never enter dexterm; only the public key is
 // kept), unlinks it, prints the current link + the active trade caps, or PANICS live trading (round 2:
-// the cheapest safe signer panic path — a kill-switch file every trenchscope process re-reads, plus a lock
+// the cheapest safe signer panic path — a kill-switch file every solgent process re-reads, plus a lock
 // on the shared daily-cap ledger). `resume` needs a real TTY keypress; piped input cannot re-arm.
 import {
   WalletBridge, WalletLinkStore, shortPubkey, defaultCaps, capsOnlyDownward, KillSwitch, CapLedger, defaultCapLedgerPath, defaultLiveLedgerPath, LiveLedger,
@@ -94,13 +94,13 @@ function panicLine(ks: KillSwitch, ledger: CapLedger | null): string | null {
   const parts: string[] = [];
   if (p) parts.push(`panic switch engaged${p.engagedAt ? ` at ${new Date(p.engagedAt).toISOString()}` : ''} (${p.reason})`);
   if (l) parts.push(`cap ledger locked (${l.reason})`);
-  return `⛔ LIVE TRADING DISABLED — ${parts.join('; ')}. Run \`trenchscope wallet resume\` in a terminal to re-enable.`;
+  return `⛔ LIVE TRADING DISABLED — ${parts.join('; ')}. Run \`solgent wallet resume\` in a terminal to re-enable.`;
 }
 
 function printStatus(io: WalletIo, store: WalletLinkStore, caps: TradeCaps, ks: KillSwitch, ledger: CapLedger | null): void {
   const w: LinkedWallet | null = store.get();
   if (w) io.stdout.write(`linked: ${shortPubkey(w.publicKey)}  (${w.publicKey})\n`);
-  else io.stdout.write('linked: (none) — run `trenchscope wallet link`\n');
+  else io.stdout.write('linked: (none) — run `solgent wallet link`\n');
   io.stdout.write(`${capsLine(caps)}\n`);
   const p = panicLine(ks, ledger);
   if (p) io.stdout.write(`${p}\n`);
@@ -121,7 +121,7 @@ function liveLine(path: string): string | null {
 /**
  * Wait for ONE real keypress on a TTY. Resolves with the key, or null when stdin is not a TTY (piped
  * input, a subprocess, an agent) or no key arrives in time. Raw mode means a single keystroke — not a
- * buffered line — and `isTTY` is the kernel's word, not the caller's: `echo y | trenchscope wallet resume`
+ * buffered line — and `isTTY` is the kernel's word, not the caller's: `echo y | solgent wallet resume`
  * is refused because a pipe is never a TTY.
  */
 export async function ttyKeypress(stdin: KeyInput | undefined, timeoutMs: number): Promise<string | null> {
@@ -152,7 +152,7 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
   try {
     caps = parseCapsFlags(argv.slice(1));
   } catch (e) {
-    io.stderr.write(`trenchscope wallet: ${e instanceof Error ? e.message : String(e)}\n`);
+    io.stderr.write(`solgent wallet: ${e instanceof Error ? e.message : String(e)}\n`);
     return 2;
   }
   const store = over.store ?? new WalletLinkStore();
@@ -173,24 +173,24 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
   // prints it, waits for a real TTY keypress, then opens Phantom, verifies, re-simulates, submits and
   // confirms. Devnet only: the service refuses a non-devnet RPC and --mainnet is not accepted here.
   if (sub === 'probe') {
-    if (argv.includes('--mainnet')) { io.stderr.write('trenchscope wallet probe: devnet only (drop --mainnet)\n'); return 2; }
-    if (!store.get()) { io.stderr.write('trenchscope wallet probe: no wallet linked; run `trenchscope wallet link` first\n'); return 2; }
+    if (argv.includes('--mainnet')) { io.stderr.write('solgent wallet probe: devnet only (drop --mainnet)\n'); return 2; }
+    if (!store.get()) { io.stderr.write('solgent wallet probe: no wallet linked; run `solgent wallet link` first\n'); return 2; }
     let service: SignerService;
     try {
       service = over.signerService ?? buildSignerService(parseSignerArgs(argv.slice(1).filter((a) => a !== '--no-browser'), io.env), (l) => io.stderr.write(`${l}\n`));
-    } catch (e) { io.stderr.write(`trenchscope wallet probe: ${e instanceof Error ? e.message : String(e)}\n`); return 2; }
+    } catch (e) { io.stderr.write(`solgent wallet probe: ${e instanceof Error ? e.message : String(e)}\n`); return 2; }
     const st = service.status();
-    if (st.network !== 'devnet') { io.stderr.write(`trenchscope wallet probe: the signer RPC is ${st.network}; the probe runs only on devnet\n`); return 2; }
+    if (st.network !== 'devnet') { io.stderr.write(`solgent wallet probe: the signer RPC is ${st.network}; the probe runs only on devnet\n`); return 2; }
     if (st.panic || st.ledgerLocked) { io.stderr.write(`${panicLine(ks, openLedger()) ?? 'panicked'}\n`); return 2; }
     let plan;
-    try { plan = await service.probe(); } catch (e) { io.stderr.write(`trenchscope wallet probe: plan failed: ${e instanceof Error ? e.message : String(e)}\n`); return 1; }
+    try { plan = await service.probe(); } catch (e) { io.stderr.write(`solgent wallet probe: plan failed: ${e instanceof Error ? e.message : String(e)}\n`); return 1; }
     io.stdout.write(`DEVNET PROBE for ${shortPubkey(plan.userPublicKey)} via ${st.rpcHost}\n`);
     io.stdout.write(`  wraps ${lamportsToSol(BigInt(plan.amountInRaw)).toFixed(4)} SOL into your own WSOL account and closes it back · fee ≈ ${lamportsToSol(BigInt(plan.feeLamports)).toFixed(6)} SOL\n`);
     io.stdout.write(`  will sign: ${plan.instructions.map((i) => `${i.program}${i.op ? ':' + i.op : ''}`).join(' · ')}\n`);
     io.stdout.write(`  simulation: ${plan.sim.ran ? (plan.sim.ok ? `ok (${plan.sim.solOutLamports ?? '?'} lamports leave the wallet)` : `FAILED ${plan.sim.error ?? ''}`) : 'not run'} · policy: ${plan.policy.ok ? 'ok' : `REFUSE ${plan.policy.reason}`} · caps: ${plan.precheck.ok ? 'ok' : `REFUSE ${plan.precheck.reason}`}\n`);
-    if (!plan.policy.ok || !plan.precheck.ok || !plan.sim.ok) { io.stderr.write('trenchscope wallet probe: the signer would refuse this plan; nothing to sign\n'); return 1; }
+    if (!plan.policy.ok || !plan.precheck.ok || !plan.sim.ok) { io.stderr.write('solgent wallet probe: the signer would refuse this plan; nothing to sign\n'); return 1; }
     const stdin = io.stdin;
-    if (!stdin || stdin.isTTY !== true) { io.stderr.write('trenchscope wallet probe: needs a real terminal keypress (stdin is not a TTY). Refusing.\n'); return 2; }
+    if (!stdin || stdin.isTTY !== true) { io.stderr.write('solgent wallet probe: needs a real terminal keypress (stdin is not a TTY). Refusing.\n'); return 2; }
     io.stdout.write('Press Y to sign this probe in Phantom (any other key aborts)… ');
     const key = await ttyKeypress(stdin, over.keypressTimeoutMs ?? 60_000);
     io.stdout.write('\n');
@@ -203,14 +203,14 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
     return 1;
   }
 
-  // FAST WALLET (task-1363): the one key trenchscope holds, devnet only, for standing-mandate fills at machine speed.
+  // FAST WALLET (task-1363): the one key solgent holds, devnet only, for standing-mandate fills at machine speed.
   //   create   a new devnet key at ~/.dexterm/fast-wallet.json (mode 600) after a real TTY keypress; never overwrites
   //   status   public key, devnet balance, the per-fill ceiling
   //   airdrop  devnet faucet into the fast wallet (--sol N, default 1)
   //   remove   delete the key (TTY keypress; refused while it still holds SOL unless --force)
   // There is no export, no import, no mainnet variant, and the signer process only ever READS this file.
   if (sub === 'fast') {
-    if (argv.includes('--mainnet')) { io.stderr.write('trenchscope wallet fast: devnet only (there is no mainnet fast wallet; drop --mainnet)\n'); return 2; }
+    if (argv.includes('--mainnet')) { io.stderr.write('solgent wallet fast: devnet only (there is no mainnet fast wallet; drop --mainnet)\n'); return 2; }
     const action = argv[1] ?? 'status';
     const fastStore = new FastWalletStore(over.fastWalletPath ?? defaultFastWalletPath(io.env));
     const rpc = (): NonNullable<WalletCmdOverrides['fastRpc']> => {
@@ -225,7 +225,7 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
     };
     if (action === 'status') {
       const rec = fastStore.get();
-      if (!rec) { io.stdout.write(`fast wallet: (none) — create one with \`trenchscope wallet fast create\` (devnet only)\n`); return 0; }
+      if (!rec) { io.stdout.write(`fast wallet: (none) — create one with \`solgent wallet fast create\` (devnet only)\n`); return 0; }
       const b = await balanceLine(rec.publicKey);
       io.stdout.write(`fast wallet: ${shortPubkey(rec.publicKey)}  (${rec.publicKey}) · devnet · created ${new Date(rec.createdAt).toISOString()}\n`);
       io.stdout.write(`  balance: ${b.text} · per-fill ceiling ${FAST_MAX_SOL_PER_FILL} SOL · the signer's USD per-trade/daily caps apply on every fill\n`);
@@ -233,23 +233,23 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
       return 0;
     }
     if (action === 'create') {
-      if (fastStore.exists()) { io.stderr.write(`trenchscope wallet fast create: a fast wallet already exists at ${fastStore.path} (remove it first, after draining)\n`); return 2; }
+      if (fastStore.exists()) { io.stderr.write(`solgent wallet fast create: a fast wallet already exists at ${fastStore.path} (remove it first, after draining)\n`); return 2; }
       const stdin = io.stdin;
-      if (!stdin || stdin.isTTY !== true) { io.stderr.write('trenchscope wallet fast create: needs a real terminal keypress (stdin is not a TTY). Refusing.\n'); return 2; }
+      if (!stdin || stdin.isTTY !== true) { io.stderr.write('solgent wallet fast create: needs a real terminal keypress (stdin is not a TTY). Refusing.\n'); return 2; }
       io.stdout.write(`Create a DEVNET fast wallet at ${fastStore.path}?\n  armed order plans inside a standing mandate fire from it at machine speed, within the signer's caps and a ${FAST_MAX_SOL_PER_FILL} SOL per-fill ceiling.\n  devnet only — this key can never be used on mainnet. Press Y to create (any other key aborts)… `);
       const key = await ttyKeypress(stdin, over.keypressTimeoutMs ?? 30_000);
       io.stdout.write('\n');
       if (key !== 'y' && key !== 'Y') { io.stdout.write('aborted; nothing created.\n'); return 1; }
       const rec = fastStore.create({ network: 'devnet' });
-      io.stdout.write(`✓ fast wallet created: ${rec.publicKey} (devnet)\n  fund it: trenchscope wallet fast airdrop   · then restart trenchscope so the signer loads it\n`);
+      io.stdout.write(`✓ fast wallet created: ${rec.publicKey} (devnet)\n  fund it: solgent wallet fast airdrop   · then restart solgent so the signer loads it\n`);
       return 0;
     }
     if (action === 'airdrop') {
       const rec = fastStore.get();
-      if (!rec) { io.stderr.write('trenchscope wallet fast airdrop: no fast wallet; `trenchscope wallet fast create` first\n'); return 2; }
+      if (!rec) { io.stderr.write('solgent wallet fast airdrop: no fast wallet; `solgent wallet fast create` first\n'); return 2; }
       const solIdx = argv.indexOf('--sol');
       const sol = solIdx >= 0 ? Number(argv[solIdx + 1]) : 1;
-      if (!Number.isFinite(sol) || sol <= 0 || sol > 5) { io.stderr.write('trenchscope wallet fast airdrop: --sol must be in (0, 5]\n'); return 2; }
+      if (!Number.isFinite(sol) || sol <= 0 || sol > 5) { io.stderr.write('solgent wallet fast airdrop: --sol must be in (0, 5]\n'); return 2; }
       try {
         const sig = await rpc().airdrop(rec.publicKey, BigInt(Math.round(sol * 1e9)));
         io.stdout.write(`airdrop requested: ${sol} SOL (devnet) → ${shortPubkey(rec.publicKey)} · signature ${sig}\n`);
@@ -259,7 +259,7 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
         io.stdout.write(`  balance: ${b.text}\n`);
         return 0;
       } catch (e) {
-        io.stderr.write(`trenchscope wallet fast airdrop failed: ${e instanceof Error ? e.message : String(e)} — the public devnet faucet is often dry; try https://faucet.solana.com with the address above\n`);
+        io.stderr.write(`solgent wallet fast airdrop failed: ${e instanceof Error ? e.message : String(e)} — the public devnet faucet is often dry; try https://faucet.solana.com with the address above\n`);
         return 1;
       }
     }
@@ -267,18 +267,18 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
       const rec = fastStore.get();
       if (!rec) { io.stdout.write('no fast wallet to remove.\n'); return 0; }
       const b = await balanceLine(rec.publicKey);
-      if (b.lamports !== null && b.lamports > 0n && !argv.includes('--force')) { io.stderr.write(`trenchscope wallet fast remove: the fast wallet still holds ${b.text}; move it out first, or pass --force to delete the key anyway (devnet SOL only)\n`); return 2; }
+      if (b.lamports !== null && b.lamports > 0n && !argv.includes('--force')) { io.stderr.write(`solgent wallet fast remove: the fast wallet still holds ${b.text}; move it out first, or pass --force to delete the key anyway (devnet SOL only)\n`); return 2; }
       const stdin = io.stdin;
-      if (!stdin || stdin.isTTY !== true) { io.stderr.write('trenchscope wallet fast remove: needs a real terminal keypress (stdin is not a TTY). Refusing.\n'); return 2; }
+      if (!stdin || stdin.isTTY !== true) { io.stderr.write('solgent wallet fast remove: needs a real terminal keypress (stdin is not a TTY). Refusing.\n'); return 2; }
       io.stdout.write(`Delete the fast wallet ${shortPubkey(rec.publicKey)} (${b.text})? Press Y to delete (any other key aborts)… `);
       const key = await ttyKeypress(stdin, over.keypressTimeoutMs ?? 30_000);
       io.stdout.write('\n');
       if (key !== 'y' && key !== 'Y') { io.stdout.write('aborted; the fast wallet is kept.\n'); return 1; }
       fastStore.remove();
-      io.stdout.write('✓ fast wallet removed. Restart trenchscope so the signer stops loading it.\n');
+      io.stdout.write('✓ fast wallet removed. Restart solgent so the signer stops loading it.\n');
       return 0;
     }
-    io.stderr.write(`trenchscope wallet fast: unknown action ${JSON.stringify(action)} (expected status | create | airdrop | remove)\n`);
+    io.stderr.write(`solgent wallet fast: unknown action ${JSON.stringify(action)} (expected status | create | airdrop | remove)\n`);
     return 2;
   }
 
@@ -300,7 +300,7 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
     if (ledger) { try { ledger.lock(reason); lockNote = ' · cap ledger locked'; } finally { ledger.close(); } }
     else lockNote = ' · (cap ledger could not be opened; the kill-switch file still disables trading)';
     io.stdout.write(`⛔ PANIC: live trading disabled (${rec.reason})${lockNote}\n`);
-    io.stdout.write(`kill switch: ${ks.path}\nRe-enable only from a real terminal: trenchscope wallet resume\n`);
+    io.stdout.write(`kill switch: ${ks.path}\nRe-enable only from a real terminal: solgent wallet resume\n`);
     return 0;
   }
 
@@ -309,7 +309,7 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
   if (sub === 'resume') {
     const stdin = io.stdin;
     if (!stdin || stdin.isTTY !== true) {
-      io.stderr.write('trenchscope wallet resume: needs a real terminal keypress (stdin is not a TTY). Refusing.\n');
+      io.stderr.write('solgent wallet resume: needs a real terminal keypress (stdin is not a TTY). Refusing.\n');
       return 2;
     }
     const p = ks.engaged();
@@ -320,7 +320,7 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
       io.stdout.write(`${panicLine(ks, ledger) ?? ''}\nPress Y to re-enable live trading (any other key aborts)… `);
       const key = await ttyKeypress(stdin, over.keypressTimeoutMs ?? 30_000);
       io.stdout.write('\n');
-      if (key === null) { io.stderr.write('trenchscope wallet resume: no keypress; still panicked.\n'); return 2; }
+      if (key === null) { io.stderr.write('solgent wallet resume: no keypress; still panicked.\n'); return 2; }
       if (key !== 'y' && key !== 'Y') { io.stdout.write('aborted; still panicked.\n'); return 1; }
       ks.release();
       ledger?.unlock();
@@ -339,11 +339,11 @@ export async function runWallet(argv: string[], io: WalletIo, over: WalletCmdOve
       io.stdout.write(`${capsLine(caps)}\n`);
       return 0;
     } catch (e) {
-      io.stderr.write(`trenchscope wallet link failed: ${e instanceof Error ? e.message : String(e)}\n`);
+      io.stderr.write(`solgent wallet link failed: ${e instanceof Error ? e.message : String(e)}\n`);
       return 1;
     }
   }
 
-  io.stderr.write(`trenchscope wallet: unknown subcommand ${JSON.stringify(sub)} (expected link | unlink | status | panic | resume | probe | fast)\n`);
+  io.stderr.write(`solgent wallet: unknown subcommand ${JSON.stringify(sub)} (expected link | unlink | status | panic | resume | probe | fast)\n`);
   return 2;
 }

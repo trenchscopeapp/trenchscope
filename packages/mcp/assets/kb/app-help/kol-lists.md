@@ -1,6 +1,6 @@
 ---
 id: kol-lists
-title: Manage KOL wallet lists (trenchscope kol)
+title: Manage KOL wallet lists (solgent kol)
 kind: app-help
 screen: kol
 feature: kol-lists
@@ -29,6 +29,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope kol list|create|add|remove|mute|unmute|enable|disable|import` manages key-opinion-leader wallet lists on the shared DB (official / authorized sources only). In-app the KOL screen shows the lists and their activity.
+`solgent kol list|create|add|remove|mute|unmute|enable|disable|import` manages key-opinion-leader wallet lists on the shared DB (official / authorized sources only). In-app the KOL screen shows the lists and their activity.
 
-CLI: `trenchscope kol`.
+CLI: `solgent kol`.

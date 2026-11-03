@@ -34,7 +34,7 @@ export const MORNING_HUD = 'morning-hud';
 /**
  * The shipped layout. It carries NO `screens` trees: a workspace without trees means "the renderers' own
  * numbers" (spotlight 44 at ≥ 140 cols, chart 46 %, analyst max(46, 34 %)), which keeps every snapshot golden
- * byte-identical. `builtinScreens()` is the editable tree form of the same layout (`trenchscope workspace init`).
+ * byte-identical. `builtinScreens()` is the editable tree form of the same layout (`solgent workspace init`).
  */
 export function defaultWorkspace(): Workspace {
   return { name: DEFAULT_WORKSPACE, description: 'The shipped layout (SPEC §4)', popups: [], start: 'screener' };

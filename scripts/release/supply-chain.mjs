@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// Supply-chain checks for a trenchscope release (scripts/release/supply-chain.mjs). Zero dependencies.
+// Supply-chain checks for a solgent release (scripts/release/supply-chain.mjs). Zero dependencies.
 //
 //   node scripts/release/supply-chain.mjs --out <dir> [--root <checkout>] [--repo <owner/name>] [--npm-name dexterm]
 //                                         [--fetch-scorecard] [--offline]
 //
 // Writes <out>/supply-chain.json: the `supplyChain[]` array of scan-results.schema.json, one entry per check,
 // plus the raw tool outputs next to it. Every check records what it could and could not do:
-//   npm-audit      `npm audit --json` on the lockfile (dev tooling only: trenchscope has no runtime deps). Needs the registry.
+//   npm-audit      `npm audit --json` on the lockfile (dev tooling only: solgent has no runtime deps). Needs the registry.
 //   osv-scanner    the osv-scanner binary ($OSV_SCANNER or on PATH; CI fetches a pinned one with scripts/release/fetch-tool.sh)
 //                  against package-lock.json and the Rust Cargo.lock. Queries api.osv.dev with package names and versions.
 //   gitleaks       the gitleaks binary ($GITLEAKS or on PATH) over the full git history of the checkout with .gitleaks.toml.
@@ -39,7 +39,7 @@ const entries = [];
     else {
       const v = j.metadata.vulnerabilities; const total = v.total || 0;
       const status = total === 0 ? 'pass' : v.critical || v.high ? 'fail' : 'warn';
-      entries.push(entry('npm-audit', status, null, `${total} vulnerabilities`, `${j.metadata.dependencies.total} packages in package-lock.json (${j.metadata.dependencies.dev} dev-only); trenchscope has zero third-party runtime dependencies, so this covers the TypeScript toolchain${total ? `: ${v.critical} critical, ${v.high} high, ${v.moderate} moderate, ${v.low} low` : ''}.`));
+      entries.push(entry('npm-audit', status, null, `${total} vulnerabilities`, `${j.metadata.dependencies.total} packages in package-lock.json (${j.metadata.dependencies.dev} dev-only); solgent has zero third-party runtime dependencies, so this covers the TypeScript toolchain${total ? `: ${v.critical} critical, ${v.high} high, ${v.moderate} moderate, ${v.low} low` : ''}.`));
     }
   }
 }
@@ -101,7 +101,7 @@ const entries = [];
 }
 
 // Socket
-entries.push(entry('socket', 'pending', `https://socket.dev/npm/package/${npmName}`, null, 'Socket analyses the published npm package; pending until trenchscope is on npm. No account is needed for the public report page; a badge needs the Socket GitHub app installed on the repo.'));
+entries.push(entry('socket', 'pending', `https://socket.dev/npm/package/${npmName}`, null, 'Socket analyses the published npm package; pending until solgent is on npm. No account is needed for the public report page; a badge needs the Socket GitHub app installed on the repo.'));
 
 writeFileSync(join(OUT, 'supply-chain.json'), JSON.stringify(entries, null, 2) + '\n');
 for (const e of entries) console.log(`[supply-chain] ${e.check}: ${e.status}${e.score != null ? ` (${e.score})` : ''} — ${e.note.slice(0, 110)}`);

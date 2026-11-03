@@ -1,4 +1,4 @@
-// trenchscope — LIVE holder/rug SIGNALS binding (task-1404). Turns the open token's repeatedly-refreshed holder and
+// solgent — LIVE holder/rug SIGNALS binding (task-1404). Turns the open token's repeatedly-refreshed holder and
 // safety reads (market/authorities/rugcheck panels + the wallet-intel scan + the fast-lane bonding curve) into
 // SIGNAL events through the pure @dexterm/data LiveSignalsEngine, keeps a small per-mint log for the token screen,
 // and exposes the latest numeric values as RULE FIELDS so every signal is an alert trigger (task-1398 pattern).

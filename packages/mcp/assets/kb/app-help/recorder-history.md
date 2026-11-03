@@ -1,6 +1,6 @@
 ---
 id: recorder-history
-title: Work with the history recorder (trenchscope recorder)
+title: Work with the history recorder (solgent recorder)
 kind: app-help
 screen: all
 feature: recorder
@@ -34,6 +34,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope recorder stats|label|prune|export` works with the local history recorder's tables (the outcome-labelled data the rug model and backtests learn from). No network. Recording is on by default; `--no-recorder` disables it for a run and `--record FILE` captures a data session to a file for replay.
+`solgent recorder stats|label|prune|export` works with the local history recorder's tables (the outcome-labelled data the rug model and backtests learn from). No network. Recording is on by default; `--no-recorder` disables it for a run and `--record FILE` captures a data session to a file for replay.
 
-CLI: `trenchscope recorder`.
+CLI: `solgent recorder`.

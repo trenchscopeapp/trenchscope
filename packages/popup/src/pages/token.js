@@ -90,8 +90,8 @@
   function setData(a) {
     vm = a;
     const sym = String(vm.symbol || '?').replace(/^\$/, '');
-    titleEl.textContent = `trenchscope · $${sym} · TOKEN`;
-    document.title = `trenchscope · ${sym}`;
+    titleEl.textContent = `solgent · $${sym} · TOKEN`;
+    document.title = `solgent · ${sym}`;
     const dir = (vm.chg && (vm.chg.h24 ?? vm.chg.h1)) || 0;
     if (rain) {
       rain.setMood(dir > 0.01 ? 'rainPump' : dir < -0.01 ? 'rainDump' : 'rain');

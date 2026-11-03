@@ -1,4 +1,4 @@
-// trenchscope — boot sequence: full-screen rain, glitching DEXTERM logo, "jacking in" status lines.
+// solgent — boot sequence: full-screen rain, glitching DEXTERM logo, "jacking in" status lines.
 // state.boot.t ∈ [0,1] drives it. The logo and the status box clear their own rain zone so the
 // rain never crosses them (VISUAL-V2 §3 "Boot").
 import { Canvas, bootLogo, decryptText, spinnerGlyph, mix } from '@dexterm/tui';

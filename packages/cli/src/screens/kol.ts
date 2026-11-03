@@ -1,6 +1,6 @@
-// trenchscope — KOL LISTS screen (key K, task-1330; INTEGRATIONS-DESIGN §5.4). Own lists, manual handles and
+// solgent — KOL LISTS screen (key K, task-1330; INTEGRATIONS-DESIGN §5.4). Own lists, manual handles and
 // signed packs: list, enable/disable per list (space), mute/unmute a handle (m), remove a handle from a manual
-// list (d), add a handle by typing (i … ⏎). Packs are read-only here (`trenchscope kol import <dir>`). Credibility
+// list (d), add a handle by typing (i … ⏎). Packs are read-only here (`solgent kol import <dir>`). Credibility
 // is never shown as a property of a list: a pack grants membership, the user's own observations grant trust.
 import { Canvas, header, footer, badge, breakpoint, type Hex } from '@dexterm/tui';
 import type { AppState } from '../state.ts';
@@ -22,10 +22,10 @@ export function renderKol(c: Canvas, state: AppState): void {
   if (!kol) { c.textC(box.x, cy + 1, box.w, 'KOL lists need live, replay or fixture mode', { fg: t.muted, bg, i: true }); footer(c, [['esc', 'back'], ['q', 'quit']], t.name); return; }
   if (rows.length === 0) {
     c.text(box.x + 1, cy, 'no KOL lists yet.', { fg: t.muted, bg }); cy += 2;
-    c.text(box.x + 1, cy, 'trenchscope kol create <name>            make a manual list', { fg: t.dim, bg }); cy += 1;
-    c.text(box.x + 1, cy, 'trenchscope kol add <list> @handle        add a handle (or press i here once a list exists)', { fg: t.dim, bg }); cy += 1;
-    c.text(box.x + 1, cy, 'trenchscope kol import <dir>              import a hash-locked pack (pack.json + pack.lock[.sig])', { fg: t.dim, bg }); cy += 1;
-    c.text(box.x + 1, cy, 'X (here) or trenchscope kol import-x      import your OWN X lists after `trenchscope x login` (handles only, never posts)', { fg: t.dim, bg }); cy += 1;
+    c.text(box.x + 1, cy, 'solgent kol create <name>            make a manual list', { fg: t.dim, bg }); cy += 1;
+    c.text(box.x + 1, cy, 'solgent kol add <list> @handle        add a handle (or press i here once a list exists)', { fg: t.dim, bg }); cy += 1;
+    c.text(box.x + 1, cy, 'solgent kol import <dir>              import a hash-locked pack (pack.json + pack.lock[.sig])', { fg: t.dim, bg }); cy += 1;
+    c.text(box.x + 1, cy, 'X (here) or solgent kol import-x      import your OWN X lists after `solgent x login` (handles only, never posts)', { fg: t.dim, bg }); cy += 1;
   }
   const scroll = Math.max(0, sel - (box.h - 3));
   const typing = state.kolInput !== null && state.kolInput !== undefined;

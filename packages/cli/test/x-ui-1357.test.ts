@@ -1,6 +1,6 @@
 // task-1357 UI: the X source's states on the TRENDING band, the SOURCES panel and the token SOCIAL panel
 // (logged out → logged in → rate limited → budget → Free tier), the per-handle filter (o on the KOL screen),
-// X import from the KOL screen (fixtures refuse; live imports via the mock), `trenchscope kol import-x`, and the
+// X import from the KOL screen (fixtures refuse; live imports via the mock), `solgent kol import-x`, and the
 // doctor's "Login with X" check. The X traffic goes to the loopback mock only; fetch is blocked.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -180,7 +180,7 @@ test('per-handle filter: o on a KOL handle narrows the board + panel to that aut
 test('KOL screen: X on fixtures refuses with a notice (no network); the keymap binds X and o only on the kol screen', () => {
   const state = makeFixtureState({ screen: 'kol', calm: true });
   press(state, 'X');
-  assert.match(state.kolNotice ?? '', /needs live mode and `trenchscope x login`/);
+  assert.match(state.kolNotice ?? '', /needs live mode and `solgent x login`/);
   assert.equal(DEFAULT_KEYMAP.resolve(parseKeys('X')[0], 'kol'), 'kol.importx');
   assert.equal(DEFAULT_KEYMAP.resolve(parseKeys('o')[0], 'kol'), 'kol.focus');
   assert.equal(DEFAULT_KEYMAP.resolve(parseKeys('X')[0], 'token'), 'open.x', 'the token screen keeps "open X"');
@@ -189,11 +189,11 @@ test('KOL screen: X on fixtures refuses with a notice (no network); the keymap b
   assert.match(plain, /only this handle/);
 });
 
-test('importOwnXLists / trenchscope kol import-x: logged out → clear error; logged in → own-x-list lists (handles only)', async () => {
+test('importOwnXLists / solgent kol import-x: logged out → clear error; logged in → own-x-list lists (handles only)', async () => {
   const r = await rig();
   try {
     const out = await importOwnXLists({ cache: r.cache, env: {}, store: new XTokenStore({ dir: join(r.dir, 'nope') }), endpoints: r.mock.endpoints });
-    assert.deepEqual(out, { ok: false, error: 'not logged in to X — run `trenchscope x login` first (your own X app, read scopes only)' });
+    assert.deepEqual(out, { ok: false, error: 'not logged in to X — run `solgent x login` first (your own X app, read scopes only)' });
     const ok = await importOwnXLists({ cache: r.cache, env: {}, store: r.store, endpoints: r.mock.endpoints, now: () => r.clock.now() });
     assert.ok(ok.ok);
     if (ok.ok) assert.deepEqual(ok.lists, [{ id: 'own-x-list:777', name: 'sol alpha', handles: 1 }]);
@@ -228,7 +228,7 @@ test('doctor: "Login with X" is an optional pass when unset, a warn with the fix
     store.setClientId(CLIENT);
     c = await find();
     assert.equal(c.status, 'warn');
-    assert.equal(c.fix, 'trenchscope x login');
+    assert.equal(c.fix, 'solgent x login');
     store.setTokens({ access_token: 'at-xyz-1234567890', refresh_token: 'rt-1', scope: 'tweet.read users.read list.read offline.access', expires_in: 7200 }, { id: '1', username: 'tester' });
     c = await find();
     assert.equal(c.status, process.platform === 'win32' ? 'warn' : 'pass');

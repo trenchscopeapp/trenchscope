@@ -1,4 +1,4 @@
-// trenchscope popup host — the loopback SINK PROXY (task-1358 r4). The native shell's WebViews send EVERY connection they
+// solgent popup host — the loopback SINK PROXY (task-1358 r4). The native shell's WebViews send EVERY connection they
 // make through this proxy (wry `with_proxy_config`; on macOS that is WKWebsiteDataStore.proxyConfigurations, 14+), and
 // it tunnels to exactly one place: the popup server's own origin, http://127.0.0.1:<targetPort>. Anything else — any
 // other host, any other port — is answered 403 and dropped, and the attempt is reported.

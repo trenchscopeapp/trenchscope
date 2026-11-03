@@ -1,4 +1,4 @@
-// @dexterm/tui — a 5×9 bitmap font for the PNG exporter (task-1401). Drawn for trenchscope (no third-party font data):
+// @dexterm/tui — a 5×9 bitmap font for the PNG exporter (task-1401). Drawn for solgent (no third-party font data):
 // rows 0–6 are the cap height, rows 7–8 the descenders. Box drawing, block elements and braille are not here:
 // raster.ts draws those procedurally so they join up across cells exactly like a terminal does.
 

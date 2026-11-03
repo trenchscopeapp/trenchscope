@@ -2,7 +2,7 @@
 // itself is a captured physical keypress in the interactive loop, and PlanService.useLive takes nothing but a
 // keypress gesture. So applyAction — the only path a pipe, an agent or the voice router can reach — can never
 // move fills off paper. The header/title/popup banner say LIVE only when a live executor is really installed,
-// and `trenchscope plan amend` edits a PROPOSED plan as a new hash (card item 3) without cancel + re-propose.
+// and `solgent plan amend` edits a PROPOSED plan as a new hash (card item 3) without cancel + re-propose.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync } from 'node:fs';

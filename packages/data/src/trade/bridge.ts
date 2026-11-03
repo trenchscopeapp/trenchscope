@@ -1,7 +1,7 @@
-// trenchscope T1 — local loopback wallet bridge (SPEC §6.5 Phantom bridge; extends the proven task-1290
-// connect/sign round trip in research/popup-host). Phantom is a browser extension, so trenchscope links a
+// solgent T1 — local loopback wallet bridge (SPEC §6.5 Phantom bridge; extends the proven task-1290
+// connect/sign round trip in research/popup-host). Phantom is a browser extension, so solgent links a
 // wallet by opening a tiny page in the user's browser that talks to window.solana and POSTs a RESULT
-// back to a one-shot loopback server. trenchscope never sees a private key, seed, or signing material
+// back to a one-shot loopback server. solgent never sees a private key, seed, or signing material
 // beyond the proof the user produced.
 //
 // Security posture (mirrors research/popup-host/server/server.mjs §5):
@@ -19,7 +19,7 @@
 //     the default browser for a chromeless window WITHOUT this module depending on wry/tao/Electron.
 //
 // Crypto: node:crypto Ed25519 verify of the link proof (raw 32-byte pubkey -> SPKI DER). No key is
-// generated, stored or logged here; trenchscope keeps only the PUBLIC key.
+// generated, stored or logged here; solgent keeps only the PUBLIC key.
 
 import http from 'node:http';
 import { randomBytes, timingSafeEqual } from 'node:crypto';
@@ -110,7 +110,7 @@ export interface WalletBridgeOptions {
 export const WALLET_BRIDGE_PORT = 41291;
 
 export interface LinkResult {
-  /** base58 Solana address — the only thing trenchscope persists. */
+  /** base58 Solana address — the only thing solgent persists. */
   publicKey: string;
   publicKeyBase64: string;
   provider: string;
@@ -214,7 +214,7 @@ function oneShot<T>(args: {
         res.writeHead(200, SEC_HEADERS(port, nonce));
         // task-1368 (g): tell the user on the page when this is NOT the usual origin — Phantom will
         // ask to connect once more, and its stored trust for the fixed port is untouched.
-        const portNote = fellBack ? `the usual trenchscope port 127.0.0.1:${args.preferredPort} was busy, so this page is on a one-off port (${port}). Phantom may ask you to connect once; that is expected.` : '';
+        const portNote = fellBack ? `the usual solgent port 127.0.0.1:${args.preferredPort} was busy, so this page is on a one-off port (${port}). Phantom may ask you to connect once; that is expected.` : '';
         res.end(args.page({ port, nonce, token, portNote }));
         return;
       }
@@ -232,7 +232,7 @@ function oneShot<T>(args: {
         // can match; anything else is '' and fails the comparison.
         if (!safeEq(str(body.t), token) || resultTaken) { res.writeHead(403, { 'content-length': '0' }); res.end(); return; }
         // The exchange is single-use from here on: a malformed or badly-signed first result BURNS it
-        // (documented, accepted for round 2) and the user re-runs `trenchscope wallet link`. This is the
+        // (documented, accepted for round 2) and the user re-runs `solgent wallet link`. This is the
         // conservative choice — an attacker who knows the token gets exactly one attempt, never a retry.
         resultTaken = true;
         const out = args.onResult(body);
@@ -315,7 +315,7 @@ export class WalletBridge {
   /** The challenge a wallet signs to prove ownership. Human-readable, never a transaction. */
   static challenge(nonce: string, port: number): string {
     return [
-      'trenchscope wants to link your Solana wallet.',
+      'solgent wants to link your Solana wallet.',
       '',
       'This signs a message only. It does NOT approve a transaction, move funds, or cost any fees.',
       '',
@@ -326,13 +326,13 @@ export class WalletBridge {
   }
 
   /**
-   * Link a wallet: open the browser to a page that connects window.solana and signs a trenchscope nonce,
+   * Link a wallet: open the browser to a page that connects window.solana and signs a solgent nonce,
    * verify the Ed25519 proof, and resolve with the PUBLIC key only. Never receives a private key.
    */
   link(): Promise<LinkResult> {
     const nonce = b64url(randomBytes(18));
     const started = this.clock.now();
-    let servedChallenge = ''; // the exact text trenchscope served; the signature must be over THIS.
+    let servedChallenge = ''; // the exact text solgent served; the signature must be over THIS.
     return oneShot<LinkResult>({
       route: 'link',
       open: this.open,
@@ -400,13 +400,13 @@ export class WalletBridge {
 function linkPage(port: number, nonce: string, challenge: string, portNote = ''): string {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>trenchscope · link wallet</title>
+<title>solgent · link wallet</title>
 <style nonce="${nonce}">body{font:14px/1.5 -apple-system,system-ui,sans-serif;background:#07090d;color:#d7dbe0;margin:0;padding:2rem}
 .card{max-width:640px;margin:auto;background:#0d1016;border:1px solid #1d2430;border-radius:12px;padding:1.5rem}
 h1{font-size:1.1rem;color:#7fd1ff}pre{white-space:pre-wrap;background:#06080c;border:1px solid #1d2430;border-radius:8px;padding:.75rem;font-size:12px}
 button{font:inherit;background:#153;border:1px solid #2a6;color:#cfe;border-radius:8px;padding:.5rem 1rem;cursor:pointer}
 .ok{color:#5de28a}.bad{color:#ff6b6b}.warn{color:#e2b85d}.muted{color:#7a828e}</style></head><body><div class="card">
-<h1>✦ trenchscope · link wallet</h1>
+<h1>✦ solgent · link wallet</h1>
 <p>Your <b>dexterm</b> terminal opened this page on <code>127.0.0.1</code>. It asks your wallet to <b>sign a message</b> to prove ownership — no transaction, no funds, no approvals.</p>
 <pre id="c">${esc(challenge)}</pre>${portNote ? `\n<p class="warn">${esc(portNote)}</p>` : ''}
 <p id="p" class="warn">looking for a wallet…</p>
@@ -431,13 +431,13 @@ $('go').addEventListener('click',run);poll(0);})();</script></body></html>`.repl
 function signPage(port: number, nonce: string, unsignedTxB64: string, expectPk: string, label: string, portNote = ''): string {
   const web3 = solanaWeb3Bundle();
   return `<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>trenchscope · sign</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>solgent · sign</title>
 <style nonce="${nonce}">body{font:14px/1.5 -apple-system,system-ui,sans-serif;background:#07090d;color:#d7dbe0;margin:0;padding:2rem}
 .card{max-width:640px;margin:auto;background:#0d1016;border:1px solid #1d2430;border-radius:12px;padding:1.5rem}
 h1{font-size:1.1rem;color:#7fd1ff}button{font:inherit;background:#531;border:1px solid #a62;color:#fec;border-radius:8px;padding:.5rem 1rem;cursor:pointer}
 .ok{color:#5de28a}.bad{color:#ff6b6b}.warn{color:#e2b85d}.muted{color:#7a828e}code{word-break:break-all}</style></head><body><div class="card">
-<h1>✦ trenchscope · approve ${esc(label)}</h1>
-<p>Your terminal already showed you this trade and you pressed confirm. Approve it in your wallet to sign. trenchscope submits the signed transaction; it never holds your key.</p>
+<h1>✦ solgent · approve ${esc(label)}</h1>
+<p>Your terminal already showed you this trade and you pressed confirm. Approve it in your wallet to sign. solgent submits the signed transaction; it never holds your key.</p>
 ${portNote ? `<p class="warn">${esc(portNote)}</p>\n` : ''}<p id="p" class="warn">looking for a wallet…</p>
 <p><button id="go" disabled>Approve in wallet</button> <span id="s"></span></p>
 <p id="r"></p>
@@ -450,7 +450,7 @@ const short=k=>k&&k.length>12?k.slice(0,4)+'…'+k.slice(-4):String(k||'?');
 // user revoked it): the fix is the Connect prompt, not a retry of the signature.
 function explain(e){const code=e&&(e.code!==undefined?e.code:(e.error&&e.error.code));const msg=(e&&e.message)||String(e);
 if(code===4100)return 'Phantom has not authorized this page (4100). Press Approve again and accept the Connect prompt; if none appears, open Phantom → Settings → Trusted apps, allow 127.0.0.1:'+PORT+', then confirm the trade again in dexterm. Nothing was signed.';
-if(code===4001)return 'you rejected the request in Phantom; nothing was signed. Confirm again in trenchscope to retry.';
+if(code===4001)return 'you rejected the request in Phantom; nothing was signed. Confirm again in solgent to retry.';
 if(code===-32603)return 'Phantom could not process the transaction (internal error): '+msg;
 return msg;}
 function bytes(b){const s=atob(b),a=new Uint8Array(s.length);for(let i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return a;}
@@ -458,14 +458,14 @@ let prov=null,name='none';function find(){if(window.phantom&&window.phantom.sola
 function poll(n){[prov,name]=find();if(prov){$('p').textContent='wallet: '+name;$('p').className='ok';$('go').disabled=false;if(name==='stub')run();return;}if(n>40){$('p').textContent='No Solana wallet found.';$('p').className='bad';return;}setTimeout(()=>poll(n+1),100);}
 async function run(){$('go').disabled=true;$('s').textContent='connecting to your wallet…';try{
 // Real Phantom needs @solana/web3.js on the page to rebuild the VersionedTransaction before signTransaction().
-// The trenchscope wallet shell (popup-host lane) provides it as window.dexSolana; see scripts/ for the manual path.
-if(!window.dexSolana||!window.dexSolana.VersionedTransaction)throw new Error('tx signing needs the trenchscope wallet shell (window.dexSolana). See scripts/phantom-devnet.md.');
+// The solgent wallet shell (popup-host lane) provides it as window.dexSolana; see scripts/ for the manual path.
+if(!window.dexSolana||!window.dexSolana.VersionedTransaction)throw new Error('tx signing needs the solgent wallet shell (window.dexSolana). See scripts/phantom-devnet.md.');
 // task-1368 (g): CONNECT FIRST. signTransaction() on an origin Phantom has not connected is a 4100, so
 // the page used to fail on every fresh (random-port) origin. connect() resolves silently on a trusted
-// origin and prompts once on a new one; then the connected account must be the wallet trenchscope linked.
+// origin and prompts once on a new one; then the connected account must be the wallet solgent linked.
 const res=await prov.connect();const pk=(res&&res.publicKey)||prov.publicKey;const account=pk?(typeof pk.toBase58==='function'?pk.toBase58():String(pk)):'';
 if(!account)throw new Error('the wallet connected without a public key; nothing was signed');$('a').textContent=account;
-if(EXPECT&&account!==EXPECT)throw new Error('Phantom is on account '+short(account)+' but trenchscope linked '+short(EXPECT)+'. Switch accounts in Phantom and press Approve again, or re-link with "trenchscope wallet link". Nothing was signed.');
+if(EXPECT&&account!==EXPECT)throw new Error('Phantom is on account '+short(account)+' but solgent linked '+short(EXPECT)+'. Switch accounts in Phantom and press Approve again, or re-link with "solgent wallet link". Nothing was signed.');
 $('s').textContent='approve in your wallet…';
 const vt=window.dexSolana.VersionedTransaction.deserialize(bytes(TX));const signed=await prov.signTransaction(vt);
 const out=b64(signed.serialize());const rp=await fetch('http://127.0.0.1:'+PORT+'/sign/result',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({t:${JSON.stringify('__T__')},signedTx:out,provider:name,publicKey:account})});

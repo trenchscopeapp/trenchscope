@@ -1,4 +1,4 @@
-// task-1408: `trenchscope voice` CLI surface — status report and the guarded download command. No network
+// task-1408: `solgent voice` CLI surface — status report and the guarded download command. No network
 // is touched here: status is read-only, and download refuses to run non-interactively without --yes.
 
 import { test } from 'node:test';
@@ -34,7 +34,7 @@ test('`voice status` prints the engines and the model install state', async () =
 test('`voice` with no args defaults to status', async () => {
   const { io, out } = mkIo();
   assert.equal(await voiceCommand([], io), 0);
-  assert.match(out(), /trenchscope voice/);
+  assert.match(out(), /solgent voice/);
 });
 
 test('`voice download` with no model name is a usage error', async () => {

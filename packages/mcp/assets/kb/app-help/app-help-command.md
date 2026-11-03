@@ -1,6 +1,6 @@
 ---
 id: app-help-command
-title: Get help on how trenchscope works (trenchscope help)
+title: Get help on how solgent works (solgent help)
 kind: app-help
 screen: all
 feature: app-help
@@ -30,6 +30,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope help [topic]` answers "how do I ..." from the generated app-help knowledge base — the same entries the analyst's `app_help` tool uses, so they cannot drift from the app. `trenchscope help` lists the topics; `trenchscope help <topic|key|command>` prints the matching entry with the exact key or command. `--help` (or `-h`) on any command prints its usage. The analyst searches app-help first and never invents a key.
+`solgent help [topic]` answers "how do I ..." from the generated app-help knowledge base — the same entries the analyst's `app_help` tool uses, so they cannot drift from the app. `solgent help` lists the topics; `solgent help <topic|key|command>` prints the matching entry with the exact key or command. `--help` (or `-h`) on any command prints its usage. The analyst searches app-help first and never invents a key.
 
-CLI: `trenchscope help`.
+CLI: `solgent help`.

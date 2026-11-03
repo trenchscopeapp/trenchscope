@@ -1,4 +1,4 @@
-// trenchscope — alert-channel credentials (task-1398). Bot tokens and webhook URLs are NEVER in config.json
+// solgent — alert-channel credentials (task-1398). Bot tokens and webhook URLs are NEVER in config.json
 // (the config schema has no key-shaped fields, by rule). They live in ~/.dexterm/<channel>.json, mode 0600,
 // outside every repo, read only by the adapters. Nothing here ever prints a secret; `redactCreds()` scrubs
 // a token / webhook out of any string before it could reach a log, a toast, a test fixture or an error.

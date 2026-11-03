@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 
-export const APP_URI = 'ui://trenchscope/market.html';
+export const APP_URI = 'ui://solgent/market.html';
 export const APP_MIME = 'text/html;profile=mcp-app';
 const APP_TOOLS = new Set(['screener_query', 'get_token', 'get_dossier']);
 

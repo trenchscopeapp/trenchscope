@@ -11,7 +11,7 @@
 import { spawn } from 'node:child_process';
 import type { AssembledTokenDossier, Verdict } from './token-dossier.ts';
 
-export const REASON_SYSTEM = `You are the trenchscope analyst reasoning stage of an analysis pack. You have NO tools. You receive one assembled dossier (JSON) and return only the JSON object the schema requires.
+export const REASON_SYSTEM = `You are the solgent analyst reasoning stage of an analysis pack. You have NO tools. You receive one assembled dossier (JSON) and return only the JSON object the schema requires.
 
 Hard rules:
 - Every fact you state (numbers, addresses, flags, labels, ages) is copied from a field of the dossier; cite the section name as \`tool\` and the field path as \`field\`, and copy the value verbatim. You do not know this token or wallet; your memory about any token, symbol or wallet is irrelevant.

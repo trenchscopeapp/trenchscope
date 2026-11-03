@@ -1,4 +1,4 @@
-// `trenchscope backtest [--subject heuristic|pack_verdicts] [--horizon 3600] [--db PATH] [--json]`
+// `solgent backtest [--subject heuristic|pack_verdicts] [--horizon 3600] [--db PATH] [--json]`
 // (task-1356, AI-SUITE-DESIGN §6). Scores the rug model (or recorded pack verdicts) against the
 // recorder's LABELLED outcomes and prints HONEST metrics: base rate, precision/recall, Brier vs the
 // base-rate Brier, AUC, a calibration table, a per-feed breakdown, and the worst misses/false alarms with
@@ -29,11 +29,11 @@ export interface BacktestIo {
 
 const HORIZONS = [3600, 7200, 21600, 86400, 259200];
 
-export const BACKTEST_HELP = `trenchscope backtest: score the rug model against recorded outcomes (task-1356). No network, no model.
+export const BACKTEST_HELP = `solgent backtest: score the rug model against recorded outcomes (task-1356). No network, no model.
 
-  trenchscope backtest [--subject heuristic|pack_verdicts|larp] [--model h1|h2] [--horizon SEC] [--db PATH] [--json]
-  trenchscope backtest --subject skills [--eval FILE] [--tune] [--report FILE] [--json]
-  trenchscope backtest --build-eval FILE [--db PATH] [--horizon SEC] [--max-lag SEC]
+  solgent backtest [--subject heuristic|pack_verdicts|larp] [--model h1|h2] [--horizon SEC] [--db PATH] [--json]
+  solgent backtest --subject skills [--eval FILE] [--tune] [--report FILE] [--json]
+  solgent backtest --build-eval FILE [--db PATH] [--horizon SEC] [--max-lag SEC]
 
   --subject   heuristic (default, the pre-registered H1 rug model), pack_verdicts (recorded pack rug_p), or
               larp (task-1359: recorded LARP-detector verdicts vs the outcome labels; counts only below
@@ -109,14 +109,14 @@ export function backtestCommand(argv: string[], io: BacktestIo): number {
   if (opts.help || opts.h) { io.stdout.write(BACKTEST_HELP + '\n'); return 0; }
   if (opts.subject === 'skills') return skillsCommand(opts, io);
   const path = typeof opts.db === 'string' ? opts.db : (io.env.DEXTERM_DB_PATH || defaultDbPath(io.env));
-  if (path === ':memory:') { io.stderr.write('trenchscope backtest: an in-memory DB has no history\n'); return 2; }
+  if (path === ':memory:') { io.stderr.write('solgent backtest: an in-memory DB has no history\n'); return 2; }
   const horizon = typeof opts.horizon === 'string' && HORIZONS.includes(Number(opts.horizon)) ? Number(opts.horizon) : 3600;
   const kind: BacktestKind = opts.subject === 'pack_verdicts' ? 'pack_verdicts' : 'heuristic';
   const heuristic = opts.model === 'h1' ? h1Model() : h2Model();
   let db: DatabaseSync | null = null;
   try {
     db = openHistoryReadOnly(path);
-    if (!db) { io.stderr.write(`trenchscope backtest: no recorded history in ${path} (run the app with the recorder on first)\n`); return 2; }
+    if (!db) { io.stderr.write(`solgent backtest: no recorded history in ${path} (run the app with the recorder on first)\n`); return 2; }
     if (typeof opts['build-eval'] === 'string') {
       const maxLag = typeof opts['max-lag'] === 'string' ? Number(opts['max-lag']) : undefined;
       const set = buildSkillEvalSet(db, { horizonSec: typeof opts.horizon === 'string' ? horizon : 259_200, maxLagSec: Number.isFinite(maxLag) ? maxLag : undefined });
@@ -132,7 +132,7 @@ export function backtestCommand(argv: string[], io: BacktestIo): number {
     }
     const doc = exportRecorded(db, { labelledOnly: true });
     if (!doc.records.length) {
-      io.stdout.write(`trenchscope backtest: the recorder has no outcome-labelled snapshots yet at any horizon.\nLabels need the horizon (${horizon}s) to have elapsed and a sweep to have run. Check back after the recorder has observed tokens for at least that long.\n`);
+      io.stdout.write(`solgent backtest: the recorder has no outcome-labelled snapshots yet at any horizon.\nLabels need the horizon (${horizon}s) to have elapsed and a sweep to have run. Check back after the recorder has observed tokens for at least that long.\n`);
       return 0;
     }
     const verdictDb = db;
@@ -153,7 +153,7 @@ export function backtestCommand(argv: string[], io: BacktestIo): number {
     else io.stdout.write(renderBacktestText(subjectLabel, horizon, doc.labeler_version, result));
     return 0;
   } catch (e) {
-    io.stderr.write(`trenchscope backtest: ${e instanceof Error ? e.message : String(e)}\n`);
+    io.stderr.write(`solgent backtest: ${e instanceof Error ? e.message : String(e)}\n`);
     return 1;
   } finally {
     try { db?.close(); } catch { /* ignore */ }
@@ -169,11 +169,11 @@ function skillsCommand(opts: Record<string, string | true>, io: BacktestIo): num
   let set: SkillEvalSet;
   if (file === DEFAULT_SKILL_EVAL && !existsSync(file)) {
     // the npm build ships no eval data (packages/packs/eval is repo-only): build one from your own history
-    io.stderr.write('trenchscope backtest: the bundled eval set is not part of this install. Build one from your own recorder history:\n  trenchscope backtest --build-eval ./skills-eval.json && trenchscope backtest --subject skills --eval ./skills-eval.json\n');
+    io.stderr.write('solgent backtest: the bundled eval set is not part of this install. Build one from your own recorder history:\n  solgent backtest --build-eval ./skills-eval.json && solgent backtest --subject skills --eval ./skills-eval.json\n');
     return 2;
   }
-  try { set = JSON.parse(readFileSync(file, 'utf8')) as SkillEvalSet; } catch (e) { io.stderr.write(`trenchscope backtest: cannot read eval set ${file}: ${e instanceof Error ? e.message : String(e)}\n`); return 2; }
-  if (set.schema !== SKILL_EVAL_SCHEMA || !Array.isArray(set.rows)) { io.stderr.write(`trenchscope backtest: ${file} is not a ${SKILL_EVAL_SCHEMA} file\n`); return 2; }
+  try { set = JSON.parse(readFileSync(file, 'utf8')) as SkillEvalSet; } catch (e) { io.stderr.write(`solgent backtest: cannot read eval set ${file}: ${e instanceof Error ? e.message : String(e)}\n`); return 2; }
+  if (set.schema !== SKILL_EVAL_SCHEMA || !Array.isArray(set.rows)) { io.stderr.write(`solgent backtest: ${file} is not a ${SKILL_EVAL_SCHEMA} file\n`); return 2; }
   let larpAfter = DEFAULT_LINK_RUBRIC, rugAfter = RUG_RULES_V1, tuned = null;
   if (opts.tune) {
     const train = set.rows.filter((r) => r.split === 'train');

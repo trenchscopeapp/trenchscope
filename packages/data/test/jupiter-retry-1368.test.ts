@@ -120,7 +120,7 @@ test('bounded: 429 twice in a row → the health gate cools the source down (SPE
   await s.clock.advance(5_000);
   const again = await drive(s.clock, b.quoteRaw(QUOTE).then(() => null, (e: unknown) => e), 100);
   assert.ok(again instanceof JupiterRateLimitedError && again.status === 0 && again.attempts === 1, String(again));
-  assert.match(again.message, /^Jupiter calls are paused after repeated rate limits \(trenchscope cool-down\); retry in \d+s$/);
+  assert.match(again.message, /^Jupiter calls are paused after repeated rate limits \(solgent cool-down\); retry in \d+s$/);
   assert.ok(again.retryAfterMs < err.retryAfterMs, 'the wait counts down');
   assert.equal(s.seen.length, 2);
   // After the cool-down the next call goes out and succeeds.

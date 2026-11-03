@@ -1,4 +1,4 @@
-// trenchscope — New pairs feed (pump.fun / DBC / Bonk launches, bonding progress, risk flags) + spotlight.
+// solgent — New pairs feed (pump.fun / DBC / Bonk launches, bonding progress, risk flags) + spotlight.
 // Cyberspace styling (task-1297): a pair younger than a minute gets the magenta NEW treatment (its
 // arrival fires the glitch via pulse in the loop); rain zones in the sub-tab gap, the gutter and the
 // spotlight's blank middle; ▲/▼ on directions; the claude one-liner in coral.

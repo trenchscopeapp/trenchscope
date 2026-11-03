@@ -2,7 +2,7 @@
 // labels and reports what was actually measured, nothing more. Pure: input is the recorder join
 // (@dexterm/recorder readLarpJoin), so every number is re-runnable from a history.sqlite.
 //
-// What "accuracy" can mean here. The only labels trenchscope records are price/liquidity OUTCOMES (rug / dead /
+// What "accuracy" can mean here. The only labels solgent records are price/liquidity OUTCOMES (rug / dead /
 // fade / flat / runner at a horizon). There is no ground-truth label of whether a coin's product is real. So
 // the eval measures AGREEMENT: does a `LARP` verdict precede a bad outcome (rug ∪ dead on keyless data, rug
 // alone when chain-verified) more often than a REAL_PRODUCT / EARLY_BUT_REAL verdict does? It is printed as
@@ -108,7 +108,7 @@ export function larpEval(input: LarpEvalInput): LarpEvalResult {
 
 const pct = (r: Rate | null): string => (r === null ? '—' : `${(r.value * 100).toFixed(1)}% [${(r.lo * 100).toFixed(1)}–${(r.hi * 100).toFixed(1)}] (${r.k}/${r.n})`);
 
-/** The human table `trenchscope backtest --subject larp` prints. */
+/** The human table `solgent backtest --subject larp` prints. */
 export function renderLarpEvalText(r: LarpEvalResult, source: string): string {
   const L: string[] = [];
   L.push(`LARP EVAL  horizon=${r.horizon_sec}s  match window=${r.slack_sec}s  db=${source}`);

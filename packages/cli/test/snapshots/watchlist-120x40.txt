@@ -1,4 +1,4 @@
-  trenchscope ┃  1 Screener   2 New pairs   3 Watchlist ▌ 4 Analyst          SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+  solgent ┃  1 Screener   2 New pairs   3 Watchlist ▌ 4 Analyst              SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
 
 ╭─ WATCHLIST ──────────────────────────────────────────────────────────────────────────────── 6 tokens · PnL vs entry ─╮
 │ TOKEN                                PRICE       ENTRY  VS ENTRY      1H      24H     MCAP      LIQ 24H TREND        │

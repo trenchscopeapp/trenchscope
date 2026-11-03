@@ -1,4 +1,4 @@
-// trenchscope — EXPORT / SHARE (task-1401). One key (`E`) renders the current view to a PNG plus a plain-text report in
+// solgent — EXPORT / SHARE (task-1401). One key (`E`) renders the current view to a PNG plus a plain-text report in
 // ~/.dexterm/exports (DEXTERM_HOME overrides). Nothing is uploaded, posted or copied anywhere else.
 //
 // The renderer is reusable on purpose (task-1407 PNL cards build on it): give `renderExportPng` / `renderExportText`
@@ -84,7 +84,7 @@ export function composeExportCanvas(v: ExportView, now: number): Canvas {
   const footer = [
     ...(v.mint ? [` contract ${v.mint}`] : []),
     ...wrapParts(v.label === 'replay' ? ' data ages (replay clock): ' : ' data ages: ', v.ages.length ? v.ages.map(ageText) : ['none reported for this view'], w - 1),
-    ` exported locally by trenchscope ${localStamp(now)} · nothing was uploaded · not financial advice`,
+    ` exported locally by solgent ${localStamp(now)} · nothing was uploaded · not financial advice`,
   ];
   const c = new Canvas(w, src.h + 2 + footer.length, t);
   c.fill(0, 0, w, c.h, ' ', { bg: t.bg });
@@ -92,7 +92,7 @@ export function composeExportCanvas(v: ExportView, now: number): Canvas {
   c.fill(0, 0, w, 1, ' ', { bg: t.headBg });
   const label = ` ${LABEL_TEXT[v.label]} `;
   const labelFg = v.label === 'live' ? t.up : t.warn;
-  c.text(1, 0, `trenchscope export · ${v.title}`, { fg: t.text, bg: t.headBg, b: true }, Math.max(0, w - label.length - 3));
+  c.text(1, 0, `solgent export · ${v.title}`, { fg: t.text, bg: t.headBg, b: true }, Math.max(0, w - label.length - 3));
   c.textR(0, 0, w - 1, label, { fg: labelFg, bg: t.headBg, b: true });
   // the view
   for (let y = 0; y < src.h; y++) for (let x = 0; x < src.w; x++) {
@@ -118,7 +118,7 @@ export function renderExportPng(v: ExportView, now: number, opts: RasterOpts = {
 /** The plain-text report: header, label, ages, the view's own lines, the local-only note. */
 export function renderExportText(v: ExportView, now: number): string {
   const L: string[] = [];
-  L.push(`trenchscope export · ${v.title}`);
+  L.push(`solgent export · ${v.title}`);
   if (v.mint) L.push(`contract    ${v.mint}`);
   L.push(`data        ${LABEL_TEXT[v.label]}`);
   L.push(`exported    ${localStamp(now)} (local time) · ${new Date(now).toISOString()}`);
@@ -184,7 +184,7 @@ export function tokenReport(state: AppState, v: TokenView, now: number): string[
   if (v.flags.length) L.push(`flags       ${v.flags.join(', ')}`);
   const row = state.screener.rows.find((r) => r.mint === v.mint);
   const p = row ? rugP(row) : null;
-  if (p !== null) L.push(`p(rug)      ${fmtRugP(p)} · model output: ${RUG_MODEL_LABEL} (a ranking, not a probability; see trenchscope backtest)`);
+  if (p !== null) L.push(`p(rug)      ${fmtRugP(p)} · model output: ${RUG_MODEL_LABEL} (a ranking, not a probability; see solgent backtest)`);
   const larp = state.larpByMint?.get(v.mint);
   if (larp) L.push(`LARP check  ${larp.verdict}${larp.confidence !== null ? ` · confidence ${larp.confidence.toFixed(2)}` : ''} · model output, ${fmtAge((now - larp.at) / 1000)} old · a risk flag, not a certificate`);
   const links = [v.socialLinks.web, v.socialLinks.x, v.socialLinks.tg].filter((x): x is string => !!x).map((u) => cleanText(u, 120));

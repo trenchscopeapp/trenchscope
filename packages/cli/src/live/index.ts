@@ -1,4 +1,4 @@
-// trenchscope — live bindings for the TOKEN, NEW PAIRS and WATCHLIST screens (task-1298). One context per
+// solgent — live bindings for the TOKEN, NEW PAIRS and WATCHLIST screens (task-1298). One context per
 // run, created over the screener feed's data layer so every screen shares the cache, limiter, health
 // registry and (when the Helius key is configured) the credit meter. Screens stay pure renderers: the
 // context owns the loaders and tells the UI loop when to redraw.
@@ -265,7 +265,7 @@ export class LiveContext {
 
   /**
    * The signer process (task-1328), started on first use with the run's caps argv. A signer that
-   * failed to start or died is never respawned: LIVE stays off until trenchscope restarts (fail closed).
+   * failed to start or died is never respawned: LIVE stays off until solgent restarts (fail closed).
    */
   ensureSigner(): SignerPort | null {
     if (!this.trade || this.signerFailed) return this.signer;
@@ -317,12 +317,12 @@ export class LiveContext {
       case 'panic': {
         // Local first (the kill-switch FILE every signer re-reads + the shared ledger lock), then the signer.
         const ks = new KillSwitch(paths.panic ?? defaultPanicPath());
-        ks.engage('panic from trenchscope UI', this.now());
-        try { const l = new CapLedger({ path: paths.capLedger ?? defaultCapLedgerPath(), clock: this.dl.clock }); try { l.lock('panic from trenchscope UI', this.now()); } finally { l.close(); } } catch { /* the file alone disables trading */ }
-        if (this.signer?.alive) await this.signer.panic('panic from trenchscope UI').catch(() => {});
+        ks.engage('panic from solgent UI', this.now());
+        try { const l = new CapLedger({ path: paths.capLedger ?? defaultCapLedgerPath(), clock: this.dl.clock }); try { l.lock('panic from solgent UI', this.now()); } finally { l.close(); } } catch { /* the file alone disables trading */ }
+        if (this.signer?.alive) await this.signer.panic('panic from solgent UI').catch(() => {});
         if (this.ticket?.ticket.mode === 'live') { this.ticket.ticket.phase = 'refused'; this.ticket.ticket.message = '⛔ PANIC — live signing disabled'; }
         this.onChange('wallet');
-        return '⛔ PANIC: live signing disabled everywhere · re-enable only from a shell: trenchscope wallet resume';
+        return '⛔ PANIC: live signing disabled everywhere · re-enable only from a shell: solgent wallet resume';
       }
       case 'probe': {
         if (!this.trade) return 'live trading is off in this run';

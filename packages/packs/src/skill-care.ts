@@ -283,7 +283,7 @@ const cm = (m: number | null): string => (m === null || m === undefined ? '—' 
  */
 export function proposalCard(i: ProposalCardInput): ProposalCard {
   const d = [
-    `Skill care proposes a ${i.kind} tuning for the trenchscope analyst skills (task-1414). It never edits app main; a maintainer creates a scratch branch and applies the parameter diff below, it is verified, and it reaches users only in a normal release.`,
+    `Skill care proposes a ${i.kind} tuning for the solgent analyst skills (task-1414). It never edits app main; a maintainer creates a scratch branch and applies the parameter diff below, it is verified, and it reaches users only in a normal release.`,
     '',
     `New labelled coins since the last accepted tuning: ${i.newCoins} (threshold ${i.minNew}).`,
     `Rolling held-out window: ${i.splitRule}`,
@@ -301,7 +301,7 @@ export function proposalCard(i: ProposalCardInput): ProposalCard {
     'Also update the skill prose that names these numbers (rug-check/larp-check SKILL.md, token-dossier.md, packages/packs/eval/README.md) and the site docs/larp.md in the release lane — published numbers change only via a release and must keep the weak results. Do NOT auto-ship.',
   ].join('\n');
   return {
-    title: `trenchscope skill-care: proposed ${i.kind} tuning (${i.date.slice(0, 10)})`,
+    title: `solgent skill-care: proposed ${i.kind} tuning (${i.date.slice(0, 10)})`,
     description: d,
     project: 'dexterm', priority: 'normal', owner: i.owner ?? 'maintainers', delegationTarget: i.owner ?? 'maintainers', actor: 'skill-care',
     constraints: [

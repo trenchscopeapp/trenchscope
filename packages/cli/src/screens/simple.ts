@@ -1,4 +1,4 @@
-// trenchscope: the simple split view (the default in the interactive app). One short coin list on the left;
+// solgent: the simple split view (the default in the interactive app). One short coin list on the left;
 // the selected coin's chart and a plain-English safety verdict on the right. `f` switches to the full table
 // (renderScreener) and back. Everything shown here is derived from the same ScreenerRow the full table uses,
 // so the two views can never disagree. It wears the same chrome as the full table and the site's tour (tab

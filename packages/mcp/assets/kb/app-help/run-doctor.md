@@ -27,6 +27,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope doctor` is the first stop for any problem: non-interactive, never touches your keys, exits 0 when trenchscope will run and 1 when something must be fixed. Every non-pass line prints the exact fix. `trenchscope doctor --offline` skips the network probes.
+`solgent doctor` is the first stop for any problem: non-interactive, never touches your keys, exits 0 when solgent will run and 1 when something must be fixed. Every non-pass line prints the exact fix. `solgent doctor --offline` skips the network probes.
 
-CLI: `trenchscope doctor`.
+CLI: `solgent doctor`.

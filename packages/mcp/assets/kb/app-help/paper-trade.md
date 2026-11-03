@@ -31,6 +31,6 @@ sources:
 date: 2026-10-16
 ---
 
-Press `B` / `S` on the token screen to open a PAPER buy/sell ticket in its editing phase. trenchscope holds no keys and signs nothing — paper trading is a simulation. Confirming a ticket needs your explicit keypress (the gate); a stray key never confirms. The in-app analyst can open a PAPER ticket but can never size, confirm or send it. If you separately arm a mandate and enable agent paper trading, a connected agent can open, size, confirm and close PAPER trades inside your caps (never raising them, never signing) — see "Let an agent paper trade".
+Press `B` / `S` on the token screen to open a PAPER buy/sell ticket in its editing phase. solgent holds no keys and signs nothing — paper trading is a simulation. Confirming a ticket needs your explicit keypress (the gate); a stray key never confirms. The in-app analyst can open a PAPER ticket but can never size, confirm or send it. If you separately arm a mandate and enable agent paper trading, a connected agent can open, size, confirm and close PAPER trades inside your caps (never raising them, never signing) — see "Let an agent paper trade".
 
 Keys: `B` (token), `S` (token).

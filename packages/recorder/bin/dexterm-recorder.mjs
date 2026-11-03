@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// trenchscope history recorder CLI (also reachable as `trenchscope recorder <cmd>`).
+// solgent history recorder CLI (also reachable as `solgent recorder <cmd>`).
 //   dexterm-recorder stats  [--db PATH]                      counts, labels, size, bytes per row
 //   dexterm-recorder label  [--db PATH]                      run the labeler over every due t0 anchor now
 //   dexterm-recorder prune  [--db PATH]                      run the retention job now

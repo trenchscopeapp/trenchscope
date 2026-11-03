@@ -39,7 +39,7 @@ class FakeSigner implements SignerPort {
   async precheck(hash: string): Promise<{ ok: boolean }> { this.calls.push(`precheck:${hash.slice(0, 6)}`); return { ok: true }; }
   async drop(hash: string): Promise<void> { this.calls.push(`drop:${hash.slice(0, 6)}`); }
   async panic(): Promise<void> { this.calls.push('panic'); }
-  async fast(): Promise<FastView> { this.calls.push('fast'); return { loaded: this.fastLoaded, publicKey: this.fastLoaded ? FAST_PK : null, network: 'devnet', balanceLamports: '1000000000', maxSolPerFill: 0.05, createdAt: T0, reason: this.fastLoaded ? null : 'no fast wallet: `trenchscope wallet fast create`' }; }
+  async fast(): Promise<FastView> { this.calls.push('fast'); return { loaded: this.fastLoaded, publicKey: this.fastLoaded ? FAST_PK : null, network: 'devnet', balanceLamports: '1000000000', maxSolPerFill: 0.05, createdAt: T0, reason: this.fastLoaded ? null : 'no fast wallet: `solgent wallet fast create`' }; }
   async fill(p: FillParams): Promise<PlanView> {
     this.calls.push(`fill:${p.ref}:${p.side}:${p.lamports}`);
     if (this.holdFill) await new Promise<void>((r) => this.heldFills.push(r));

@@ -1,4 +1,4 @@
-  trenchscope ┃  1 Screener   2 New pairs   3 Watchlist   4 Analyst ▌        SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+  solgent ┃  1 Screener   2 New pairs   3 Watchlist   4 Analyst ▌            SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
 
 ╭─ ✦ ANALYST · claude ────────── session 14m · 11 tool calls · $0.00 (your CLI) ─╮╭─ CONTEXT ──── what claude can see ─╮
 │ › screen for tokens under $5M mcap with rising holders, organic score over     ││ TOOLS                              │
@@ -21,7 +21,7 @@
 │                                                                                ││ MODEL                              │
 │ › what would make you flip bullish on BOME?                                    ││ your local claude CLI · session    │
 │                                                                                ││ kept warm · no keys shipped by     │
-│ ✦ Three things, in order: liquidity above $150K (currently $16M), top-10       ││ trenchscope                        │
+│ ✦ Three things, in order: liquidity above $150K (currently $16M), top-10       ││ solgent                            │
 │   below 25%, and a 6h candle closing above $0.1439 on organic volume. I added  ││                                    │
 │   those as a watch rule; you'll get an alert, not a trade.                     ││────────────────────────────────────│
 │                                                                                ││ MARKET PULSE                       │

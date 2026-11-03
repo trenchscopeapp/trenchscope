@@ -1,0 +1,125 @@
+/* ---- docs: the site's tokens and parts, set for reading. A sticky contents list beside one article
+   column (after Osmo's Table of Contents for Article); anchors land below the bar through the
+   html scroll-padding-top in styles.css (Osmo's Anchor Links Target Offset, applied site-wide). */
+
+.docs { padding-top: 3.5rem; padding-bottom: var(--section); }
+.docs-head { max-width: 46rem; }
+.docs-title { margin: 0; font: 700 3rem/1.02 var(--font-mono); letter-spacing: -0.04em; }
+.docs-head .sub { max-width: 52ch; }
+.docs-head .sub code { white-space: nowrap; }
+.docs-head .sub a, .doc a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--ink-4); text-underline-offset: 0.2em; transition: text-decoration-color 160ms var(--ease-smooth); }
+@media (hover: hover) { .docs-head .sub a:hover, .doc a:hover { text-decoration-color: var(--pop-up); } }
+
+
+.docs-grid { display: grid; grid-template-columns: 12.5rem minmax(0, 46rem); column-gap: 4.5rem; align-items: start; margin-top: 3.5rem; }
+
+/* contents */
+.toc { position: sticky; top: calc(var(--bar-h) + 2rem); }
+.toc-summary { display: none; }
+.toc-list { display: flex; flex-direction: column; }
+.toc-list a { display: block; padding: 0.375rem 0 0.375rem 1rem; border-left: 1px solid var(--line); font: 400 0.8125rem/1.45 var(--font-mono); font-feature-settings: "liga" 0; color: var(--ink-3); transition: color 160ms var(--ease-smooth), border-color 160ms var(--ease-smooth); }
+.toc-list a[aria-current] { color: var(--ink); border-left-color: var(--pop-up); }
+@media (hover: hover) { .toc-list a:hover { color: var(--ink); } }
+
+/* article */
+.doc { min-width: 0; }
+.doc section + section { margin-top: 4.5rem; }
+.doc-h2 { margin: 0 0 1.125rem; font: 600 1.75rem/1.12 var(--font-mono); letter-spacing: -0.035em; }
+.doc h3 { margin: 2rem 0 0.625rem; font: 600 1.0625rem/1.35 var(--font-mono); letter-spacing: -0.02em; color: var(--ink); }
+.h3-note { margin-left: 0.375rem; font: 400 0.8125rem var(--font-mono); color: var(--ink-3); }
+.doc p { margin: 0 0 1rem; max-width: 64ch; color: var(--ink-2); line-height: 1.7; text-wrap: pretty; }
+.doc p b, .doc li b { color: var(--ink); font-weight: 500; }
+.doc :is(p, li, dd, td) > code, .doc .states code { padding: 0.0625rem 0.375rem; border-radius: 4px; background: rgb(237 242 238 / 0.05); box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
+.doc .states { margin: 0 0 1.25rem; }
+.doc .states code { background: var(--raised); }
+.doc-note { font-size: 0.875rem; color: var(--ink-3) !important; }
+.doc-list { margin: 0 0 1rem; padding-left: 1.125rem; max-width: 64ch; color: var(--ink-2); line-height: 1.7; }
+.doc-list li { text-wrap: pretty; }
+.doc-list li + li { margin-top: 0.375rem; }
+.doc-list li::marker { color: var(--ink-4); }
+.doc .note-warn { margin: 0 0 1.5rem; }
+
+/* a small keycap, the same white cap as the homepage keys */
+.kbd { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.375rem; border-radius: 5px; background: var(--ink); color: var(--bg); font: 700 0.75rem var(--font-mono); vertical-align: 0.0625rem; white-space: nowrap; }
+
+/* code blocks: a well with a prompt, and a copy button docs.js adds */
+.code { position: relative; margin: 0 0 1rem; border-radius: 10px; background: #090c0a; box-shadow: inset 0 0 0 1px var(--line-strong); }
+.code pre { margin: 0; padding: 0.875rem 5.25rem 0.875rem 1rem; overflow-x: auto; font: 400 0.8125rem/1.7 var(--font-mono); color: var(--ink); scrollbar-width: thin; }
+/* every command reads in full: long lines wrap, a prompt line hangs past its "$ " */
+.code .ln { display: block; white-space: pre-wrap; overflow-wrap: anywhere; }
+.code .ln[data-prompt] { padding-left: 2ch; text-indent: -2ch; }
+.code .ln[data-prompt]::before { content: '$ '; color: var(--pop-up); }
+.code-prose .ln { color: var(--ink-2); }
+/* compact to the eye, a 44px target to the pointer */
+.code-copy::before { content: ''; position: absolute; inset: -0.375rem; }
+.code-copy { position: absolute; top: 0.5rem; right: 0.5rem; display: inline-flex; align-items: center; gap: 0.375rem; height: 2rem; padding: 0 0.625rem; border-radius: 6px; background: #0e1310; color: var(--ink-3); font: 600 0.75rem var(--font-sans); box-shadow: inset 0 0 0 1px var(--line-strong); transition: color 160ms var(--ease-smooth), background-color 160ms var(--ease-smooth); }
+.code-copy svg { width: 0.875rem; height: 0.875rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.code-copy .copy-check, .code-copy[data-done] .copy-outline { display: none; }
+.code-copy[data-done] { color: var(--pop-up); }
+.code-copy[data-done] .copy-check { display: inline; }
+@media (hover: hover) { .code-copy:hover { color: var(--ink); background: var(--raised); } }
+.code-copy:active { transform: scale(0.97); }
+
+/* tables: the homepage table in a card; a two-column table reads as prose */
+.doc .table-wrap { margin: 0 0 1.25rem; }
+.doc-table td:last-child { white-space: nowrap; }
+.doc-table .kbd { vertical-align: baseline; }
+.doc-table-prose td:last-child { font: inherit; color: var(--ink-2); text-align: left; white-space: normal; }
+.doc-table-prose thead th:last-child { text-align: left; }
+
+/* keys: two cards of keycaps and actions */
+.keygroups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.keygroup { padding: 0.25rem 1.25rem 0.75rem; border-radius: 14px; background: #0e1310; box-shadow: inset 0 0 0 1px var(--line-strong), inset 0 1px 0 rgb(255 255 255 / 0.04); }
+.keygroup h3 { margin: 1rem 0 0.25rem; font: 500 0.8125rem var(--font-mono); color: var(--ink-3); }
+.keys-dl { margin: 0; }
+.keys-dl > div { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: center; gap: 1rem; min-height: 2.5rem; border-top: 1px solid var(--line); }
+.keys-dl > div:first-child { border-top: 0; }
+.keys-dl dt { display: flex; align-items: center; gap: 0.25rem; color: var(--ink-3); }
+.keys-dl dd { margin: 0; font-size: 0.875rem; color: var(--ink-2); }
+
+/* short lists of plain values: sort keys, presets */
+.doc-defs { margin: 0 0 1.25rem; border-radius: 10px; background: #0e1310; box-shadow: inset 0 0 0 1px var(--line-strong); }
+.doc-defs > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline; padding: 0.75rem 1rem; }
+.doc-defs > div + div { border-top: 1px solid var(--line); }
+.doc-defs dt { display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 500; color: var(--ink); }
+.doc-defs dt .kbd { margin-left: 0.25rem; }
+.doc-defs dd { margin: 0; font: 400 0.8125rem/1.8 var(--font-mono); color: var(--ink-2); white-space: pre-wrap; word-spacing: -0.15em; }
+
+/* troubleshooting */
+.faq { margin: 0; }
+.faq > div { padding: 1rem 0; border-top: 1px solid var(--line); }
+.faq > div:last-child { border-bottom: 1px solid var(--line); }
+.faq dt { font-weight: 500; color: var(--ink); }
+.faq dd { margin: 0.25rem 0 0; max-width: 64ch; color: var(--ink-2); line-height: 1.7; text-wrap: pretty; }
+
+/* one column below 992px: the contents fold into a card above the article */
+@media (max-width: 991px) {
+  .docs-grid { grid-template-columns: minmax(0, 1fr); margin-top: 2rem; }
+  /* it stays under the bar while you read, so the contents are one tap away */
+  .toc { top: calc(var(--bar-h) + 0.5rem); z-index: 5; margin-bottom: 2.5rem; border-radius: 12px; background: #0e1310; box-shadow: inset 0 0 0 1px var(--line-strong), 0 16px 32px -16px rgb(0 0 0 / 0.9); }
+  /* a full-width strip of page between the bar and the stuck card, so text never shows through */
+  .toc::before { content: ''; position: absolute; left: calc(-1 * var(--gutter)); right: calc(-1 * var(--gutter)); bottom: 100%; height: calc(0.5rem + 1px); background: var(--bg); }
+  .toc[open] .toc-list { max-height: calc(100svh - var(--bar-h) - 5.5rem); overflow-y: auto; }
+  .toc-summary { display: flex; align-items: center; justify-content: space-between; min-height: 2.75rem; padding: 0 1rem; list-style: none; cursor: pointer; font: 500 0.8125rem var(--font-mono); color: var(--ink-2); }
+  .toc-summary::-webkit-details-marker { display: none; }
+  .toc-summary svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: transform 200ms var(--ease-smooth); }
+  .toc[open] .toc-summary svg { transform: rotate(180deg); }
+  .toc-list { padding: 0 1rem 0.75rem; }
+  .toc-list a { display: flex; align-items: center; min-height: 2.75rem; padding: 0 0 0 0.875rem; }
+}
+@media (max-width: 767px) {
+  .docs { padding-top: 2.25rem; }
+  .docs-title { font-size: 2.25rem; }
+  .doc section + section { margin-top: 3.5rem; }
+  .doc-h2 { font-size: 1.5rem; }
+  .keygroups { grid-template-columns: minmax(0, 1fr); }
+  .doc-table tbody th { white-space: normal; }
+  .doc :is(p, li, dd, td) > code { white-space: normal; overflow-wrap: anywhere; }
+  .doc-defs > div { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; }
+}
+@media (pointer: coarse), (max-width: 767px) {
+  .code pre { padding-right: 3.5rem; }
+  .code-copy { top: 0.25rem; right: 0.25rem; width: 2.75rem; height: 2.75rem; padding: 0; justify-content: center; }
+  .code-copy span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) { .toc-list a, .code-copy, .toc-summary svg { transition: none; } }

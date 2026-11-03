@@ -1,4 +1,4 @@
-// trenchscope — resolve an analyst "list of coins" answer against LIVE data (task-1313 part F).
+// solgent — resolve an analyst "list of coins" answer against LIVE data (task-1313 part F).
 //
 // The analyst returns a structured `results: [{ mint, symbol?, reason }]` block; the UI renders it as a
 // real table. The numbers (price / 24h / liq / vol / mcap / age) must come from the app's own data layer

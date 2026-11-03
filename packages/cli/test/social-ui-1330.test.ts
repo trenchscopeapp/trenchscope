@@ -1,7 +1,7 @@
 // task-1330 (lane I-03) UI: the TRENDING screen (T), the token SOCIAL panel (s) and the KOL screen (K) at
 // 176 / 120 / 90 columns on the fixture demo; keys through the real keymap + applyKey; the injection row is
 // visible to the human but never reaches the model window, the screen-state context or an analyst action;
-// the `trenchscope kol` subcommand on a temp DB. (The p95 render budget is in test/perf/render-1330.test.ts.)
+// the `solgent kol` subcommand on a temp DB. (The p95 render budget is in test/perf/render-1330.test.ts.)
 import { test, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -112,7 +112,7 @@ test('trending keys: T opens, j/k move, f filters, x shows hidden, n cycles narr
   assert.equal(state.socialSources, true);
   const src = renderFrame(state, 176, 48).toPlain();
   assert.match(src, /SOURCES · keyless/);
-  assert.match(src, /○ x-stream   logged out · trenchscope x login \(your own X app, your limits\)/);
+  assert.match(src, /○ x-stream   logged out · solgent x login \(your own X app, your limits\)/);
   assert.match(src, /● jupiter    age 4s/);
   assert.match(src, /posts stored \d+ \(24 h\) · hidden spam 58/);
   press(state, 's', stack);
@@ -302,9 +302,9 @@ test('KOL screen renders at 176/120/90; space toggles a list, m mutes, d removes
 // ------------------------------------------------------------------ p95 render budget
 // Lives in the serial perf lane (task-1410): packages/cli/test/perf/render-1330.test.ts (`npm run test:perf`).
 
-// ------------------------------------------------------------------ `trenchscope kol` subcommand
+// ------------------------------------------------------------------ `solgent kol` subcommand
 
-test('trenchscope kol: create/add/list/mute/disable/import on a temp DB; a tampered pack is refused', async () => {
+test('solgent kol: create/add/list/mute/disable/import on a temp DB; a tampered pack is refused', async () => {
   const db = join(home, 'kol.db');
   const run = async (...args: string[]) => { const h = fakeIo({ DEXTERM_HOME: home }); const code = await kolCommand([...args, '--db', db], h.io); return { code, out: h.out(), err: h.err() }; };
   assert.equal((await run('list')).out.trim().startsWith('no KOL lists'), true);

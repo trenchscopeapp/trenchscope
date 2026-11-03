@@ -1,4 +1,4 @@
-// `trenchscope kb …` / `trenchscope skill …` (task-1377): the user's overlay of the knowledge base and the analyst
+// `solgent kb …` / `solgent skill …` (task-1377): the user's overlay of the knowledge base and the analyst
 // skills, under ~/.dexterm/kb/entries/<id>.md and ~/.dexterm/skills/<name>.md (DEXTERM_HOME overrides).
 // A user file with a bundled id overrides it, a new id is added, bundled files are never edited in place.
 //   list              bundled + user entries with their origin; skipped files with the reason
@@ -59,10 +59,10 @@ const NOUN = { kb: 'KB entry', skill: 'skill' } as const;
 
 export function usage(kind: ContentKind): string {
   return kind === 'kb'
-    ? `usage: trenchscope kb list | show <id> | new <id> | edit <id> | check [<id>|<file>] | reset <id> | path [<id>]
+    ? `usage: solgent kb list | show <id> | new <id> | edit <id> | check [<id>|<file>] | reset <id> | path [<id>]
   files: ~/.dexterm/kb/entries/<id>.md (DEXTERM_HOME overrides): same id as a bundled entry overrides it, a new id adds one.
   The MCP server, the analyst and Jarvis read the merged set on their next call (no restart). ${KB_RULE}`
-    : `usage: trenchscope skill list | show <name> | new <name> | edit <name> | check [<name>|<file>] | reset <name> | path [<name>]
+    : `usage: solgent skill list | show <name> | new <name> | edit <name> | check [<name>|<file>] | reset <name> | path [<name>]
   files: ~/.dexterm/skills/<name>.md (DEXTERM_HOME overrides): same name as a bundled skill overrides it, a new name adds one.
   A skill is read-only guidance: \`tools:\` may name only read tools and nothing may name a trade/sign/arm/ticket tool.`;
 }
@@ -96,14 +96,14 @@ function readOr(file: string): string { try { return fs.readFileSync(file, 'utf8
 /** After new/edit: open the editor, journal the change, check the file, say what the loader will do. */
 function editAndCheck(kind: ContentKind, io: KbSkillIo, home: string, id: string, file: string, before: string, action: 'new' | 'edit'): number {
   const ed = openEditor(io, file);
-  if (ed === 'no-editor') io.stdout.write(`no $EDITOR (or not a terminal): edit ${file} with any editor; \`trenchscope ${kind} check ${id}\` validates it\n`);
-  if (ed === 'failed') io.stderr.write(`trenchscope ${kind}: the editor exited with an error; the file is kept as it is\n`);
+  if (ed === 'no-editor') io.stdout.write(`no $EDITOR (or not a terminal): edit ${file} with any editor; \`solgent ${kind} check ${id}\` validates it\n`);
+  if (ed === 'failed') io.stderr.write(`solgent ${kind}: the editor exited with an error; the file is kept as it is\n`);
   const after = readOr(file);
   if (after !== before) journalContent(home, { kind, action, id, before, after });
   const res = check(kind, after, id, file);
   const ok = report(io, file, res);
   if (kind === 'kb') io.stdout.write(`  rule: ${KB_RULE}\n`);
-  if (!ok) { io.stdout.write(`  the loader skips this file until it passes (the bundled ${NOUN[kind]} stays in effect); fix it, or \`trenchscope ${kind} reset ${id}\`\n`); return 1; }
+  if (!ok) { io.stdout.write(`  the loader skips this file until it passes (the bundled ${NOUN[kind]} stays in effect); fix it, or \`solgent ${kind} reset ${id}\`\n`); return 1; }
   io.stdout.write(`  in effect on the next MCP/analyst/Jarvis call (no restart)\n`);
   return 0;
 }
@@ -123,7 +123,7 @@ export async function kbSkillCommand(kind: ContentKind, argv: string[], io: KbSk
   const store = storeFor(kind, io.env);
   const dir = userDir(kind, home);
   const [cmd, arg] = argv;
-  const bad = (s: string): number => { io.stderr.write(`trenchscope ${kind}: ${s}\n${usage(kind)}\n`); return 2; };
+  const bad = (s: string): number => { io.stderr.write(`solgent ${kind}: ${s}\n${usage(kind)}\n`); return 2; };
   const idOk = (id: string | undefined): id is string => !!id && (kind === 'kb' ? KB_ID : SKILL_NAME).test(id);
   const userFile = (id: string): string => path.join(dir, `${id}.md`);
   const bundledOf = (id: string) => store.bundled().find((e) => e.id === id) ?? null;
@@ -136,7 +136,7 @@ export async function kbSkillCommand(kind: ContentKind, argv: string[], io: KbSk
     case 'show': {
       if (!arg) return bad('show needs an id');
       const e = store.get().entries.find((x) => x.id === arg);
-      if (!e) { io.stderr.write(`trenchscope ${kind}: no ${NOUN[kind]} "${arg}" (see: trenchscope ${kind} list)\n`); return 1; }
+      if (!e) { io.stderr.write(`solgent ${kind}: no ${NOUN[kind]} "${arg}" (see: solgent ${kind} list)\n`); return 1; }
       io.stderr.write(`# ${e.origin}${e.overrides ? ' (overrides bundled)' : ''} · ${e.file}\n`);
       io.stdout.write(readOr(e.file));
       return 0;
@@ -144,14 +144,14 @@ export async function kbSkillCommand(kind: ContentKind, argv: string[], io: KbSk
     case 'path': {
       if (!arg) { io.stdout.write(`${dir}\n`); return 0; }
       const e = store.get().entries.find((x) => x.id === arg);
-      if (!e) { io.stderr.write(`trenchscope ${kind}: no ${NOUN[kind]} "${arg}"\n`); return 1; }
+      if (!e) { io.stderr.write(`solgent ${kind}: no ${NOUN[kind]} "${arg}"\n`); return 1; }
       io.stdout.write(`${e.file}\n`);
       return 0;
     }
     case 'new': {
       if (!idOk(arg)) return bad(`new needs a ${kind === 'kb' ? 'KB id' : 'skill name'} (lowercase letters, digits, dashes)`);
-      if (bundledOf(arg)) { io.stderr.write(`trenchscope ${kind}: "${arg}" is bundled; \`trenchscope ${kind} edit ${arg}\` makes an editable copy that overrides it\n`); return 1; }
-      if (fs.existsSync(userFile(arg))) { io.stderr.write(`trenchscope ${kind}: ${userFile(arg)} already exists; \`trenchscope ${kind} edit ${arg}\`\n`); return 1; }
+      if (bundledOf(arg)) { io.stderr.write(`solgent ${kind}: "${arg}" is bundled; \`solgent ${kind} edit ${arg}\` makes an editable copy that overrides it\n`); return 1; }
+      if (fs.existsSync(userFile(arg))) { io.stderr.write(`solgent ${kind}: ${userFile(arg)} already exists; \`solgent ${kind} edit ${arg}\`\n`); return 1; }
       const file = writeOverlayFile(kind, home, arg, templateFor(kind, arg));
       io.stdout.write(`wrote ${file}\n`);
       return editAndCheck(kind, io, home, arg, file, '', 'new');
@@ -162,11 +162,11 @@ export async function kbSkillCommand(kind: ContentKind, argv: string[], io: KbSk
       let before = readOr(file);
       if (!fs.existsSync(file)) {
         const b = bundledOf(arg);
-        if (!b) { io.stderr.write(`trenchscope ${kind}: no ${NOUN[kind]} "${arg}" to edit; \`trenchscope ${kind} new ${arg}\` starts one\n`); return 1; }
+        if (!b) { io.stderr.write(`solgent ${kind}: no ${NOUN[kind]} "${arg}" to edit; \`solgent ${kind} new ${arg}\` starts one\n`); return 1; }
         // A copy of the bundled file, byte for byte; the bundled asset itself is never touched.
         file = writeOverlayFile(kind, home, arg, readOr(b.file));
         before = '';
-        io.stdout.write(`copied the bundled ${NOUN[kind]} to ${file} (it now overrides the bundled one; \`trenchscope ${kind} reset ${arg}\` undoes it)\n`);
+        io.stdout.write(`copied the bundled ${NOUN[kind]} to ${file} (it now overrides the bundled one; \`solgent ${kind} reset ${arg}\` undoes it)\n`);
       }
       return editAndCheck(kind, io, home, arg, file, before, 'edit');
     }
@@ -175,7 +175,7 @@ export async function kbSkillCommand(kind: ContentKind, argv: string[], io: KbSk
       if (arg && (arg.includes('/') || arg.endsWith('.md'))) targets = [{ file: path.resolve(arg), stem: path.basename(arg) === 'SKILL.md' ? path.basename(path.dirname(path.resolve(arg))) : path.basename(arg, '.md') }];
       else if (arg) {
         const f = fs.existsSync(userFile(arg)) ? userFile(arg) : bundledOf(arg)?.file;
-        if (!f) { io.stderr.write(`trenchscope ${kind}: no ${NOUN[kind]} "${arg}"\n`); return 1; }
+        if (!f) { io.stderr.write(`solgent ${kind}: no ${NOUN[kind]} "${arg}"\n`); return 1; }
         targets = [{ file: f, stem: arg }];
       } else {
         let names: string[] = [];

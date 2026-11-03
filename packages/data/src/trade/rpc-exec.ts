@@ -1,7 +1,7 @@
-// trenchscope T1 — the ONLY place that can submit a transaction (SPEC §6.1 steps 2/5). Kept out of the
+// solgent T1 — the ONLY place that can submit a transaction (SPEC §6.1 steps 2/5). Kept out of the
 // read-only `sources/solana-rpc.ts` (which refuses non-read methods) so the broadcast path is small,
 // explicit and auditable. It simulates against the user's RPC, submits an already-signed transaction
-// (trenchscope never signs), and confirms it. It holds no keys.
+// (solgent never signs), and confirms it. It holds no keys.
 //
 // DEVNET is the default RPC. Mainnet is only used when the caps allow it (--mainnet).
 
@@ -213,7 +213,7 @@ export class TradeRpc {
     });
   }
 
-  /** A recent blockhash for a transaction trenchscope builds itself (the devnet probe). Read-only. */
+  /** A recent blockhash for a transaction solgent builds itself (the devnet probe). Read-only. */
   async latestBlockhash(): Promise<{ blockhash: string; lastValidBlockHeight: number }> {
     const res = await this.call<{ value: { blockhash?: string; lastValidBlockHeight?: number } }>('getLatestBlockhash', [{ commitment: 'confirmed' }]);
     const v = res.value;

@@ -1,4 +1,4 @@
-// trenchscope popup host — the small, lane-reusable facade (task-1290 scope item 3).
+// solgent popup host — the small, lane-reusable facade (task-1290 scope item 3).
 //
 //   const mgr = createPopupManager({ theme, onEvent });
 //   const h = await mgr.open({ kind: 'chart', title: 'WIF', data: chartVm });   // opens a frameless HUD window

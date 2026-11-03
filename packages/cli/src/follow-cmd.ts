@@ -1,15 +1,15 @@
-// `trenchscope follow …` — the copy-trading follow list from a shell (task-1360 Tier 1).
+// `solgent follow …` — the copy-trading follow list from a shell (task-1360 Tier 1).
 //
-//   trenchscope follow add <addr> [--name LABEL]     follow a wallet (label = your own words, firewalled, local only)
-//   trenchscope follow remove <addr>
-//   trenchscope follow list [--json]
-//   trenchscope follow stats <addr> [--json]         one history fetch (Helius, 10 credits): trades, FIFO PnL, win rate (n)
-//   trenchscope follow trades <addr> [--limit N]     the decoded swaps behind the stats
-//   trenchscope follow purge --yes                   delete every follow and label (the local label store is deletable)
-//   trenchscope follow auto <addr> [--per-trade USD] [--daily USD] [--max-open N] [--cooldown SEC] [--k X] [--disarm N]
+//   solgent follow add <addr> [--name LABEL]     follow a wallet (label = your own words, firewalled, local only)
+//   solgent follow remove <addr>
+//   solgent follow list [--json]
+//   solgent follow stats <addr> [--json]         one history fetch (Helius, 10 credits): trades, FIFO PnL, win rate (n)
+//   solgent follow trades <addr> [--limit N]     the decoded swaps behind the stats
+//   solgent follow purge --yes                   delete every follow and label (the local label store is deletable)
+//   solgent follow auto <addr> [--per-trade USD] [--daily USD] [--max-open N] [--cooldown SEC] [--k X] [--disarm N]
 //                                               draft the auto-mirror caps (clamped down to the hard ceilings; auto stays OFF —
 //                                               enabling is a keypress in the app after the less-safe popup) · --off turns it off
-//   trenchscope follow auto                          list the auto policies and their state
+//   solgent follow auto                          list the auto policies and their state
 //
 // Self-directed only: your list, your wallet, your keys. Nothing here trades, proposes or signs; `stats` needs a free
 // Helius key (keyless prints the fix) and reads public history. Secrets never print: the RPC URL stays inside the
@@ -43,7 +43,7 @@ export interface FollowCmdOverrides {
 function flag(rest: string[], name: string): string | undefined { const i = rest.indexOf(name); return i >= 0 ? rest[i + 1] : undefined; }
 function has(rest: string[], name: string): boolean { return rest.includes(name); }
 
-const USAGE = `trenchscope follow <command>
+const USAGE = `solgent follow <command>
   add <addr> [--name LABEL]        follow a wallet (your own label, never inferred, local only)
   remove <addr>
   list [--json]
@@ -81,22 +81,22 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
   switch (cmd) {
     case 'add': {
       const addr = rest[1];
-      if (!addr || addr.startsWith('--')) { errOut('usage: trenchscope follow add <addr> [--name LABEL]'); return 2; }
+      if (!addr || addr.startsWith('--')) { errOut('usage: solgent follow add <addr> [--name LABEL]'); return 2; }
       const r = store.add(addr, flag(rest, '--name'));
-      if (!r.ok) { errOut(`trenchscope follow add: ${r.reason}`); return 1; }
+      if (!r.ok) { errOut(`solgent follow add: ${r.reason}`); return 1; }
       out(`following ${shortAddr(r.follow.addr)}${r.follow.name ? ` as "${r.follow.name}"` : ''} · ${store.list().length} followed · alerts show in the app (U)`);
       return 0;
     }
     case 'remove': {
       const addr = rest[1];
-      if (!addr) { errOut('usage: trenchscope follow remove <addr>'); return 2; }
+      if (!addr) { errOut('usage: solgent follow remove <addr>'); return 2; }
       out(store.remove(addr) ? `unfollowed ${shortAddr(addr)}` : `${shortAddr(addr)} was not followed`);
       return 0;
     }
     case 'list': {
       const rows = store.list();
       if (has(rest, '--json')) { out(JSON.stringify(rows)); return 0; }
-      if (!rows.length) { out('no wallets followed · trenchscope follow add <addr> [--name LABEL]'); return 0; }
+      if (!rows.length) { out('no wallets followed · solgent follow add <addr> [--name LABEL]'); return 0; }
       for (const f of rows) out(`${f.addr}  ${f.name ?? '—'}  since ${new Date(f.since).toISOString().slice(0, 10)}`);
       return 0;
     }
@@ -107,13 +107,13 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
       if (!addr) {
         const pols = auto.list();
         if (has(rest, '--json')) { out(JSON.stringify(pols)); return 0; }
-        if (!pols.length) { out('no auto-mirror policies · trenchscope follow auto <addr> --per-trade 20 --daily 100'); return 0; }
+        if (!pols.length) { out('no auto-mirror policies · solgent follow auto <addr> --per-trade 20 --daily 100'); return 0; }
         for (const p of pols) out(`${p.wallet}  ${p.enabled ? 'ON ' : 'off'}  ≤ $${autoSizeCap(p).toFixed(2)}/mirror (¼ of $${Math.min(p.perTradeUsd, p.dailyUsd)})  $${p.dailyUsd}/day  max ${p.maxOpen} open  ${Math.round(p.cooldownMs / 1000)} s cooldown  k=${p.k}  disarm@${p.autoDisarmStreak}${p.offReason ? `  (${p.offReason})` : ''}`);
         out('auto is OFF in every fresh process; enable it in the app: U → A (needs the less-safe popup, G on the O screen)');
         return 0;
       }
-      if (!isWalletAddress(addr)) { errOut('usage: trenchscope follow auto <addr> [caps…] [--off]'); return 2; }
-      if (!store.has(addr)) { errOut(`trenchscope follow auto: ${shortAddr(addr)} is not followed (trenchscope follow add <addr> first)`); return 1; }
+      if (!isWalletAddress(addr)) { errOut('usage: solgent follow auto <addr> [caps…] [--off]'); return 2; }
+      if (!store.has(addr)) { errOut(`solgent follow auto: ${shortAddr(addr)} is not followed (solgent follow add <addr> first)`); return 1; }
       if (has(rest, '--off')) { const p = auto.disable(addr, 'user (cli)'); out(p ? `auto-mirror off for ${shortAddr(addr)}` : 'no policy for that wallet'); return 0; }
       const sec = flag(rest, '--cooldown');
       try {
@@ -129,17 +129,17 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
         out(`auto-mirror caps for ${shortAddr(addr)}: ≤ $${autoSizeCap(p).toFixed(2)} per mirror (¼ of the $${Math.min(p.perTradeUsd, p.dailyUsd)} per-trade cap, hands-free tier) · $${p.dailyUsd}/day · max ${p.maxOpen} open · ${Math.round(p.cooldownMs / 1000)} s cooldown · k=${p.k} · auto-disarm after ${p.autoDisarmStreak} refused/failed · ceilings $${AUTO_HARD.perTradeUsd}/trade $${AUTO_HARD.dailyUsd}/day`);
         out('status: OFF · enable in the app with a keypress: U → A (after the "less safe" popup, G on the O screen) · mirror-sell is not built');
         return 0;
-      } catch (e) { errOut(`trenchscope follow auto: ${e instanceof Error ? e.message : String(e)}`); return 1; }
+      } catch (e) { errOut(`solgent follow auto: ${e instanceof Error ? e.message : String(e)}`); return 1; }
     }
     case 'purge': {
-      if (!has(rest, '--yes')) { errOut('trenchscope follow purge: add --yes to delete every follow and label'); return 2; }
+      if (!has(rest, '--yes')) { errOut('solgent follow purge: add --yes to delete every follow and label'); return 2; }
       out(`purged ${store.purge()} follow(s) and their labels`);
       return 0;
     }
     case 'stats':
     case 'trades': {
       const addr = rest[1];
-      if (!isWalletAddress(addr)) { errOut(`usage: trenchscope follow ${cmd} <addr>`); return 2; }
+      if (!isWalletAddress(addr)) { errOut(`usage: solgent follow ${cmd} <addr>`); return 2; }
       let dl: DataLayer | null = null;
       let history: HistorySource | null;
       if (over.history !== undefined) history = over.history;
@@ -153,10 +153,10 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
         scratch.add(addr);
         const tracker = new WalletTracker({ follows: scratch, history, solUsd: () => over.solUsd ?? null });
         const st = tracker.status();
-        if (st.state === 'unavailable') { errOut(`trenchscope follow ${cmd}: ${st.why}`); return 1; }
+        if (st.state === 'unavailable') { errOut(`solgent follow ${cmd}: ${st.why}`); return 1; }
         await tracker.pollOnce();
         const after = tracker.status();
-        if (after.state === 'degraded') { errOut(`trenchscope follow ${cmd}: ${after.why}`); return 1; }
+        if (after.state === 'degraded') { errOut(`solgent follow ${cmd}: ${after.why}`); return 1; }
         if (cmd === 'stats') {
           const s = tracker.stats(addr);
           if (has(rest, '--json')) { out(JSON.stringify({ ...s, positions: s.positions.map((p) => ({ ...p, tokensRaw: p.tokensRaw.toString(), peakRaw: p.peakRaw.toString() })) })); return 0; }
@@ -177,13 +177,13 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
     // an armed mandate), so a pipe or an agent calling `follow mirror --propose` can never trade.
     case 'mirror': {
       const addr = rest[1];
-      if (!isWalletAddress(addr)) { errOut('usage: trenchscope follow mirror <addr> [--cap USD] [--k X] [--propose] [--json]'); return 2; }
-      if (!store.has(addr)) { errOut(`trenchscope follow mirror: ${shortAddr(addr)} is not followed (trenchscope follow add <addr> first)`); return 1; }
+      if (!isWalletAddress(addr)) { errOut('usage: solgent follow mirror <addr> [--cap USD] [--k X] [--propose] [--json]'); return 2; }
+      if (!store.has(addr)) { errOut(`solgent follow mirror: ${shortAddr(addr)} is not followed (solgent follow add <addr> first)`); return 1; }
       const capUsd = flag(rest, '--cap') ? Number(flag(rest, '--cap')) : FOLLOW_MIRROR_DEFAULT_CAP_USD;
-      if (!(capUsd > 0)) { errOut('trenchscope follow mirror: --cap needs a USD number > 0'); return 2; }
+      if (!(capUsd > 0)) { errOut('solgent follow mirror: --cap needs a USD number > 0'); return 2; }
       const kRaw = flag(rest, '--k');
       const k = kRaw ? Number(kRaw) : undefined;
-      if (kRaw !== undefined && !(k! > 0)) { errOut('trenchscope follow mirror: --k needs a number > 0'); return 2; }
+      if (kRaw !== undefined && !(k! > 0)) { errOut('solgent follow mirror: --k needs a number > 0'); return 2; }
 
       let dl: DataLayer | null = null;
       let history: HistorySource | null;
@@ -196,10 +196,10 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
       try {
         const copy = new CopyLive(dl, { followsPath: null, history, solUsd: () => over.solUsd ?? null, ...(over.clock ? { clock: over.clock } : {}) });
         copy.store.add(addr);
-        if (copy.status().state === 'unavailable') { errOut(`trenchscope follow mirror: ${copy.status().why}`); return 1; }
+        if (copy.status().state === 'unavailable') { errOut(`solgent follow mirror: ${copy.status().why}`); return 1; }
         await copy.tracker.pollOnce();
         const after = copy.status();
-        if (after.state === 'degraded') { errOut(`trenchscope follow mirror: ${after.why}`); return 1; }
+        if (after.state === 'degraded') { errOut(`solgent follow mirror: ${after.why}`); return 1; }
         // Prefer a live "news" buy alert (a buy the tracker saw AFTER priming). A one-shot shell call primes and
         // sees the history in a single poll, so there is usually no news alert yet; fall back to the latest BUY in
         // the fetched history, synthesising the same CopyAlert shape and captioning it as history, not live news.
@@ -237,7 +237,7 @@ export async function runFollow(rest: string[], io: Io, over: FollowCmdOverrides
       } finally { dl?.close(); }
     }
     default:
-      if (cmd) { errOut(`trenchscope follow: unknown subcommand ${JSON.stringify(cmd)}`); errOut(USAGE); return 2; }
+      if (cmd) { errOut(`solgent follow: unknown subcommand ${JSON.stringify(cmd)}`); errOut(USAGE); return 2; }
       out(USAGE);
       return 0;
   }

@@ -1,4 +1,4 @@
-// task-1310 T1 — `trenchscope wallet` command + the link store. Proves link persists ONLY the pubkey,
+// task-1310 T1 — `solgent wallet` command + the link store. Proves link persists ONLY the pubkey,
 // unlink clears it, status reflects the caps flags, and the store refuses a non-address value.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';

@@ -1,6 +1,6 @@
 ---
 id: follow-a-wallet
-title: Copy / follow a wallet (trenchscope follow)
+title: Copy / follow a wallet (solgent follow)
 kind: app-help
 screen: all
 feature: copy-trading
@@ -28,6 +28,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope follow list|add|remove` is the copy-trading follow list: local, self-directed and read-only. When a followed wallet trades, trenchscope can surface a one-key MIRROR TICKET you confirm yourself — it never auto-trades, never signs, and the analyst can never add a follow or confirm a mirror.
+`solgent follow list|add|remove` is the copy-trading follow list: local, self-directed and read-only. When a followed wallet trades, solgent can surface a one-key MIRROR TICKET you confirm yourself — it never auto-trades, never signs, and the analyst can never add a follow or confirm a mirror.
 
-CLI: `trenchscope follow`.
+CLI: `solgent follow`.

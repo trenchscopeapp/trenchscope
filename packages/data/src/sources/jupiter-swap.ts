@@ -53,7 +53,7 @@ export class JupiterRateLimitedError extends Error {
     const s = Math.max(1, Math.ceil(retryAfterMs / 1000));
     super(status === 429
       ? `Jupiter is rate limiting this IP (429 from ${hostnameOf(host)}); retry in ${s}s`
-      : `Jupiter calls are paused after repeated rate limits (trenchscope cool-down); retry in ${s}s`);
+      : `Jupiter calls are paused after repeated rate limits (solgent cool-down); retry in ${s}s`);
     this.name = 'JupiterRateLimitedError';
     this.status = status;
     this.host = host;

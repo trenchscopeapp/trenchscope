@@ -1,5 +1,5 @@
 import { posixPermissions } from '../../../scripts/test-support.ts';
-// task-1397 — `trenchscope update` and the startup notice. The network is replayed from the two responses recorded
+// task-1397 — `solgent update` and the startup notice. The network is replayed from the two responses recorded
 // in fixtures/update-1397.json (npm registry `latest`, GitHub latest release); a "0.1.2 is out" world is the same
 // recording with the version moved forward. DEXTERM_HOME is a temp dir; nothing here touches the network.
 import { test } from 'node:test';
@@ -58,8 +58,8 @@ test('versions: parse, semver precedence, prereleases and junk', () => {
 test('replay: the check asks exactly two URLs with fixed headers (no version, no ids, no query) and reads the recorded versions', async () => {
   const r = replay(REC);
   const res = await fetchLatest(r.fetchFn);
-  assert.deepEqual(res.npm, { ok: true, version: '0.1.1', url: 'https://www.npmjs.com/package/trenchscope' });
-  assert.deepEqual(res.github, { ok: true, version: '0.1.1', url: 'https://github.com/trenchscopeapp/trenchscope/releases/tag/v0.1.1' });
+  assert.deepEqual(res.npm, { ok: true, version: '0.1.1', url: 'https://www.npmjs.com/package/solgent' });
+  assert.deepEqual(res.github, { ok: true, version: '0.1.1', url: 'https://github.com/solgentapp/solgent/releases/tag/v0.1.1' });
   assert.deepEqual(r.calls.map((c) => c.url).sort(), [GITHUB_LATEST_URL, NPM_LATEST_URL].sort());
   for (const c of r.calls) {
     assert.ok(!c.url.includes('?'), 'no query string');
@@ -69,13 +69,13 @@ test('replay: the check asks exactly two URLs with fixed headers (no version, no
   assert.deepEqual(REQUEST_HEADERS, { accept: 'application/json', 'user-agent': 'dexterm' });
 });
 
-test('trenchscope update: newer version → the exact command for each install method', async () => {
+test('solgent update: newer version → the exact command for each install method', async () => {
   const cases: [Parameters<typeof updateCommand>[2], string[]][] = [
-    [{ install: 'npm' }, ['  npm i -g trenchscope@0.1.2']],
+    [{ install: 'npm' }, ['  npm i -g solgent@0.1.2']],
     [{ install: 'brew' }, ['  brew update', '  brew upgrade dexterm']],
     [{ install: 'checkout', root: '/src/dexterm' }, ['  git -C /src/dexterm pull --ff-only']],
     [{ install: 'tarball', platform: 'darwin' }, [
-      '  curl -fL -O https://github.com/trenchscopeapp/trenchscope/releases/download/v0.1.2/dexterm-0.1.2-src.tar.gz -O https://github.com/trenchscopeapp/trenchscope/releases/download/v0.1.2/SHA256SUMS',
+      '  curl -fL -O https://github.com/solgentapp/solgent/releases/download/v0.1.2/dexterm-0.1.2-src.tar.gz -O https://github.com/solgentapp/solgent/releases/download/v0.1.2/SHA256SUMS',
       "  grep ' dexterm-0.1.2-src.tar.gz$' SHA256SUMS | shasum -a 256 -c",
       '  tar -xzf dexterm-0.1.2-src.tar.gz && cd dexterm-0.1.2 && ./install.sh',
     ]],
@@ -86,15 +86,15 @@ test('trenchscope update: newer version → the exact command for each install m
     const b = bufIo(env);
     const code = await updateCommand([], b.io, { ...deps, current: '0.1.1', now: 1_000, fetchFn: replay(world('0.1.2')).fetchFn });
     assert.equal(code, 0, deps?.install ?? 'unknown install');
-    assert.match(b.out(), /^trenchscope 0\.1\.1 · installed via /);
-    assert.match(b.out(), /trenchscope 0\.1\.2 is available\. Upgrade with:/);
+    assert.match(b.out(), /^solgent 0\.1\.1 · installed via /);
+    assert.match(b.out(), /solgent 0\.1\.2 is available\. Upgrade with:/);
     for (const l of lines) assert.ok(b.out().split('\n').includes(l), `${deps?.install}: ${l}\n${b.out()}`);
     assert.equal(b.err(), '');
     assert.deepEqual(readUpdateState(env), { enabled: true, checkedAt: 1_000, latest: '0.1.2' }, 'the result is cached for the startup notice');
   }
 });
 
-test('trenchscope update: up to date on the recorded 0.1.1; a channel that lags says so instead of offering a downgrade', async () => {
+test('solgent update: up to date on the recorded 0.1.1; a channel that lags says so instead of offering a downgrade', async () => {
   const b = bufIo({ DEXTERM_HOME: home() });
   assert.equal(await updateCommand([], b.io, { install: 'npm', current: '0.1.1', fetchFn: replay(REC).fetchFn }), 0);
   assert.match(b.out(), /You are up to date \(0\.1\.1\)\./);
@@ -111,10 +111,10 @@ test('trenchscope update: up to date on the recorded 0.1.1; a channel that lags 
   assert.match(d.out(), /brew upgrade dexterm/);
 });
 
-test('trenchscope update: one source down still answers; both down exits 1 without caching; offline refuses', async () => {
+test('solgent update: one source down still answers; both down exits 1 without caching; offline refuses', async () => {
   const half = bufIo({ DEXTERM_HOME: home() });
   assert.equal(await updateCommand([], half.io, { install: 'brew', current: '0.1.0', fetchFn: replay({ npm: 503, github: REC.github }).fetchFn }), 0);
-  assert.match(half.out(), /npm trenchscope\s+unavailable \(HTTP 503\)/);
+  assert.match(half.out(), /npm solgent\s+unavailable \(HTTP 503\)/);
   assert.match(half.out(), /brew upgrade dexterm/);
 
   const env = { DEXTERM_HOME: home() };
@@ -141,7 +141,7 @@ test('drafts, prereleases and junk replies never become a notice', async () => {
   assert.equal(noticeFor('0.1.1', '0.1.2-rc.1'), null);
   assert.equal(noticeFor('0.1.1', '0.1.1'), null);
   assert.equal(noticeFor('0.1.2', '0.1.1'), null);
-  assert.equal(noticeFor('0.1.1', '0.1.2'), 'trenchscope 0.1.2 is available (you have 0.1.1) · run trenchscope update');
+  assert.equal(noticeFor('0.1.1', '0.1.2'), 'solgent 0.1.2 is available (you have 0.1.1) · run solgent update');
 });
 
 test('startup: no cache → one background refresh that writes the cache; within a day → cache only, no network', async (t) => {
@@ -149,13 +149,13 @@ test('startup: no cache → one background refresh that writes the cache; within
   const r = replay(world('0.1.2'));
   const first = startupCheck(env, { current: '0.1.1', now: 10_000, fetchFn: r.fetchFn });
   assert.equal(first.notice, null, 'nothing cached yet');
-  assert.equal(await first.refresh, 'trenchscope 0.1.2 is available (you have 0.1.1) · run trenchscope update', 'the refresh reports what it found');
+  assert.equal(await first.refresh, 'solgent 0.1.2 is available (you have 0.1.1) · run solgent update', 'the refresh reports what it found');
   assert.equal(r.calls.length, 2);
   assert.deepEqual(readUpdateState(env), { enabled: true, checkedAt: 10_000, latest: '0.1.2' });
   await posixPermissions(t, () => { assert.equal(statSync(updateStatePath(env)).mode & 0o777, 0o600); });
 
   const next = startupCheck(env, { current: '0.1.1', now: 10_000 + CHECK_EVERY_MS - 1, fetchFn: r.fetchFn });
-  assert.equal(next.notice, 'trenchscope 0.1.2 is available (you have 0.1.1) · run trenchscope update');
+  assert.equal(next.notice, 'solgent 0.1.2 is available (you have 0.1.1) · run solgent update');
   assert.equal(next.refresh, null);
   assert.equal(r.calls.length, 2, 'no request within a day');
 
@@ -194,10 +194,10 @@ test('opt-out: --off persists and silences startup (no request); env switches an
     assert.equal(s.refresh, null, JSON.stringify(env));
   }
   assert.equal(r.calls.length, 0, 'no request with any off switch');
-  // `trenchscope update` still checks when asked, and reports the switch
+  // `solgent update` still checks when asked, and reports the switch
   const b = bufIo({ DEXTERM_HOME: H });
   assert.equal(await updateCommand([], b.io, { install: 'npm', current: '0.1.1', fetchFn: r.fetchFn }), 0);
-  assert.match(b.out(), /startup check: off \(turned off with trenchscope update --off\)/);
+  assert.match(b.out(), /startup check: off \(turned off with solgent update --off\)/);
   assert.equal(readUpdateState({ DEXTERM_HOME: H }).enabled, false, 'a manual check keeps the switch');
   const on = bufIo({ DEXTERM_HOME: H });
   assert.equal(await updateCommand(['--on'], on.io), 0);
@@ -222,9 +222,9 @@ test('a corrupt or hand-edited cache file is ignored, not trusted', () => {
 
 test('install detection from the real path of the running code', () => {
   const no = () => false, yes = () => true;
-  assert.equal(detectInstall('/usr/local/lib/node_modules/trenchscope/dist/packages/cli/src/update.js', no), 'npm');
-  assert.equal(detectInstall('/home/u/.nvm/versions/node/v22.18.0/lib/node_modules/trenchscope/dist/packages/cli/src/update.js', no), 'npm');
-  assert.equal(detectInstall('C:\\Users\\u\\AppData\\Roaming\\npm\\node_modules\\trenchscope\\dist\\packages\\cli\\src\\update.js', no), 'npm');
+  assert.equal(detectInstall('/usr/local/lib/node_modules/solgent/dist/packages/cli/src/update.js', no), 'npm');
+  assert.equal(detectInstall('/home/u/.nvm/versions/node/v22.18.0/lib/node_modules/solgent/dist/packages/cli/src/update.js', no), 'npm');
+  assert.equal(detectInstall('C:\\Users\\u\\AppData\\Roaming\\npm\\node_modules\\solgent\\dist\\packages\\cli\\src\\update.js', no), 'npm');
   assert.equal(detectInstall('/opt/homebrew/Cellar/dexterm/0.1.1/libexec/packages/cli/src/update.ts', no), 'brew');
   assert.equal(detectInstall('/usr/local/Cellar/dexterm/0.1.1/libexec/packages/cli/src/update.ts', no), 'brew');
   assert.equal(detectInstall('/home/linuxbrew/.linuxbrew/Cellar/dexterm/0.1.1/libexec/packages/cli/src/update.ts', no), 'brew');
@@ -235,7 +235,7 @@ test('install detection from the real path of the running code', () => {
   assert.deepEqual(upgradeCommands('checkout', '0.1.2', { root: "/home/u/my src/it's" }), [`git -C '/home/u/my src/it'\\''s' pull --ff-only`]);
 });
 
-test('main: `trenchscope update` routes to the command; help lists it; --version is the single VERSION', async () => {
+test('main: `solgent update` routes to the command; help lists it; --version is the single VERSION', async () => {
   const H = home();
   const b = { out: '', err: '' };
   const io = { stdout: { write: (s: string) => { b.out += s; } }, stderr: { write: (s: string) => { b.err += s; } }, stdin: {}, env: { DEXTERM_HOME: H, DEXTERM_OFFLINE: '1' } } as unknown as Io;
@@ -243,9 +243,9 @@ test('main: `trenchscope update` routes to the command; help lists it; --version
   assert.match(b.err, /DEXTERM_OFFLINE is set/);
   assert.equal(await main(['update', '--off'], io), 0);
   assert.equal(readUpdateState({ DEXTERM_HOME: H }).enabled, false);
-  assert.match(HELP, /trenchscope update \[--off\|--on\]/);
+  assert.match(HELP, /solgent update \[--off\|--on\]/);
   assert.match(HELP, /DEXTERM_NO_UPDATE_CHECK=1/);
-  assert.ok(HELP.startsWith(`trenchscope ${VERSION} `));
+  assert.ok(HELP.startsWith(`solgent ${VERSION} `));
 });
 
 // ---- the toast in the interactive loop ------------------------------------------------------------------------
@@ -271,12 +271,12 @@ test('TUI: the notice is one toast after the boot, never during it; it waits beh
   writeFileSync(join(H, 'state.json'), JSON.stringify({ version: 1, boots: 3 }) + '\n'); // not a first launch → short boot
   const t = fakeTty({ DEXTERM_OFFLINE: '1', DEXTERM_HOME: H });
   const state = makeFixtureState({ screen: 'screener', theme: THEMES.midnight });
-  state.updateNotice = 'trenchscope 0.1.2 is available (you have 0.1.1) · run trenchscope update';
+  state.updateNotice = 'solgent 0.1.2 is available (you have 0.1.1) · run solgent update';
   let shownDuringBoot = false;
   const run = interactive(state, t.io, 'none', parseArgs(['--fixtures']), proc());
   const spy = setInterval(() => { if (state.screen === 'boot' && state.vfx.toast?.text.includes('is available')) shownDuringBoot = true; }, 5);
   try {
-    await until(() => state.vfx.toast?.text === 'trenchscope 0.1.2 is available (you have 0.1.1) · run trenchscope update');
+    await until(() => state.vfx.toast?.text === 'solgent 0.1.2 is available (you have 0.1.1) · run solgent update');
     assert.notEqual(state.screen, 'boot');
     assert.equal(state.updateNotice, null, 'shown once');
     assert.equal(shownDuringBoot, false);
@@ -286,7 +286,7 @@ test('TUI: the notice is one toast after the boot, never during it; it waits beh
   // welcome card up (first launch): the notice waits until it is dismissed
   const t2 = fakeTty({ DEXTERM_OFFLINE: '1', DEXTERM_HOME: H });
   const s2 = makeFixtureState({ screen: 'screener', theme: THEMES.midnight });
-  s2.updateNotice = 'trenchscope 0.1.2 is available (you have 0.1.1) · run trenchscope update';
+  s2.updateNotice = 'solgent 0.1.2 is available (you have 0.1.1) · run solgent update';
   const run2 = interactive(s2, t2.io, 'none', parseArgs(['--fixtures', '--no-boot']), proc());
   try {
     await until(() => s2.screen === 'screener');

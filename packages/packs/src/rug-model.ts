@@ -181,12 +181,12 @@ export function evalLogistic(model: LogisticRugModel, f: RugFeatures): number {
 }
 
 // ---------------------------------------------------------------------------------------------------
-// H2 (2026-10-18, trenchscope). H1's points plus the signals a ground-truth audit showed H1 missing:
+// H2 (2026-10-18, solgent). H1's points plus the signals a ground-truth audit showed H1 missing:
 // price collapse, liquidity flowing back into a dead pool, serial-launcher devs, Token-2022 extensions
 // that let an authority take funds, and keyed holder forensics. A missing datum earns no points except
 // top-10, where "unknown" costs a little because it is the most common way a coin hides concentration.
 // Hard floors: a rugged verdict, risky extensions and a live freeze authority. NOT yet backtested: the
-// recorder needs days of labelled outcomes; compare with `trenchscope backtest --model h1|h2`.
+// recorder needs days of labelled outcomes; compare with `solgent backtest --model h1|h2`.
 // ---------------------------------------------------------------------------------------------------
 
 export const H2_VERSION = 'H2-v0.1';

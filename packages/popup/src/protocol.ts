@@ -1,4 +1,4 @@
-// trenchscope popup protocol v1 (task-1290). Types only; the runtime lives in server.ts (TUI side),
+// solgent popup protocol v1 (task-1290). Types only; the runtime lives in server.ts (TUI side),
 // src/pages/*.js (popup side) and shell/wry (window side). Three layers, three channels:
 //
 //   TUI  ──stdin JSON lines──▶  SHELL (window process: wry)  ──stdout JSON lines──▶  TUI

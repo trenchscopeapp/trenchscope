@@ -1,4 +1,4 @@
-// trenchscope paper bot: one tick of the loop. Manage open positions (mark each one with a real Jupiter SELL
+// solgent paper bot: one tick of the loop. Manage open positions (mark each one with a real Jupiter SELL
 // quote, exit on the rules in strategy.ts), then enter new ones (a real Jupiter BUY quote, within the caps).
 //
 // PAPER ONLY. Fills come from the existing paper fill pricing (paper.ts computeFill: the quote's in/out amounts,

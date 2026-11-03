@@ -1,4 +1,4 @@
-// trenchscope — generator for the docs knowledge base (task-1420).
+// solgent — generator for the docs knowledge base (task-1420).
 //
 // Builds the `@dexterm/mcp` docs KB entries (assets/kb/docs/*.md) from EVERY page of the site's docs
 // (dexterm/site/content/docs/*.md), chunked by heading, so the analyst can answer from the docs and cite the

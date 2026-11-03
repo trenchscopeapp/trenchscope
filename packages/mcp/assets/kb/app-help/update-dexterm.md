@@ -25,6 +25,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope update` updates the app; a daily notice tells you when a new version is out. The analyst can never install or update software.
+`solgent update` updates the app; a daily notice tells you when a new version is out. The analyst can never install or update software.
 
-CLI: `trenchscope update`.
+CLI: `solgent update`.

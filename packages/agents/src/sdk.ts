@@ -37,7 +37,7 @@ export interface BusEvent { topic: string; seq: number; t: number; data: Record<
 
 export interface HelloResult { protocol: string; agent: string; tier: string; grantedTier: string; tools: string[]; paused: boolean }
 
-/** Read the bus discovery file a running trenchscope writes (<home>/agent-bus.json). */
+/** Read the bus discovery file a running solgent writes (<home>/agent-bus.json). */
 export function loadBusDiscovery(opts: { home?: string; env?: NodeJS.ProcessEnv } = {}): { port: number } | null {
   const env = opts.env ?? process.env;
   const home = opts.home ?? (env.DEXTERM_HOME && env.DEXTERM_HOME.trim() ? env.DEXTERM_HOME : join(homedir(), '.dexterm'));
@@ -67,7 +67,7 @@ export class DextermAgent {
     let port = opts.port;
     let url = opts.url;
     if (!url) {
-      if (!port) { const d = loadBusDiscovery({ home: opts.home }); if (!d) throw new Error('no --port/--url and no agent-bus.json discovery file: is trenchscope running with the agent bus enabled?'); port = d.port; }
+      if (!port) { const d = loadBusDiscovery({ home: opts.home }); if (!d) throw new Error('no --port/--url and no agent-bus.json discovery file: is solgent running with the agent bus enabled?'); port = d.port; }
       url = `ws://127.0.0.1:${port}`;
     }
     const ws = new WebSocket(url);

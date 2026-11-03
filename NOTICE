@@ -1,4 +1,4 @@
-trenchscope
+solgent (formerly trenchscope)
 A modified version of dexterm (https://github.com/dexterm-xyz/dexterm), forked at
 v0.1.5 (commit 6d76f1d) on 2026-10-18. Changes since the fork are in this
 repository's commit history. Licensed under AGPL-3.0-only, like the original.

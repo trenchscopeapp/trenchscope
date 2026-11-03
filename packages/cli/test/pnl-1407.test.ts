@@ -88,7 +88,7 @@ test('every card carries its stamp in the stamp block, the strip and the text; t
       }
       assert.ok(colored > 2000 && ink > 500, `${word} ${aspect}: stamp painted (colour ${colored}, ink ${ink})`);
     }
-    assert.ok(cardText(s).startsWith(`trenchscope PnL card · ${word}`));
+    assert.ok(cardText(s).startsWith(`solgent PnL card · ${word}`));
   }
   assert.throws(() => computeCard({ ...profitInput(), source: 'demo' as never }, NOW), /source stamp/);
   // a devnet live fill says so on the stamp
@@ -145,7 +145,7 @@ const HYGIENE: [string, RegExp][] = [
 const CLAIMS: [string, RegExp][] = [
   ['claims', /\b(\d+x\b|100x|alpha|win rate|winners?|moon|will pump|guaranteed|rug-?proof|audited|profit|signals?|picks?|ai calls?)\b/i], ['"safe"', /\bsafe(ly|st)?\b/i],
   ['fill / execution claim', /\b(fill(s|ed)?|executed|landed on mainnet|swap succeeded)\b/i], ['price talk', /(\$\d|\bpump(s|ing|ed)?\b|\bdump(s|ing|ed)?\b|price target|\bATH\b|market cap of \d)/i],
-  ['"financial advice" without "not"', /(?<!not )financial advice/i], ['"free forever"', /free forever/i], ['trenchscope token / airdrop', /\b(airdrop|fee share|holder rewards|our token|\$dexterm)\b/i],
+  ['"financial advice" without "not"', /(?<!not )financial advice/i], ['"free forever"', /free forever/i], ['solgent token / airdrop', /\b(airdrop|fee share|holder rewards|our token|\$dexterm)\b/i],
 ];
 
 test('default X text passes the GUARDRAILS scan: no coin, ticker, price, PnL or claim; stamp in words; fits a post', () => {
@@ -199,7 +199,7 @@ test('share flow (fakes): save writes 16:9 + 1:1 + txt privately; X = clipboard 
     assert.ok(!calls.run[0].args.slice(0, -1).join(' ').includes(x.files.wide), 'never interpolated into the script');
     assert.deepEqual(calls.open, [xIntentUrl(shareText('paper'))]);
     assert.equal(x.opened, calls.open[0]);
-    assert.match(x.message, /image copied.*trenchscope posts nothing/);
+    assert.match(x.message, /image copied.*solgent posts nothing/);
     assert.equal(calls.text.length, 0);
 
     const tx = await shareCard(s, {}, 'text', deps);
@@ -260,7 +260,7 @@ test('H opens the preview on token / positions / follows and builds from the rig
   const state = makeFixtureState({});
   applyAction(state, 'pnl.card', []);
   assert.equal(state.pendingPnl, true);
-  assert.match(openPnl(state)!, /run trenchscope live/, 'fixtures mode has no fills to card');
+  assert.match(openPnl(state)!, /run solgent live/, 'fixtures mode has no fills to card');
 
   const paper = [paperRecord(1, NOW - 2 * HOUR, 'buy', 0.5, 2_000_000), paperRecord(2, NOW - HOUR, 'sell', 0.6, 2_000_000)];
   state.live = fakeLive({ paper, liveRows: lossInput().fills }) as never;
@@ -340,7 +340,7 @@ test('the preview overlay draws the stamped card when the terminal fits it, its 
   const small = new Canvas(80, 24, t);
   renderPnlOverlay(small, state);
   const st = canvasText(small).join('\n');
-  assert.match(st, /trenchscope PnL card · PAPER/); assert.match(st, /realized PnL \+20\.0%/);
+  assert.match(st, /solgent PnL card · PAPER/); assert.match(st, /realized PnL \+20\.0%/);
   state.pnl!.stats = null; state.pnl!.error = 'no recorded fills';
   const err = new Canvas(120, 30, t);
   renderPnlOverlay(err, state);

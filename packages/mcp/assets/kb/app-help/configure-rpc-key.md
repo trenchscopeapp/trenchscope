@@ -25,4 +25,4 @@ sources:
 date: 2026-10-16
 ---
 
-trenchscope is free-forever and keyless by default. The one real keyless gap is the ranked top-holder list: add a free RPC key for it. Save a Helius key ONLY at `~/.dexterm/helius.key` (mode 600, never a repo or command line), or set `DEXTERM_RPC_URL` to any read-only RPC. `trenchscope doctor` prints the exact command. Without a key the holders panel shows count + top-10% via Jupiter.
+solgent is free-forever and keyless by default. The one real keyless gap is the ranked top-holder list: add a free RPC key for it. Save a Helius key ONLY at `~/.dexterm/helius.key` (mode 600, never a repo or command line), or set `DEXTERM_RPC_URL` to any read-only RPC. `solgent doctor` prints the exact command. Without a key the holders panel shows count + top-10% via Jupiter.

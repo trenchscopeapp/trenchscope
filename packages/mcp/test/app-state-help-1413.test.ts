@@ -62,7 +62,7 @@ test('app_state degrades safely with no running app (no `app` block)', async () 
   const tools = new McpTools({} as never, () => ({ screen: 'unknown' }));
   const s = await tools.call('app_state', {});
   assert.equal(s.available, false);
-  assert.ok(String(s.note).includes('no running trenchscope app'));
+  assert.ok(String(s.note).includes('no running solgent app'));
 });
 
 test('app_state is in the read-only tool surface (a skill may name it; it is never a UI action)', () => {

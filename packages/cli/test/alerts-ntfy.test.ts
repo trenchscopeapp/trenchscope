@@ -12,7 +12,7 @@ import type { FetchLike } from '../src/alerts/adapters/telegram.ts';
 import { alertsCommand } from '../src/alerts-cmd.ts';
 
 const TOPIC = 'trench_alerts_x9Q2kLm7';
-const tmp = (): string => mkdtempSync(join(tmpdir(), 'trenchscope-ntfy-'));
+const tmp = (): string => mkdtempSync(join(tmpdir(), 'solgent-ntfy-'));
 const delivery = (level: AlertDelivery['level']): AlertDelivery => ({
   kind: 'alert', level, title: 'AFC dev sold 40%', body: 'dev wallet sold 40% of supply', spoken: 'AFC dev sold', symbol: 'AFC', mint: 'So11111111111111111111111111111111111111112', source: 'user', rule: 'r1', at: 1,
 });

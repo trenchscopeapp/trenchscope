@@ -1,4 +1,4 @@
-// trenchscope — PAPER positions screen (task-1310 T0, SPEC §6.1 "book"). The simulated wallet: balance,
+// solgent — PAPER positions screen (task-1310 T0, SPEC §6.1 "book"). The simulated wallet: balance,
 // equity, open positions with live PnL (marked from the keyless price feed) and the trade history.
 // Labelled PAPER on every frame; nothing here signs, holds a key or sends anything.
 import {

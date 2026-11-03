@@ -1,6 +1,6 @@
 // @dexterm/agents — the audit log (task-1345). Every agent connection, call, refusal, proposal and
 // roster action is one row. Two stores behind one interface: in memory (tests, --fixtures) and
-// node:sqlite in the shared trenchscope DB (live / replay), so `trenchscope agent audit` and the roster popup
+// node:sqlite in the shared solgent DB (live / replay), so `solgent agent audit` and the roster popup
 // read the same rows. Detail strings are firewalled at write time (agent-supplied text can never carry
 // an escape sequence or a 10 KB payload into the terminal or a model).
 

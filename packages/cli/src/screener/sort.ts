@@ -1,4 +1,4 @@
-// trenchscope — screener sort keys and the `s` sort menu model.
+// solgent — screener sort keys and the `s` sort menu model.
 import type { ScreenerRow } from './rows.ts';
 import { RUG_MODEL_LABEL, rugP } from './rug.ts';
 

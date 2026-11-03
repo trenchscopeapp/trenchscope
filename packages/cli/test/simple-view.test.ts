@@ -1,4 +1,4 @@
-// trenchscope simple split view: the plain-English verdict and the five-key layout.
+// solgent simple split view: the plain-English verdict and the five-key layout.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { verdictFor, riskWord } from '../src/screens/simple.ts';

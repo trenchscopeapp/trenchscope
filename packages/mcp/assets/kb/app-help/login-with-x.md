@@ -1,6 +1,6 @@
 ---
 id: login-with-x
-title: Connect your X account (trenchscope x)
+title: Connect your X account (solgent x)
 kind: app-help
 screen: all
 feature: login-with-x
@@ -28,6 +28,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope x status|set-client-id|login|logout` connects your X (Twitter) account via OAuth2 PKCE on a loopback callback. Tokens stay in `~/.dexterm/x` (0600), are never printed, and the scopes are read-only. It only improves social signal; nothing is posted.
+`solgent x status|set-client-id|login|logout` connects your X (Twitter) account via OAuth2 PKCE on a loopback callback. Tokens stay in `~/.dexterm/x` (0600), are never printed, and the scopes are read-only. It only improves social signal; nothing is posted.
 
-CLI: `trenchscope x`.
+CLI: `solgent x`.

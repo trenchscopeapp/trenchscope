@@ -352,7 +352,7 @@ export class ShrineSocket {
     for (const w of waiters) w.reject(err);
     if (ws) {
       try { ws.send('41'); } catch { /* not open */ }
-      try { ws.close(1000, 'trenchscope'); } catch { /* already closed */ }
+      try { ws.close(1000, 'solgent'); } catch { /* already closed */ }
     }
   }
 

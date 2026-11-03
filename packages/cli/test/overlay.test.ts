@@ -22,7 +22,7 @@ function assertFitsFrame(out: string, w: number, h: number) {
 
 test('welcome names the app, lists the six getting-around hints, and states the safety stance', () => {
   const out = renderOverlayPlain('screener', 'welcome', 120, 40);
-  assert.match(out, /WELCOME TO TRENCHSCOPE/);
+  assert.match(out, /WELCOME TO SOLGENT/);
   assert.match(out, /read-only/i);
   // the safety promises
   assert.match(out, /never signs/i);

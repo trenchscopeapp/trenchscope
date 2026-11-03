@@ -1,4 +1,4 @@
-// task-1400 Tier 2 (headless) — `trenchscope follow mirror <addr>`: the one-key MIRROR TICKET from a shell.
+// task-1400 Tier 2 (headless) — `solgent follow mirror <addr>`: the one-key MIRROR TICKET from a shell.
 // Mirrors the TUI path (poll → latest BUY → buildMirror). A replayed followed-wallet buy becomes a preview,
 // and `--propose` writes an INERT `proposed` order plan through PlanService. The command has NO arm/sign/execute
 // path: the plan lands `proposed` and nothing is armed — the only way to arm it is the app's keypress/Phantom gate
@@ -128,7 +128,7 @@ test('follow mirror on an unfollowed wallet refuses; usage on a bad address', as
   assert.match(o.err, /is not followed/);
   o = io();
   assert.equal(await runFollow(['mirror', 'junk'], o, over), 2);
-  assert.match(o.err, /usage: trenchscope follow mirror/);
+  assert.match(o.err, /usage: solgent follow mirror/);
 });
 
 test('follow mirror reports no-buy honestly when the wallet has only a backfill (history is not news)', async () => {

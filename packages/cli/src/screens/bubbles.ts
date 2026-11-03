@@ -1,4 +1,4 @@
-// trenchscope — BUBBLE MAP screen (task-1340, wallet intel W3/W4). The terminal rendering of the holder graph the
+// solgent — BUBBLE MAP screen (task-1340, wallet intel W3/W4). The terminal rendering of the holder graph the
 // approved mocks showed (research/wallet-intel/mock/out): packed half-row discs (area ∝ share, colour = rule),
 // a CLUSTERS table, sample-captioned HOLDER INSIGHTS and the WHY THIS LABEL panel that prints every rule with
 // its confidence and evidence. Three honest states: loading, unavailable (reason + fix), ok (possibly degraded:

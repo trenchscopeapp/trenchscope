@@ -57,7 +57,7 @@ test('popupThemeFrom: maps a Theme to the popup token subset incl. the three rai
   assert.equal(t.rainDump.length, 4);
 });
 
-test('`trenchscope popup` without --self-test prints usage and exits 2 (no window launched)', async () => {
+test('`solgent popup` without --self-test prints usage and exits 2 (no window launched)', async () => {
   const h = fakeIo();
   assert.equal(await main(['popup'], h.io), 2);
   assert.match(h.err(), /--self-test/);

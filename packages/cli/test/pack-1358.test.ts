@@ -1,4 +1,4 @@
-// task-1358 Tier 4 — packs in the app: `trenchscope pack` end to end (verify → add needs the risk card → list → the
+// task-1358 Tier 4 — packs in the app: `solgent pack` end to end (verify → add needs the risk card → list → the
 // installed pack's workspace / theme / rules reach initCustom and the rules engine → toggling a pack rule makes the
 // user's copy → keymap shown, merged only on --merge, reserved keys refused → widget consent → export → sign →
 // trust → signed install loads rules enabled → remove), and a malicious pack through the CLI leaves nothing behind.
@@ -30,7 +30,7 @@ function fakeIo(env: NodeJS.ProcessEnv = {}) {
 }
 const CTRL_R = '\x12';
 
-test('trenchscope pack: verify → add (risk card) → list → the app sees the pack workspace, theme and DISABLED rules → toggling copies a rule → keymap/widget consent → remove', async () => {
+test('solgent pack: verify → add (risk card) → list → the app sees the pack workspace, theme and DISABLED rules → toggling copies a rule → keymap/widget consent → remove', async () => {
   const home = tmp('dexterm-home-');
   const pack = copyPack();
   const f = fakeIo({ DEXTERM_HOME: home });
@@ -53,7 +53,7 @@ test('trenchscope pack: verify → add (risk card) → list → the app sees the
   f.reset();
   assert.equal(await packCommand(['add', pack, '--accept-unsigned'], f.io), 0, f.err());
   assert.match(f.out(), /installed trenches@1\.0\.0 → .*packs[\\/]trenches@1\.0\.0 \(unsigned\)/);
-  assert.match(f.out(), /widget trenches\/tips is DISABLED: read widgets\/tips\/tips\.html then "trenchscope pack widget trenches tips --enable"/);
+  assert.match(f.out(), /widget trenches\/tips is DISABLED: read widgets\/tips\/tips\.html then "solgent pack widget trenches tips --enable"/);
   const cfg1 = loadConfig(home);
   assert.equal(cfg1.ok, true, cfg1.errors.join('; '));
   assert.deepEqual(cfg1.config.packs!.map((p) => [p.name, p.version, p.trust]), [['trenches', '1.0.0', 'unsigned']]);
@@ -153,7 +153,7 @@ test('trenchscope pack: verify → add (risk card) → list → the app sees the
   assert.equal(await packCommand(['bogus'], f.io), 2);
 });
 
-test('trenchscope pack: export your own files → verify → sign with an ephemeral key → trust → a SIGNED install loads its rules enabled', async () => {
+test('solgent pack: export your own files → verify → sign with an ephemeral key → trust → a SIGNED install loads its rules enabled', async () => {
   const home = tmp('dexterm-home-');
   const f = fakeIo({ DEXTERM_HOME: home, USER: 'anon-test' });
   // the user's own things: a theme file, a workspace file, two rules, a keymap override

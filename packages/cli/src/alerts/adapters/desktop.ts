@@ -1,4 +1,4 @@
-// trenchscope — the `desktop` adapter (task-1398). macOS `osascript -e 'display notification …'`, Linux
+// solgent — the `desktop` adapter (task-1398). macOS `osascript -e 'display notification …'`, Linux
 // `notify-send`. The command is run via execFile with an argv array (NO shell), so a crafted title/body
 // cannot inject a command. macOS osascript takes one AppleScript string on argv; the already-firewalled
 // title/body are additionally AppleScript-escaped (\\, ") and newline-stripped there. The runner is

@@ -1,0 +1,10 @@
+{
+  "name": "solgent",
+  "version": "0.2.0",
+  "description": "Read-only Solana memecoin research over MCP, the same tools the solgent terminal shows. It can never build, sign or send a transaction.",
+  "author": { "name": "solgent" },
+  "homepage": "https://github.com/solgentapp/solgent",
+  "repository": "https://github.com/solgentapp/solgent",
+  "license": "AGPL-3.0-only",
+  "keywords": ["solana", "memecoin", "mcp", "read-only"]
+}

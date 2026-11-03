@@ -1,6 +1,6 @@
 ---
 id: link-a-wallet
-title: Link a wallet for trading (trenchscope wallet)
+title: Link a wallet for trading (solgent wallet)
 kind: app-help
 screen: all
 feature: trading
@@ -36,6 +36,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope wallet link|unlink|status` links a Phantom wallet through a loopback bridge — your keys NEVER enter dexterm, only the public key is stored — and shows the link and the signer-side trade caps. trenchscope is non-custodial: it builds and simulates transactions, your own wallet signs. The signer-side caps (`--max-usd`, `--daily-usd`, `--max-sol-out`, `--max-slippage-bps`) and the RPC (`--trade-rpc`) bound every trade and live on the signer; `--mainnet` opts in to mainnet and `--no-live` keeps it paper-only. The analyst can never link, unlink, sign, arm or change a cap.
+`solgent wallet link|unlink|status` links a Phantom wallet through a loopback bridge — your keys NEVER enter dexterm, only the public key is stored — and shows the link and the signer-side trade caps. solgent is non-custodial: it builds and simulates transactions, your own wallet signs. The signer-side caps (`--max-usd`, `--daily-usd`, `--max-sol-out`, `--max-slippage-bps`) and the RPC (`--trade-rpc`) bound every trade and live on the signer; `--mainnet` opts in to mainnet and `--no-live` keeps it paper-only. The analyst can never link, unlink, sign, arm or change a cap.
 
-CLI: `trenchscope wallet`.
+CLI: `solgent wallet`.

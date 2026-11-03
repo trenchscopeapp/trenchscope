@@ -34,6 +34,6 @@ sources:
 date: 2026-10-16
 ---
 
-Use `trenchscope alerts` to see channels and enable them; `trenchscope alerts set-ntfy` (phone push: subscribe to the same topic in the ntfy app), `set-telegram` / `set-discord` store the topic / bot token / webhook in `~/.dexterm/` (mode 0600) — never in config.json, argv or a log. In-app, `b` proposes a liquidity alert on the highlighted coin and `y` arms it. The analyst can never change alert channels or see their secrets.
+Use `solgent alerts` to see channels and enable them; `solgent alerts set-ntfy` (phone push: subscribe to the same topic in the ntfy app), `set-telegram` / `set-discord` store the topic / bot token / webhook in `~/.dexterm/` (mode 0600) — never in config.json, argv or a log. In-app, `b` proposes a liquidity alert on the highlighted coin and `y` arms it. The analyst can never change alert channels or see their secrets.
 
-Keys: `b` (screener). CLI: `trenchscope alerts`.
+Keys: `b` (screener). CLI: `solgent alerts`.

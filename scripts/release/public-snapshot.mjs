@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // Publish the current commit to the public repo as one new commit with a neutral author.
 //
-// The private repo keeps its full history. The public repo (remote `public`, trenchscopeapp/trenchscope) gets
-// one commit per publish: the exact tree of HEAD, authored and committed as "trenchscope", parented on the
+// The private repo keeps its full history. The public repo (remote `public`, solgentapp/solgent) gets
+// one commit per publish: the exact tree of HEAD, authored and committed as "solgent", parented on the
 // public branch's last commit, so its history is linear and carries no private author, email or message.
 //
-//   node scripts/release/public-snapshot.mjs -m "trenchscope 0.1.6"         publish HEAD
+//   node scripts/release/public-snapshot.mjs -m "solgent 0.1.6"         publish HEAD
 //   node scripts/release/public-snapshot.mjs -m "..." --dry                  show what would be pushed
-//   options: --remote public  --branch main  --url git@github.com:trenchscopeapp/trenchscope.git
+//   options: --remote public  --branch main  --url git@github.com:solgentapp/solgent.git
 import { execFileSync } from 'node:child_process';
 
 const argv = process.argv.slice(2);
@@ -15,11 +15,11 @@ const opt = (k, d) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] :
 const dry = argv.includes('--dry');
 const remote = opt('--remote', 'public');
 const branch = opt('--branch', 'main');
-const url = opt('--url', 'git@github.com:trenchscopeapp/trenchscope.git');
+const url = opt('--url', 'git@github.com:solgentapp/solgent.git');
 const message = opt('-m', null);
 if (!message) { console.error('public-snapshot: give a commit message with -m "..."'); process.exit(2); }
 
-const AUTHOR = { GIT_AUTHOR_NAME: 'trenchscope', GIT_AUTHOR_EMAIL: 'trenchscopeapp@users.noreply.github.com' };
+const AUTHOR = { GIT_AUTHOR_NAME: 'solgent', GIT_AUTHOR_EMAIL: 'solgentapp@users.noreply.github.com' };
 // UTC dates: a local offset (e.g. -0600) would say roughly where the publisher lives
 const NOW = `${Math.floor(Date.now() / 1000)} +0000`;
 const IDENT = { ...AUTHOR, GIT_COMMITTER_NAME: AUTHOR.GIT_AUTHOR_NAME, GIT_COMMITTER_EMAIL: AUTHOR.GIT_AUTHOR_EMAIL, GIT_AUTHOR_DATE: NOW, GIT_COMMITTER_DATE: NOW };

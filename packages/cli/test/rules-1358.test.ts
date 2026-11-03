@@ -1,7 +1,7 @@
 // task-1358 Tier 3 — the rules engine in the app: ctrl+r opens the RULES screen, typing a rule shows a live
 // dry-run and ⏎ persists it through the config journal, a money-shaped rule is refused, ticks turn fires into a
 // toast + log + PROPOSAL cards (never an order plan, never anything armed), acting on a proposal only queues the
-// PAPER ticket editor / an analyst question, a compromised config.rules entry never loads, and the `trenchscope rules`
+// PAPER ticket editor / an analyst question, a compromised config.rules entry never loads, and the `solgent rules`
 // subcommands. Fixtures only; DEXTERM_HOME is a temp dir.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -177,7 +177,7 @@ test('COMPROMISED CONFIG: a rules[] entry with an unknown action fails the schem
   assert.ok(renderFrame(Object.assign(s2, { screen: 'rules' as const }), 176, 45).toPlain().includes('⚠ rule sly: ticket cannot carry "autoArm"'));
 });
 
-test('trenchscope rules: add/list/check/dry-run/enable/disable/remove/fields; refusals exit 1; nothing but config.json + the journal is written', async () => {
+test('solgent rules: add/list/check/dry-run/enable/disable/remove/fields; refusals exit 1; nothing but config.json + the journal is written', async () => {
   const home = tmp();
   const env = { DEXTERM_HOME: home };
   let r = fakeIo(env);

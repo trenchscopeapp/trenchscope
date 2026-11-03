@@ -77,7 +77,7 @@ export function waitForCallback(opts: { state: string; port: number; timeoutMs: 
       if (!safeEqual(st, opts.state)) { res.end(page('✗ state mismatch — this response was not for this login. Close the tab.')); return; } // not consumed; keep waiting
       if (err) { res.end(page(`✗ X returned: ${esc(err)}. Close the tab.`)); finish(() => reject(new XAuthError('denied', `authorization denied: ${err}`))); return; }
       if (!code) { res.end(page('✗ no code in the redirect. Close the tab.')); return; }
-      res.end(page('✓ trenchscope is linked to your X account. You can close this tab.'));
+      res.end(page('✓ solgent is linked to your X account. You can close this tab.'));
       finish(() => resolve({ code }));
     });
     server.headersTimeout = 5000;
@@ -90,7 +90,7 @@ export function waitForCallback(opts: { state: string; port: number; timeoutMs: 
 }
 
 function esc(s: string): string { return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string)); }
-function page(msg: string): string { return `<!doctype html><meta charset="utf-8"><title>trenchscope · X</title><body style="font:15px system-ui;background:#07090d;color:#d7dbe0;padding:2rem"><p>${msg}</p>`; }
+function page(msg: string): string { return `<!doctype html><meta charset="utf-8"><title>solgent · X</title><body style="font:15px system-ui;background:#07090d;color:#d7dbe0;padding:2rem"><p>${msg}</p>`; }
 
 /** Default opener: a mode-0600 redirect page handed to `open`/`xdg-open` so the URL never sits on an argv. */
 export function defaultBrowserOpener(url: string): void {
@@ -147,7 +147,7 @@ export class XOAuth {
   /** Run the whole login. Requires a stored client id. */
   async login(opts: { scopes?: readonly string[]; env?: NodeJS.ProcessEnv } = {}): Promise<LoginResult> {
     const clientId = this.store.clientId(opts.env ?? process.env);
-    if (!clientId) throw new XAuthError('no-client-id', 'no X app Client ID stored: run `trenchscope x set-client-id` first (see docs: Login with X)');
+    if (!clientId) throw new XAuthError('no-client-id', 'no X app Client ID stored: run `solgent x set-client-id` first (see docs: Login with X)');
     const { verifier, challenge } = pkce();
     const state = oauthState();
     const scopes = opts.scopes ?? X_SCOPES;

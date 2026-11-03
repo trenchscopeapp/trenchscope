@@ -1,4 +1,4 @@
-// trenchscope — Screener screen: ranked token table + neon sparklines + side spotlight at wide widths.
+// solgent — Screener screen: ranked token table + neon sparklines + side spotlight at wide widths.
 // Rows are `ScreenerRow`s (fixtures or the data store); cells the health registry cannot vouch
 // for render as a dim dash with the reason in the panel caption, never as a number.
 // Cyberspace styling (task-1297): rain zones in the filter-bar gap, the table/spotlight gutter and the
@@ -124,7 +124,7 @@ export function screenerColumns(c: Canvas, bp: Breakpoint, gates: Record<string,
 }
 
 export function renderScreener(c: Canvas, state: AppState): void {
-  // trenchscope: the simple split view is the default face of the screener; the filter editor still opens over it
+  // solgent: the simple split view is the default face of the screener; the filter editor still opens over it
   if (state.simple && state.screener.mode !== 'filter') { renderSimple(c, state); return; }
   const t = c.theme;
   const bp = breakpoint(c.w);

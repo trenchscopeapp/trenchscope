@@ -40,7 +40,7 @@ export function parseKeys(data: string): Key[] {
         while (j < data.length && /[0-9;]/.test(data[j])) params += data[j++];
         const fin = data[j];
         if (fin === undefined) { keys.push({ name: 'esc', raw: c }); i = data.length; break; }
-        // task-1388: bracketed-paste markers (ESC [ 200~ / 201~). trenchscope never enables the mode, but a
+        // task-1388: bracketed-paste markers (ESC [ 200~ / 201~). solgent never enables the mode, but a
         // terminal/multiplexer that does would otherwise wrap a paste in them and the unknown-CSI branch
         // below would surface each as `esc` — cancelling the go-to prompt before the pasted mint arrives.
         // Swallow the markers so the printable paste flows through as plain chars.
@@ -293,7 +293,7 @@ export const DEFAULT_KEYMAP = new Keymap<AppAction>([
   { keys: ['H'], action: 'pnl.card', label: 'PnL card (share)', screen: 'token' },
   { keys: ['H'], action: 'pnl.card', label: 'PnL card (share)', screen: 'positions' },
   { keys: ['H'], action: 'pnl.card', label: 'PnL card (share)', screen: 'follows' },
-  // trenchscope: `f` switches the screener between the simple split view and the full table.
+  // solgent: `f` switches the screener between the simple split view and the full table.
   { keys: ['f'], action: 'view.toggle', label: 'simple ⇄ full table', screen: 'screener' },
   { keys: ['/'], action: 'filter.edit', label: 'filter', screen: 'screener' },
   { keys: ['\\'], action: 'filter.clear', label: 'clear filter', screen: 'screener' },
@@ -376,7 +376,7 @@ export const DEFAULT_KEYMAP = new Keymap<AppAction>([
   { keys: ['m'], action: 'kol.mute', label: 'mute/unmute', screen: 'kol' },
   { keys: ['d'], action: 'kol.remove', label: 'remove handle', screen: 'kol' },
   { keys: ['i'], action: 'kol.add', label: 'add handle', screen: 'kol' },
-  // task-1357 Login with X: X imports the user's OWN X lists (handles only, needs `trenchscope x login`); o focuses the
+  // task-1357 Login with X: X imports the user's OWN X lists (handles only, needs `solgent x login`); o focuses the
   // trending board + token panel on the selected handle (press again or f to clear).
   { keys: ['X'], action: 'kol.importx', label: 'import X lists', screen: 'kol' },
   { keys: ['o'], action: 'kol.focus', label: 'only this handle', screen: 'kol' },

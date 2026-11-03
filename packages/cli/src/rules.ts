@@ -1,8 +1,8 @@
-// trenchscope — the rules engine's app adapter (task-1358 Tier 3). Pure helpers over @dexterm/custom's RulesEngine
+// solgent — the rules engine's app adapter (task-1358 Tier 3). Pure helpers over @dexterm/custom's RulesEngine
 // that the key handler, the interactive loop and the Rules screen call: load `config.rules` into an engine on
 // `state.rulesUi`, feed it the screener rows every few seconds (`rulesTick`), turn its outputs into things the
 // app can show (toasts, the screen's log, PROPOSAL cards, pending UI actions the loop performs), and persist edits
-// through the config journal (so `trenchscope config undo` / the journal cover rules too).
+// through the config journal (so `solgent config undo` / the journal cover rules too).
 //
 // SAFETY: a rule's outputs are alerts, annotations (watch/tag on the user's own watchlist), UI actions (popup /
 // terminal bell) and PROPOSALS. Acting on a ticket proposal opens the PAPER ticket in its editing phase (the user
@@ -49,7 +49,7 @@ export interface RulesPending {
 
 export interface RulesUi {
   engine: RulesEngine;
-  /** Rules in config that did not load (id: why). Shown on the screen and by `trenchscope rules list`. */
+  /** Rules in config that did not load (id: why). Shown on the screen and by `solgent rules list`. */
   errors: string[];
   pane: 'rules' | 'proposals';
   selected: number;
@@ -383,7 +383,7 @@ export function toggleSelectedRule(state: AppState): string {
     }
   } catch (e) { if (!/no config loaded/.test((e as Error).message)) return `not changed: ${(e as Error).message}`; }
   ui.engine.setEnabled(r.id, on);
-  return `rule ${r.id} ${on ? 'enabled' : 'disabled'}${copied ? ' (your copy of the pack rule; trenchscope rules remove to drop it)' : ''}`;
+  return `rule ${r.id} ${on ? 'enabled' : 'disabled'}${copied ? ' (your copy of the pack rule; solgent rules remove to drop it)' : ''}`;
 }
 
 /** Dismiss the selected proposal (nothing else happens: it was inert). */

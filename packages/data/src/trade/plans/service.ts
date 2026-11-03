@@ -39,7 +39,7 @@ export interface PlanServiceOptions {
   debounceTicks?: number;
 }
 
-/** Where the plan/mandate journal (audit log + recovery source) lives, shared by every trenchscope process. */
+/** Where the plan/mandate journal (audit log + recovery source) lives, shared by every solgent process. */
 export function defaultPlansJournalPath(env: NodeJS.ProcessEnv = process.env): string {
   const home = env.DEXTERM_HOME && env.DEXTERM_HOME.length ? env.DEXTERM_HOME : join(homedir(), '.dexterm');
   return join(home, 'plans.journal');

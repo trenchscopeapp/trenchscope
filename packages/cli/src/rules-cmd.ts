@@ -1,4 +1,4 @@
-// `trenchscope rules <list|add|remove|enable|disable|check|dry-run|fields> …` (task-1358 Tier 3). No network, no
+// `solgent rules <list|add|remove|enable|disable|check|dry-run|fields> …` (task-1358 Tier 3). No network, no
 // model, never touches a key file. Rules live in ~/.dexterm/config.json `rules[]`; every change goes through the
 // config journal (actor user) so `config.journal.jsonl` records it with its inverse.
 //   rules list                      every rule with enabled / when / then / source (+ the ones that fail to load)
@@ -11,17 +11,17 @@ import { dextermHome, loadConfig, applyAndJournal, RulesEngine, ruleToJson, rule
 
 export interface RulesIo { stdout: { write(s: string): unknown }; stderr: { write(s: string): unknown }; env: NodeJS.ProcessEnv }
 
-export const RULES_USAGE = `usage: trenchscope rules list | add "<rule>" | remove <id> | enable <id> | disable <id> | check "<rule>" | dry-run "<rule>" | fields
+export const RULES_USAGE = `usage: solgent rules list | add "<rule>" | remove <id> | enable <id> | disable <id> | check "<rule>" | dry-run "<rule>" | fields
   rule: [when] <cond> [for <n> ticks|<n>s|<n>m] then <action>+ [cooldown <dur>] [max <n>/h] [scope screener|watchlist|newpairs|positions|mint:<addr>] [window <dur>] [name "<s>"]
-  e.g.: trenchscope rules add 'vol5m.velocity > 3 and cluster < 20 and liq > 25K for 2 ticks then alert(up, "surge") popup(chart) name "surge"'
+  e.g.: solgent rules add 'vol5m.velocity > 3 and cluster < 20 and liq > 25K for 2 ticks then alert(up, "surge") popup(chart) name "surge"'
   actions only alert, annotate, open UI or PROPOSE (ticket/ask cards need your keypress; the paper ticket editor is where you confirm)`;
 
 export async function rulesCommand(argv: string[], io: RulesIo): Promise<number> {
   const home = dextermHome(io.env);
   const [cmd, arg] = argv;
-  const bad = (s: string): number => { io.stderr.write(`trenchscope rules: ${s}\n${RULES_USAGE}\n`); return 2; };
+  const bad = (s: string): number => { io.stderr.write(`solgent rules: ${s}\n${RULES_USAGE}\n`); return 2; };
   const cfg = loadConfig(home);
-  for (const e of cfg.errors) io.stderr.write(`trenchscope rules: config: ${e}\n`);
+  for (const e of cfg.errors) io.stderr.write(`solgent rules: config: ${e}\n`);
   const rules: RuleJson[] = cfg.config.rules ?? [];
   switch (cmd) {
     case undefined: case 'list': {
@@ -34,23 +34,23 @@ export async function rulesCommand(argv: string[], io: RulesIo): Promise<number>
     case 'add': {
       if (!arg) return bad('add needs the rule text in quotes');
       let json: RuleJson;
-      try { json = ruleToJson(arg); } catch (e) { io.stderr.write(`trenchscope rules: refused: ${(e as Error).message}\n`); return 1; }
+      try { json = ruleToJson(arg); } catch (e) { io.stderr.write(`solgent rules: refused: ${(e as Error).message}\n`); return 1; }
       const taken = new Set(rules.map((r) => r.id));
       let id = json.id; let n = 2;
       while (taken.has(id)) id = slug(`${json.id}-${n++}`);
       json.id = id;
-      try { applyAndJournal(home, [{ op: 'add', path: '/rules/-', value: json }], { actor: 'user', why: `trenchscope rules add ${id}` }); }
-      catch (e) { io.stderr.write(`trenchscope rules: not saved: ${(e as Error).message}\n`); return 1; }
+      try { applyAndJournal(home, [{ op: 'add', path: '/rules/-', value: json }], { actor: 'user', why: `solgent rules add ${id}` }); }
+      catch (e) { io.stderr.write(`solgent rules: not saved: ${(e as Error).message}\n`); return 1; }
       io.stdout.write(`added rule ${id}: ${ruleToText(json)}\n`);
       return 0;
     }
     case 'remove': case 'enable': case 'disable': {
       if (!arg) return bad(`${cmd} needs a rule id`);
       const i = rules.findIndex((r) => r.id === arg);
-      if (i < 0) { io.stderr.write(`trenchscope rules: no rule "${arg}"\n`); return 1; }
+      if (i < 0) { io.stderr.write(`solgent rules: no rule "${arg}"\n`); return 1; }
       const ops = cmd === 'remove' ? [{ op: 'remove' as const, path: `/rules/${i}` }] : [{ op: 'replace' as const, path: `/rules/${i}/enabled`, value: cmd === 'enable' }];
-      try { applyAndJournal(home, ops, { actor: 'user', why: `trenchscope rules ${cmd} ${arg}` }); }
-      catch (e) { io.stderr.write(`trenchscope rules: not changed: ${(e as Error).message}\n`); return 1; }
+      try { applyAndJournal(home, ops, { actor: 'user', why: `solgent rules ${cmd} ${arg}` }); }
+      catch (e) { io.stderr.write(`solgent rules: not changed: ${(e as Error).message}\n`); return 1; }
       io.stdout.write(`${cmd === 'remove' ? 'removed' : cmd + 'd'} rule ${arg}\n`);
       return 0;
     }

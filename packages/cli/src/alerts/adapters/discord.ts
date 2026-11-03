@@ -1,4 +1,4 @@
-// trenchscope — the `discord` adapter (task-1398). Posts to the user's OWN webhook URL (read from
+// solgent — the `discord` adapter (task-1398). Posts to the user's OWN webhook URL (read from
 // ~/.dexterm/discord.json, 0600). The webhook URL is itself the credential, so it is NEVER logged and
 // NEVER returned in a result/reason (only the HTTP status is). `fetch` is injectable; no test makes a real
 // call to Discord.
@@ -19,7 +19,7 @@ export function createDiscordAdapter(deps: DiscordDeps): DeliveryAdapter {
     name: 'discord',
     available: () => !!creds?.webhook,
     deliver: async (d: AlertDelivery): Promise<AdapterResult> => {
-      if (!creds) return { ok: false, skipped: true, reason: 'discord not configured (trenchscope alerts set-discord)' };
+      if (!creds) return { ok: false, skipped: true, reason: 'discord not configured (solgent alerts set-discord)' };
       const ac = new AbortController();
       const t = setTimeout(() => ac.abort(), timeoutMs);
       try {

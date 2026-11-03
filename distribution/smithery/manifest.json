@@ -1,21 +1,21 @@
 {
   "manifest_version": "0.3",
-  "name": "trenchscope",
-  "display_name": "trenchscope",
-  "version": "0.1.5",
+  "name": "solgent",
+  "display_name": "solgent",
+  "version": "0.2.0",
   "description": "Local Solana memecoin research, rug checks, LARP evidence, and holder analysis over MCP.",
-  "long_description": "trenchscope exposes 36 MCP tools for Solana memecoin research: token dossiers, holder analysis, security and rug checks, mechanical LARP evidence, candles, trades, knowledge resources, and bounded app navigation. Market and web reads use public or user-configured sources and report missing data as unavailable. MCP actions cannot arm, sign, confirm, or send a trade, raise a signer cap, or change the keypress confirmation gate. The source is AGPL-3.0-only.",
+  "long_description": "solgent exposes 36 MCP tools for Solana memecoin research: token dossiers, holder analysis, security and rug checks, mechanical LARP evidence, candles, trades, knowledge resources, and bounded app navigation. Market and web reads use public or user-configured sources and report missing data as unavailable. MCP actions cannot arm, sign, confirm, or send a trade, raise a signer cap, or change the keypress confirmation gate. The source is AGPL-3.0-only.",
   "author": {
-    "name": "trenchscope",
-    "url": "https://github.com/trenchscopeapp/trenchscope"
+    "name": "solgent",
+    "url": "https://github.com/solgentapp/solgent"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trenchscopeapp/trenchscope.git"
+    "url": "https://github.com/solgentapp/solgent.git"
   },
-  "homepage": "https://github.com/trenchscopeapp/trenchscope",
-  "documentation": "https://github.com/trenchscopeapp/trenchscope#use-it-from-claude-or-codex",
-  "support": "https://github.com/trenchscopeapp/trenchscope/issues",
+  "homepage": "https://github.com/solgentapp/solgent",
+  "documentation": "https://github.com/solgentapp/solgent#use-it-from-claude-or-codex",
+  "support": "https://github.com/solgentapp/solgent/issues",
   "license": "AGPL-3.0-only",
   "keywords": [
     "solana",

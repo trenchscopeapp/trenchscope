@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>trenchscope</title>
+<title>solgent</title>
 <meta name="description" content="A terminal for the trenches. Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens.">
 <meta name="theme-color" content="#080a09">
 <meta property="og:type" content="website">
-<meta property="og:title" content="trenchscope: a terminal for the trenches">
+<meta property="og:title" content="solgent: a terminal for the trenches">
 <meta property="og:description" content="Screen Solana memecoins from public, keyless data, and let your own claude or codex login read the same screens. Paper trading by default.">
 <meta property="og:url" content="https://www.trenchscope.dev/">
 <meta property="og:image" content="https://www.trenchscope.dev/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The trenchscope wordmark above a row of halftone keycaps.">
+<meta property="og:image:alt" content="The solgent wordmark above a row of halftone keycaps.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://www.trenchscope.dev/og.png">
-<meta name="twitter:site" content="@trenchscopehq">
+<meta name="twitter:site" content="@solgentapp">
 <link rel="canonical" href="https://www.trenchscope.dev/">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -30,10 +30,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"></noscript>
 <script>document.documentElement.classList.add('js'); if ('WebGL2RenderingContext' in window) document.documentElement.classList.add('webgl2');</script>
-<link rel="stylesheet" href="styles.css?v=20261019-fonts1">
+<link rel="stylesheet" href="styles.css?v=20261020-docs3">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@5.0.1/bundled/locomotive-scroll.css">
+<script defer src="https://cdn.jsdelivr.net/npm/locomotive-scroll@5.0.1/bundled/locomotive-scroll.min.js"></script>
 <link rel="preload" href="tour.json" as="fetch" crossorigin media="(min-width: 768px)">
 <link rel="preload" href="tour-narrow.json" as="fetch" crossorigin media="(max-width: 767px)">
-<script type="module" src="main.js?v=20261019-fonts1"></script>
+<script type="module" src="main.js?v=20261103-solgent1"></script>
+<script type="module" src="ca-watcher.js?v=20261020-ca1"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -45,14 +48,24 @@
   <div class="ascii-layer ascii-lit"><i></i></div>
 </div>
 
-<header class="bar">
+<header class="bar" data-nav-status="not-active">
   <div class="wrap bar-in">
-    <a class="mark" href="#top" aria-label="trenchscope, top of page">trenchscope</a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#tour">Tour</a><a href="#analyst">Analyst</a><a href="#keys">Keys</a><a href="#safety">Safety</a><a href="#sources">Sources</a>
+    <a class="mark" href="#top" aria-label="solgent, top of page">solgent</a>
+    <nav class="primary-nav nav__end" aria-label="Sections">
+      <div class="nav__end-inner">
+        <ul id="primary-nav" class="nav__list" data-nav-list>
+          <li><a class="nav__link" href="#tour">Tour</a></li>
+          <li><a class="nav__link" href="#analyst">Analyst</a></li>
+          <li><a class="nav__link" href="#keys">Keys</a></li>
+          <li><a class="nav__link" href="#safety">Safety</a></li>
+          <li><a class="nav__link" href="#sources">Sources</a></li>
+          <li><a class="nav__link" href="/docs">Docs</a></li>
+        </ul>
+      </div>
     </nav>
-    <a class="xlink xlink-gh" href="https://github.com/trenchscopeapp/trenchscope" target="_blank" rel="noopener" aria-label="trenchscope source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-    <a class="xlink" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <button class="nav__hamburger" type="button" data-nav-control="toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation"><span>Menu</span><span class="nav__hamburger-icon" aria-hidden="true"><span></span><span></span></span></button>
+    <a class="xlink xlink-gh" href="https://github.com/solgentapp/solgent" target="_blank" rel="noopener" aria-label="solgent source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    <a class="xlink" href="https://x.com/solgentapp" target="_blank" rel="noopener" aria-label="solgent on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
     <a class="btn btn-ink" href="#install">Install</a>
   </div>
 </header>
@@ -67,26 +80,27 @@
           <p class="paper"><i aria-hidden="true"></i>Paper trading by default</p>
           <a class="explore" href="#tour">Explore the terminal</a>
         </div>
+        <div class="ca" data-ca-watcher><span class="ca-label">CA</span><span class="ca-value">tba</span></div>
       </div>
       <!-- install: React Bits Spotlight Card frame, a Rubber Segment platform switch, Osmo Typewriter command, Osmo Button 069 copy -->
       <div class="inst" data-install>
         <span class="inst-light" aria-hidden="true"></span>
         <div class="inst-head">
-          <p class="inst-title">Install trenchscope</p>
+          <p class="inst-title">Install solgent</p>
           <div class="seg" role="tablist" aria-label="Install method">
             <span class="seg-thumb" aria-hidden="true"></span>
-            <button class="seg-item" role="tab" aria-selected="true" data-os="unix" data-show="curl -fsSL …/install.sh | bash" data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor" data-note="no sudo" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" data-src-label="install.sh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>mac/linux</button>
-            <button class="seg-item" role="tab" aria-selected="false" data-os="win" data-show="irm …/install.ps1 | iex" data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor" data-note="Node via winget" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.ps1" data-src-label="install.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>windows</button>
-            <button class="seg-item" role="tab" aria-selected="false" data-show="npm i -g trenchscope" data-cmd="npm i -g trenchscope&#10;trenchscope doctor" data-note="Node 22.18+" data-src="https://www.npmjs.com/package/trenchscope" data-src-label="npm package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>npm</button>
+            <button class="seg-item" role="tab" aria-selected="true" data-os="unix" data-show="curl -fsSL …/install.sh | bash" data-cmd="curl -fsSL https://raw.githubusercontent.com/solgentapp/solgent/main/install.sh | bash&#10;solgent doctor" data-note="no sudo" data-src="https://github.com/solgentapp/solgent/blob/main/install.sh" data-src-label="install.sh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>mac/linux</button>
+            <button class="seg-item" role="tab" aria-selected="false" data-os="win" data-show="irm …/install.ps1 | iex" data-cmd="irm https://raw.githubusercontent.com/solgentapp/solgent/main/install.ps1 | iex&#10;solgent doctor" data-note="Node via winget" data-src="https://github.com/solgentapp/solgent/blob/main/install.ps1" data-src-label="install.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>windows</button>
+            <button class="seg-item" role="tab" aria-selected="false" data-show="npm i -g solgent" data-cmd="npm i -g solgent&#10;solgent doctor" data-note="Node 22.18+" data-src="https://www.npmjs.com/package/solgent" data-src-label="npm package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>npm</button>
           </div>
         </div>
         <div class="cmdbar" role="tabpanel" tabindex="0" data-panel>
           <span class="ps" aria-hidden="true">$</span>
           <code class="cmd" data-cmd-show>curl -fsSL …/install.sh | bash</code>
-          <span class="sr" data-cmd-full>curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash, then trenchscope doctor</span>
+          <span class="sr" data-cmd-full>curl -fsSL https://raw.githubusercontent.com/solgentapp/solgent/main/install.sh | bash, then solgent doctor</span>
           <button class="copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="copy-outline"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></g><path class="copy-check" d="m3 8 3 3 7-7"/></svg><span data-copy-word role="status" aria-live="polite">Copy</span></button>
         </div>
-        <p class="inst-meta"><span>Then run <code>trenchscope doctor</code><span class="dot" aria-hidden="true"> · </span><span data-note-out>no sudo</span></span><a data-src-out href="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2H4.5A1.5 1.5 0 0 0 3 3.5v9A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V6z"/><path d="M9 2v4h4"/></svg><span data-src-label-out>install.sh</span></a></p>
+        <p class="inst-meta"><span>Then run <code>solgent doctor</code><span class="dot" aria-hidden="true"> · </span><span data-note-out>no sudo</span></span><a data-src-out href="https://github.com/solgentapp/solgent/blob/main/install.sh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2H4.5A1.5 1.5 0 0 0 3 3.5v9A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V6z"/><path d="M9 2v4h4"/></svg><span data-src-label-out>install.sh</span></a></p>
         <span class="inst-edge" aria-hidden="true"></span>
       </div>
     </div>
@@ -101,14 +115,14 @@
           <div class="bezel">
             <div class="rail">
               <nav class="tabs" data-chapters aria-label="Screens in the tour"><i class="tabs-pill" data-pill aria-hidden="true"></i></nav>
-              <p class="rail-cap" data-chapter-cap>Every screen is trenchscope itself</p>
+              <p class="rail-cap" data-chapter-cap>Every screen is solgent itself</p>
               <button class="stage-toggle" type="button" data-toggle aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-pause><path d="M5.5 3.5v9M10.5 3.5v9"/></svg><svg viewBox="0 0 16 16" aria-hidden="true" data-icon-play hidden><path d="M5 3.2v9.6l7.5-4.8z"/></svg><span data-toggle-word>Pause</span></button>
             </div>
-            <figure class="screen" role="img" aria-label="trenchscope running in a terminal: the launch screen, the screener, a token with the analyst answering, new pairs, the analyst full screen and the watchlist, one after another.">
+            <figure class="screen" role="img" aria-label="solgent running in a terminal: the launch screen, the screener, a token with the analyst answering, new pairs, the analyst full screen and the watchlist, one after another.">
               <div class="screen-body" data-fit>
                 <pre class="cells" data-tour="main" aria-hidden="true"></pre>
                 <p class="screen-msg screen-wait" data-wait>loading the tour</p>
-                <noscript><p class="screen-msg">The tour needs JavaScript. Every screen in it is trenchscope itself: install it and run <code>trenchscope --fixtures</code> to see them with sample data.</p></noscript>
+                <noscript><p class="screen-msg">The tour needs JavaScript. Every screen in it is solgent itself: install it and run <code>solgent --fixtures</code> to see them with sample data.</p></noscript>
               </div>
               <div class="screen-progress" aria-hidden="true"><i data-progress></i></div>
               <div class="hud" data-hud aria-hidden="true"><kbd data-hud-key></kbd><span data-hud-label></span></div>
@@ -116,7 +130,7 @@
           </div>
         </div>
       </div>
-      <p class="caption"><i class="live" data-live></i><span data-caption>Sample data, drawn by trenchscope cell for cell</span><span class="caption-size" aria-hidden="true">· <span data-size>160×46</span></span></p>
+      <p class="caption"><i class="live" data-live></i><span data-caption>Sample data, drawn by solgent cell for cell</span><span class="caption-size" aria-hidden="true">· <span data-size>160×46</span></span></p>
       <!-- what just happened on screen: the current chapter's events from the same sample session, swapped as the chapter changes -->
       <ul class="events" data-events aria-label="Events in this screen">
         <li><span class="kind">screen</span>vol24 &gt; 250K<span class="d">34 tokens</span></li>
@@ -161,13 +175,13 @@
           </div>
           <div class="agents-code" role="tabpanel" id="agents-panel" tabindex="-1">
             <span class="ps" aria-hidden="true">$</span>
-            <code class="cmd" data-agent-code>claude mcp add trenchscope -- npx -y trenchscope mcp</code>
+            <code class="cmd" data-agent-code>claude mcp add solgent -- npx -y solgent mcp</code>
             <div class="agents-actions">
-              <a class="copy copy-ghost" data-agent-open hidden href="cursor://anysphere.cursor-deeplink/mcp/install?name=trenchscope&amp;config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInRyZW5jaHNjb3BlIiwibWNwIl19" target="_blank" rel="noopener">Open</a>
+              <a class="copy copy-ghost" data-agent-open hidden href="cursor://anysphere.cursor-deeplink/mcp/install?name=solgent&amp;config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInNvbGdlbnQiLCJtY3AiXX0=" target="_blank" rel="noopener">Open</a>
               <button class="copy" type="button" data-agent-copy aria-label="Copy"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="copy-outline"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></g><path class="copy-check" d="m3 8 3 3 7-7"/></svg><span data-copy-word role="status" aria-live="polite">Copy</span></button>
             </div>
           </div>
-          <p class="inst-meta"><span>The same read-only tools; it can never sign or send. Check it with <code>trenchscope mcp doctor</code></span></p>
+          <p class="inst-meta"><span>The same read-only tools; it can never sign or send. Check it with <code>solgent mcp doctor</code></span></p>
           <span class="inst-edge" aria-hidden="true"></span>
       </div>
     </div>
@@ -192,7 +206,7 @@
       <li><span class="caps"><kbd>a</kbd></span><p><b>Ask</b> the analyst about what is on screen.</p></li>
       <li><span class="caps"><kbd>/</kbd></span><p><b>Filter</b> with plain thresholds: <code>vol24 &gt; 250K liq &gt; 50K</code></p></li>
       <li><span class="caps"><kbd>w</kbd></span><p><b>Watch</b> a coin and set alerts, stored on your machine.</p></li>
-      <li><span class="caps"><kbd>c</kbd></span><p><b>Chart</b> in a docked window or your browser.</p></li>
+      <li><span class="caps"><kbd>C</kbd></span><p><b>Chart</b> in a docked window or your browser.</p></li>
       <li><span class="caps"><kbd>esc</kbd></span><p><b>Back</b> to where you came from.</p></li>
       <li><span class="caps"><kbd>q</kbd></span><p><b>Quit.</b> Nothing keeps running.</p></li>
     </ul>
@@ -207,9 +221,9 @@
         <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2.25 11.5a5.75 5.75 0 1 1 11.5 0"/><path d="M8 11.5l2.75-3.25"/><path d="M2.25 13.75h11.5"/></svg></span>Caps</dt><dd>A separate local process, not the screen you type in, holds your per-trade and daily caps and refuses any transaction over them before it reaches your wallet.</dd></div>
         <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><rect x="3.75" y="3.75" width="8.5" height="8.5" rx="1.5"/><path d="M6.25 1.75v2M9.75 1.75v2M6.25 12.25v2M9.75 12.25v2M1.75 6.25h2M1.75 9.75h2M12.25 6.25h2M12.25 9.75h2"/></svg></span>The model</dt><dd>The analyst has no build, sign or send tool.</dd></div>
         <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="8.5" rx="1.5"/><path d="M5.5 13.75h5M8 11v2.75"/></svg></span>Network</dt><dd>Local servers bind <code>127.0.0.1</code> only.</dd></div>
-        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.75 8S4.1 3.75 8 3.75c1.2 0 2.3.4 3.2 1M14.25 8s-2.35 4.25-6.25 4.25c-1.2 0-2.3-.4-3.2-1"/><path d="M2.5 13.5 13.5 2.5"/></svg></span>Telemetry</dt><dd>None. No account, no crash reports, no update check.</dd></div>
+        <div><dt><span class="rule-ico" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M1.75 8S4.1 3.75 8 3.75c1.2 0 2.3.4 3.2 1M14.25 8s-2.35 4.25-6.25 4.25c-1.2 0-2.3-.4-3.2-1"/><path d="M2.5 13.5 13.5 2.5"/></svg></span>Telemetry</dt><dd>None. No account, no crash reports. A once-a-day version check that <code>solgent update --off</code> turns off.</dd></div>
       </dl>
-      <p class="note proof">Read every line: <a href="https://github.com/trenchscopeapp/trenchscope" target="_blank" rel="noopener">the source on GitHub</a>, AGPL-3.0, with a <a href="https://github.com/trenchscopeapp/trenchscope/blob/main/SECURITY.md" target="_blank" rel="noopener">security policy</a>.</p>
+      <p class="note proof">Read every line: <a href="https://github.com/solgentapp/solgent" target="_blank" rel="noopener">the source on GitHub</a>, AGPL-3.0, with a <a href="https://github.com/solgentapp/solgent/blob/main/SECURITY.md" target="_blank" rel="noopener">security policy</a>.</p>
       <p class="note note-warn"><b>Known issues.</b> Paper and live trading are experimental and have bugs we are still fixing. Do not rely on them yet. Nothing here is financial advice.</p>
     </div>
   </section>
@@ -240,7 +254,7 @@
   <section class="section wrap close" id="install" aria-labelledby="h-close">
     <div>
       <h2 class="h2" id="h-close">Open a terminal<span class="pop">.</span></h2>
-      <p class="sub">On a Mac, open Terminal from Spotlight. On Windows, open PowerShell from the Start menu. Run doctor first: it checks Node, your terminal, the optional claude login and every data source, and prints the exact fix for anything missing. Then <code>trenchscope</code> opens the app on paper.</p>
+      <p class="sub">On a Mac, open Terminal from Spotlight. On Windows, open PowerShell from the Start menu. Run doctor first: it checks Node, your terminal, the optional claude login and every data source, and prints the exact fix for anything missing. Then <code>solgent</code> opens the app on paper.</p>
       <div class="setup-faq" aria-label="Setup questions">
         <!-- Osmo accordion pattern, adapted to native keyboard-accessible disclosures. -->
         <details>
@@ -257,28 +271,28 @@
         </details>
         <details>
           <summary>What if setup fails?<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/><path class="faq-plus" d="M8 3v10"/></svg></summary>
-          <p>Run <code>trenchscope doctor</code> in Terminal or PowerShell. It checks your setup and data sources, then prints the fix for anything missing. For an assistant connection, run <code>trenchscope mcp doctor</code>.</p>
+          <p>Run <code>solgent doctor</code> in Terminal or PowerShell. It checks your setup and data sources, then prints the fix for anything missing. For an assistant connection, run <code>solgent mcp doctor</code>.</p>
         </details>
       </div>
     </div>
     <div class="inst inst-close" data-install>
       <span class="inst-light" aria-hidden="true"></span>
       <div class="inst-head">
-        <p class="inst-title">Install trenchscope</p>
+        <p class="inst-title">Install solgent</p>
         <div class="seg" role="tablist" aria-label="Install method">
           <span class="seg-thumb" aria-hidden="true"></span>
-          <button class="seg-item" role="tab" aria-selected="true" data-os="unix" data-show="curl -fsSL …/install.sh | bash" data-cmd="curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash&#10;trenchscope doctor&#10;trenchscope" data-note="no sudo" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" data-src-label="install.sh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>mac/linux</button>
-          <button class="seg-item" role="tab" aria-selected="false" data-os="win" data-show="irm …/install.ps1 | iex" data-cmd="irm https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.ps1 | iex&#10;trenchscope doctor&#10;trenchscope" data-note="Node via winget" data-src="https://github.com/trenchscopeapp/trenchscope/blob/main/install.ps1" data-src-label="install.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>windows</button>
-          <button class="seg-item" role="tab" aria-selected="false" data-show="npm i -g trenchscope" data-cmd="npm i -g trenchscope&#10;trenchscope doctor&#10;trenchscope" data-note="Node 22.18+" data-src="https://www.npmjs.com/package/trenchscope" data-src-label="npm package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>npm</button>
+          <button class="seg-item" role="tab" aria-selected="true" data-os="unix" data-show="curl -fsSL …/install.sh | bash" data-cmd="curl -fsSL https://raw.githubusercontent.com/solgentapp/solgent/main/install.sh | bash&#10;solgent doctor&#10;solgent" data-note="no sudo" data-src="https://github.com/solgentapp/solgent/blob/main/install.sh" data-src-label="install.sh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>mac/linux</button>
+          <button class="seg-item" role="tab" aria-selected="false" data-os="win" data-show="irm …/install.ps1 | iex" data-cmd="irm https://raw.githubusercontent.com/solgentapp/solgent/main/install.ps1 | iex&#10;solgent doctor&#10;solgent" data-note="Node via winget" data-src="https://github.com/solgentapp/solgent/blob/main/install.ps1" data-src-label="install.ps1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M0 3.45 9.75 2.1v9.45H0zm10.95-1.5L24 0v11.4H10.95zM0 12.6h9.75v9.45L0 20.7zm10.95 0H24V24l-13.05-1.8z"/></svg>windows</button>
+          <button class="seg-item" role="tab" aria-selected="false" data-show="npm i -g solgent" data-cmd="npm i -g solgent&#10;solgent doctor&#10;solgent" data-note="Node 22.18+" data-src="https://www.npmjs.com/package/solgent" data-src-label="npm package"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"/></svg>npm</button>
         </div>
       </div>
       <div class="cmdbar" role="tabpanel" tabindex="0" data-panel>
         <span class="ps" aria-hidden="true">$</span>
         <code class="cmd" data-cmd-show>curl -fsSL …/install.sh | bash</code>
-        <span class="sr" data-cmd-full>curl -fsSL https://raw.githubusercontent.com/trenchscopeapp/trenchscope/main/install.sh | bash, then trenchscope doctor, then trenchscope</span>
+        <span class="sr" data-cmd-full>curl -fsSL https://raw.githubusercontent.com/solgentapp/solgent/main/install.sh | bash, then solgent doctor, then solgent</span>
         <button class="copy" type="button" data-copy aria-label="Copy install commands"><svg viewBox="0 0 16 16" aria-hidden="true"><g class="copy-outline"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5a1.5 1.5 0 0 0-1.5-1.5H4A1.5 1.5 0 0 0 2.5 3v5A1.5 1.5 0 0 0 4 9.5h.5"/></g><path class="copy-check" d="m3 8 3 3 7-7"/></svg><span data-copy-word role="status" aria-live="polite">Copy</span></button>
       </div>
-      <p class="inst-meta"><span>Then run <code>trenchscope doctor</code> and <code>trenchscope</code><span class="dot" aria-hidden="true"> · </span><span data-note-out>no sudo</span></span><a data-src-out href="https://github.com/trenchscopeapp/trenchscope/blob/main/install.sh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2H4.5A1.5 1.5 0 0 0 3 3.5v9A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V6z"/><path d="M9 2v4h4"/></svg><span data-src-label-out>install.sh</span></a></p>
+      <p class="inst-meta"><span>Then run <code>solgent doctor</code> and <code>solgent</code><span class="dot" aria-hidden="true"> · </span><span data-note-out>no sudo</span></span><a data-src-out href="https://github.com/solgentapp/solgent/blob/main/install.sh" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2H4.5A1.5 1.5 0 0 0 3 3.5v9A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5V6z"/><path d="M9 2v4h4"/></svg><span data-src-label-out>install.sh</span></a></p>
       <span class="inst-edge" aria-hidden="true"></span>
     </div>
   </section>
@@ -286,7 +300,7 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
-    <span>trenchscope 0.1.5</span><span>live now</span><span class="foot-end">not financial advice<a class="xlink xlink-sm" href="https://github.com/trenchscopeapp/trenchscope" target="_blank" rel="noopener" aria-label="trenchscope source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a class="xlink xlink-sm" href="https://x.com/trenchscopehq" target="_blank" rel="noopener" aria-label="trenchscope on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></span>
+    <span>solgent 0.1.5</span><span>live now · <a class="foot-link" href="/docs">docs</a></span><span class="foot-end">not financial advice<a class="xlink xlink-sm" href="https://github.com/solgentapp/solgent" target="_blank" rel="noopener" aria-label="solgent source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a class="xlink xlink-sm" href="https://x.com/solgentapp" target="_blank" rel="noopener" aria-label="solgent on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></span>
   </div>
 </footer>
 </body>

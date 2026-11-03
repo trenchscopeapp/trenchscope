@@ -1,4 +1,4 @@
-// trenchscope AI SCAN MODE (task-1324) — the `/scan …` command grammar and the `--scan-*` flag table. Pure.
+// solgent AI SCAN MODE (task-1324) — the `/scan …` command grammar and the `--scan-*` flag table. Pure.
 import type { ScanConfig } from './engine.ts';
 
 export type ScanCommand = 'on' | 'off' | 'toggle' | 'resume' | 'status';

@@ -1,6 +1,6 @@
 // @dexterm/data — the X spend meter (task-1357; INTEGRATIONS-DESIGN §4/§6). X bills the DEVELOPER account
 // per post read ($0.005) and per user read ($0.01), deduplicated per UTC day — and with Login with X each
-// trenchscope user IS the developer of their own app, so this is the user's own money. The meter keeps a per-day
+// solgent user IS the developer of their own app, so this is the user's own money. The meter keeps a per-day
 // estimate in the shared cache DB, counts a post only the first time its id is seen in a UTC day (24 h local
 // dedup table), and hard-stops reads at the daily budget (default $10, `DEXTERM_X_DAILY_USD`). The numbers are
 // ESTIMATES from the published list prices; the X console is the bill.

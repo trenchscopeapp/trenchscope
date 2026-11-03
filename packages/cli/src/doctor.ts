@@ -1,5 +1,5 @@
-// trenchscope doctor (task-1305): a pre-flight the user runs before anything else. It answers one
-// question — "will trenchscope work on this machine, and if not, exactly what do I fix?" — as a plain
+// solgent doctor (task-1305): a pre-flight the user runs before anything else. It answers one
+// question — "will solgent work on this machine, and if not, exactly what do I fix?" — as a plain
 // pass/warn/fail list with a copy-pasteable fix on every line that is not a pass.
 //
 // Everything that touches the outside world (the claude binary, the network) is injected so the
@@ -21,7 +21,7 @@ import { kbStore, skillStore } from './kb-skill-cmd.ts';
 import { readBotSummary, type PaperBotSummary } from './bot/store.ts';
 import { analystCliOnPath, CODEX_MIN_VERSION, parseEngineChoice, resolveEngine, versionAtLeast } from './analyst/codex.ts';
 
-/** The minimum Node that runs trenchscope (type-stripping of the .ts entry needs 22.18). */
+/** The minimum Node that runs solgent (type-stripping of the .ts entry needs 22.18). */
 export const MIN_NODE = [22, 18, 0] as const;
 
 export type CheckStatus = 'pass' | 'warn' | 'fail';
@@ -75,7 +75,7 @@ export interface DoctorDeps {
   voiceProbe?: () => Promise<VoiceDoctorDeps>;
   /** task-1377: the merged KB + skill sets (bundled / user / overridden / skipped). Absent = the check is skipped. */
   content?: () => { kb: MergedSet; skills: MergedSet };
-  /** The paper bot ledger summary (`trenchscope bot`), or null when it never ran. Absent = the check is skipped. */
+  /** The paper bot ledger summary (`solgent bot`), or null when it never ran. Absent = the check is skipped. */
   paperBot?: () => PaperBotSummary | null;
 }
 
@@ -190,7 +190,7 @@ export type CodexProbe = { state: 'missing' } | { state: 'present'; version: str
 
 /**
  * Default codex probe (0.1.5): PATH (spawnable form only), then `codex --version` and `codex login status`. The
- * status command is the user's own CLI reporting on its own login; trenchscope never reads the credential itself.
+ * status command is the user's own CLI reporting on its own login; solgent never reads the credential itself.
  */
 export async function codexProbe(timeoutMs = 4000, env: NodeJS.ProcessEnv = process.env): Promise<CodexProbe> {
   if (!analystCliOnPath('codex', env)) return { state: 'missing' };
@@ -271,21 +271,21 @@ export async function runDoctor(deps: DoctorDeps): Promise<DoctorResult> {
     checks.push({
       name: 'Terminal', status: 'warn',
       detail: 'not a TTY (output is being piped); the interactive UI needs a real terminal',
-      fix: 'Run trenchscope directly in a terminal window, not through a pipe or a non-interactive shell.',
+      fix: 'Run solgent directly in a terminal window, not through a pipe or a non-interactive shell.',
     });
   } else if (depth === 'truecolor') {
     checks.push({ name: 'Terminal colour', status: 'pass', detail: `24-bit truecolor (${term})` });
   } else if (depth === '256') {
     checks.push({
       name: 'Terminal colour', status: 'warn',
-      detail: `256-colour only (${term}); trenchscope runs but the neon look is flattened`,
+      detail: `256-colour only (${term}); solgent runs but the neon look is flattened`,
       fix: 'Use a truecolor terminal (iTerm2, WezTerm, Ghostty, Kitty, Alacritty, Windows Terminal) or set COLORTERM=truecolor.',
     });
   } else {
     checks.push({
       name: 'Terminal colour', status: 'warn',
-      detail: `no colour (${term}${deps.env.NO_COLOR ? ', NO_COLOR set' : ''}); trenchscope falls back to monochrome`,
-      fix: 'Unset NO_COLOR and use a colour terminal for the full look; trenchscope still works without it.',
+      detail: `no colour (${term}${deps.env.NO_COLOR ? ', NO_COLOR set' : ''}); solgent falls back to monochrome`,
+      fix: 'Unset NO_COLOR and use a colour terminal for the full look; solgent still works without it.',
     });
   }
 
@@ -314,7 +314,7 @@ export async function runDoctor(deps: DoctorDeps): Promise<DoctorResult> {
   } else if (claude === 'missing') {
     checks.push({
       name: 'Claude CLI', status: 'warn',
-      detail: 'not found on PATH; the analyst (a) is disabled, the rest of trenchscope works',
+      detail: 'not found on PATH; the analyst (a) is disabled, the rest of solgent works',
       fix: 'Install Claude Code (https://claude.com/claude-code) and run `claude` once to log in, or use Codex: `npm i -g @openai/codex && codex login`.',
     });
   } else {
@@ -352,9 +352,9 @@ export async function runDoctor(deps: DoctorDeps): Promise<DoctorResult> {
       const warning = windows ? ' · Windows ACL isolation is not verified' : loose ? ' · token file permissions are looser than 0600' : '';
       checks.push({ name: 'Login with X', status: windows || loose ? 'warn' : 'pass', detail: `logged in${meta.user ? ` as @${meta.user.username}` : ''} · scopes ${meta.scopes.join(' ') || '?'} · refresh ${meta.hasRefresh ? 'yes' : 'no'}${warning}`, ...(windows ? { fix: 'Review the token directory Security permissions in Windows; chmod does not enforce owner-only ACLs.' } : loose ? { fix: `chmod 700 ${xs.dir} && chmod 600 ${xs.tokensPath}` } : {}) });
     } else if (clientId) {
-      checks.push({ name: 'Login with X', status: 'warn', detail: 'client id stored, not logged in — X posts stay off (keyless venues, news and on-chain rows still work)', fix: 'trenchscope x login' });
+      checks.push({ name: 'Login with X', status: 'warn', detail: 'client id stored, not logged in — X posts stay off (keyless venues, news and on-chain rows still work)', fix: 'solgent x login' });
     } else {
-      checks.push({ name: 'Login with X', status: 'pass', detail: 'not set up (optional) — X posts need your own X app: free Native App + `trenchscope x set-client-id` + `trenchscope x login`; see docs › Login with X' });
+      checks.push({ name: 'Login with X', status: 'pass', detail: 'not set up (optional) — X posts need your own X app: free Native App + `solgent x set-client-id` + `solgent x login`; see docs › Login with X' });
     }
   }
 
@@ -367,7 +367,7 @@ export async function runDoctor(deps: DoctorDeps): Promise<DoctorResult> {
   } else {
     checks.push({
       name: 'Helius RPC', status: 'warn',
-      detail: 'no key — trenchscope uses the public RPC (holders & some safety fields will show as "needs key")',
+      detail: 'no key — solgent uses the public RPC (holders & some safety fields will show as "needs key")',
       fix: 'Free tier: make a key at https://dashboard.helius.dev, then `mkdir -p ~/.dexterm && printf %s "YOUR_KEY" > ~/.dexterm/helius.key && chmod 600 ~/.dexterm/helius.key`',
     });
   }
@@ -424,7 +424,7 @@ export async function runDoctor(deps: DoctorDeps): Promise<DoctorResult> {
         detail: `unreachable: ${down.map((x) => `${x.s.name} (${x.r.error ?? 'error'})`).join(', ')}`,
         fix: hardDown.length
           ? 'Check your internet connection / VPN / firewall. If only some hosts fail, they may be regionally blocked — try again or use a different network.'
-          : 'New pairs (PumpPortal) is unreachable; the rest of trenchscope works. Check back later or your network may block its host.',
+          : 'New pairs (PumpPortal) is unreachable; the rest of solgent works. Check back later or your network may block its host.',
       });
     }
   }
@@ -462,21 +462,21 @@ export async function runDoctor(deps: DoctorDeps): Promise<DoctorResult> {
       const detail = `${part('KB', kb)} · ${part('skills', skills)}`;
       const skipped = [...kb.skipped.map((s) => `kb ${s.id}: ${s.reason}`), ...skills.skipped.map((s) => `skill ${s.id}: ${s.reason}`)];
       if (skipped.length) {
-        checks.push({ name: 'KB + skills', status: 'warn', detail: `${detail}; skipped ${skipped.slice(0, 3).join('; ')}`, fix: `Run \`trenchscope kb check\` / \`trenchscope skill check\` and fix the file, or \`trenchscope kb|skill reset <id>\` to go back to the bundled one.` });
+        checks.push({ name: 'KB + skills', status: 'warn', detail: `${detail}; skipped ${skipped.slice(0, 3).join('; ')}`, fix: `Run \`solgent kb check\` / \`solgent skill check\` and fix the file, or \`solgent kb|skill reset <id>\` to go back to the bundled one.` });
       } else {
-        checks.push({ name: 'KB + skills', status: 'pass', detail: `${detail} (yours: ${kb.dir}, ${skills.dir}; \`trenchscope kb|skill list\`)` });
+        checks.push({ name: 'KB + skills', status: 'pass', detail: `${detail} (yours: ${kb.dir}, ${skills.dir}; \`solgent kb|skill list\`)` });
       }
     } catch { /* an overlay problem must not break the doctor */ }
   }
 
-  // 6c. The paper bot (`trenchscope bot`): informational only. It is paper, so it never warns or fails the doctor.
+  // 6c. The paper bot (`solgent bot`): informational only. It is paper, so it never warns or fails the doctor.
   if (deps.paperBot) {
     try {
       const b = deps.paperBot();
-      if (!b) checks.push({ name: 'Paper bot', status: 'pass', detail: 'not run yet (optional: `trenchscope bot run` paper-trades the signals; never signs or sends)' });
+      if (!b) checks.push({ name: 'Paper bot', status: 'pass', detail: 'not run yet (optional: `solgent bot run` paper-trades the signals; never signs or sends)' });
       else {
         const last = b.lastAt ? `, last activity ${new Date(b.lastAt).toISOString().slice(0, 16).replace('T', ' ')} UTC` : '';
-        checks.push({ name: 'Paper bot', status: 'pass', detail: `${b.open} open, ${b.closed} closed paper trade(s)${last} (\`trenchscope bot stats\`; paper only)` });
+        checks.push({ name: 'Paper bot', status: 'pass', detail: `${b.open} open, ${b.closed} closed paper trade(s)${last} (\`solgent bot stats\`; paper only)` });
       }
     } catch { /* a ledger problem must not break the doctor */ }
   }
@@ -504,7 +504,7 @@ export function renderDoctor(result: DoctorResult, opts: { color?: boolean } = {
   const color = opts.color ?? false;
   const paint = (s: string, code: string) => (color ? code + s + RESET : s);
   const lines: string[] = [];
-  lines.push(paint('trenchscope doctor', color ? BOLD : ''));
+  lines.push(paint('solgent doctor', color ? BOLD : ''));
   lines.push('');
   const nameW = Math.max(...result.checks.map((c) => c.name.length));
   for (const c of result.checks) {
@@ -517,6 +517,6 @@ export function renderDoctor(result: DoctorResult, opts: { color?: boolean } = {
   const warns = result.checks.filter((c) => c.status === 'warn').length;
   if (result.ok && warns === 0) lines.push(paint('All checks passed — run `dexterm` to start.', color ? ANSI.pass : ''));
   else if (result.ok) lines.push(paint(`Ready to run (${warns} warning${warns === 1 ? '' : 's'} above are optional).`, color ? ANSI.warn : ''));
-  else lines.push(paint(`${fails} check${fails === 1 ? '' : 's'} failed — fix the ✗ lines above, then re-run \`trenchscope doctor\`.`, color ? ANSI.fail : ''));
+  else lines.push(paint(`${fails} check${fails === 1 ? '' : 's'} failed — fix the ✗ lines above, then re-run \`solgent doctor\`.`, color ? ANSI.fail : ''));
   return lines.join('\n');
 }

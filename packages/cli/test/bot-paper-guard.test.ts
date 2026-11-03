@@ -1,4 +1,4 @@
-// trenchscope paper bot: THE paper-only guard. The bot must never import or reach the signer, the live
+// solgent paper bot: THE paper-only guard. The bot must never import or reach the signer, the live
 // executor, the fast wallet, the Phantom bridge or any build/sign/send path. This test parses every module the
 // bot can load (static imports, re-exports and dynamic import() with a literal, following workspace package
 // exports maps) and fails if any forbidden file is reachable. `import type` is skipped (erased at runtime);
@@ -123,7 +123,7 @@ test('negative control: from the app entry the same walker does reach the signer
 });
 
 test('the bin shims route `bot` to bot-cmd.ts before the app (and its trade modules) loads', () => {
-  for (const bin of ['trenchscope.mjs', 'dexterm.mjs']) {
+  for (const bin of ['solgent.mjs', 'dexterm.mjs']) {
     const src = readFileSync(join(CLI, 'bin', bin), 'utf8');
     const botAt = src.indexOf("process.argv[2] === 'bot'");
     const mainAt = src.indexOf("import('../src/main.ts')");

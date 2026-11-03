@@ -1,5 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npm ci --ignore-scripts",
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "functions": { "api/ca.mjs": { "includeFiles": "server/generated/ca-runtime.cjs" } },
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [

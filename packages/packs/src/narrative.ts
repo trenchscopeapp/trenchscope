@@ -295,7 +295,7 @@ export function summaryPrompt(board: NarrativeBoard): string {
   ].join('\n\n');
 }
 
-/** A compact plain-text board (for `trenchscope narrative` and the handoff). The TUI screen renders to the cell buffer separately. */
+/** A compact plain-text board (for `solgent narrative` and the handoff). The TUI screen renders to the cell buffer separately. */
 export function renderBoardText(board: NarrativeBoard, width = 100): string {
   const m = board.meta;
   const lines: string[] = [];

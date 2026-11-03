@@ -34,6 +34,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope mcp` is a plain stdio MCP server exposing the same read-only tools the analyst uses. Add it to any Claude Code with `claude mcp add trenchscope -- node packages/mcp/bin/dexterm-mcp.mjs`, or set up Claude Code, Claude Desktop, Cursor or Codex in one command with `trenchscope mcp install <client>`. Agents are untrusted: every tool is read-only and an agent can never sign, arm, raise a cap or touch keys. Use `app_help` for "how do I" questions and `app_state` to see what the user sees.
+`solgent mcp` is a plain stdio MCP server exposing the same read-only tools the analyst uses. Add it to any Claude Code with `claude mcp add solgent -- node packages/mcp/bin/dexterm-mcp.mjs`, or set up Claude Code, Claude Desktop, Cursor or Codex in one command with `solgent mcp install <client>`. Agents are untrusted: every tool is read-only and an agent can never sign, arm, raise a cap or touch keys. Use `app_help` for "how do I" questions and `app_state` to see what the user sees.
 
-CLI: `trenchscope mcp`.
+CLI: `solgent mcp`.

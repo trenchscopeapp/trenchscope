@@ -1,4 +1,4 @@
-// trenchscope popup host — loopback-only popup server (task-1290; TypeScript port of the spike server, which
+// solgent popup host — loopback-only popup server (task-1290; TypeScript port of the spike server, which
 // shipped 20/20 protocol tests). Zero runtime dependencies beyond node:http / node:crypto.
 //
 // Security posture (carried over verbatim from research/popup-host §5; see README "Security model"):

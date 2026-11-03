@@ -1,4 +1,4 @@
-// trenchscope — the screener's feed on top of @dexterm/data (D-02/D-04/D-06): discovery per preset,
+// solgent — the screener's feed on top of @dexterm/data (D-02/D-04/D-06): discovery per preset,
 // enrichment of the mints, health → header status, column gates. Live (keyless, read-only),
 // recorded while live, or replayed from a recorded fixture file (offline, same code path, no network).
 import { readFileSync } from 'node:fs';
@@ -551,7 +551,7 @@ export class ScreenerFeed {
   /** Write the recording (when created with `record`) in the data layer's fixture format. */
   save(path: string, note?: string): void {
     if (!this.recording) throw new Error('feed was not created with a recorder');
-    this.recording.save(path, note ?? `recorded by trenchscope --record; ${this.requests} live requests; preset ${this.preset}`);
+    this.recording.save(path, note ?? `recorded by solgent --record; ${this.requests} live requests; preset ${this.preset}`);
   }
 
   close(): void {

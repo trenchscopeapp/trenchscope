@@ -220,7 +220,7 @@ export class CopyAuto {
    */
   enable(wallet: string, gesture: { gesture?: string } | null | undefined): CopyPolicy {
     const cur = this.policies.get(wallet);
-    if (!cur) throw new CopyAutoError('no-policy', 'draft the caps first (trenchscope follow auto <addr> --per-trade … or the A key)');
+    if (!cur) throw new CopyAutoError('no-policy', 'draft the caps first (solgent follow auto <addr> --per-trade … or the A key)');
     if (cur.enabled) return cur;
     if (gesture?.gesture !== 'keypress' && gesture?.gesture !== 'phantom') throw new CopyAutoError('needs-keypress', 'enabling auto-mirror needs a physical keypress (or Phantom approval); voice, agents and pipes cannot');
     if (this.panicked) throw new CopyAutoError('panicked', 'panic engaged; auto-mirror stays off');

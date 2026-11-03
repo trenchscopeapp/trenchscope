@@ -43,7 +43,7 @@ export interface AgentBusOptions {
   spectator?: SpectatorHub;
   port?: number;
   now?: () => number;
-  /** Where to write the discovery file so `trenchscope agent connect` finds the port. Default <home>/agent-bus.json. */
+  /** Where to write the discovery file so `solgent agent connect` finds the port. Default <home>/agent-bus.json. */
   discoveryPath?: string | null;
   env?: NodeJS.ProcessEnv;
 }

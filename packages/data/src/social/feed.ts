@@ -138,7 +138,7 @@ export class SocialFeed {
   /** The X poller's status, or a synthetic logged-out/off one. */
   xStatus(): XFeedStatus {
     if (this.x) return this.x.status();
-    return { state: 'logged-out', user: null, detail: 'logged out · trenchscope x login (your own X app, your limits)', lastOkAt: null, lastError: null, resumesAt: null, spend: null, windows: {}, posts: 0, requests: 0 };
+    return { state: 'logged-out', user: null, detail: 'logged out · solgent x login (your own X app, your limits)', lastOkAt: null, lastError: null, resumesAt: null, spend: null, windows: {}, posts: 0, requests: 0 };
   }
 
   // ------------------------------------------------------------------ ingest

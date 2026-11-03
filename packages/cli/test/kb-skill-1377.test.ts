@@ -1,5 +1,5 @@
 import { posixPermissions } from '../../../scripts/test-support.ts';
-// task-1377: `trenchscope kb|skill list|show|new|edit|check|reset|path`, the analyst's per-turn plugin dir (the merged
+// task-1377: `solgent kb|skill list|show|new|edit|check|reset|path`, the analyst's per-turn plugin dir (the merged
 // skills the analyst and Jarvis run), and the doctor's KB + skills line. Hermetic: a temp DEXTERM_HOME, an injected
 // editor (no TTY, no $EDITOR), no network, no claude.
 import { test } from 'node:test';
@@ -59,7 +59,7 @@ test('kb: new writes a starter that passes check; new on a bundled id refuses; a
     assert.match(n.out, /no \$EDITOR/);
     assert.ok(kbStore(env).get().entries.some((x) => x.id === 'my-exit-rules' && x.origin === 'user'));
     const dup = io(env); assert.equal(await kbSkillCommand('kb', ['new', 'glossary'], dup), 1);
-    assert.match(dup.err, /is bundled; `trenchscope kb edit glossary`/);
+    assert.match(dup.err, /is bundled; `solgent kb edit glossary`/);
     const broken = io(env, editWith(() => 'oops, no frontmatter'));
     assert.equal(await kbSkillCommand('kb', ['edit', 'my-exit-rules'], broken), 1);
     assert.match(broken.out, /✗ .*no frontmatter/s);
@@ -99,7 +99,7 @@ test('skill: edit copies the bundled analyst skill, the analyst turn gets a merg
     assert.equal(plugin, path.join(tmp, 'plugin'));
     const md = fs.readFileSync(path.join(plugin, 'skills', 'rug-check', 'SKILL.md'), 'utf8');
     assert.match(md, /^---\nname: rug-check\ndescription: "<untrusted source=\\"skill:user:rug-check\\"/);
-    assert.match(md, /This trenchscope skill \(rug-check\) was edited by the user/);
+    assert.match(md, /This solgent skill \(rug-check\) was edited by the user/);
     assert.match(md, /<untrusted source="skill:user:rug-check" kind="skill">.*Weigh the dev wallet first/s);
     assert.ok(fs.existsSync(path.join(plugin, 'skills', 'token-dossier', 'SKILL.md')), 'the other bundled skills are still there');
     assert.ok(fs.existsSync(path.join(plugin, '.claude-plugin', 'plugin.json')));
@@ -168,6 +168,6 @@ test('doctor: KB + skills line shows bundled/user/overridden counts and warns on
     assert.equal(c.status, 'warn');
     assert.match(c.detail, /KB 17 bundled · 2 user \(1 overridden, 1 new\)/);
     assert.match(c.detail, /skipped skill broken/);
-    assert.match(c.fix!, /trenchscope skill check/);
+    assert.match(c.fix!, /solgent skill check/);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
 });

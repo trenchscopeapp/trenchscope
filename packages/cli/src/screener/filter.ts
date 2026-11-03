@@ -1,4 +1,4 @@
-// trenchscope — screener filter grammar (SPEC §4.1 row 6, §8 D-03).
+// solgent — screener filter grammar (SPEC §4.1 row 6, §8 D-03).
 //
 //   vol24 > 250K  liq > 50K  age < 30d  org >= 60  launchpad:pump  !flag:mint  cat
 //

@@ -1,4 +1,4 @@
-// trenchscope — live bindings for the PAPER trade ticket and the positions screen (task-1310 T0).
+// solgent — live bindings for the PAPER trade ticket and the positions screen (task-1310 T0).
 // The ticket binding fetches a warm keyless swap quote for the current order, previews the fill, and
 // on confirm fetches a FRESH quote and asks the executor to book it (SPEC §6.1 step 6: book from the
 // fill, not a stale on-screen quote). The positions binding marks held tokens from the keyless price
@@ -144,7 +144,7 @@ export class TradeTicketLive {
     if (!this.liveDeps.linked()) return 'no wallet linked — /wallet link first';
     const s = this.liveDeps.signer();
     if (!s) return 'the signer process is not available';
-    if (!s.alive) return 'the signer process died — restart trenchscope to trade live';
+    if (!s.alive) return 'the signer process died — restart solgent to trade live';
     return null;
   }
 

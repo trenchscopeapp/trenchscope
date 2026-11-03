@@ -112,7 +112,7 @@ export class MemoryProposalStore implements ProposalStore {
 }
 
 /**
- * Persistent store in the shared trenchscope SQLite DB so the TUI roster, `trenchscope agent proposals` and a
+ * Persistent store in the shared solgent SQLite DB so the TUI roster, `solgent agent proposals` and a
  * later confirm flow read the same rows across processes. The UNIQUE (agent_id, idempotency_key) index
  * makes idempotency a database guarantee, not just a scan. Display strings are firewalled before insert.
  */

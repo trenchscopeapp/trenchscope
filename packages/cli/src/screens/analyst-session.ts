@@ -1,4 +1,4 @@
-// trenchscope — shared renderer for a live Claude analyst session (task-1302). Used by the full Analyst
+// solgent — shared renderer for a live Claude analyst session (task-1302). Used by the full Analyst
 // screen and the token ANALYST panel. Cyberspace styling: the verdict and the tool-call lines are
 // coral, the answer decrypts in through code glyphs, and a cost/latency footer sits on the caption.
 import {
@@ -111,7 +111,7 @@ export function renderAnalystSession(c: Canvas, x: number, y: number, w: number,
     line(s.error.message, { fg: t.warn, bg, b: true }, 3);
     if (s.error.detail) line(s.error.detail, { fg: t.dim, bg, i: true }, 3);
     cy += 1;
-    line('The rest of trenchscope keeps working; this panel is read-only and never trades.', { fg: t.dim, bg, i: true }, 1);
+    line('The rest of solgent keeps working; this panel is read-only and never trades.', { fg: t.dim, bg, i: true }, 1);
     drawTail();
     return;
   }

@@ -1,7 +1,7 @@
 // Piper neural TTS engine (task-1408, task-1416). Piper is a free, local, no-key neural text-to-speech
 // engine (rhasspy/piper, MIT) that sounds markedly better than espeak-ng or the built-in macOS voices.
 // It is the PREFERRED speech-out engine EVERYWHERE it is installed — on macOS (via the managed Python
-// runtime, `trenchscope voice setup`) as well as off macOS (via the prebuilt binary) — with `say`/espeak-ng
+// runtime, `solgent voice setup`) as well as off macOS (via the prebuilt binary) — with `say`/espeak-ng
 // kept as the fallback chain (see engines.ts). Verified in Docker on Linux (task-1397/task-1408) and via
 // the managed venv on an Intel Mac (task-1416): the en_GB-alan-medium voice writes a valid, non-silent
 // 22.05 kHz WAV that whisper.cpp transcribes almost word-for-word.
@@ -9,7 +9,7 @@
 // Two runtimes, one engine:
 //   - macOS (managed): a private virtualenv at `~/.dexterm/piper/venv` with `pip install piper-tts`. The
 //     prebuilt macOS tarball from rhasspy is broken (it needs a libespeak-ng dylib it does not bundle),
-//     so we run `<venv>/bin/python -m piper` instead. Built by `trenchscope voice setup`.
+//     so we run `<venv>/bin/python -m piper` instead. Built by `solgent voice setup`.
 //   - Linux/Windows: the prebuilt `piper` binary extracted into `~/.dexterm/piper/` (or on PATH).
 //
 // It carries the SAME contract as the macOS `say` and espeak engines:
@@ -39,7 +39,7 @@ import type { SpeakHandle, SpeakOptions, TtsEngine } from '../types.ts';
 import { sanitizeSpeech } from './voices.ts';
 import { splitSentences } from '../summary.ts';
 
-/** The Piper voice trenchscope defaults to: a British male, medium quality (local, no key). */
+/** The Piper voice solgent defaults to: a British male, medium quality (local, no key). */
 export const DEFAULT_PIPER_VOICE = 'en_GB-alan-medium';
 
 /** `~/.dexterm`, honouring the DEXTERM_HOME override (tests point it at a temp dir) — matches @dexterm/custom. */
@@ -48,11 +48,11 @@ function dextermHomeDir(): string {
   return h && h.trim() ? h : join(homedir(), '.dexterm');
 }
 
-/** Where the downloaded Piper voice model lives (see `trenchscope voice download piper-voice`). */
+/** Where the downloaded Piper voice model lives (see `solgent voice download piper-voice`). */
 export const PIPER_MODEL = process.env.DEXTERM_PIPER_MODEL
   || join(dextermHomeDir(), 'models', `${DEFAULT_PIPER_VOICE}.onnx`);
 
-/** The managed Python interpreter built by `trenchscope voice setup` (macOS). */
+/** The managed Python interpreter built by `solgent voice setup` (macOS). */
 export function managedVenvPython(home: string = dextermHomeDir()): string {
   const bin = process.platform === 'win32' ? join('Scripts', 'python.exe') : join('bin', 'python');
   return join(home, 'piper', 'venv', bin);
@@ -101,7 +101,7 @@ export function resolvePiperBin(): string | null {
  * Resolve the Piper RUNTIME for this machine, best-first:
  *   1. DEXTERM_PIPER_BIN — an explicit binary (also the test seam).
  *   2. DEXTERM_PIPER_PYTHON — an explicit `python` to run `-m piper` (test seam for the managed path).
- *   3. the managed venv python (`~/.dexterm/piper/venv/bin/python`) — built by `trenchscope voice setup`.
+ *   3. the managed venv python (`~/.dexterm/piper/venv/bin/python`) — built by `solgent voice setup`.
  *   4. the dexterm-local prebuilt binary (`~/.dexterm/piper/piper`) or `piper` on PATH.
  * Returns null when none is installed (voice degrades to the next engine, never crashes).
  */

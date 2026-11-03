@@ -1,7 +1,7 @@
 // task-1414: the headless collector command — the loop (observe / maintain scheduling + the soft disk cap +
 // clean abort), the generated launchd plist, and the install/status/uninstall subcommands over a temp HOME.
 // No network: the loop is driven by a fake CollectorEngine; the production engine (buildLiveEngine) is only
-// exercised by a real `trenchscope record run --once` smoke, documented in the handoff.
+// exercised by a real `solgent record run --once` smoke, documented in the handoff.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, existsSync, readFileSync } from 'node:fs';

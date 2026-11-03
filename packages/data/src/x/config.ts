@@ -9,7 +9,7 @@
 //   * revoke     POST https://api.x.com/2/oauth2/revoke (token + client_id)
 //   * callback   must match EXACTLY and must be http://127.0.0.1 (not localhost) for a local app → FIXED port
 //   * rate limits are per USER for user-context tokens; pay-per-use credits bill the DEVELOPER account that owns
-//     the app — each trenchscope user brings their OWN app (client id), so each user pays for their own reads.
+//     the app — each solgent user brings their OWN app (client id), so each user pays for their own reads.
 //
 // Every endpoint is injectable so tests run the whole flow against the loopback mock server (./mock-server.ts)
 // and never touch x.com. Nothing in this directory ever logs a token: `redactXSecrets()` is applied to every
@@ -22,7 +22,7 @@ import { join } from 'node:path';
 export const X_CALLBACK_PORT = 41287;
 export const X_CALLBACK_PATH = '/callback';
 
-/** Scopes trenchscope asks for. Never any `.write` or `dm.*` — trenchscope never posts, likes, follows or DMs. */
+/** Scopes solgent asks for. Never any `.write` or `dm.*` — solgent never posts, likes, follows or DMs. */
 export const X_SCOPES = ['tweet.read', 'users.read', 'list.read', 'offline.access'] as const;
 export const X_FORBIDDEN_SCOPE_RE = /\.write$|^dm\./;
 

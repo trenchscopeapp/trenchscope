@@ -27,6 +27,6 @@ sources:
 date: 2026-10-16
 ---
 
-`config.keymap` in `~/.dexterm/config.json` re-binds actions to keys; `trenchscope keymap [screen]` shows the effective bindings including your overrides. Reserved keys (ctrl+c, esc, enter, y, !) and the confirm/dismiss/panic/quit actions cannot be rebound, and collisions refuse the whole keymap.
+`config.keymap` in `~/.dexterm/config.json` re-binds actions to keys; `solgent keymap [screen]` shows the effective bindings including your overrides. Reserved keys (ctrl+c, esc, enter, y, !) and the confirm/dismiss/panic/quit actions cannot be rebound, and collisions refuse the whole keymap.
 
-CLI: `trenchscope keymap`.
+CLI: `solgent keymap`.

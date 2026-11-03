@@ -1,4 +1,4 @@
-// trenchscope: the plain-English safety verdict for one screener row (AVOID / CAREFUL / NO RED FLAGS).
+// solgent: the plain-English safety verdict for one screener row (AVOID / CAREFUL / NO RED FLAGS).
 // Moved out of screens/simple.ts (which re-exports it) so a headless consumer, the paper bot, can score rows
 // without loading the interactive app's state and screens. Pure: reads only the row (and an optional LARP grade).
 import { fmtUsd } from '@dexterm/tui';

@@ -1,4 +1,4 @@
-// task-1360 Tier 1 — the FOLLOWED WALLETS screen (U) and `trenchscope follow`: the screen binds the store, typed input
+// task-1360 Tier 1 — the FOLLOWED WALLETS screen (U) and `solgent follow`: the screen binds the store, typed input
 // follows a wallet (firewalled label), d unfollows, r polls, alerts render; the CLI mirrors it with a scripted
 // history. Nothing on this surface can trade: the actions exist only on the keymap for this screen, and the
 // state carries no ticket/plan/mandate after any of them.
@@ -165,7 +165,7 @@ function io(): Io & { out: string; err: string } {
   return o as Io & { out: string; err: string };
 }
 
-test('trenchscope follow: add/list/remove/purge on a temp file; stats + trades over a scripted history; keyless says the fix', async () => {
+test('solgent follow: add/list/remove/purge on a temp file; stats + trades over a scripted history; keyless says the fix', async () => {
   const path = join(mkdtempSync(join(tmpdir(), 'dexterm-follow-cli-')), 'follows.json');
   const over = { followsPath: path };
   let o = io();

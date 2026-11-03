@@ -1,15 +1,15 @@
-// `trenchscope agent …` — bring-your-own-agent registry + loopback bus CLI (task-1345, tier 2).
+// `solgent agent …` — bring-your-own-agent registry + loopback bus CLI (task-1345, tier 2).
 //
-//   trenchscope agent add <name> --tier observe|annotate|propose [--note T] [--reads N] [--proposals N] [--connections N]
-//   trenchscope agent list
-//   trenchscope agent rotate <name>            # new one-time token; the old one stops working
-//   trenchscope agent remove <name>
-//   trenchscope agent tier <name> <tier>
-//   trenchscope agent pause|resume <name>
-//   trenchscope agent audit [--agent NAME] [--limit N]
-//   trenchscope agent packs                    # the skills/KB an external agent gets over MCP (agent packs)
-//   trenchscope agent serve [--fixtures|--live] [--port N] [--db PATH]   # run a standalone loopback bus
-//   trenchscope agent connect --name NAME [--port N] [--url ws://…] [--watch SECONDS]  # token from $DEXTERM_AGENT_TOKEN
+//   solgent agent add <name> --tier observe|annotate|propose [--note T] [--reads N] [--proposals N] [--connections N]
+//   solgent agent list
+//   solgent agent rotate <name>            # new one-time token; the old one stops working
+//   solgent agent remove <name>
+//   solgent agent tier <name> <tier>
+//   solgent agent pause|resume <name>
+//   solgent agent audit [--agent NAME] [--limit N]
+//   solgent agent packs                    # the skills/KB an external agent gets over MCP (agent packs)
+//   solgent agent serve [--fixtures|--live] [--port N] [--db PATH]   # run a standalone loopback bus
+//   solgent agent connect --name NAME [--port N] [--url ws://…] [--watch SECONDS]  # token from $DEXTERM_AGENT_TOKEN
 //
 // A one-time token is printed to stdout by `add`/`rotate` so the user can paste it into THEIR agent's
 // config; it is never stored in plaintext and never echoed again. The token for `serve`/`connect` auth is
@@ -30,7 +30,7 @@ function flag(rest: string[], name: string): string | undefined { const i = rest
 function has(rest: string[], name: string): boolean { return rest.includes(name); }
 function intFlag(rest: string[], name: string): number | undefined { const v = flag(rest, name); const n = v === undefined ? undefined : Number(v); return typeof n === 'number' && Number.isFinite(n) ? n : undefined; }
 
-const USAGE = `trenchscope agent <command>
+const USAGE = `solgent agent <command>
   add <name> --tier observe|annotate|propose [--note T] [--reads N] [--proposals N] [--connections N]
   list | rotate <name> | remove <name> | tier <name> <tier> | pause <name> | resume <name>
   mandate <name> --tools a,b,c | mandate <name> --clear   (narrow an agent to a named set of tools)
@@ -50,7 +50,7 @@ export async function runAgent(rest: string[], io: Io): Promise<number> {
     case 'add': {
       const name = rest[1];
       const tier = flag(rest, '--tier');
-      if (!name || !tier || !isTier(tier)) { errOut(`usage: trenchscope agent add <name> --tier ${TIERS.join('|')}`); return 2; }
+      if (!name || !tier || !isTier(tier)) { errOut(`usage: solgent agent add <name> --tier ${TIERS.join('|')}`); return 2; }
       const limits = { readsPerMin: intFlag(rest, '--reads'), proposalsPerHour: intFlag(rest, '--proposals'), connections: intFlag(rest, '--connections') };
       try {
         const { agent, token } = registry.add(name, tier as Tier, { note: flag(rest, '--note'), limits });
@@ -61,11 +61,11 @@ export async function runAgent(rest: string[], io: Io): Promise<number> {
         out('');
         out(`  your agent authenticates with name="${agent.name}" + this token over the loopback bus or a bridged MCP child.`);
         return 0;
-      } catch (e) { errOut(`trenchscope agent add: ${(e as Error).message}`); return 1; }
+      } catch (e) { errOut(`solgent agent add: ${(e as Error).message}`); return 1; }
     }
     case 'list': {
       const list = registry.list();
-      if (!list.length) { out('no agents registered. Add one: trenchscope agent add <name> --tier observe'); return 0; }
+      if (!list.length) { out('no agents registered. Add one: solgent agent add <name> --tier observe'); return 0; }
       out('name                     tier      paused  created              mandate / note');
       for (const a of list) {
         const mandate = a.scope && a.scope.length ? `mandate: ${a.scope.join(',')}` : '';
@@ -75,40 +75,40 @@ export async function runAgent(rest: string[], io: Io): Promise<number> {
       return 0;
     }
     case 'rotate': {
-      const name = rest[1]; if (!name) { errOut('usage: trenchscope agent rotate <name>'); return 2; }
+      const name = rest[1]; if (!name) { errOut('usage: solgent agent rotate <name>'); return 2; }
       try { const token = registry.rotate(name); out(`rotated "${name}". the previous token no longer works.`); out(''); out('  new one-time token (shown once):'); out(`  ${token}`); return 0; }
-      catch (e) { errOut(`trenchscope agent rotate: ${(e as Error).message}`); return 1; }
+      catch (e) { errOut(`solgent agent rotate: ${(e as Error).message}`); return 1; }
     }
     case 'remove': {
-      const name = rest[1]; if (!name) { errOut('usage: trenchscope agent remove <name>'); return 2; }
+      const name = rest[1]; if (!name) { errOut('usage: solgent agent remove <name>'); return 2; }
       out(registry.remove(name) ? `removed "${name}" (its token is now invalid).` : `no agent "${name}".`);
       return 0;
     }
     case 'tier': {
       const name = rest[1]; const tier = rest[2];
-      if (!name || !tier || !isTier(tier)) { errOut(`usage: trenchscope agent tier <name> ${TIERS.join('|')}`); return 2; }
+      if (!name || !tier || !isTier(tier)) { errOut(`usage: solgent agent tier <name> ${TIERS.join('|')}`); return 2; }
       try { registry.setTier(name, tier as Tier); out(`"${name}" is now tier ${tier}.`); return 0; }
-      catch (e) { errOut(`trenchscope agent tier: ${(e as Error).message}`); return 1; }
+      catch (e) { errOut(`solgent agent tier: ${(e as Error).message}`); return 1; }
     }
     case 'pause': case 'resume': {
-      const name = rest[1]; if (!name) { errOut(`usage: trenchscope agent ${cmd} <name>`); return 2; }
-      try { registry.setPaused(name, cmd === 'pause'); out(`"${name}" ${cmd === 'pause' ? 'paused' : 'resumed'} (persisted; a running trenchscope applies it on the agent's next connection).`); return 0; }
-      catch (e) { errOut(`trenchscope agent ${cmd}: ${(e as Error).message}`); return 1; }
+      const name = rest[1]; if (!name) { errOut(`usage: solgent agent ${cmd} <name>`); return 2; }
+      try { registry.setPaused(name, cmd === 'pause'); out(`"${name}" ${cmd === 'pause' ? 'paused' : 'resumed'} (persisted; a running solgent applies it on the agent's next connection).`); return 0; }
+      catch (e) { errOut(`solgent agent ${cmd}: ${(e as Error).message}`); return 1; }
     }
     case 'mandate': {
       const name = rest[1];
-      if (!name) { errOut('usage: trenchscope agent mandate <name> --tools a,b,c | --clear'); return 2; }
+      if (!name) { errOut('usage: solgent agent mandate <name> --tools a,b,c | --clear'); return 2; }
       try {
         if (has(rest, '--clear')) { registry.setScope(name, null); out(`cleared the mandate for "${name}" (it may now use its full tier surface).`); return 0; }
         const tools = flag(rest, '--tools');
-        if (!tools) { errOut('usage: trenchscope agent mandate <name> --tools a,b,c | --clear'); return 2; }
+        if (!tools) { errOut('usage: solgent agent mandate <name> --tools a,b,c | --clear'); return 2; }
         const list = tools.split(',').map((t) => t.trim()).filter(Boolean);
         registry.setScope(name, list);
         const rec = registry.get(name)!;
         out(`"${name}" is now mandated to: ${rec.scope!.join(', ')}.`);
         out('the agent can call only these tools (plus agent_whoami); a mandate only narrows the tier, never widens it.');
         return 0;
-      } catch (e) { errOut(`trenchscope agent mandate: ${(e as Error).message}`); return 1; }
+      } catch (e) { errOut(`solgent agent mandate: ${(e as Error).message}`); return 1; }
     }
     case 'audit': {
       const dbPath = flag(rest, '--db') || defaultDbPath(io.env);
@@ -125,15 +125,15 @@ export async function runAgent(rest: string[], io: Io): Promise<number> {
     case 'packs': {
       const { selfTest } = await import('@dexterm/mcp');
       const st = selfTest();
-      out('agent packs served over MCP (`trenchscope mcp`): skills as prompts, KB + cases + skills as resources.');
+      out('agent packs served over MCP (`solgent mcp`): skills as prompts, KB + cases + skills as resources.');
       out(`  skills   : ${(st.skills as string[]).join(', ')}`);
       out(`  kb       : ${st.kbEntries} entries`);
       // task-1377: the user's overlay (~/.dexterm/kb/entries, ~/.dexterm/skills) is merged into what MCP serves.
       const ov = st.overlay as { kb: { user: number; overridden: number; added: number }; skills: { user: number; overridden: number; added: number } } | undefined;
-      if (ov && (ov.kb.user || ov.skills.user)) out(`  yours    : kb +${ov.kb.user} (${ov.kb.overridden} override, ${ov.kb.added} new), skills +${ov.skills.user} (${ov.skills.overridden} override, ${ov.skills.added} new) — \`trenchscope kb|skill list\``);
+      if (ov && (ov.kb.user || ov.skills.user)) out(`  yours    : kb +${ov.kb.user} (${ov.kb.overridden} override, ${ov.kb.added} new), skills +${ov.skills.user} (${ov.skills.overridden} override, ${ov.skills.added} new) — \`solgent kb|skill list\``);
       out(`  cases    : ${st.cases}`);
       out(`  resources: ${st.resources}`);
-      out('connect your agent: `claude mcp add trenchscope -- trenchscope mcp`, then run a skill, e.g. /dexterm:trench-scan 8');
+      out('connect your agent: `claude mcp add solgent -- solgent mcp`, then run a skill, e.g. /dexterm:trench-scan 8');
       return 0;
     }
     case 'proposals': {
@@ -191,14 +191,14 @@ async function serve(rest: string[], io: Io, registry: AgentRegistry): Promise<n
   const bus = new AgentBus({ registry, audit, executor, proposals, feed, spectator: hub, port, env: io.env });
   const boundPort = await bus.start();
   feed.start(1500);
-  io.stdout.write(`trenchscope agent bus listening on ws://127.0.0.1:${boundPort} (${live ? 'live keyless reads' : 'fixtures'})\n`);
+  io.stdout.write(`solgent agent bus listening on ws://127.0.0.1:${boundPort} (${live ? 'live keyless reads' : 'fixtures'})\n`);
   io.stdout.write(`discovery: ${process.env.DEXTERM_HOME ?? '~/.dexterm'}/agent-bus.json · ${registry.list().length} registered agent(s)\n`);
   io.stdout.write('agents connect with their name + $DEXTERM_AGENT_TOKEN. Ctrl-C to stop.\n');
 
-  // --record FILE: save the session (redacted) for demos / bug reports; replay with `trenchscope spectate --replay`.
+  // --record FILE: save the session (redacted) for demos / bug reports; replay with `solgent spectate --replay`.
   let recorder: SpectatorRecorder | null = null;
   if (hub && wantRecord) {
-    try { recorder = new SpectatorRecorder({ path: wantRecord, note: 'trenchscope agent serve' }).attach(hub); io.stdout.write(`recording the session to ${wantRecord} (redacted).\n`); }
+    try { recorder = new SpectatorRecorder({ path: wantRecord, note: 'solgent agent serve' }).attach(hub); io.stdout.write(`recording the session to ${wantRecord} (redacted).\n`); }
     catch (e) { io.stderr.write(`could not record: ${(e as Error).message}\n`); }
   }
   // --spectate: start the read-only, loopback, token-gated spectator stream (SPECTATOR.md).
@@ -264,12 +264,12 @@ async function serve(rest: string[], io: Io, registry: AgentRegistry): Promise<n
 async function connect(rest: string[], io: Io): Promise<number> {
   const name = flag(rest, '--name');
   const token = io.env.DEXTERM_AGENT_TOKEN;
-  if (!name) { io.stderr.write('usage: trenchscope agent connect --name NAME [--port N]   (token via $DEXTERM_AGENT_TOKEN)\n'); return 2; }
-  if (!token) { io.stderr.write('set $DEXTERM_AGENT_TOKEN to the token from `trenchscope agent add` (never pass a token as a CLI flag).\n'); return 2; }
+  if (!name) { io.stderr.write('usage: solgent agent connect --name NAME [--port N]   (token via $DEXTERM_AGENT_TOKEN)\n'); return 2; }
+  if (!token) { io.stderr.write('set $DEXTERM_AGENT_TOKEN to the token from `solgent agent add` (never pass a token as a CLI flag).\n'); return 2; }
   const port = intFlag(rest, '--port');
   const url = flag(rest, '--url');
   try {
-    const agent = await connectAgent({ name, token, port, url, client: 'trenchscope agent connect', home: io.env.DEXTERM_HOME });
+    const agent = await connectAgent({ name, token, port, url, client: 'solgent agent connect', home: io.env.DEXTERM_HOME });
     io.stdout.write(`connected as "${agent.hello?.agent}" — tier ${agent.hello?.tier} (granted ${agent.hello?.grantedTier}).\n`);
     const tools = await agent.listTools();
     io.stdout.write(`tools (${tools.length}): ${tools.map((t) => t.name).join(', ')}\n`);
@@ -286,5 +286,5 @@ async function connect(rest: string[], io: Io): Promise<number> {
     }
     agent.close();
     return 0;
-  } catch (e) { io.stderr.write(`trenchscope agent connect: ${(e as Error).message}\n`); return 1; }
+  } catch (e) { io.stderr.write(`solgent agent connect: ${(e as Error).message}\n`); return 1; }
 }

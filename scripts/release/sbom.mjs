@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// CycloneDX SBOM for a trenchscope release (scripts/release/sbom.mjs). Zero dependencies, deterministic.
+// CycloneDX SBOM for a solgent release (scripts/release/sbom.mjs). Zero dependencies, deterministic.
 //
 //   node scripts/release/sbom.mjs --out <dir> [--version <v>] [--root <checkout>]
 //
@@ -8,7 +8,7 @@
 //   - the five workspace packages as first-party components;
 //   - the ONE vendored runtime library: TradingView Lightweight Charts (Apache-2.0), with the sha256 of the
 //     vendored file (packages/popup/vendor/lightweight-charts/VERSION gives the version);
-//   - every entry of package-lock.json: trenchscope has no third-party runtime dependencies, so these are all
+//   - every entry of package-lock.json: solgent has no third-party runtime dependencies, so these are all
 //     dev tooling and carry scope "excluded" (present in the lockfile, not shipped);
 //   - every crate in packages/popup/shell/wry/Cargo.lock with scope "optional": the native chart window is
 //     built on the user's machine by `cargo` only when they opt in; nothing compiled ships in the release.
@@ -63,7 +63,7 @@ if (existsSync(lwcDir)) {
   });
 }
 
-// lockfile entries (dev tooling only; trenchscope has no third-party runtime deps)
+// lockfile entries (dev tooling only; solgent has no third-party runtime deps)
 for (const [path, e] of Object.entries(lock.packages || {})) {
   if (!path.startsWith('node_modules/') || e.link) continue;
   const name = path.slice(path.lastIndexOf('node_modules/') + 'node_modules/'.length);
@@ -99,7 +99,7 @@ const bom = {
   bomFormat: 'CycloneDX', specVersion: '1.6', serialNumber: `urn:uuid:${uuidFrom(`${commit}:${version}`)}`, version: 1,
   metadata: {
     timestamp: execFileSync('git', ['-C', ROOT, 'show', '-s', '--format=%cI', commit], { encoding: 'utf8' }).trim(),
-    tools: { components: [{ type: 'application', name: 'trenchscope scripts/release/sbom.mjs', version: '1' }] },
+    tools: { components: [{ type: 'application', name: 'solgent scripts/release/sbom.mjs', version: '1' }] },
     component: {
       type: 'application', 'bom-ref': appRef, name: 'dexterm', version, description: cliPkg.description, purl: appRef,
       ...(repoUrl ? { externalReferences: [{ type: 'vcs', url: repoUrl }] } : {}),

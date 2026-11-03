@@ -1,4 +1,4 @@
-// trenchscope — live TOKEN screen (task-1298). Same layout as screens/token.ts (the fixture/parity renderer)
+// solgent — live TOKEN screen (task-1298). Same layout as screens/token.ts (the fixture/parity renderer)
 // over a TokenView: every number comes from a source named in the panel caption; nulls draw as `—`;
 // a panel whose source failed says so instead of showing anything. The analyst panel is a labelled
 // placeholder until the Claude lane wires `claude -p` (task-1293 skills are ready).
@@ -259,9 +259,9 @@ export function renderTokenLive(c: Canvas, state: AppState, v: TokenView): void 
     const hw = mainW - statsW;
     const hp = v.panels.holders;
     // task-1305 (M10): a keyless user on the public RPC gets throttled holders with a raw "rate limited
-    // (429)". Point them at the fix instead — a free Helius key, which `trenchscope doctor` walks through.
+    // (429)". Point them at the fix instead — a free Helius key, which `solgent doctor` walks through.
     const keyless = state.live?.rpc.provider === 'public';
-    const keyHint = 'needs a free Helius key — run `trenchscope doctor`';
+    const keyHint = 'needs a free Helius key — run `solgent doctor`';
     const holdersNeedsKey = hp.state === 'needs-key' || (keyless && hp.state === 'error');
     const hcap = hp.state === 'ok' || hp.fetchedAt !== null ? `${v.holdersSample ?? 'holders'} · via ${hp.via ?? '?'}${hp.stale || hp.state === 'error' ? ' · stale' : ''}` : holdersNeedsKey ? `holders: ${keyHint}` : hp.state === 'loading' ? 'holders: loading…' : `holders unavailable: ${hp.reason ?? 'rpc failed'}`;
     const hb = c.box(hx, y, hw, lower, { title: 'HOLDERS', caption: hcap, captionFg: hp.state === 'error' && hp.fetchedAt === null ? t.warn : undefined });

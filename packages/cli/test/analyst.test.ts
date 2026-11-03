@@ -1,4 +1,4 @@
-// trenchscope — offline tests for the analyst wiring (task-1302): the claude launch line, the
+// solgent — offline tests for the analyst wiring (task-1302): the claude launch line, the
 // screen_state context the MCP server receives, and the session's degrade/verdict parsing.
 // No network and no `claude` spawn.
 import { test } from 'node:test';

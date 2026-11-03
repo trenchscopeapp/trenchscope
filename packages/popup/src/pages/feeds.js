@@ -61,7 +61,7 @@
     vm = vm || {};
     items = Array.isArray(vm.items) ? vm.items : [];
     if (sel >= items.length) sel = Math.max(0, items.length - 1);
-    titleEl.textContent = `trenchscope · ${vm.title == null ? 'FEEDS' : String(vm.title)}`;
+    titleEl.textContent = `solgent · ${vm.title == null ? 'FEEDS' : String(vm.title)}`;
     if (rain) { rain.setActivity(Math.min(1, 0.3 + items.length * 0.03)); rain.setSources(items.slice(0, 4).map((it) => String(it.source || ''))); }
     DT.status(items.length ? items.length + ' items' : 'no feed', items.length ? 'up' : 'warn');
     render();

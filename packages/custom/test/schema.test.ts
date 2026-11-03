@@ -95,7 +95,7 @@ test('migration v1 → v3 moves the key OUT of the config, converts alerts into 
   assert.equal(m.config.rules?.[0].scope, 'mint:So11111111111111111111111111111111111111112');
   assert.deepEqual(m.config['x-unknown'], { custom: { a: 1 } });
   assert.ok(m.notes.some((n) => /moved 1 key/.test(n)));
-  assert.throws(() => migrate({ version: 99 }), /newer than this trenchscope/);
+  assert.throws(() => migrate({ version: 99 }), /newer than this solgent/);
 });
 
 test('workspace schema: popups are the host kinds only; unknown widgets and ../ paths are refused', () => {

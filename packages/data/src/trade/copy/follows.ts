@@ -1,7 +1,7 @@
 // task-1360 Tier 1 — the FOLLOW LIST: wallets the user chose to watch, kept in a local JSON file
 // (~/.dexterm/follows.json, mode 600). The label policy (research/wallet-intel design §4.3/§5) binds: a name is
 // user-typed only (`by: 'user'`), never inferred from X/Telegram, never shared or exported, deletable in one
-// command (`trenchscope follow purge`). Names pass the prompt firewall on the way in: an instruction-like label is
+// command (`solgent follow purge`). Names pass the prompt firewall on the way in: an instruction-like label is
 // refused, every other label is control-stripped and clipped, so a wallet name can never carry a prompt to the
 // analyst or an escape sequence to the terminal.
 

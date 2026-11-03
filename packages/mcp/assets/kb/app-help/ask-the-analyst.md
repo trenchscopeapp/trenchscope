@@ -38,6 +38,6 @@ sources:
 date: 2026-10-16
 ---
 
-The analyst is your own `claude` login (or your own `codex` login: `/engine codex`, see "Run the analyst on Codex"). ⏎ on a coin runs a full dossier; `a` runs a rug-check (or a trench-scan of the screener when nothing is selected). Type a follow-up and ⏎ to send. If `claude` is missing or logged out the panel shows the one-line fix and the rest of trenchscope keeps working. Start without AI using `--no-ai`.
+The analyst is your own `claude` login (or your own `codex` login: `/engine codex`, see "Run the analyst on Codex"). ⏎ on a coin runs a full dossier; `a` runs a rug-check (or a trench-scan of the screener when nothing is selected). Type a follow-up and ⏎ to send. If `claude` is missing or logged out the panel shows the one-line fix and the rest of solgent keeps working. Start without AI using `--no-ai`.
 
 Keys: `a`, `⏎` (screener).

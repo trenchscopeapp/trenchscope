@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://dexterm.xyz/schema/scan-results.schema.json",
-  "title": "trenchscope scan-results.json",
+  "title": "solgent scan-results.json",
   "description": "Contract between the release pipeline (card 1301) and the trust page (card 1300). The pipeline writes this file after every release and re-scan; the site build validates it and renders it. Nothing on the trust page may claim a scan that is not in this file. When `sample` is true every result is rendered with a SAMPLE banner.",
   "type": "object",
   "additionalProperties": false,

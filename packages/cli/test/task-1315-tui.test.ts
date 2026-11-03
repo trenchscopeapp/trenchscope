@@ -1,4 +1,4 @@
-// trenchscope — task-1315 (LARP detector) TUI: the token-screen open-in-browser keys (W/X/T/L) and the
+// solgent — task-1315 (LARP detector) TUI: the token-screen open-in-browser keys (W/X/T/L) and the
 // safety gate on openInBrowser. No browser is launched here: the positive flow only queues the URL on
 // state.pendingOpen (the loop opens it), and openInBrowser is exercised only on its rejection paths.
 import { test } from 'node:test';

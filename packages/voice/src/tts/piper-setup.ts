@@ -1,11 +1,11 @@
 // Managed Piper runtime for macOS (task-1416). The prebuilt macOS Piper tarball from rhasspy is BROKEN
-// (it needs a libespeak-ng dylib it does not bundle), so on macOS trenchscope builds its own private Python
+// (it needs a libespeak-ng dylib it does not bundle), so on macOS solgent builds its own private Python
 // runtime instead: a virtualenv at `~/.dexterm/piper/venv` with `pip install piper-tts`, plus the
 // checksum-verified en_GB-alan-medium voice model. After setup the voice runs fully OFFLINE, needs no
 // key, and is driven by `<venv>/bin/python -m piper` (see piper.ts resolvePiperRuntime).
 //
 // Everything that touches the system (running python/pip, the network) is INJECTED, so this module is
-// unit-testable with fakes and never spawns or downloads in tests. `trenchscope voice setup` wires the real
+// unit-testable with fakes and never spawns or downloads in tests. `solgent voice setup` wires the real
 // child_process + global fetch (see packages/cli/src/voice-cmd.ts).
 //
 // Hosts contacted, ONLY while the user runs setup (documented on the site trust page):
@@ -21,7 +21,7 @@ export const PIPER_PYPI_VERSION = '1.8.0';
 /** The minimum Python the managed runtime needs (piper-tts wheels + onnxruntime). */
 export const MIN_PYTHON = [3, 9] as const;
 
-/** Paths inside the managed runtime, derived from the trenchscope home. */
+/** Paths inside the managed runtime, derived from the solgent home. */
 export function piperRuntimePaths(home: string): { dir: string; venv: string; python: string; pip: string; record: string } {
   const dir = join(home, 'piper');
   const venv = join(dir, 'venv');
@@ -98,12 +98,12 @@ export function pythonVersionOk(v: number[] | null): boolean {
 /** The exact fix line shown when no suitable python3 is found (platform-specific). */
 export function pythonFixLine(platform: NodeJS.Platform = process.platform): string {
   if (platform === 'darwin') {
-    return 'Install Python 3.9+ : `brew install python@3.12` (Homebrew) or the Xcode Command Line Tools (`xcode-select --install`), then re-run `trenchscope voice setup`.';
+    return 'Install Python 3.9+ : `brew install python@3.12` (Homebrew) or the Xcode Command Line Tools (`xcode-select --install`), then re-run `solgent voice setup`.';
   }
   if (platform === 'win32') {
-    return 'Install Python 3.9+ from python.org (or `winget install Python.Python.3.12`), then re-run `trenchscope voice setup`.';
+    return 'Install Python 3.9+ from python.org (or `winget install Python.Python.3.12`), then re-run `solgent voice setup`.';
   }
-  return 'Install Python 3.9+ and venv: `sudo apt install python3 python3-venv` (Debian/Ubuntu), then re-run `trenchscope voice setup`.';
+  return 'Install Python 3.9+ and venv: `sudo apt install python3 python3-venv` (Debian/Ubuntu), then re-run `solgent voice setup`.';
 }
 
 /** The default python executables to probe, best-first. The CLI passes this (and may prepend DEXTERM_PYTHON). */
@@ -182,7 +182,7 @@ export async function setupPiperRuntime(deps: SetupDeps): Promise<SetupResult> {
     `  • create a private Python environment at ${paths.venv}`,
     `  • pip install piper-tts==${PIPER_PYPI_VERSION} (wheels only) from pypi.org / files.pythonhosted.org`,
     `  • download the ~61 MB voice model from huggingface.co (checksum-verified)`,
-    'It runs fully offline afterwards, needs no key, and `trenchscope voice uninstall` removes it. Proceed?',
+    'It runs fully offline afterwards, needs no key, and `solgent voice uninstall` removes it. Proceed?',
   ].join('\n');
   if (!(await deps.confirm(prompt))) {
     log('Cancelled — nothing installed.');
@@ -196,7 +196,7 @@ export async function setupPiperRuntime(deps: SetupDeps): Promise<SetupResult> {
     const venv = await deps.run(found.python, ['-m', 'venv', paths.venv]);
     if (venv.code !== 0 || !existsSync(paths.python)) {
       return { status: 'failed', python: found.python, pythonVersion: versionStr,
-        fix: `Creating the venv failed: ${(venv.stderr || venv.stdout).slice(-300).trim() || 'unknown error'}. On Debian/Ubuntu install \`python3-venv\` and re-run \`trenchscope voice setup\`.` };
+        fix: `Creating the venv failed: ${(venv.stderr || venv.stdout).slice(-300).trim() || 'unknown error'}. On Debian/Ubuntu install \`python3-venv\` and re-run \`solgent voice setup\`.` };
     }
   }
 
@@ -205,7 +205,7 @@ export async function setupPiperRuntime(deps: SetupDeps): Promise<SetupResult> {
   const pip = await deps.run(paths.python, ['-m', 'pip', 'install', '--disable-pip-version-check', '--only-binary', ':all:', `piper-tts==${PIPER_PYPI_VERSION}`]);
   if (pip.code !== 0) {
     return { status: 'failed', python: found.python, pythonVersion: versionStr,
-      fix: `pip install failed: ${(pip.stderr || pip.stdout).slice(-300).trim() || 'unknown error'}. Check your network and that a wheel exists for this Python, then re-run \`trenchscope voice setup\`.` };
+      fix: `pip install failed: ${(pip.stderr || pip.stdout).slice(-300).trim() || 'unknown error'}. Check your network and that a wheel exists for this Python, then re-run \`solgent voice setup\`.` };
   }
   const imp = await deps.run(paths.python, ['-c', 'import piper']);
   if (imp.code !== 0) {
@@ -220,7 +220,7 @@ export async function setupPiperRuntime(deps: SetupDeps): Promise<SetupResult> {
     dl = await download(piperVoice, { confirm: () => Promise.resolve(true), log, fetchImpl: deps.fetchImpl });
   } catch (e) {
     return { status: 'failed', python: found.python, pythonVersion: versionStr,
-      fix: `Voice model download failed: ${(e as Error).message}. Re-run \`trenchscope voice setup\` (it resumes) once your network is back.` };
+      fix: `Voice model download failed: ${(e as Error).message}. Re-run \`solgent voice setup\` (it resumes) once your network is back.` };
   }
 
   // 4. record
@@ -243,7 +243,7 @@ export interface UninstallResult { status: 'ok' | 'absent'; removed: string[] }
 
 /**
  * Remove the managed Piper runtime (the venv + its record). The downloaded voice model is LEFT in place
- * by default because it is shared with `trenchscope voice download piper-voice` and the Linux binary path;
+ * by default because it is shared with `solgent voice download piper-voice` and the Linux binary path;
  * pass `purgeModel` to delete it too.
  */
 export async function uninstallPiperRuntime(home: string, opts: { purgeModel?: boolean } = {}): Promise<UninstallResult> {

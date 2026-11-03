@@ -14,7 +14,7 @@ export interface VoiceInfo {
   locale: string;
 }
 
-/** How a voice was chosen, for the `trenchscope doctor` "why" line. */
+/** How a voice was chosen, for the `solgent doctor` "why" line. */
 export type VoiceSource = 'config' | 'default' | 'british' | 'english' | 'none';
 
 export interface VoiceResolution {
@@ -72,7 +72,7 @@ export function parseSayVoices(stdout: string): VoiceInfo[] {
 }
 
 /**
- * Deep British male voices, best-to-worst. Eddy (the maintainers' pick, 2026-10-15) is the trenchscope default; Daniel is the canonical deep British male that
+ * Deep British male voices, best-to-worst. Eddy (the maintainers' pick, 2026-10-15) is the solgent default; Daniel is the canonical deep British male that
  * ships with every macOS and is the next fallback. Oliver/Arthur are the newer en_GB male voices (present only if the
  * user downloaded them). Matched on normalised base name.
  */
@@ -171,7 +171,7 @@ export function resolveVoice(opts: { configured?: string | null; installed: Voic
       return {
         voice: v.name,
         source: 'default',
-        reason: isDefault ? `${v.name} — deep British male (trenchscope default)` : `${v.name} — British male voice`,
+        reason: isDefault ? `${v.name} — deep British male (solgent default)` : `${v.name} — British male voice`,
       };
     }
   }

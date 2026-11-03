@@ -1,9 +1,9 @@
-// trenchscope: `trenchscope bot`, a headless PAPER-trading bot over the live screener feed. Its purpose is to
-// measure whether trenchscope's signals make money, with zero risk, before anyone considers real auto-buys.
+// solgent: `solgent bot`, a headless PAPER-trading bot over the live screener feed. Its purpose is to
+// measure whether solgent's signals make money, with zero risk, before anyone considers real auto-buys.
 //
-//   trenchscope bot run   [--interval S] [--once | --ticks N] [--db PATH] [--verbose]
-//   trenchscope bot stats [--since 24h|7d|90m|all] [--json] [--db PATH]
-//   trenchscope bot config
+//   solgent bot run   [--interval S] [--once | --ticks N] [--db PATH] [--verbose]
+//   solgent bot stats [--since 24h|7d|90m|all] [--json] [--db PATH]
+//   solgent bot config
 //
 // PAPER ONLY, structurally: this file and everything it imports (packages/cli/src/bot/*, the screener feed,
 // '@dexterm/data/core') never import the signer, the live executor, the fast wallet, the Phantom bridge, the swap
@@ -44,13 +44,13 @@ export interface BotDeps {
 
 export const DEFAULT_BOT_INTERVAL_MS = 60_000;
 
-export const BOT_USAGE = `trenchscope bot: a headless PAPER-trading bot over the live screener feed.
+export const BOT_USAGE = `solgent bot: a headless PAPER-trading bot over the live screener feed.
 It books simulated fills priced from live Jupiter quotes (route fees, price impact and slippage included, plus a
 simulated network fee), never a mid price, so you can see whether the signals make money with zero risk.
 
-  trenchscope bot run   [--interval S] [--once | --ticks N] [--db PATH] [--verbose]
-  trenchscope bot stats [--since 24h|7d|90m|all] [--json] [--db PATH]
-  trenchscope bot config
+  solgent bot run   [--interval S] [--once | --ticks N] [--db PATH] [--verbose]
+  solgent bot stats [--since 24h|7d|90m|all] [--json] [--db PATH]
+  solgent bot config
 
 run     each tick (default every 60 s): refresh the feed, mark every open paper position with a real sell
         quote and exit on take-profit, stop-loss, the time stop, or when the coin turns AVOID / DEAD / gains a
@@ -62,7 +62,7 @@ stats   the scoreboard: trades, open positions, win rate, PnL (USD and %), best/
         exit reason, and the comparison with the baseline. Always printed with its sample size.
 config  the effective strategy (config.json \`bot\` section over the defaults), one line per knob.
 
-Alerts: exits (and, when bot.alerts.entries is on, entries) go through your \`trenchscope alerts\` channels.
+Alerts: exits (and, when bot.alerts.entries is on, entries) go through your \`solgent alerts\` channels.
 PAPER ONLY: no key, no wallet, no signer, nothing is ever sent. Not financial advice.`;
 
 interface RunArgs { intervalMs: number; ticks: number; db: string | null; verbose: boolean }
@@ -84,10 +84,10 @@ export function parseBotRun(argv: string[]): RunArgs | { error: string } {
 function loadBotConfig(io: BotIo): { cfg: BotConfig; alerts: ReturnType<typeof loadConfig>['config']['alerts']; home: string } | null {
   const home = dextermHome(io.env);
   const loaded = loadConfig(home);
-  for (const e of loaded.errors) io.stderr.write(`trenchscope bot: config: ${e}\n`);
+  for (const e of loaded.errors) io.stderr.write(`solgent bot: config: ${e}\n`);
   const cfg = resolveBotConfig(loaded.config.bot);
   const problems = botConfigProblems(cfg);
-  if (problems.length) { for (const p of problems) io.stderr.write(`trenchscope bot: config: ${p}\n`); return null; }
+  if (problems.length) { for (const p of problems) io.stderr.write(`solgent bot: config: ${p}\n`); return null; }
   return { cfg, alerts: loaded.config.alerts, home };
 }
 
@@ -98,7 +98,7 @@ export async function botCommand(argv: string[], io: BotIo, deps: BotDeps = {}):
   if (sub === 'run') return run(rest, io, deps);
   if (sub === 'stats') return stats(rest, io, deps);
   if (sub === 'config') return config(io);
-  io.stderr.write(`trenchscope bot: unknown subcommand "${sub}"\n\n${BOT_USAGE}\n`);
+  io.stderr.write(`solgent bot: unknown subcommand "${sub}"\n\n${BOT_USAGE}\n`);
   return 2;
 }
 
@@ -121,13 +121,13 @@ function fmtDetails(r: TickReport): string {
 
 async function run(argv: string[], io: BotIo, deps: BotDeps): Promise<number> {
   const parsed = parseBotRun(argv);
-  if ('error' in parsed) { io.stderr.write(`trenchscope bot: ${parsed.error}\n\n${BOT_USAGE}\n`); return 2; }
+  if ('error' in parsed) { io.stderr.write(`solgent bot: ${parsed.error}\n\n${BOT_USAGE}\n`); return 2; }
   const loaded = loadBotConfig(io);
   if (!loaded) return 2;
   const { cfg } = loaded;
   const now = deps.now ?? (() => Date.now());
   const dbPath = parsed.db ?? defaultDbPath(io.env);
-  if (!deps.source && dbPath === ':memory:') { io.stderr.write('trenchscope bot: an in-memory DB keeps no ledger; give a --db PATH\n'); return 2; }
+  if (!deps.source && dbPath === ':memory:') { io.stderr.write('solgent bot: an in-memory DB keeps no ledger; give a --db PATH\n'); return 2; }
 
   const stop = (() => {
     let aborted = false; let wake: () => void = () => {};
@@ -156,14 +156,14 @@ async function run(argv: string[], io: BotIo, deps: BotDeps): Promise<number> {
     larp: source.larp ? (m) => source.larp!(m) : undefined,
     notify: async (ev) => {
       const results = await notifier.deliver(botEventToDelivery(ev));
-      for (const r of results) if (!r.ok && !r.skipped) log(`trenchscope bot: alert via ${r.channel} failed: ${redactCreds(r.reason ?? '')}\n`);
+      for (const r of results) if (!r.ok && !r.skipped) log(`solgent bot: alert via ${r.channel} failed: ${redactCreds(r.reason ?? '')}\n`);
     },
   });
 
   const own = !deps.source;
-  const onSig = (): void => { io.stderr.write('\ntrenchscope bot: stopping…\n'); stop.abort(); };
+  const onSig = (): void => { io.stderr.write('\nsolgent bot: stopping…\n'); stop.abort(); };
   if (own) { process.on('SIGINT', onSig); process.on('SIGTERM', onSig); }
-  io.stderr.write(`trenchscope bot: PAPER only · db ${dbPath} · every ${Math.round(parsed.intervalMs / 1000)}s · $${cfg.sizeUsd}/entry · TP +${cfg.takeProfitPct}% SL -${cfg.stopLossPct}% time ${cfg.timeStopMin}m · max ${cfg.maxOpen} open, ${cfg.maxEntriesPerHour}/h · open now ${store.openPositions('strategy').length}/${store.openPositions('baseline').length} (strategy/baseline)\n`);
+  io.stderr.write(`solgent bot: PAPER only · db ${dbPath} · every ${Math.round(parsed.intervalMs / 1000)}s · $${cfg.sizeUsd}/entry · TP +${cfg.takeProfitPct}% SL -${cfg.stopLossPct}% time ${cfg.timeStopMin}m · max ${cfg.maxOpen} open, ${cfg.maxEntriesPerHour}/h · open now ${store.openPositions('strategy').length}/${store.openPositions('baseline').length} (strategy/baseline)\n`);
   store.journal({ t: now(), book: 'bot', kind: 'start', reason: 'bot run started', data: { config: cfg, intervalMs: parsed.intervalMs, ticks: Number.isFinite(parsed.ticks) ? parsed.ticks : null, pid: process.pid, paper: true } });
 
   let ticks = 0;
@@ -180,7 +180,7 @@ async function run(argv: string[], io: BotIo, deps: BotDeps): Promise<number> {
       } catch (e) {
         failed++;
         const msg = redactSecrets(e instanceof Error ? e.message : String(e));
-        io.stderr.write(`trenchscope bot: tick ${ticks} failed: ${msg}\n`);
+        io.stderr.write(`solgent bot: tick ${ticks} failed: ${msg}\n`);
         try { store.journal({ t: now(), book: 'bot', kind: 'error', reason: `tick failed: ${msg}` }); } catch { /* db gone */ }
       }
     }
@@ -190,7 +190,7 @@ async function run(argv: string[], io: BotIo, deps: BotDeps): Promise<number> {
     source.close();
     store.close();
   }
-  if (parsed.ticks !== Infinity || parsed.verbose) io.stderr.write(`trenchscope bot: ${ticks} tick(s)${failed ? `, ${failed} failed` : ''}${source.requests ? `, ${source.requests()} request(s)` : ''} · ${STATS_LABEL}\n`);
+  if (parsed.ticks !== Infinity || parsed.verbose) io.stderr.write(`solgent bot: ${ticks} tick(s)${failed ? `, ${failed} failed` : ''}${source.requests ? `, ${source.requests()} request(s)` : ''} · ${STATS_LABEL}\n`);
   return failed && failed === ticks ? 1 : 0;
 }
 
@@ -200,12 +200,12 @@ async function stats(argv: string[], io: BotIo, deps: BotDeps): Promise<number> 
     const t = argv[i];
     if (t === '--json') json = true;
     else if (t === '--since') { sinceArg = argv[++i] ?? ''; }
-    else if (t === '--db') { db = argv[++i] ?? null; if (!db) { io.stderr.write('trenchscope bot: --db needs a PATH\n'); return 2; } }
-    else { io.stderr.write(`trenchscope bot stats: unknown option "${t}"\n`); return 2; }
+    else if (t === '--db') { db = argv[++i] ?? null; if (!db) { io.stderr.write('solgent bot: --db needs a PATH\n'); return 2; } }
+    else { io.stderr.write(`solgent bot stats: unknown option "${t}"\n`); return 2; }
   }
   const now = (deps.now ?? (() => Date.now()))();
   const since = parseSince(sinceArg, now);
-  if (since !== null && typeof since === 'object') { io.stderr.write(`trenchscope bot: ${since.error}\n`); return 2; }
+  if (since !== null && typeof since === 'object') { io.stderr.write(`solgent bot: ${since.error}\n`); return 2; }
   const store = new BotStore(db ?? defaultDbPath(io.env));
   try {
     const s = computeStats(store.positions(), { since, now });
@@ -218,7 +218,7 @@ function config(io: BotIo): number {
   const loaded = loadBotConfig(io);
   if (!loaded) return 2;
   const get = (c: BotConfig, path: string): unknown => path.split('.').reduce<unknown>((o, k) => (o as Record<string, unknown>)[k], c);
-  const lines = ['trenchscope bot: effective strategy (config.json `bot` section over the defaults; PAPER only)'];
+  const lines = ['solgent bot: effective strategy (config.json `bot` section over the defaults; PAPER only)'];
   for (const [path, doc] of BOT_KNOBS) {
     const v = get(loaded.cfg, path);
     const d = get(DEFAULT_BOT_CONFIG, path);

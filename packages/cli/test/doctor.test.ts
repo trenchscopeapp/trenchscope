@@ -1,4 +1,4 @@
-// `trenchscope doctor` (task-1305): every check must be deterministic and never touch the real network,
+// `solgent doctor` (task-1305): every check must be deterministic and never touch the real network,
 // filesystem or the claude binary — runDoctor takes all of that through injected DoctorDeps, so these
 // tests drive each branch by hand. We assert the status AND that every non-pass line carries a fix,
 // since the whole point of the doctor is "tell me exactly what to run".
@@ -152,7 +152,7 @@ test('an unwritable data directory fails with a chmod / :memory: fix', async () 
 test('renderDoctor prints a glyph + fix for every non-pass, and a summary', async () => {
   const result = await runDoctor(healthyDeps({ nodeVersion: '20.0.0', claude: async () => 'missing' }));
   const out = renderDoctor(result, { color: false });
-  assert.match(out, /trenchscope doctor/);
+  assert.match(out, /solgent doctor/);
   assert.match(out, /✗/); // the failing Node line
   assert.match(out, /!/); // the claude warning
   assert.match(out, /→ /); // a fix line

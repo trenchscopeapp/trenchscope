@@ -1,4 +1,4 @@
-// trenchscope paper bot: the strategy config. `config.bot` in ~/.dexterm/config.json (validated by the
+// solgent paper bot: the strategy config. `config.bot` in ~/.dexterm/config.json (validated by the
 // @dexterm/custom schema like every other section) is merged over these conservative defaults. PAPER ONLY:
 // nothing here can arm, sign or size a real order; the bot books simulated fills from live quotes.
 import type { BotSettings } from '@dexterm/custom';

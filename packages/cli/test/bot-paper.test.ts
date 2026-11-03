@@ -1,4 +1,4 @@
-// trenchscope paper bot: offline tests. A scripted market (fake keyless quotes with a known price per coin) drives
+// solgent paper bot: offline tests. A scripted market (fake keyless quotes with a known price per coin) drives
 // the real engine, ledger and journal on node:sqlite. No network, no key, no signer.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -288,7 +288,7 @@ test('caps: max entries per rolling hour, and the re-entry cooldown', async () =
 });
 
 test('idempotent restarts: a new process on the same db never duplicates a position', async () => {
-  const path = join(mkdtempSync(join(tmpdir(), 'trenchscope-bot-')), 'bot.db');
+  const path = join(mkdtempSync(join(tmpdir(), 'solgent-bot-')), 'bot.db');
   const a = rig({}, path);
   await a.engine.tick([row(1), row(2)]);
   a.store.close();
@@ -440,7 +440,7 @@ function fakeIo(env: NodeJS.ProcessEnv) {
 }
 
 test('cli: bot run (scripted source) then bot stats / --json / config', async () => {
-  const home = mkdtempSync(join(tmpdir(), 'trenchscope-bot-home-'));
+  const home = mkdtempSync(join(tmpdir(), 'solgent-bot-home-'));
   saveConfig(home, { ...defaultConfig(), bot: { sizeUsd: 30 } });
   const db = join(home, 'bot.db');
   const market = new FakeMarket();
@@ -492,7 +492,7 @@ test('cli: bot run (scripted source) then bot stats / --json / config', async ()
 test('doctor: a Paper bot line from the ledger (read-only; never a warning)', async () => {
   const { runDoctor } = await import('../src/doctor.ts');
   const { readBotSummary } = await import('../src/bot/store.ts');
-  const dir = mkdtempSync(join(tmpdir(), 'trenchscope-bot-doctor-'));
+  const dir = mkdtempSync(join(tmpdir(), 'solgent-bot-doctor-'));
   const path = join(dir, 'app.db');
   assert.equal(readBotSummary(path), null, 'no db yet');
   const k = rig({}, path);

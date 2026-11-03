@@ -1,5 +1,5 @@
 // task-1401: building the skill eval set from a recorder DB (point-in-time link evidence only, no URLs/names
-// written, a fixed time split) and the `trenchscope backtest --subject skills` command. Offline, temp DBs only.
+// written, a fixed time split) and the `solgent backtest --subject skills` command. Offline, temp DBs only.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DatabaseSync } from 'node:sqlite';
@@ -47,7 +47,7 @@ test('buildSkillEvalSet: point-in-time link records only, late records excluded 
   assert.doesNotMatch(json, /https?:|example|Some Name|"SYM"/, 'no URL, name or symbol leaves the DB');
 });
 
-test('trenchscope backtest --build-eval then --subject skills [--tune] [--json]', () => {
+test('solgent backtest --build-eval then --subject skills [--tune] [--json]', () => {
   const dir = mkdtempSync(join(tmpdir(), 'dexterm-1401-'));
   try {
     const path = join(dir, 'h.db');

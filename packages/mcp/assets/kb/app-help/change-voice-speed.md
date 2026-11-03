@@ -26,6 +26,6 @@ sources:
 date: 2026-10-16
 ---
 
-Voice speed is `voice.rate` in `~/.dexterm/config.json` (words per minute, 80–400). Edit it there and restart. Voice settings are yours alone: the analyst/agent CANNOT change them (the voice path is denied to models) — only you set them. `trenchscope voice status` shows the current voice engines.
+Voice speed is `voice.rate` in `~/.dexterm/config.json` (words per minute, 80–400). Edit it there and restart. Voice settings are yours alone: the analyst/agent CANNOT change them (the voice path is denied to models) — only you set them. `solgent voice status` shows the current voice engines.
 
-CLI: `trenchscope voice`.
+CLI: `solgent voice`.

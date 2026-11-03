@@ -56,7 +56,7 @@ export const GOLDEN: Array<[string, string]> = [
   ['ask the analyst a question', 'ask-the-analyst'],
   // agents / mcp / state
   ['connect my own agent', 'connect-an-agent'],
-  ['add trenchscope to claude code with mcp', 'connect-an-agent'],
+  ['add solgent to claude code with mcp', 'connect-an-agent'],
   ['see what the user currently sees', 'what-dexterm-shows-agents'],
   // keys / config / data
   ['configure a helius key for holders', 'configure-rpc-key'],
@@ -67,7 +67,7 @@ export const GOLDEN: Array<[string, string]> = [
   ['let an agent paper trade for me', 'agent-paper-trade'],
   ['how do I let an agent confirm paper trades within my mandate', 'agent-paper-trade'],
   ['diagnose problems with doctor', 'run-doctor'],
-  ['update trenchscope to the latest version', 'update-dexterm'],
+  ['update solgent to the latest version', 'update-dexterm'],
   ['edit an analyst skill', 'edit-kb-or-skill'],
   ['backtest the rug model', 'backtest'],
   ['turn off coin images', 'coin-images'],

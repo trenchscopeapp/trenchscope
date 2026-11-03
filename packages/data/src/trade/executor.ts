@@ -1,4 +1,4 @@
-// trenchscope T1 — the live (non-custodial) trade executor (SPEC §6.1, §6.2, §6.5). Orchestrates the safe
+// solgent T1 — the live (non-custodial) trade executor (SPEC §6.1, §6.2, §6.5). Orchestrates the safe
 // pipeline and enforces the invariants the UI/model/voice cannot bypass:
 //
 //   quote -> bind quote to order -> build unsigned tx -> DECODE + §6.2 policy -> simulate with balance
@@ -13,7 +13,7 @@
 // the plan or the SOL cap, a token account of the wallet that the plan does not spend loses tokens in
 // the simulation (task-1337, token-delta.ts), price impact / slippage exceed their ceilings, the plan
 // is unknown/expired/mutated, the signed bytes differ, or any cap (network / per-trade USD / daily USD)
-// is exceeded, or the panic switch is engaged. trenchscope never holds a key; the browser approval IS the
+// is exceeded, or the panic switch is engaged. solgent never holds a key; the browser approval IS the
 // physical confirmation. The AI has no path here — the executor is constructed only inside the
 // interactive context and called only from a keypress handler.
 
@@ -204,7 +204,7 @@ export class LiveExecutor {
    */
   async buildPlan(args: { order: PaperOrder; userPublicKey: string; network?: TradeNetwork; signal?: AbortSignal }): Promise<BuiltPlan> {
     const panic = this.killSwitch.engaged();
-    if (panic) throw new Error(`live trading is PANICKED (${panic.reason}); run \`trenchscope wallet resume\` to re-enable`);
+    if (panic) throw new Error(`live trading is PANICKED (${panic.reason}); run \`solgent wallet resume\` to re-enable`);
     const order = args.order;
     const user = args.userPublicKey;
     if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(user)) throw new Error('buildPlan needs a base58 wallet public key');
@@ -313,7 +313,7 @@ export class LiveExecutor {
    */
   async buildProbe(args: { userPublicKey: string; symbol?: string }): Promise<BuiltPlan> {
     const panic = this.killSwitch.engaged();
-    if (panic) throw new Error(`live trading is PANICKED (${panic.reason}); run \`trenchscope wallet resume\` to re-enable`);
+    if (panic) throw new Error(`live trading is PANICKED (${panic.reason}); run \`solgent wallet resume\` to re-enable`);
     const user = args.userPublicKey;
     if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(user)) throw new Error('buildProbe needs a base58 wallet public key');
     if (!this.d.probe) throw new Error('no probe builder configured');
@@ -378,9 +378,9 @@ export class LiveExecutor {
    */
   async buildFill(args: { lamports: bigint; mint: string; symbol: string; decimals: number; side: PaperOrder['side']; ref: string }): Promise<BuiltPlan> {
     const panic = this.killSwitch.engaged();
-    if (panic) throw new Error(`live trading is PANICKED (${panic.reason}); run \`trenchscope wallet resume\` to re-enable`);
+    if (panic) throw new Error(`live trading is PANICKED (${panic.reason}); run \`solgent wallet resume\` to re-enable`);
     const fast = this.d.fastSigner;
-    if (!fast) throw new Error('no fast wallet: create one with `trenchscope wallet fast create` (devnet)');
+    if (!fast) throw new Error('no fast wallet: create one with `solgent wallet fast create` (devnet)');
     if (!this.d.probe) throw new Error('no probe builder configured');
     if (rpcNetworkOf(this.d.rpc) !== 'devnet') throw new Error('devnet fills run only against a devnet RPC endpoint');
     if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(args.mint)) throw new Error('buildFill needs a base58 mint');
@@ -390,7 +390,7 @@ export class LiveExecutor {
     const now = this.clock.now();
     const overCap = args.lamports > FAST_MAX_SOL_PER_FILL_LAMPORTS;
     // An over-ceiling leg is never built as a signable transaction: the plan carries the refusal and no bytes.
-    const built = overCap ? null : await this.d.probe.build(user, { lamports: args.lamports, memo: `trenchscope devnet fill ${ref}` });
+    const built = overCap ? null : await this.d.probe.build(user, { lamports: args.lamports, memo: `solgent devnet fill ${ref}` });
     const decoded = built ? decodeTransaction(Buffer.from(built.txBase64, 'base64')) : null;
     const txDigest = decoded ? digest(decoded.message) : 'no-tx';
     let txPolicy: TxPolicyVerdict = overCap

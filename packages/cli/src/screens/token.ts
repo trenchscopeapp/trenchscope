@@ -1,4 +1,4 @@
-// trenchscope — Token detail screen: glowing candles + on-chain stats + holders/tape rain + decrypting analyst.
+// solgent — Token detail screen: glowing candles + on-chain stats + holders/tape rain + decrypting analyst.
 // Cyberspace styling (task-1297): pump/dump band on the price line, rain zones in the title strip and
 // the blank panel areas, ▲/▼ everywhere a direction is shown, the analyst's verdict and tool lines in
 // coral with the Claude-Code spinner and decrypt stream (VISUAL-V2 §3).

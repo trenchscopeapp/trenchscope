@@ -142,7 +142,7 @@ test('a skill naming a money tool is refused by check and skipped by the loader 
   assert.ok(checkSkill(skillFile('sk', 'Use mcp__dexterm__open_ticket now.'), 'sk', READ_ONLY_TOOLS).errors.some((e) => /money tool/.test(e)));
   assert.ok(checkSkill(skillFile('sk', 'Run /wallet panic.'), 'sk', READ_ONLY_TOOLS).errors.some((e) => /\/wallet/.test(e)));
   assert.ok(checkSkill(skillFile('sk', 'body', ['get_dossier'], 'allowed-tools: Bash\n'), 'sk', READ_ONLY_TOOLS).errors.some((e) => /allowed-tools.*refused/.test(e)));
-  assert.ok(checkSkill(skillFile('sk', 'body', ['show_in_screener']), 'sk', READ_ONLY_TOOLS).errors.some((e) => /not a trenchscope read tool/.test(e)), 'tools: names read tools only');
+  assert.ok(checkSkill(skillFile('sk', 'body', ['show_in_screener']), 'sk', READ_ONLY_TOOLS).errors.some((e) => /not a solgent read tool/.test(e)), 'tools: names read tools only');
   // read tools whose names contain a money-looking word are fine (get_trades), and so is prose about buys/sells
   assert.deepEqual(checkSkill(skillFile('sk', 'Call `get_trades`; no buy/sell advice; flag sells_suppressed.', ['get_trades']), 'sk', READ_ONLY_TOOLS).errors, []);
   assert.deepEqual(moneyToolMentions('get_trades get_dossier rug_probability size_hint', READ_ONLY_TOOLS), []);
@@ -187,7 +187,7 @@ test('user skills: override + add as MCP prompts/resources, the body firewalled 
     assert.ok(!('error' in p));
     if ('error' in p) return;
     const text = (p.messages[0].content as { text: string }).text;
-    assert.match(text, /^This trenchscope skill \(trench-scan\) was edited by the user/);
+    assert.match(text, /^This solgent skill \(trench-scan\) was edited by the user/);
     assert.match(text, /<untrusted source="skill:user:trench-scan" kind="skill">/);
     assert.ok(text.includes('BONK'), 'arguments substituted before the firewall');
     assert.equal((text.match(/<\/untrusted>/g) ?? []).length, 1, 'no breakout from the skill block');
@@ -232,13 +232,13 @@ function rpc(child: ReturnType<typeof spawn>, id: number, method: string, params
   });
 }
 
-test('stdio MCP reports the Trenchscope identity and flags failed tool calls', async () => {
+test('stdio MCP reports the Solgent identity and flags failed tool calls', async () => {
   await withHome(async (home) => {
     const trace = path.join(home, 'trace.jsonl');
     const child = spawn(process.execPath, [BIN], { env: { ...process.env, HOME: home, DEXTERM_HOME: home, DEXTERM_DB_PATH: ':memory:', DEXTERM_TRACE: trace }, stdio: ['pipe', 'pipe', 'pipe'] });
     try {
       const init = await rpc(child, 1, 'initialize', {});
-      assert.equal((init.result as { serverInfo: { name: string } }).serverInfo.name, 'trenchscope');
+      assert.equal((init.result as { serverInfo: { name: string } }).serverInfo.name, 'solgent');
       const cases = [
         { name: 'kb_lookup', arguments: { id: 'glossary' }, isError: false },
         { name: 'fetch_page', arguments: { url: 'file:///etc/passwd' }, isError: true },

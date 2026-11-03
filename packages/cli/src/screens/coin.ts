@@ -1,4 +1,4 @@
-// trenchscope — coin images on the screens (task-1326): the thin glue between a screen's cell box and the
+// solgent — coin images on the screens (task-1326): the thin glue between a screen's cell box and the
 // ImageService + the TUI's coinImage(). Everything here is synchronous: the service answers from memory
 // (and queues what it does not have), the TUI draws pixels-slot / block art / placeholder accordingly.
 import { coinImage, type Canvas, type Hex, type BlockMode } from '@dexterm/tui';

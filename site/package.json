@@ -1,0 +1,21 @@
+{
+  "name": "solgent-site",
+  "private": true,
+  "type": "module",
+  "description": "solgent static site and its read-only contract address status function.",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "build": "node server/build-runtime.mjs && node server/build-public.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@nullxnothing/solana-data-system": "file:server/vendor/nullxnothing-solana-data-system-0.12.0.tgz",
+    "@nullxnothing/solana-launch-kit": "file:server/vendor/nullxnothing-solana-launch-kit-0.13.0.tgz",
+    "@solana/web3.js": "1.99.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

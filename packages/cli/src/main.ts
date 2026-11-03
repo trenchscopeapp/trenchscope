@@ -1,13 +1,13 @@
-// trenchscope CLI entry.
+// solgent CLI entry.
 //
-//   trenchscope                                         interactive, live keyless data (needs a TTY)
-//   trenchscope --fixtures                              interactive demo on seeded fixture data
-//   trenchscope --screen screener                       one-shot live frame to stdout
-//   trenchscope --screen screener --fixtures            one-shot demo frame
-//   trenchscope --screen screener --replay FILE         one-shot frame from a recording (no network)
-//   trenchscope --screen screener --record FILE         live frame, and save the responses for --replay
-//   trenchscope --screen token --mint MINT              one-shot live token detail (Helius holders when the key is configured)
-//   trenchscope --screen newpairs --listen 30           one-shot: listen to PumpPortal for 30 s, then render
+//   solgent                                         interactive, live keyless data (needs a TTY)
+//   solgent --fixtures                              interactive demo on seeded fixture data
+//   solgent --screen screener                       one-shot live frame to stdout
+//   solgent --screen screener --fixtures            one-shot demo frame
+//   solgent --screen screener --replay FILE         one-shot frame from a recording (no network)
+//   solgent --screen screener --record FILE         live frame, and save the responses for --replay
+//   solgent --screen token --mint MINT              one-shot live token detail (Helius holders when the key is configured)
+//   solgent --screen newpairs --listen 30           one-shot: listen to PumpPortal for 30 s, then render
 //   options: --filter QUERY --sort KEY[:asc|desc] --preset NAME --max-requests N --max-credits N --db PATH
 //            --mint MINT --interval 1m|5m|15m|1h|4h|1d --listen SECONDS
 //            --width N --height N --theme cyberspace|midnight|ember|paper --selected N --seed N --no-ai
@@ -128,7 +128,7 @@ export function appStateBlock(state: AppState): Record<string, unknown> | null {
 
 /**
  * task-1443: the reduced screen snapshot a terminal following an EXTERNAL agent (`--spectate-mcp`) publishes for
- * that agent's `trenchscope mcp` server: what is on screen plus a VIEW-ONLY nav allow-list. Never the watchlist,
+ * that agent's `solgent mcp` server: what is on screen plus a VIEW-ONLY nav allow-list. Never the watchlist,
  * tickets, positions or app settings, and only the four follow nav action types (no watchlist add, no ticket).
  */
 export function followSnapshot(state: AppState): Record<string, unknown> {
@@ -276,7 +276,7 @@ export interface CliArgs {
   tz: string | null;
   // ---- effects (task-1297)
   calm: boolean;
-  /** trenchscope: --simple / --full pick the screener view; null = simple in the interactive app, full for one-shots. */
+  /** solgent: --simple / --full pick the screener view; null = simple in the interactive app, full for one-shots. */
   simple: boolean | null;
   intensity: Intensity | null;
   fps: number | null;
@@ -321,7 +321,7 @@ export const LIVE_REFRESH_MS = 10_000;
 /**
  * task-1355: the USD size of an order plan drafted BY VOICE. Voice never sets a size (SPEC §5.7, task-1339:
  * no spoken size reaches a ticket), so a spoken plan is always proposed at this fixed paper size and the
- * read-back says so; a different size is a new proposal from `trenchscope plan propose --size`. Equal to the
+ * read-back says so; a different size is a new proposal from `solgent plan propose --size`. Equal to the
  * signer's default per-trade cap, so a voice draft can never exceed the smallest cap anyone armed.
  */
 export const VOICE_PLAN_SIZE_USD = 5;
@@ -382,34 +382,34 @@ export function shouldDrawFrame(g: FrameGate): boolean {
   return g.frame % g.idleEvery === 0;
 }
 
-export const HELP = `trenchscope ${VERSION} (live: screener, token, new pairs, watchlist · analyst = your local claude CLI · mono look)
+export const HELP = `solgent ${VERSION} (live: screener, token, new pairs, watchlist · analyst = your local claude CLI · mono look)
 
-  trenchscope                                     interactive, live data (needs a TTY)
-  trenchscope doctor                              check this machine is ready (Node, colour, claude, network, Helius key)
-  trenchscope voice [status|download <model>]     voice engines on this machine; download whisper/piper models (asks first, checksum-verified)
-  trenchscope update [--off|--on]                 check npm + GitHub for a newer version and print the upgrade command;
+  solgent                                     interactive, live data (needs a TTY)
+  solgent doctor                              check this machine is ready (Node, colour, claude, network, Helius key)
+  solgent voice [status|download <model>]     voice engines on this machine; download whisper/piper models (asks first, checksum-verified)
+  solgent update [--off|--on]                 check npm + GitHub for a newer version and print the upgrade command;
                                               --off/--on toggles the once-a-day startup notice (no telemetry)
-  trenchscope recorder stats|label|prune|export   the history recorder's tables (no network; 'trenchscope recorder help')
-  trenchscope kb list|show|new|edit|check|reset|path     your knowledge-base entries (~/.dexterm/kb/entries) over the bundled 17
-  trenchscope skill list|show|new|edit|check|reset|path  your analyst skills (~/.dexterm/skills) over the bundled ones (read tools only)
-  trenchscope narrative [--window 1h|24h] [--summary]  the narrative board over recorded history (no network, no model)
-  trenchscope backtest [--subject heuristic|pack_verdicts] [--horizon SEC]  honest rug-model metrics over recorded outcomes (no network, no model)
-  trenchscope wallet link|unlink|status|panic|resume  link a Phantom wallet via a local bridge (pubkey only); panic disables live trading, resume needs a TTY keypress
-  trenchscope plan propose|list|arm|cancel|journal     conditional order plans (entry/ladder/take-profit/moon bag/stop); arming needs a physical keypress
-  trenchscope mandate draft|list|arm|revoke            standing capped mandates (fast wallet); arming needs a physical keypress — voice/agents can never arm
-  trenchscope follow add|remove|list|stats|trades|mirror|purge  copy trading tier 1: follow a wallet (your list, local labels), its decoded swaps + FIFO PnL + win rate/early-entry; 'mirror' previews a one-key MIRROR TICKET from the wallet's latest buy (inert; arm in the app)
-  trenchscope mcp [install <client>|doctor]            read-only MCP server for your own agent; 'install' writes the config for claude-code|claude-desktop|cursor|codex|generic (asks first, idempotent, backs up); 'doctor' verifies the connection
-  trenchscope alerts status|enable|disable|set-telegram|set-discord|test  where rule alerts are delivered (desktop / your Telegram / Discord; creds stay local, never logged)
-  trenchscope watch [--interval S] [--once] [--replay FILE]  run your rules headless and push alerts when the terminal is closed (no signer, proposals only)
-  trenchscope record run|install|uninstall|status  keep the history recorder fed with no TUI open, as a user-level launchd agent (no network beyond the data layer; 'trenchscope record help')
-  trenchscope bot run|stats|config                 headless PAPER-trading bot over the live feed: simulated fills from live quotes, a journal, and a scoreboard vs a no-safety baseline (never signs or sends; 'trenchscope bot help')
-  trenchscope larp-detected --out DIR [--db PATH]  build timestamped high-risk follow-up drafts/cards from recorder history; never posts
-  trenchscope --fixtures                          interactive demo on seeded fixtures
-  trenchscope --screen <name>                     one-shot frame to stdout (live)
-  trenchscope --screen <name> --fixtures          one-shot frame from fixtures
-  trenchscope --screen <name> --replay FILE       one-shot frame from a recording (no network)
-  trenchscope --screen token --mint MINT          one-shot live token detail
-  trenchscope --screen newpairs --listen 30       listen to PumpPortal for 30 s, then render
+  solgent recorder stats|label|prune|export   the history recorder's tables (no network; 'solgent recorder help')
+  solgent kb list|show|new|edit|check|reset|path     your knowledge-base entries (~/.dexterm/kb/entries) over the bundled 17
+  solgent skill list|show|new|edit|check|reset|path  your analyst skills (~/.dexterm/skills) over the bundled ones (read tools only)
+  solgent narrative [--window 1h|24h] [--summary]  the narrative board over recorded history (no network, no model)
+  solgent backtest [--subject heuristic|pack_verdicts] [--horizon SEC]  honest rug-model metrics over recorded outcomes (no network, no model)
+  solgent wallet link|unlink|status|panic|resume  link a Phantom wallet via a local bridge (pubkey only); panic disables live trading, resume needs a TTY keypress
+  solgent plan propose|list|arm|cancel|journal     conditional order plans (entry/ladder/take-profit/moon bag/stop); arming needs a physical keypress
+  solgent mandate draft|list|arm|revoke            standing capped mandates (fast wallet); arming needs a physical keypress — voice/agents can never arm
+  solgent follow add|remove|list|stats|trades|mirror|purge  copy trading tier 1: follow a wallet (your list, local labels), its decoded swaps + FIFO PnL + win rate/early-entry; 'mirror' previews a one-key MIRROR TICKET from the wallet's latest buy (inert; arm in the app)
+  solgent mcp [install <client>|doctor]            read-only MCP server for your own agent; 'install' writes the config for claude-code|claude-desktop|cursor|codex|generic (asks first, idempotent, backs up); 'doctor' verifies the connection
+  solgent alerts status|enable|disable|set-telegram|set-discord|test  where rule alerts are delivered (desktop / your Telegram / Discord; creds stay local, never logged)
+  solgent watch [--interval S] [--once] [--replay FILE]  run your rules headless and push alerts when the terminal is closed (no signer, proposals only)
+  solgent record run|install|uninstall|status  keep the history recorder fed with no TUI open, as a user-level launchd agent (no network beyond the data layer; 'solgent record help')
+  solgent bot run|stats|config                 headless PAPER-trading bot over the live feed: simulated fills from live quotes, a journal, and a scoreboard vs a no-safety baseline (never signs or sends; 'solgent bot help')
+  solgent larp-detected --out DIR [--db PATH]  build timestamped high-risk follow-up drafts/cards from recorder history; never posts
+  solgent --fixtures                          interactive demo on seeded fixtures
+  solgent --screen <name>                     one-shot frame to stdout (live)
+  solgent --screen <name> --fixtures          one-shot frame from fixtures
+  solgent --screen <name> --replay FILE       one-shot frame from a recording (no network)
+  solgent --screen token --mint MINT          one-shot live token detail
+  solgent --screen newpairs --listen 30       listen to PumpPortal for 30 s, then render
   screens: ${SCREEN_NAMES.join(' | ')}
 
   --filter QUERY            screener filter, e.g. "vol24 > 250K liq > 50K age < 30d launchpad:pump"
@@ -458,14 +458,14 @@ export const HELP = `trenchscope ${VERSION} (live: screener, token, new pairs, w
                             in the app ctrl+w then w (list) · n/N (next/prev) · s (save as) · m (morning HUD) · o (popups) · d · 1-9
   --price-mode MODE         price | mcap: show USD price or MARKET CAP (price × supply) on the tables, token screen and both
                             charts for this run (default: config.json display.priceMode; \$ in the app toggles and saves it)
-  trenchscope workspace list|show|remove|init         the workspace files (no network)
-  trenchscope theme list|show|init|check              user themes in ~/.dexterm/themes (extends a built-in; contrast + hue guarded)
-  trenchscope keymap [screen]                         the effective keys (defaults + config.keymap overrides, marked ·)
-  trenchscope display [price|mcap]                    show or set the price display mode (market cap = price × supply)
-  trenchscope rules list|add|remove|enable|disable|check|dry-run|fields
+  solgent workspace list|show|remove|init         the workspace files (no network)
+  solgent theme list|show|init|check              user themes in ~/.dexterm/themes (extends a built-in; contrast + hue guarded)
+  solgent keymap [screen]                         the effective keys (defaults + config.keymap overrides, marked ·)
+  solgent display [price|mcap]                    show or set the price display mode (market cap = price × supply)
+  solgent rules list|add|remove|enable|disable|check|dry-run|fields
                             "when <cond> [for n ticks] then alert|ticket|ask|popup|tag|sound|watch" rules in config.json (task-1358);
                             parsed never eval'd; mandatory cooldown + max/h; rules only alert or PROPOSE (ctrl+r in the app)
-  trenchscope pack list|verify|add|remove|export|lock|sign|trust|signers|keymap|widget
+  solgent pack list|verify|add|remove|export|lock|sign|trust|signers|keymap|widget
                             shareable packs (task-1358): workspaces + themes + rules + a keymap + popup widgets as plain files
                             with a sha256 pack.lock and an optional ssh-keygen signature; trust reviewed > signed > unsigned.
                             a pack never runs code: widgets install DISABLED (pack widget … --enable after reading the page),
@@ -484,7 +484,7 @@ ${SCAN_HELP}
   --no-live                 paper only: never start the signer process
 ${WALLET_HELP}
 
-  LOGIN WITH X (task-1357; your own X app, your limits, your bill; read scopes only, no scraping, trenchscope never posts):
+  LOGIN WITH X (task-1357; your own X app, your limits, your bill; read scopes only, no scraping, solgent never posts):
 ${X_HELP}
 
   --plain                   monochrome text (snapshot surface)
@@ -504,8 +504,8 @@ ${X_HELP}
                                spoken replies talk in market cap and round numbers (never a raw per-token price); < / > set the rate (saved to config)
         screener: / filter · s sort · [ ] presets · r refresh · g/G top/bottom
         social (task-1330): T trending in the space · K KOL lists · token screen: s social panel · f filter · x hidden spam
-        trenchscope kol list | create <name> | add <list> @handle | remove <list> @handle | mute @handle | unmute @handle | enable <list> | disable <list> | import <dir> | import-x
-        Login with X (task-1357): trenchscope x login · then the SOCIAL panel + TRENDING read X with your own limits · KOL screen: X imports your X lists · o = only this handle
+        solgent kol list | create <name> | add <list> @handle | remove <list> @handle | mute @handle | unmute @handle | enable <list> | disable <list> | import <dir> | import-x
+        Login with X (task-1357): solgent x login · then the SOCIAL panel + TRENDING read X with your own limits · KOL screen: X imports your X lists · o = only this handle
         token: B/S buy/sell ticket (PAPER; L on the ticket flips LIVE when a wallet is linked) · P positions · w watch
         token: M bubble map (holder graph: clusters by funder / same-slot buys / transfers; colour = rule) · bubble map: M popup · m treemap · z zoom · D deep scan
         demo events on --fixtures: n new pair (glitch) · u pump (gold rain) · d dump (red rain) · x rug flag
@@ -515,11 +515,11 @@ ${X_HELP}
   State: ~/.dexterm/state.json remembers launches (DEXTERM_HOME overrides the directory).
   DEXTERM_OFFLINE=1 refuses live data (tests and CI). Trading is PAPER by default — a simulated wallet
   priced from live Jupiter quotes. LIVE (L on a ticket, /wallet link first): a separate signer process
-  quotes, builds, decodes, simulates and enforces the caps; Phantom signs in your browser; trenchscope never
+  quotes, builds, decodes, simulates and enforces the caps; Phantom signs in your browser; solgent never
   holds a key. The analyst, voice and scan mode can never open, confirm or sign a live trade.
   RPC: DEXTERM_RPC_URL, else ~/.dexterm/helius.key (Helius, metered with a credit meter), else the public RPC.
   Updates: at most once a day a live run asks npm + GitHub for the newest version (two anonymous GETs, no telemetry)
-  and shows one toast if there is one; DEXTERM_NO_UPDATE_CHECK=1 or 'trenchscope update --off' turns that off.`;
+  and shows one toast if there is one; DEXTERM_NO_UPDATE_CHECK=1 or 'solgent update --off' turns that off.`;
 
 export function parseArgs(argv: string[]): CliArgs {
   const a: CliArgs = {
@@ -607,7 +607,7 @@ export function parseArgs(argv: string[]): CliArgs {
     // task-1421: follow an agent driving over MCP (the running terminal moves with it; a read-only stream opens).
     else if (k === '--spectate-mcp') a.spectateMcp = true;
     // task-1443: agent PAPER trading inside a mandate the user armed (validated against the plans journal at start).
-    else if (k === '--agent-paper') { const s = str(); if (!/^[A-Za-z0-9_-]{1,64}$/.test(s)) throw new Error(`--agent-paper expects a mandate id (see \`trenchscope mandate list\`), got ${JSON.stringify(s.slice(0, 20))}`); a.agentPaper = s; }
+    else if (k === '--agent-paper') { const s = str(); if (!/^[A-Za-z0-9_-]{1,64}$/.test(s)) throw new Error(`--agent-paper expects a mandate id (see \`solgent mandate list\`), got ${JSON.stringify(s.slice(0, 20))}`); a.agentPaper = s; }
     else if (k === '--workspace') { const s = str(); if (!/^[a-z][a-z0-9-]{0,39}(\/[a-z][a-z0-9-]{0,39})?$/.test(s)) throw new Error(`--workspace expects a name like morning-hud, got ${JSON.stringify(s.slice(0, 40))}`); a.workspace = s; }
     else if (Object.hasOwn(SCAN_FLAGS, k)) {
       const key = SCAN_FLAGS[k];
@@ -768,35 +768,35 @@ export function fastLaneEndpoints(rpc: RpcConfig): FastLaneEndpoint[] {
 }
 
 export async function main(argv: string[], io: Io = process as unknown as Io, proc: GuardProcess = process): Promise<number> {
-  // `trenchscope mcp` → the read-only MCP server on stdio (SPEC §5.1; `claude mcp add trenchscope -- trenchscope mcp`),
-  // plus `trenchscope mcp install <client>` (one-command setup) and `trenchscope mcp doctor` (verify the connection).
+  // `solgent mcp` → the read-only MCP server on stdio (SPEC §5.1; `claude mcp add solgent -- solgent mcp`),
+  // plus `solgent mcp install <client>` (one-command setup) and `solgent mcp doctor` (verify the connection).
   if (argv[0] === 'mcp') {
     const { runMcp } = await import('./mcp-cmd.ts');
     return runMcp(argv.slice(1), io);
   }
-  // `trenchscope agent <cmd>` → bring-your-own-agent registry + loopback bus (task-1345): add/list/rotate/
+  // `solgent agent <cmd>` → bring-your-own-agent registry + loopback bus (task-1345): add/list/rotate/
   // remove/tier/pause/resume/kick/audit/packs, `serve` (a standalone bus on fixtures) and `connect`.
   if (argv[0] === 'agent') {
     const { runAgent } = await import('./agent-cmd.ts');
     return runAgent(argv.slice(1), io);
   }
-  // `trenchscope spectate --replay FILE | --info` → watch an agent drive trenchscope (task-1406, "watch the agent
+  // `solgent spectate --replay FILE | --info` → watch an agent drive solgent (task-1406, "watch the agent
   // cook"): replay a saved session, or show the live read-only, token-gated, loopback spectator stream.
   if (argv[0] === 'spectate') {
     const { runSpectate } = await import('./spectate-cmd.ts');
     return runSpectate(argv.slice(1), io);
   }
-  // `trenchscope recorder <cmd>` → the history recorder's tables: stats, label, prune, export (task-1329). No network.
+  // `solgent recorder <cmd>` → the history recorder's tables: stats, label, prune, export (task-1329). No network.
   if (argv[0] === 'recorder') {
     const { recorderCli } = await import('@dexterm/recorder');
     return recorderCli(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope narrative [--window 1h|24h] [--summary]` → the narrative board over recorded history (task-1356). No network, no model.
+  // `solgent narrative [--window 1h|24h] [--summary]` → the narrative board over recorded history (task-1356). No network, no model.
   if (argv[0] === 'narrative') {
     const { narrativeCommand } = await import('./narrative-cmd.ts');
     return narrativeCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope backtest [--subject heuristic|pack_verdicts] [--horizon SEC]` → honest rug-model metrics over recorded outcomes (task-1356). No network, no model.
+  // `solgent backtest [--subject heuristic|pack_verdicts] [--horizon SEC]` → honest rug-model metrics over recorded outcomes (task-1356). No network, no model.
   if (argv[0] === 'backtest') {
     const { backtestCommand } = await import('./backtest-cmd.ts');
     return backtestCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
@@ -806,91 +806,91 @@ export async function main(argv: string[], io: Io = process as unknown as Io, pr
     const { larpDetectedCommand } = await import('./larp-detected.ts');
     return larpDetectedCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope kol …` → KOL lists on the shared DB (task-1330): list/create/add/remove/mute/unmute/enable/disable/import.
+  // `solgent kol …` → KOL lists on the shared DB (task-1330): list/create/add/remove/mute/unmute/enable/disable/import.
   if (argv[0] === 'kol') return kolCommand(argv.slice(1), io);
-  // `trenchscope x <status|set-client-id|login|logout>` → Login with X via OAuth2 PKCE on the loopback callback
+  // `solgent x <status|set-client-id|login|logout>` → Login with X via OAuth2 PKCE on the loopback callback
   // (task-1357). Tokens stay in ~/.dexterm/x (0600), never printed; read scopes only.
   if (argv[0] === 'x') {
     const { runX } = await import('./x-cmd.ts');
     return runX(argv.slice(1), io as unknown as import('./x-cmd.ts').XIo);
   }
-  // `trenchscope workspace list|show|remove|init` → the workspace files under ~/.dexterm/workspaces (task-1358). No network.
+  // `solgent workspace list|show|remove|init` → the workspace files under ~/.dexterm/workspaces (task-1358). No network.
   if (argv[0] === 'workspace') {
     const { workspaceCommand } = await import('./workspace-cmd.ts');
     return workspaceCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope kb|skill list|show|new|edit|check|reset|path` → the user's KB / skill overlay under ~/.dexterm (task-1377).
+  // `solgent kb|skill list|show|new|edit|check|reset|path` → the user's KB / skill overlay under ~/.dexterm (task-1377).
   // No network, no model; bundled files are never edited, the MCP server / analyst / Jarvis pick changes up per call.
   if (argv[0] === 'kb' || argv[0] === 'skill') {
     const { kbSkillCommand } = await import('./kb-skill-cmd.ts');
     return kbSkillCommand(argv[0], argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env, isTTY: io.stdout.isTTY === true });
   }
-  // `trenchscope help [topic]` → the app-help KB (task-1413): how the app works, with the exact key/command.
+  // `solgent help [topic]` → the app-help KB (task-1413): how the app works, with the exact key/command.
   // Backed by the same generated entries the analyst's `app_help` tool uses. No network, no model.
   if (argv[0] === 'help') {
     const { helpCommand } = await import('./help-cmd.ts');
     return helpCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr });
   }
-  // `trenchscope theme list|show|init|check` → user themes under ~/.dexterm/themes (task-1358 Tier 2). No network.
+  // `solgent theme list|show|init|check` → user themes under ~/.dexterm/themes (task-1358 Tier 2). No network.
   if (argv[0] === 'theme') {
     const { themeCommand } = await import('./theme-cmd.ts');
     return themeCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope display [price|mcap]` → show or set the price display mode (task-1366). No network; display only.
+  // `solgent display [price|mcap]` → show or set the price display mode (task-1366). No network; display only.
   if (argv[0] === 'display') {
     const { displayCommand } = await import('./display.ts');
     return displayCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope keymap [screen]` → the effective key bindings (defaults + config.keymap), overrides marked (task-1358 Tier 2).
+  // `solgent keymap [screen]` → the effective key bindings (defaults + config.keymap), overrides marked (task-1358 Tier 2).
   if (argv[0] === 'keymap') {
     const { keymapCommand } = await import('./theme-cmd.ts');
     return keymapCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope rules list|add|remove|enable|disable|check|dry-run|fields` → the rules engine's config (task-1358 Tier 3). No network, no model.
+  // `solgent rules list|add|remove|enable|disable|check|dry-run|fields` → the rules engine's config (task-1358 Tier 3). No network, no model.
   if (argv[0] === 'rules') {
     const { rulesCommand } = await import('./rules-cmd.ts');
     return rulesCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope alerts status|enable|disable|levels|proposals|set-telegram|set-discord|test` → where rule alerts
+  // `solgent alerts status|enable|disable|levels|proposals|set-telegram|set-discord|test` → where rule alerts
   // are delivered (task-1398). Credentials live in ~/.dexterm/*.json (0600), never config.json/argv/logs.
   if (argv[0] === 'alerts') {
     const { alertsCommand } = await import('./alerts-cmd.ts');
     return alertsCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env, stdin: io.stdin as unknown as NodeJS.ReadStream });
   }
-  // `trenchscope watch [--interval S] [--once|--ticks N] [--replay FILE]` → run the rules engine headless and
+  // `solgent watch [--interval S] [--once|--ticks N] [--replay FILE]` → run the rules engine headless and
   // PUSH alerts to the enabled channels so they reach you when the terminal is closed (task-1398). No signer.
   if (argv[0] === 'watch') {
     const { watchCommand } = await import('./watch-cmd.ts');
     return watchCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope record [run|install|uninstall|status]` → the headless collector that keeps the history recorder
+  // `solgent record [run|install|uninstall|status]` → the headless collector that keeps the history recorder
   // fed with no TUI open (task-1414), to be driven by a user-level launchd LaunchAgent. No signer, no trading;
   // requests honour the data layer limits / health gate / sweep budgets, and the Helius key is never printed.
   if (argv[0] === 'record') {
     const { recordCommand } = await import('./record-cmd.ts');
     return recordCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope bot run|stats|config` → the headless PAPER-trading bot. Paper only: its import graph never reaches the
+  // `solgent bot run|stats|config` → the headless PAPER-trading bot. Paper only: its import graph never reaches the
   // signer / live executor / send path (test/bot-paper-guard.test.ts), and the bin shims route `bot` there before this
   // file (and so the app's trade modules) ever loads; this branch only serves in-process callers such as tests.
   if (argv[0] === 'bot') {
     const { botCommand } = await import('./bot-cmd.ts');
     return botCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope pack list|verify|add|remove|export|lock|sign|trust|signers|keymap|widget` → shareable packs (task-1358 Tier 4):
+  // `solgent pack list|verify|add|remove|export|lock|sign|trust|signers|keymap|widget` → shareable packs (task-1358 Tier 4):
   // plain files + sha256 lock + optional ssh signature. No network, no model; a pack never runs code (widgets land
   // disabled, unsigned rules load disabled, a keymap merges only on the explicit command).
   if (argv[0] === 'pack') {
     const { packCommand } = await import('./pack-cmd.ts');
     return packCommand(argv.slice(1), { stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope wallet <link|unlink|status>` → link a Phantom wallet via the loopback bridge (keys never
+  // `solgent wallet <link|unlink|status>` → link a Phantom wallet via the loopback bridge (keys never
   // enter dexterm; only the pubkey is stored), unlink it, or show the link + trade caps (task-1310 T1).
   if (argv[0] === 'wallet') {
     const { runWallet } = await import('./wallet-cmd.ts');
     return runWallet(argv.slice(1), io as unknown as import('./wallet-cmd.ts').WalletIo);
   }
-  // `trenchscope plan …` / `trenchscope mandate …` → conditional order plans + standing mandates (task-1355).
+  // `solgent plan …` / `solgent mandate …` → conditional order plans + standing mandates (task-1355).
   // Voice/agents can only PROPOSE; arming needs a physical keypress; caps/panic stay signer-side.
   if (argv[0] === 'plan') {
     const { runPlan } = await import('./plan-cmd.ts');
@@ -900,24 +900,24 @@ export async function main(argv: string[], io: Io = process as unknown as Io, pr
     const { runMandate } = await import('./plan-cmd.ts');
     return runMandate(argv.slice(1), io);
   }
-  // `trenchscope follow …` → the copy-trading follow list (task-1360 Tier 1): local, self-directed, read-only.
+  // `solgent follow …` → the copy-trading follow list (task-1360 Tier 1): local, self-directed, read-only.
   if (argv[0] === 'follow') {
     const { runFollow } = await import('./follow-cmd.ts');
     return runFollow(argv.slice(1), io);
   }
-  // `trenchscope update [--off|--on]` → is there a newer version, and the exact upgrade command for this install (task-1397).
+  // `solgent update [--off|--on]` → is there a newer version, and the exact upgrade command for this install (task-1397).
   // Two anonymous GETs (npm registry, GitHub releases); never upgrades anything itself.
   if (argv[0] === 'update') {
     const { updateCommand } = await import('./update.ts');
     return updateCommand(argv.slice(1), io);
   }
-  // `trenchscope voice [status|download <model>]` → inspect the voice engines and download the optional
+  // `solgent voice [status|download <model>]` → inspect the voice engines and download the optional
   // voice models (whisper base.en, Piper voice). Downloads ask first and are checksum-verified (task-1408).
   if (argv[0] === 'voice') {
     const { voiceCommand } = await import('./voice-cmd.ts');
     return voiceCommand(argv.slice(1), { stdin: io.stdin, stdout: io.stdout, stderr: io.stderr, env: io.env });
   }
-  // `trenchscope doctor` → a pre-flight that says whether trenchscope will run here and how to fix what won't (task-1305).
+  // `solgent doctor` → a pre-flight that says whether solgent will run here and how to fix what won't (task-1305).
   if (argv[0] === 'doctor') {
     const { defaultDeps, runDoctor, renderDoctor } = await import('./doctor.ts');
     const rest = argv.slice(1);
@@ -929,14 +929,14 @@ export async function main(argv: string[], io: Io = process as unknown as Io, pr
     io.stdout.write(renderDoctor(result, { color }) + '\n');
     return result.ok ? 0 : 1;
   }
-  // `trenchscope popup --self-test` → open a chart popup on fixture data and report shell/hotkey/fps (task-1290).
+  // `solgent popup --self-test` → open a chart popup on fixture data and report shell/hotkey/fps (task-1290).
   // Does NOT block on a live 60 fps display or a live hotkey press; it reports what it can measure headlessly
   // and labels what still needs a human at an unlocked Mac. `--browser` forces the OS-browser fallback path.
   if (argv[0] === 'popup') {
     const rest = argv.slice(1);
     if (!rest.includes('--self-test')) {
-      io.stderr.write('trenchscope popup: the only subcommand is --self-test (open a chart popup on fixtures and report shell/hotkey/fps)\n');
-      io.stderr.write('  trenchscope popup --self-test [--browser] [--seconds N] [--theme NAME]\n');
+      io.stderr.write('solgent popup: the only subcommand is --self-test (open a chart popup on fixtures and report shell/hotkey/fps)\n');
+      io.stderr.write('  solgent popup --self-test [--browser] [--seconds N] [--theme NAME]\n');
       return 2;
     }
     const { runSelfTest, renderSelfTest } = await import('@dexterm/popup');
@@ -1157,7 +1157,7 @@ export async function main(argv: string[], io: Io = process as unknown as Io, pr
       io.stderr.write(`wrote ${r.png} (${r.bytes} bytes) and ${r.txt}\n`);
     } else if (args.html) {
       // task-1326: `--html … --color 256` renders through the xterm palette (a Terminal.app-faithful proof)
-      writeFileSync(args.html, c.toHtml({ title: args.title || `trenchscope — ${args.screen} — ${state.theme.name}`, fit: args.fit, fontPx: args.fontPx ?? 15, depth: args.color ?? 'truecolor' }));
+      writeFileSync(args.html, c.toHtml({ title: args.title || `solgent — ${args.screen} — ${state.theme.name}`, fit: args.fit, fontPx: args.fontPx ?? 15, depth: args.color ?? 'truecolor' }));
       io.stderr.write(`wrote ${args.html} (${w}×${h})\n`);
     } else if (args.plain || (!args.ansi && !io.stdout.isTTY && args.color === null)) {
       io.stdout.write(c.toPlain() + '\n');
@@ -1172,7 +1172,7 @@ export async function main(argv: string[], io: Io = process as unknown as Io, pr
     return 0;
   }
   // task-1397: live interactive runs only: the cached "new version" notice (no network) plus, at most once a day,
-  // a background refresh that never blocks the start. Off with DEXTERM_NO_UPDATE_CHECK=1 / `trenchscope update --off`.
+  // a background refresh that never blocks the start. Off with DEXTERM_NO_UPDATE_CHECK=1 / `solgent update --off`.
   const update = live ? (await import('./update.ts')).startupCheck(io.env) : null;
   if (update) {
     state.updateNotice = update.notice;
@@ -1824,9 +1824,9 @@ export function applyAction(state: AppState, action: AppAction, stack: ScreenKey
     case 'kol.importx': {
       if (state.screen !== 'kol') break;
       const x = live?.x ?? null;
-      if (!live || !x) { state.kolNotice = 'importing X lists needs live mode and `trenchscope x login` (fixtures are a demo)'; break; }
+      if (!live || !x) { state.kolNotice = 'importing X lists needs live mode and `solgent x login` (fixtures are a demo)'; break; }
       const xs = socialOf(state)?.status();
-      if (xs && xs.xState === 'logged-out') { state.kolNotice = 'not logged in to X · run `trenchscope x login` first (your own X app, read scopes only)'; break; }
+      if (xs && xs.xState === 'logged-out') { state.kolNotice = 'not logged in to X · run `solgent x login` first (your own X app, read scopes only)'; break; }
       if (state.kolImporting) { state.kolNotice = 'import already running'; break; }
       state.kolImporting = true; state.kolNotice = null;
       void x.importOwnLists().then((r) => {
@@ -1890,7 +1890,7 @@ export function applyAction(state: AppState, action: AppAction, stack: ScreenKey
       if (!kol) break;
       const list = kolRows(kol);
       const row = list[Math.max(0, Math.min(list.length - 1, state.selected || 0))] as KolRow | undefined;
-      if (!row) { state.kolNotice = 'no lists yet · trenchscope kol create <name>'; break; }
+      if (!row) { state.kolNotice = 'no lists yet · solgent kol create <name>'; break; }
       if (action === 'kol.toggle') { kol.setEnabled(row.list.id, !row.list.enabled); state.kolNotice = `${row.list.name} ${row.list.enabled ? 'disabled' : 'enabled'} for the trending feed`; }
       else if (action === 'kol.mute') {
         if (row.kind !== 'handle') { state.kolNotice = 'select a handle to mute'; break; }
@@ -2883,7 +2883,7 @@ export function interactive(state: AppState, io: Io, depth: ColorDepth, args: Cl
     if (firstLaunch) state.overlay = 'welcome'; // one-time welcome once the boot clears to the home screen
   };
   const say = (text: string, level: 'up' | 'down' | 'warn' | 'ai' | 'info', secs = 3) => { v.toast = { text, level, until: v.frame + Math.round(secs * fps) }; };
-  // task-1358: a config / theme / keymap problem is said once at start (the defaults are in use); `trenchscope doctor` repeats it.
+  // task-1358: a config / theme / keymap problem is said once at start (the defaults are in use); `solgent doctor` repeats it.
   { const probs = [...(state.custom?.configErrors ?? []), ...(state.custom?.themeErrors ?? [])]; if (probs.length) say(`⚠ ${probs[0]}${probs.length > 1 ? ` (+${probs.length - 1} more)` : ''}`, 'warn', 8); }
   // ---- task-1340 bubble-map popup view model (text only; built from the live scan for the coin on the bubble screen)
   const bubbleVMNow = (): BubbleVM | null => {
@@ -3139,10 +3139,10 @@ export function interactive(state: AppState, io: Io, depth: ColorDepth, args: Cl
     };
     // task-1326: an image landing (decoded, or found missing) repaints at most once per macrotask.
     if (images) images.onChange = () => scheduleDraw();
-    // task-1421: `--spectate-mcp` → follow an agent driving over MCP. The rendezvous lets a `trenchscope mcp`
+    // task-1421: `--spectate-mcp` → follow an agent driving over MCP. The rendezvous lets a `solgent mcp`
     // server the external client spawned emit here; we tail it, move the terminal for navigation calls, and
     // the owner's controls (ctrl+p pause/resume · ctrl+k stop · any key = take over) are handled in onInput.
-    // A read-only, loopback, token-gated stream opens too (`trenchscope spectate --info`). Off (and zero-cost)
+    // A read-only, loopback, token-gated stream opens too (`solgent spectate --info`). Off (and zero-cost)
     // unless the flag is set; nothing it folds can arm, sign, confirm, send or raise a cap.
     if (args.spectateMcp) {
       followSession = new McpFollowSession({
@@ -3434,7 +3434,7 @@ export function interactive(state: AppState, io: Io, depth: ColorDepth, args: Cl
 
     // task-1358 Tier 5: pack widgets. The page is read from the ENABLED, re-hashed pack at open time (widgets.ts);
     // the popup host serves it under a hash-only CSP (r2: no nonce) + the widget SDK; the sync path pushes only the topics the
-    // widget declared, built from public view models. A workspace lists a widget; only `trenchscope pack widget …
+    // widget declared, built from public view models. A workspace lists a widget; only `solgent pack widget …
     // --enable` makes it openable.
     const widgetDeps = { token: tokenVMNow, narrative: narrativeVMNow };
     const openWidgetPopup = async (ref: string): Promise<void> => {
@@ -3708,7 +3708,7 @@ export function interactive(state: AppState, io: Io, depth: ColorDepth, args: Cl
             // task-1355 (verify fix): a spoken "buy this if it dips to 300k, sell half at 600k, leave a moon
             // bag" becomes a PROPOSED order plan in the PlanService — inert data. Nothing on this path arms,
             // confirms, signs or touches a cap: arming is the hold-to-arm gesture on the O screen (or
-            // `trenchscope plan arm` on a TTY), and the decision carries no field that could ask for it. The size
+            // `solgent plan arm` on a TTY), and the decision carries no field that could ask for it. The size
             // is never spoken (VOICE_PLAN_SIZE_USD, paper); the coin is the SPOKEN ticker or the highlighted
             // row for a pronoun, resolved exactly like a ticket (ambiguous / unknown → ask, never a guess).
             const res = resolveVoiceToken(d.target);
@@ -4138,7 +4138,7 @@ export function interactive(state: AppState, io: Io, depth: ColorDepth, args: Cl
               draw(); continue;
             }
             const port = live?.ensureSigner() ?? null;
-            if (!port) { ui.notice = 'LIVE fills need the signer process: start trenchscope live (not replay/offline/--no-live)'; draw(); continue; }
+            if (!port) { ui.notice = 'LIVE fills need the signer process: start solgent live (not replay/offline/--no-live)'; draw(); continue; }
             if (svc.engine.openPlans().length) { ui.notice = `switch refused: cancel or finish ${svc.engine.openPlans().length} open plan(s) first`; draw(); continue; }
             const ex = new LivePlanExecutor({ signer: port, clock: { now: () => Date.now(), sleep: (ms: number) => new Promise((r) => setTimeout(r, ms)) } as never, solUsd: () => state.sol?.price ?? live?.positions.solUsd() ?? null, onChange: () => { if (!done) { plansTick(); draw(); } }, log: (l) => args.verbose && io.stderr.write(`  plans-live    ${l}\n`) });
             ui.notice = 'checking the signer and the fast wallet…';
@@ -4485,7 +4485,7 @@ export function interactive(state: AppState, io: Io, depth: ColorDepth, args: Cl
 }
 
 /**
- * `trenchscope kol …` (task-1330): manage KOL lists on the shared SQLite DB (same --db as the app). Packs are
+ * `solgent kol …` (task-1330): manage KOL lists on the shared SQLite DB (same --db as the app). Packs are
  * hash-locked directories (`pack.json` + `pack.lock`, optional `pack.lock.sig` verified against
  * ~/.dexterm/allowed_signers); a tampered pack is refused, never imported as "unsigned".
  */
@@ -4495,7 +4495,7 @@ export async function kolCommand(rest: string[], io: Io): Promise<number> {
   const args = rest.filter((_, i) => i !== dbi && i !== dbi + 1);
   const cache = new Cache({ path: dbPath === ':memory:' ? undefined : dbPath });
   const kol = new KolStore({ cache, allowedSigners: join(dextermHome(io.env), 'allowed_signers') });
-  const usage = 'usage: trenchscope kol list | create <name> | add <list> @handle | remove <list> @handle | mute @handle | unmute @handle | enable <list> | disable <list> | import <dir> | import-x  [--db PATH]';
+  const usage = 'usage: solgent kol list | create <name> | add <list> @handle | remove <list> @handle | mute @handle | unmute @handle | enable <list> | disable <list> | import <dir> | import-x  [--db PATH]';
   const findList = (name: string) => kol.all().find((l) => l.id === name || l.name === name || l.id === `manual:${name}` || l.name.startsWith(`${name}@`));
   try {
     const [cmd, a, b] = args;
@@ -4537,7 +4537,7 @@ export async function kolCommand(rest: string[], io: Io): Promise<number> {
       case 'import-x': {
         const { importOwnXLists } = await import('./x-cmd.ts');
         const r = await importOwnXLists({ cache, env: io.env });
-        if (!r.ok) { io.stderr.write(`trenchscope kol import-x: ${r.error}\n`); return 1; }
+        if (!r.ok) { io.stderr.write(`solgent kol import-x: ${r.error}\n`); return 1; }
         if (!r.lists.length) { io.stdout.write('your X account owns no lists (create one on x.com first)\n'); return 0; }
         for (const l of r.lists) io.stdout.write(`imported ${l.id}  ${l.name}  ${l.handles} handles (own-x-list, kol-a)\n`);
         return 0;

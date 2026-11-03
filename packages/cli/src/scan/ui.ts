@@ -1,4 +1,4 @@
-// trenchscope AI SCAN MODE (task-1324) — per-run scan UI state and the two one-line strips it draws on
+// solgent AI SCAN MODE (task-1324) — per-run scan UI state and the two one-line strips it draws on
 // row 1 (the blank band under the header, so no screen layout moves):
 //   - list screens: the SCANNING ticker — state, coins scanned, the top scores with their triggers;
 //   - the locked coin's token screen: WHY IT TRIGGERED — reasons, score, when, reads, next read, keys.

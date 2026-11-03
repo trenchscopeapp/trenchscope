@@ -22,7 +22,7 @@ test('public HTTP MCP handshake, app resources, tools and failure semantics', as
   };
   assert.equal(((await (await fetch(url + '/health')).json()) as { revision: string }).revision, 'test-sha');
   const init = (await rpc('initialize', { protocolVersion: '2025-06-18' })).result;
-  assert.equal(init.serverInfo.name, 'trenchscope'); assert.equal(init.protocolVersion, '2025-06-18');
+  assert.equal(init.serverInfo.name, 'solgent'); assert.equal(init.protocolVersion, '2025-06-18');
   const tools = (await rpc('tools/list')).result.tools;
   assert.equal(tools.length, PUBLIC_TOOLS.length);
   for (const name of ['open_token', 'paper_confirm', 'paper_positions', 'screen_state', 'app_state', 'export_recorded', 'dev_history']) {
@@ -64,7 +64,7 @@ test('public MCP bounds concurrency and rate without trusting forwarded IP heade
 });
 
 test('public content excludes private local KB and skill overlays while local MCP keeps them', async () => {
-  const home = mkdtempSync(join(tmpdir(), 'trenchscope-public-'));
+  const home = mkdtempSync(join(tmpdir(), 'solgent-public-'));
   const previous = process.env.DEXTERM_HOME; process.env.DEXTERM_HOME = home;
   try {
     mkdirSync(join(home, 'kb', 'entries'), { recursive: true }); mkdirSync(join(home, 'skills'), { recursive: true });

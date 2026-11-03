@@ -1,4 +1,4 @@
-// trenchscope — alert delivery routing (task-1398). Pure: which channels receive a delivery, per config.
+// solgent — alert delivery routing (task-1398). Pure: which channels receive a delivery, per config.
 //
 // Defaults (config.alerts absent or a channel unspecified): toast ON, desktop/telegram/discord OFF.
 // So the in-app behaviour is unchanged until the user enables a push channel. Proposal-kind deliveries go

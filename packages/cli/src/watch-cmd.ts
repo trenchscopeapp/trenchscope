@@ -1,8 +1,8 @@
-// trenchscope — `trenchscope watch` (task-1398): run the rules engine against the live feed with NO TUI and PUSH
+// solgent — `solgent watch` (task-1398): run the rules engine against the live feed with NO TUI and PUSH
 // every fired alert (and, when alerts.proposals is on, a one-line proposal summary) through the delivery
 // layer — so a price / holder / LARP / new-pair alert reaches you when the terminal is closed.
 //
-//   trenchscope watch [--interval S] [--ticks N | --once] [--replay FILE] [--db PATH] [--verbose]
+//   solgent watch [--interval S] [--ticks N | --once] [--replay FILE] [--db PATH] [--verbose]
 //
 // SAFETY: this builds NO signer and passes no `trade` option; a rule can only alert / annotate / open an
 // inert PROPOSAL (RulesEngine's money-safety invariant). The notifier only reads an AlertDelivery. There is
@@ -29,9 +29,9 @@ export interface RunWatchDeps {
   now?: () => number;
 }
 
-export const WATCH_USAGE = `usage: trenchscope watch [--interval S] [--ticks N | --once] [--replay FILE] [--db PATH] [--verbose]
+export const WATCH_USAGE = `usage: solgent watch [--interval S] [--ticks N | --once] [--replay FILE] [--db PATH] [--verbose]
 
-  Runs your rules headless and pushes alerts to the channels you enabled with \`trenchscope alerts\`
+  Runs your rules headless and pushes alerts to the channels you enabled with \`solgent alerts\`
   (terminal line + desktop notification + your Telegram bot / Discord webhook). Ctrl-C to stop.
 `;
 
@@ -97,18 +97,18 @@ function createFeedSource(opts: { replay: string | null; db: string | null; inte
 
 export async function watchCommand(argv: string[], io: WatchIo, deps: RunWatchDeps = {}): Promise<number> {
   const parsed = parseArgs(argv);
-  if ('error' in parsed) { io.stderr.write(`trenchscope watch: ${parsed.error}\n\n${WATCH_USAGE}`); return 2; }
+  if ('error' in parsed) { io.stderr.write(`solgent watch: ${parsed.error}\n\n${WATCH_USAGE}`); return 2; }
   if (parsed.help) { io.stdout.write(WATCH_USAGE); return 0; }
 
   const now = deps.now ?? (() => Date.now());
   const home = dextermHome(io.env);
   const loaded = loadConfig(home);
-  for (const e of loaded.errors) io.stderr.write(`trenchscope watch: config: ${e}\n`);
+  for (const e of loaded.errors) io.stderr.write(`solgent watch: config: ${e}\n`);
   const rules = loaded.config.rules ?? [];
   const engine = new RulesEngine({ rules, now: now() });
-  for (const e of engine.errors) io.stderr.write(`trenchscope watch: rule ${e.id}: ${e.msg}\n`);
+  for (const e of engine.errors) io.stderr.write(`solgent watch: rule ${e.id}: ${e.msg}\n`);
   const enabled = engine.rules.filter((r) => r.enabled).length;
-  if (enabled === 0) io.stderr.write('trenchscope watch: no enabled rules (add some with `trenchscope rules add`); nothing will fire\n');
+  if (enabled === 0) io.stderr.write('solgent watch: no enabled rules (add some with `solgent rules add`); nothing will fire\n');
 
   // SIGINT-aware sleeper for the production loop.
   const stop = (() => {
@@ -127,7 +127,7 @@ export async function watchCommand(argv: string[], io: WatchIo, deps: RunWatchDe
   const source = deps.source ?? createFeedSource({ replay: parsed.replay, db: parsed.db, intervalMs: parsed.intervalMs, verbose: parsed.verbose, io, now, stop });
 
   const ready = notifier.readyChannels();
-  if (parsed.verbose || !deps.notifier) io.stderr.write(`trenchscope watch: ${enabled} rule(s), channels: ${ready.length ? ready.join(', ') : 'toast'}\n`);
+  if (parsed.verbose || !deps.notifier) io.stderr.write(`solgent watch: ${enabled} rule(s), channels: ${ready.length ? ready.join(', ') : 'toast'}\n`);
 
   const onSigint = (): void => { io.stderr.write('\ndexterm watch: stopping…\n'); stop.abort(); };
   const addSig = !deps.source; // only own SIGINT for the real loop (tests drive a finite source)
@@ -144,12 +144,12 @@ export async function watchCommand(argv: string[], io: WatchIo, deps: RunWatchDe
       if (loaded.config.alerts?.proposals) for (const p of res.proposals) { await notifier.deliver(proposalToDelivery(p)); delivered++; }
     }
   } catch (e) {
-    io.stderr.write(`trenchscope watch: ${redactCreds((e as Error).message)}\n`);
+    io.stderr.write(`solgent watch: ${redactCreds((e as Error).message)}\n`);
     return 1;
   } finally {
     if (addSig) process.removeListener('SIGINT', onSigint);
     await source.close?.();
   }
-  if (parsed.verbose || !deps.notifier) io.stderr.write(`trenchscope watch: delivered ${delivered} alert(s)\n`);
+  if (parsed.verbose || !deps.notifier) io.stderr.write(`solgent watch: delivered ${delivered} alert(s)\n`);
   return 0;
 }

@@ -70,7 +70,7 @@ export interface WalletIntelDeps {
   history?: HeliusHistory | null;
 }
 
-export const KEY_FIX = 'free Helius key → ~/.dexterm/helius.key (1M credits/month, no card; `trenchscope doctor` walks through it)';
+export const KEY_FIX = 'free Helius key → ~/.dexterm/helius.key (1M credits/month, no card; `solgent doctor` walks through it)';
 
 export class WalletIntel {
   private readonly cache: Cache;

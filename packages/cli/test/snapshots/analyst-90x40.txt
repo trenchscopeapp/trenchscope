@@ -1,4 +1,4 @@
-  trenchscope ┃  1 Screener   2 New            SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+  solgent ┃  1 Screener   2 New   3 Watchlist  SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
 
 ╭─ ✦ ANALYST · claude ────────────────── session 14m · 11 tool calls · $0.00 (your CLI) ─╮
 │ › screen for tokens under $5M mcap with rising holders, organic score over 60, and no  │

@@ -1,5 +1,5 @@
-// @dexterm/data — a loopback MOCK of X's OAuth2 + the v2 read endpoints trenchscope uses (task-1357). Test
-// support only: the default test suites and `trenchscope x` tests run the whole login + feed flow against this
+// @dexterm/data — a loopback MOCK of X's OAuth2 + the v2 read endpoints solgent uses (task-1357). Test
+// support only: the default test suites and `solgent x` tests run the whole login + feed flow against this
 // server and never touch x.com. It validates what the real X validates (client id, redirect uri, PKCE S256,
 // single-use 30-s codes, bearer, refresh rotation, revoke) and can simulate rate limits (429 + x-rate-limit-*),
 // expired tokens (401) and a Free-tier app (403 on search). Zero dependencies.
@@ -68,7 +68,7 @@ export function startMockX(options: MockXOptions = {}): Promise<MockXServer> {
   const now = options.now ?? (() => Date.now());
   const opts = {
     clientId: 'mock-client-id-1357',
-    me: { id: '1001', username: 'dexterm_tester', name: 'trenchscope tester', created_at: '2020-01-01T00:00:00.000Z' },
+    me: { id: '1001', username: 'dexterm_tester', name: 'solgent tester', created_at: '2020-01-01T00:00:00.000Z' },
     tier: 'basic' as const,
     consent: 'approve' as const,
     expiresIn: 7200,
@@ -108,7 +108,7 @@ export function startMockX(options: MockXOptions = {}): Promise<MockXServer> {
           if (opts.redirectUri && redirect !== opts.redirectUri) return bad('redirect_uri');
           if (!/^http:\/\/127\.0\.0\.1:\d+\/callback$/.test(redirect)) return bad('redirect_uri must be http://127.0.0.1:<port>/callback');
           const scope = q.get('scope') ?? '';
-          if (/\.write\b|\bdm\./.test(scope)) return bad('scope: write/dm scopes are refused by this mock (trenchscope never asks for them)');
+          if (/\.write\b|\bdm\./.test(scope)) return bad('scope: write/dm scopes are refused by this mock (solgent never asks for them)');
           const back = new URL(redirect);
           back.searchParams.set('state', q.get('state') ?? '');
           if (opts.consent === 'deny') back.searchParams.set('error', 'access_denied');

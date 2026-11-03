@@ -1,4 +1,4 @@
-// task-1406: the `trenchscope spectate` CLI — replay a saved session into the follow-mode screen model +
+// task-1406: the `solgent spectate` CLI — replay a saved session into the follow-mode screen model +
 // activity panel, and show the live stream endpoint. Hermetic: a temp file, no network.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
@@ -81,5 +81,5 @@ test('spectate --info looks where the server writes, even with HOME unset (Windo
 test('spectate with no args prints usage', async () => {
   const a = io();
   assert.equal(await runSpectate([], a), 0);
-  assert.match(a.out, /trenchscope spectate/);
+  assert.match(a.out, /solgent spectate/);
 });

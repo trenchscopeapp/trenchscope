@@ -1,6 +1,6 @@
 ---
 id: order-plans
-title: Set conditional order plans (trenchscope plan)
+title: Set conditional order plans (solgent plan)
 kind: app-help
 screen: all
 feature: order-plans
@@ -28,6 +28,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope plan list|add|remove|arm|disarm` sets conditional order plans (e.g. take-profit / stop levels). Voice and agents can only PROPOSE a plan; ARMING one needs your physical keypress, and the caps and panic-stop stay signer-side. Nothing here lets a model sign or raise a cap.
+`solgent plan list|add|remove|arm|disarm` sets conditional order plans (e.g. take-profit / stop levels). Voice and agents can only PROPOSE a plan; ARMING one needs your physical keypress, and the caps and panic-stop stay signer-side. Nothing here lets a model sign or raise a cap.
 
-CLI: `trenchscope plan`.
+CLI: `solgent plan`.

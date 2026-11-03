@@ -1,4 +1,4 @@
-# After a human publishes a draft release: (1) publish the compiled `trenchscope` package to npm through npm
+# After a human publishes a draft release: (1) publish the compiled `solgent` package to npm through npm
 # trusted publishing (GitHub OIDC: no npm token exists anywhere, and npm attaches a provenance attestation), only
 # when the repository variable NPM_PUBLISH is "true" (docs/npm-publish-shape.md); (2) hand scan-results.json to
 # the website repo as a pull request, only when SITE_REPO is set. Both jobs are no-ops until those switches are
@@ -39,7 +39,7 @@ jobs:
         run: |
           read -r name version repo < <(node -p "const p=require('./packages/cli/package.json'); [p.name, p.version, p.repository?.url ?? '-'].join(' ')")
           echo "package $name@$version · repository $repo · tag $TAG"
-          [ "$name" = trenchscope ] || { echo "::error::packages/cli is named $name, not trenchscope"; exit 1; }
+          [ "$name" = solgent ] || { echo "::error::packages/cli is named $name, not solgent"; exit 1; }
           [ "v$version" = "$TAG" ] || { echo "::error::tag $TAG does not match packages/cli version $version"; exit 1; }
           # npm refuses a trusted publish (and its provenance) unless repository.url names exactly this repository
           [ "$repo" = "git+https://github.com/$GITHUB_REPOSITORY.git" ] || { echo "::error::packages/cli repository.url is $repo, expected git+https://github.com/$GITHUB_REPOSITORY.git"; exit 1; }
@@ -57,11 +57,11 @@ jobs:
         run: |
           v="${TAG#v}"
           for _ in $(seq 1 20); do
-            p="$(npm view "trenchscope@$v" dist.attestations.provenance.predicateType 2>/dev/null || true)"
-            if [ -n "$p" ]; then echo "trenchscope@$v provenance: $p"; exit 0; fi
+            p="$(npm view "solgent@$v" dist.attestations.provenance.predicateType 2>/dev/null || true)"
+            if [ -n "$p" ]; then echo "solgent@$v provenance: $p"; exit 0; fi
             sleep 15
           done
-          echo "::error::trenchscope@$v has no provenance on the registry after 5 minutes (a new version can sit in 'Validating' for a few minutes; check npmjs.com)"; exit 1
+          echo "::error::solgent@$v has no provenance on the registry after 5 minutes (a new version can sit in 'Validating' for a few minutes; check npmjs.com)"; exit 1
 
   scan-results-to-site:
     name: hand scan-results.json to the website repo
@@ -88,7 +88,7 @@ jobs:
         run: |
           cd site
           cp "$RUNNER_TEMP/sr/scan-results.json" scan-results.json
-          git config user.name "dexterm-release-bot"
+          git config user.name "solgent-release-bot"
           git config user.email "release-bot@users.noreply.github.com"
           git checkout -b "scan-results/$TAG"
           git add scan-results.json

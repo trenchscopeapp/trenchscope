@@ -2,7 +2,7 @@
 // called from the feed's own tick (the UI's 2 Hz data tick), creates no timers, awaits nothing the quit path
 // could wait on, and turns every failure into a VISIBLE state:
 //
-//   logged-out     no tokens (the header says `x ○ logged out · trenchscope x login`)
+//   logged-out     no tokens (the header says `x ○ logged out · solgent x login`)
 //   ok             reads flowing (`x ● @handle · 12/300 search · $0.12 today`)
 //   rate-limited   429 or an exhausted window; shows the reset time; reads resume after it
 //   no-credit      the daily spend budget is reached; resumes at the next UTC day
@@ -89,7 +89,7 @@ export class XSource {
   sink: ((raws: RawPost[]) => void) | null = null;
   private metaAt = 0;
   private metaCache: { loggedIn: boolean; user: XUser | null; obtainedAt: number | null } = { loggedIn: false, user: null, obtainedAt: null };
-  /** `obtained_at` of the record X answered 401 for: only a NEWER login (trenchscope x login) re-arms the poller. */
+  /** `obtained_at` of the record X answered 401 for: only a NEWER login (solgent x login) re-arms the poller. */
   private deadObtainedAt: number | null = null;
 
   constructor(opts: XSourceOptions) {
@@ -133,7 +133,7 @@ export class XSource {
     const used = w && w.limit !== null && w.remaining !== null ? `${w.limit - w.remaining}/${w.limit} search` : null;
     const money = spend ? `$${spend.usd.toFixed(2)} of $${spend.budgetUsd} today` : null;
     const who = this.user ? `@${this.user.username}` : 'logged in';
-    const detail = this.state === 'logged-out' ? (this.deadObtainedAt !== null ? 'login revoked or expired at X · trenchscope x login' : 'logged out · trenchscope x login (your own X app, your limits)')
+    const detail = this.state === 'logged-out' ? (this.deadObtainedAt !== null ? 'login revoked or expired at X · solgent x login' : 'logged out · solgent x login (your own X app, your limits)')
       : this.state === 'off' ? 'off in this mode'
         : this.state === 'rate-limited' ? `rate limited${this.resumesAt ? ` · resets in ${fmtIn(this.resumesAt)}` : ''} · keyless sources still live`
           : this.state === 'no-credit' ? `daily budget reached (${money ?? '?'})${this.resumesAt ? ` · resets in ${fmtIn(this.resumesAt)}` : ''}`

@@ -169,7 +169,7 @@ test('resolvePaperAgentDesk: off without a rendezvous; with one, caps come from 
   assert.ok(svc.verifyJournal().ok, 'the agent never writes the app\'s plans journal');
   // a server the APP spawned (the in-app analyst / scan) never gets a desk, even while agent paper trading is on
   writeDeskControl({ state: 'running' }, env);
-  assert.ok(await paperWiring(env, data, { active: () => true }).desk(), 'an external `trenchscope mcp` gets the desk');
+  assert.ok(await paperWiring(env, data, { active: () => true }).desk(), 'an external `solgent mcp` gets the desk');
   assert.equal(await paperWiring({ ...env, DEXTERM_ACTION_FILE: join(home, 'a'), DEXTERM_SPECTATOR_FILE: join(home, 's') }, data, { active: () => true }).desk(), null);
   assert.equal(await paperWiring({ ...env, DEXTERM_SPECTATOR_FILE: join(home, 's') }, data, { active: () => true }).desk(), null);
   clearPaperAgentRendezvous(env);

@@ -479,7 +479,7 @@ const FONT: Record<string, string[]> = {
   ' ': ['  ', '  ', '  ', '  ', '  '],
 };
 
-export function logoRows(word = 'TRENCHSCOPE'): string[] {
+export function logoRows(word = 'SOLGENT'): string[] {
   const rows = ['', '', '', '', ''];
   for (const ch of word) {
     const g = FONT[ch] || FONT[' '];
@@ -489,7 +489,7 @@ export function logoRows(word = 'TRENCHSCOPE'): string[] {
 }
 
 /** Big glitching logo. `intensity` 0..1 controls row jitter + colour split; returns the rect it occupies. */
-export function bootLogo(c: Canvas, cx: number, cy: number, v: Pick<Vfx, 'frame'>, intensity = 0.3, word = 'TRENCHSCOPE'): Rect {
+export function bootLogo(c: Canvas, cx: number, cy: number, v: Pick<Vfx, 'frame'>, intensity = 0.3, word = 'SOLGENT'): Rect {
   const t = c.theme;
   const rows = logoRows(word);
   const w = Math.max(...rows.map((r) => r.length));

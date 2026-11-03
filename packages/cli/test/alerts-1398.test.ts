@@ -268,7 +268,7 @@ test('creds are written 0600 to ~/.dexterm and never returned in cleartext anywh
   assert.throws(() => writeDiscordCreds(home, { webhook: 'https://evil.example/hook' }), /webhook/);
 });
 
-test('trenchscope alerts: enable a channel (user-journalled) and store a secret from the env without printing it', async () => {
+test('solgent alerts: enable a channel (user-journalled) and store a secret from the env without printing it', async () => {
   const home = tmp();
   const a = fakeIo({ DEXTERM_HOME: home });
   assert.equal(await alertsCommand(['enable', 'desktop'], a.io), 0);

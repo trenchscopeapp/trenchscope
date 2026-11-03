@@ -1,6 +1,6 @@
 ---
 id: watch-headless
-title: Run alerts in the background (trenchscope watch)
+title: Run alerts in the background (solgent watch)
 kind: app-help
 screen: all
 feature: push-alerts
@@ -30,6 +30,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope watch [--interval S] [--once|--ticks N] [--replay FILE]` runs the rules engine headless and PUSHES alerts to your enabled channels, so they reach you when the terminal is closed. It has no signer and can never trade. Set channels up first with `trenchscope alerts`.
+`solgent watch [--interval S] [--once|--ticks N] [--replay FILE]` runs the rules engine headless and PUSHES alerts to your enabled channels, so they reach you when the terminal is closed. It has no signer and can never trade. Set channels up first with `solgent alerts`.
 
-CLI: `trenchscope watch`.
+CLI: `solgent watch`.

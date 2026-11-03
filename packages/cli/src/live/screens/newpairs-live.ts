@@ -1,4 +1,4 @@
-// trenchscope — live NEW PAIRS screen (task-1298): the layout of screens/newpairs.ts over NewPairRows.
+// solgent — live NEW PAIRS screen (task-1298): the layout of screens/newpairs.ts over NewPairRows.
 // The table caption names the push source and its rate, the sub-tabs count real rows, forensics
 // columns the keyless sources cannot answer dash out and the spotlight says what is missing and why.
 import {

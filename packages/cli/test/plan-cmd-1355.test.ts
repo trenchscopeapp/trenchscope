@@ -1,4 +1,4 @@
-// task-1355 — `trenchscope plan` / `trenchscope mandate` CLI: propose never arms, arming needs a PHYSICAL
+// task-1355 — `solgent plan` / `solgent mandate` CLI: propose never arms, arming needs a PHYSICAL
 // keypress on a TTY (a pipe/agent is refused), and the hash-chained journal persists across invocations.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';

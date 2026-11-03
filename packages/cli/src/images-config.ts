@@ -1,4 +1,4 @@
-// trenchscope — coin-image settings (task-1326). Three layers, strongest last: the file ~/.dexterm/images.json
+// solgent — coin-image settings (task-1326). Three layers, strongest last: the file ~/.dexterm/images.json
 // (DEXTERM_HOME overrides the directory, same as popup.json / state.json), the DEXTERM_IMAGES environment
 // variable, and the --no-images flag. A missing or malformed file degrades to the defaults and never throws.
 //

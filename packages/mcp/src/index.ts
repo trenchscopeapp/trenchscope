@@ -13,7 +13,7 @@ export {
 } from './user-content.ts';
 export { buildDossier, type DossierInput, type DossierAvailability } from './dossier.ts';
 // task-1406 + task-1421: the spectator sink the tool-call path writes to when a spectator surface is open
-// (via DEXTERM_SPECTATOR_FILE, or the ~/.dexterm rendezvous an external `trenchscope mcp` client uses).
+// (via DEXTERM_SPECTATOR_FILE, or the ~/.dexterm rendezvous an external `solgent mcp` client uses).
 export {
   recordForToolCall, maxAgeSec, fileSpectatorSinkFromEnv, resolveSpectatorSink, rendezvousPath,
   MCP_SPECTATOR_RENDEZVOUS, MCP_FOLLOW_SCREEN, FOLLOW_NAV_ACTIONS, followScreenPath, readFollowScreen, writeFollowScreen, clearFollowScreen,

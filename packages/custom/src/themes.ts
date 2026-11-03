@@ -156,7 +156,7 @@ export function listUserThemes(home: string, config?: DextermConfig): ThemeFile[
   return out;
 }
 
-/** A starter theme document a user can edit (`trenchscope theme init <name>`). */
+/** A starter theme document a user can edit (`solgent theme init <name>`). */
 export function starterTheme(name: string, base: (typeof BASE_THEMES)[number] = 'cyberspace'): UserTheme & { name: string } {
   return { name, extends: base, tokens: { accent: '#00f0ff', borderFocus: '#39ff14' } };
 }

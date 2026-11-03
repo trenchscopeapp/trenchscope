@@ -96,7 +96,7 @@ test('logisticModel carries provenance (trained_on + metrics) for the UI', () =>
   assert.equal(model.metrics?.auc_test, 0.78);
 });
 
-// ---- H2 (trenchscope): the cases the 2026-10-18 ground-truth audit showed H1 scoring as safe.
+// ---- H2 (solgent): the cases the 2026-10-18 ground-truth audit showed H1 scoring as safe.
 import { h2Score, h2Model, H2_FLAG_THRESHOLD } from '../src/rug-model.ts';
 
 const H2_BASE = {

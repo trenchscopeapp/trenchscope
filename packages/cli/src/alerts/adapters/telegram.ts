@@ -1,4 +1,4 @@
-// trenchscope — the `telegram` adapter (task-1398). Posts to the user's OWN bot via the Bot API
+// solgent — the `telegram` adapter (task-1398). Posts to the user's OWN bot via the Bot API
 // (https://api.telegram.org/bot<token>/sendMessage). The token and chat id are the user's, read from
 // ~/.dexterm/telegram.json (0600); they are NEVER logged and NEVER returned in a result/reason. `fetch` is
 // injectable so tests use a fake — no test ever makes a real call to Telegram.
@@ -20,7 +20,7 @@ export function createTelegramAdapter(deps: TelegramDeps): DeliveryAdapter {
     name: 'telegram',
     available: () => !!creds?.token && !!creds?.chatId,
     deliver: async (d: AlertDelivery): Promise<AdapterResult> => {
-      if (!creds) return { ok: false, skipped: true, reason: 'telegram not configured (trenchscope alerts set-telegram)' };
+      if (!creds) return { ok: false, skipped: true, reason: 'telegram not configured (solgent alerts set-telegram)' };
       const ac = new AbortController();
       const t = setTimeout(() => ac.abort(), timeoutMs);
       try {

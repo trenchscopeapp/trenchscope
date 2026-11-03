@@ -1,6 +1,6 @@
 ---
 id: chart-popup-selftest
-title: Run the popup self-test (trenchscope popup --self-test)
+title: Run the popup self-test (solgent popup --self-test)
 kind: app-help
 screen: all
 feature: popup-selftest
@@ -27,6 +27,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope popup --self-test [--browser] [--seconds N] [--theme NAME]` opens a chart popup on fixture data and reports the shell, hotkey and fps it can measure headlessly, labelling what still needs a human at an unlocked Mac. In-app, open the popup for real with `C` on the token screen (see "Open the chart popup").
+`solgent popup --self-test [--browser] [--seconds N] [--theme NAME]` opens a chart popup on fixture data and reports the shell, hotkey and fps it can measure headlessly, labelling what still needs a human at an unlocked Mac. In-app, open the popup for real with `C` on the token screen (see "Open the chart popup").
 
-CLI: `trenchscope popup`.
+CLI: `solgent popup`.

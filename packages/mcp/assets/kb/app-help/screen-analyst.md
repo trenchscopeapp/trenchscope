@@ -128,7 +128,7 @@ sources:
 date: 2026-10-16
 ---
 
-Your own `claude` CLI as the trenchscope analyst: it reads the read-only trenchscope MCP tools, grounds every fact in a tool result, and answers in a few terse lines. ⏎ on a coin runs a full dossier; `a` runs a rug-check. Facts never come from model memory; token text passes the prompt firewall.
+Your own `claude` CLI as the solgent analyst: it reads the read-only solgent MCP tools, grounds every fact in a tool result, and answers in a few terse lines. ⏎ on a coin runs a full dossier; `a` runs a rug-check. Facts never come from model memory; token text passes the prompt firewall.
 
 Keys on this screen:
   `q/^C` — quit

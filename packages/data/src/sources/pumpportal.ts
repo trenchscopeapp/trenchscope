@@ -203,7 +203,7 @@ export class PumpPortalClient {
     this.set({ state: 'stopped', nextRetryMs: null });
     const ws = this.ws;
     this.ws = null;
-    try { ws?.close(1000, 'trenchscope stop'); } catch { /* already closed */ }
+    try { ws?.close(1000, 'solgent stop'); } catch { /* already closed */ }
   }
 
   private set(patch: Partial<PumpStatus>): void {

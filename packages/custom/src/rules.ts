@@ -38,7 +38,7 @@ export interface RuleRow {
   /** LARP-detector grade (task-1398): higher = more real (REAL_PRODUCT 3 · EARLY_BUT_REAL 2 · NO_PRODUCT_CLAIMED 1 · UNVERIFIABLE 1 · LARP 0); null = no verdict yet. `larp.delta` detects a grade change. */
   larp?: number | null;
   /**
-   * 0.1.5 dev history (task-1425): how many of this coin's creator's prior launches trenchscope recorded as `rug`
+   * 0.1.5 dev history (task-1425): how many of this coin's creator's prior launches solgent recorded as `rug`
    * (keyless-proxy labels, local history). null = unknown (no creator link or nothing labelled) → clauses are false.
    * e.g. `when devrugs >= 2 then alert(warn, "new coin from a wallet that rugged before") scope newpairs`.
    */

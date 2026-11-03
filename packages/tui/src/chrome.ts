@@ -64,12 +64,12 @@ export function header(c: Canvas, m: HeaderModel): void {
   rx = c.text(rx, 0, '  ', { bg });
   c.text(rx, 0, clk, { fg: t.muted, bg });
   const limit = c.w - rightW - 1;
-  // logo: "trench" accent, "scope" white, both bold; registered as a heading so it chromatic-aberrates
-  let x = c.text(1, 0, ' trench', { fg: t.borderFocus, bg, b: true });
-  x = c.text(x, 0, 'scope', { fg: t.text, bg, b: true });
+  // logo: "sol" accent, "gent" white, both bold; registered as a heading so it chromatic-aberrates
+  let x = c.text(1, 0, ' sol', { fg: t.borderFocus, bg, b: true });
+  x = c.text(x, 0, 'gent', { fg: t.text, bg, b: true });
   // the wordmark's block cursor, in the theme's pop colour where it has one (mono, matching the site)
   x = c.text(x, 0, t.pop ? '▌' : ' ', { fg: t.pop ?? t.text, bg });
-  c.heading(2, 0, 11);
+  c.heading(2, 0, 7);
   if (m.tabs !== false) x = c.text(x, 0, '┃ ', { fg: t.border, bg, soft: true });
   const compact = c.w < 110;
   for (const s of m.tabs === false ? [] : SCREENS) {

@@ -1,4 +1,4 @@
-// trenchscope — screener presets (SPEC §4.2): which discovery feeds to pull and which baked filter
+// solgent — screener presets (SPEC §4.2): which discovery feeds to pull and which baked filter
 // to apply on top. Availability comes from the health registry: a preset whose gate is not
 // served (needs-key / degraded / disabled) is shown dim with a caption and cannot be selected.
 import type { HealthRegistry, Preset as FeedPreset } from '@dexterm/data';
@@ -85,7 +85,7 @@ export function presetViews(health?: HealthRegistry): PresetView[] {
     if (!health) return { id: p.id, label: p.label, available: true, caption: p.approx ? p.approx : null, approx: !!p.approx };
     if (p.pending) return { id: p.id, label: p.label, available: false, caption: p.pending };
     // An approximation preset is served keyless by its baked filter over keyless fields, so it is always
-    // selectable. The trenchscope filter grammar has no real bonding-% field at this tier, so the preset is
+    // selectable. The solgent filter grammar has no real bonding-% field at this tier, so the preset is
     // ALWAYS the approximation (the `gate` only marks the future upgrade to a real column); the 'approx'
     // caption therefore stays visible even when available, so the UI never implies the keyed signal.
     if (p.approx) return { id: p.id, label: p.label, available: true, caption: p.approx, approx: true };

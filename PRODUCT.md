@@ -2,8 +2,8 @@
 
 <!-- impeccable:product-schema 1 -->
 
-trenchscope is a fork of dexterm (renamed 2026-10-18, commit 36043d6). The user-facing name, wordmark, boot logo and
-`trenchscope` bin are new; internal package names (`@dexterm/*`), `~/.dexterm` and `DEXTERM_*` variables stay so keys
+solgent is a fork of dexterm (renamed 2026-10-18, commit 36043d6). The user-facing name, wordmark, boot logo and
+`solgent` bin are new; internal package names (`@dexterm/*`), `~/.dexterm` and `DEXTERM_*` variables stay so keys
 keep working and upstream fixes still merge.
 
 ## Platform
@@ -45,12 +45,12 @@ Analyst, token detail, trade ticket, positions, plans.
   Paper and live trading are experimental with known bugs.
 - The analyst and MCP server have no build, sign or send tool.
 - Terminal rendering supports truecolor, 256-colour and NO_COLOR; every numeric cell must clear 4.5:1 contrast.
-- Open decision: the npm and Homebrew names for trenchscope are not published yet (the package on npm is still
+- Open decision: the npm and Homebrew names for solgent are not published yet (the package on npm is still
   `dexterm-cli`). The site must not present them as live until they are.
 
 ## Brand Commitments
 
-- Name: trenchscope, lowercase. Tagline: "a terminal for the trenches".
+- Name: solgent, lowercase. Tagline: "a terminal for the trenches".
 - Black and white (owner, 2026-10-18): the CLI and the site share one monochrome look. Ink on black for everything;
   only price direction keeps a muted green/red and real warnings keep amber. Active tabs and key chips are reverse
   video; the selected row is a raised grey bar. No launchpad hues, no blue accent, no coral. The CLI theme is mono.

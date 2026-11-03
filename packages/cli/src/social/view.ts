@@ -1,4 +1,4 @@
-// trenchscope — shared view helpers for the social layer (task-1330): what the trending screen, the token SOCIAL
+// solgent — shared view helpers for the social layer (task-1330): what the trending screen, the token SOCIAL
 // panel and the KOL screen read from the state. Pure functions over AppState + SocialFeed; no rendering here.
 import type { SocialFeed, SocialPost, TrendRow, NewsItem, KolStore, KolList } from '@dexterm/data';
 import type { AppState } from '../state.ts';

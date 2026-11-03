@@ -1,4 +1,4 @@
-// task-1345 tier 2: the `trenchscope agent` CLI — registry management, the agent packs listing, and a
+// task-1345 tier 2: the `solgent agent` CLI — registry management, the agent packs listing, and a
 // connect round trip against a live loopback bus. Hermetic: a temp DEXTERM_HOME, fixture executor, no network.
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
@@ -72,7 +72,7 @@ test('packs lists the skills an external agent gets over MCP', async () => {
   const a = io({});
   assert.equal(await runAgent(['packs'], a), 0);
   assert.match(a.out, /trench-scan/);
-  assert.match(a.out, /claude mcp add trenchscope/);
+  assert.match(a.out, /claude mcp add solgent/);
 });
 
 test('connect refuses when the token is not in the environment', async () => {

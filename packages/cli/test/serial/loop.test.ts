@@ -59,7 +59,7 @@ laneTest('first launch: full boot, a key skips it and acts, blink, state recorde
     assert.match(t.out(), KANA, 'the boot rains');
     assert.doesNotMatch(t.out(), /SCREENER/, 'still booting');
     t.type('2'); // first key skips the boot; a FIRST launch then shows the one-time welcome card (task-1305)
-    await until(() => t.out().includes('WELCOME TO TRENCHSCOPE'), 4000, 'the one-time welcome card after the boot');
+    await until(() => t.out().includes('WELCOME TO SOLGENT'), 4000, 'the one-time welcome card after the boot');
     assert.match(t.out(), /[▀▄]{20}/, 'the blink eyelids were drawn');
     const saved = JSON.parse(readFileSync(join(home, 'state.json'), 'utf8'));
     assert.equal(saved.boots, 1, 'the launch was recorded when the boot ended');
@@ -116,7 +116,7 @@ laneTest('--no-boot and --calm start straight on the screener without a transiti
     const run = main(['--fixtures', '--full', '--calm', '--no-boot'], t.io, p.proc);
     await until(() => t.out().includes('SCREENER'), 3000, 'screener');
     assert.doesNotMatch(t.out(), /JACKING IN/);
-    assert.doesNotMatch(t.out(), /WELCOME TO TRENCHSCOPE/, 'a later launch skips the welcome card');
+    assert.doesNotMatch(t.out(), /WELCOME TO SOLGENT/, 'a later launch skips the welcome card');
     assert.match(t.out(), /◉ live · calm/);
     // Count paints, not bytes: one paint is one write, and a data tick repaints every row whose price moved
     // (about 33 KB at 140x40 in the mono theme), so a byte bound broke whenever two ticks fell in the window.

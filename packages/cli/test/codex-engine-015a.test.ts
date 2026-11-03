@@ -1,4 +1,4 @@
-// trenchscope 0.1.5: the analyst on the user's own Codex CLI. Offline: a fake `codex` (an injected child, and a real
+// solgent 0.1.5: the analyst on the user's own Codex CLI. Offline: a fake `codex` (an injected child, and a real
 // fake binary on PATH like the fake-claude harness). The real CLI is never called here; the real-binary proof
 // against a local mock model is test/measure/codex-015a (manual).
 import { posixPermissions } from '../../../scripts/test-support.ts';
@@ -76,7 +76,7 @@ test('the codex argv locks shell/exec/apps/plugins/hooks/agents off, read-only s
   assert.deepEqual(JSON.parse(cfg(argv, 'mcp_servers.dexterm.enabled_tools')!), codexAllowedTools([]));
   assert.deepEqual(JSON.parse(cfg(argv, 'mcp_servers.dexterm.env_vars')!), [...CODEX_MCP_ENV]);
   assert.equal(cfg(argv, 'mcp_servers.dexterm.required'), 'true', 'a dead MCP server fails the run, never a tool-less turn');
-  // only the trenchscope server is configured
+  // only the solgent server is configured
   assert.deepEqual([...new Set(flagValues(argv, '-c').filter((v) => v.startsWith('mcp_servers.')).map((v) => v.split('.')[1]))], ['dexterm']);
   assert.equal(argv[argv.length - 1], '-', 'the prompt is read from stdin');
   assert.ok(!argv.some((a) => /DEXTERM_ACTION_TOKEN=|DEXTERM_SCREEN_STATE=/.test(a)), 'no env values on argv');

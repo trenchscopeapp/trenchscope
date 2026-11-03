@@ -64,7 +64,7 @@ export interface BacktestRequest {
   positive_labels?: Label[];
   subject: {
     model?: RugModel;
-    /** A predicate over the t0 features, parsed by the caller from the trenchscope filter grammar. */
+    /** A predicate over the t0 features, parsed by the caller from the solgent filter grammar. */
     filter?: (features: ExportRecord['features']) => boolean;
     filter_text?: string;
     /** pack_verdicts: a lookup of the recorded rug_p for a (mint, t0). */

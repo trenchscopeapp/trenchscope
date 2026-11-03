@@ -1,2 +1,6 @@
 .vercel
 .env*
+!.env.example
+node_modules/
+public/
+server/generated/

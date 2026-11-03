@@ -85,7 +85,7 @@ test('composeExportCanvas: header (title + label), the view untouched, footer wi
     const v = view(label);
     const c = composeExportCanvas(v, NOW);
     const lines = canvasText(c);
-    assert.match(lines[0], /trenchscope export · TOKEN · \$ABC/);
+    assert.match(lines[0], /solgent export · TOKEN · \$ABC/);
     assert.ok(lines[0].includes(LABEL_TEXT[label]), `${label}: header carries the label`);
     assert.equal(lines[3], canvasText(v.canvas)[2], 'the view is copied as is, one row down');
     const foot = lines.slice(v.canvas.h + 1).join('\n');

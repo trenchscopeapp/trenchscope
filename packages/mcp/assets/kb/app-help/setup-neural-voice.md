@@ -31,6 +31,6 @@ sources:
 date: 2026-10-16
 ---
 
-trenchscope can speak with a neural British voice (Piper, en_GB-alan-medium) that sounds markedly more natural than the built-in system voices. Run `trenchscope voice setup` to install it: it asks first, builds a private local Python runtime and downloads a ~61 MB checksum-verified voice from the official source, then runs fully offline with no key. Once installed it becomes the DEFAULT speaking voice automatically (the system voice stays as the fallback); `trenchscope voice uninstall` removes it. It needs Python 3.9+ — `trenchscope doctor` prints the exact fix if it is missing, and shows which engine is speaking.
+solgent can speak with a neural British voice (Piper, en_GB-alan-medium) that sounds markedly more natural than the built-in system voices. Run `solgent voice setup` to install it: it asks first, builds a private local Python runtime and downloads a ~61 MB checksum-verified voice from the official source, then runs fully offline with no key. Once installed it becomes the DEFAULT speaking voice automatically (the system voice stays as the fallback); `solgent voice uninstall` removes it. It needs Python 3.9+ — `solgent doctor` prints the exact fix if it is missing, and shows which engine is speaking.
 
-CLI: `trenchscope voice`.
+CLI: `solgent voice`.

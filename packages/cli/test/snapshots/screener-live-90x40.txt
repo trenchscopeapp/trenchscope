@@ -1,4 +1,4 @@
-  trenchscope ┃  1 Screener ▌ 2 New   3 Watchlist   4 Analyst     ◉ live · calm  20:58:58
+  solgent ┃  1 Screener ▌ 2 New   3 Watchlist   4 Analyst         ◉ live · calm  20:58:58
 
  ⌕ vol24 > 250K  liq > 50K  age < 30d  chain:solana       Trench   Trending   Runners  ›
 ╭─ SCREENER ──────────────── 30 tokens · sorted by vol 24h · p(rug) = H2-v0.1 heuristic ─╮

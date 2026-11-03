@@ -1,4 +1,4 @@
-// trenchscope — demo social feed for `--fixtures` (task-1330). Deterministic posts, venue signals, KOL lists and
+// solgent — demo social feed for `--fixtures` (task-1330). Deterministic posts, venue signals, KOL lists and
 // news seeded from the fixture tokens so the TRENDING screen, the token SOCIAL panel and the KOL screen render
 // offline (one-shot frames, width tests, screenshots) exactly as the INTEGRATIONS-DESIGN §5 mockups describe:
 // a clean runner, a spam cluster, a boost-only token, an injection post, chain rows and a news column.

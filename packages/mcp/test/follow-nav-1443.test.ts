@@ -1,4 +1,4 @@
-// task-1443 capture-lane bug: an EXTERNAL `trenchscope mcp` server (the user's own agent) had no screen context, so every
+// task-1443 capture-lane bug: an EXTERNAL `solgent mcp` server (the user's own agent) had no screen context, so every
 // nav call failed and a terminal following it over MCP never moved. A following terminal now publishes a reduced
 // snapshot; the server reads it (fresh only), accepts the four VIEW-ONLY nav calls against it (plus mints its own
 // screener reads surfaced), and still refuses anything that changes user data or has no following terminal.

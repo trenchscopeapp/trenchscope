@@ -1,4 +1,4 @@
-// trenchscope T2 — the signer HOST loop (task-1328): runs inside the signer process, reads authenticated
+// solgent T2 — the signer HOST loop (task-1328): runs inside the signer process, reads authenticated
 // frames from `input` (the child's stdin), dispatches to the SignerService, and writes authenticated
 // responses to `output` (the child's stdout). Diagnostics go to `log` (stderr) and never carry bytes,
 // keys or the secret. Fails closed: a bad hello, too many bad frames, or a closed input ends the loop

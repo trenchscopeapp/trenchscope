@@ -1,9 +1,9 @@
-// `trenchscope --spectate-mcp --agent-paper <mandate-id>` — the app half of agent PAPER trading (task-1443).
+// `solgent --spectate-mcp --agent-paper <mandate-id>` — the app half of agent PAPER trading (task-1443).
 //
-// The user arms a mandate by keypress (plans screen / `trenchscope mandate arm`), then starts the terminal with the
+// The user arms a mandate by keypress (plans screen / `solgent mandate arm`), then starts the terminal with the
 // spectator view and names that mandate. This switch checks the mandate is armed and alive in the hash-chained
 // plans journal, then writes the ~/.dexterm rendezvous (wallet DB + mandate ID, never the caps) and a `running`
-// control state. The external `trenchscope mcp` server replays the caps from the journal itself on every call, so
+// control state. The external `solgent mcp` server replays the caps from the journal itself on every call, so
 // nothing written here can raise a cap. The follow controls map onto the control file: Ctrl+P pause/resume,
 // Ctrl+K stop (sticky for the rest of the run), any key while the agent drives = take over. Quitting removes
 // both files, so agent paper trading never outlives the terminal that enabled it. Paper only: nothing here can

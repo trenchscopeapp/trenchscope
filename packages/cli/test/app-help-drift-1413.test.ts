@@ -35,7 +35,7 @@ test('backward: every key / command / flag / tool a committed entry names still 
   const bad: string[] = [];
   for (const e of entries) {
     for (const k of e.keys) if (!boundKeys.has(k)) bad.push(`${e.id}: key "${k}" is not bound in the keymap`);
-    for (const c of e.commands) if (!subs.has(c)) bad.push(`${e.id}: command "${c}" is not a trenchscope subcommand`);
+    for (const c of e.commands) if (!subs.has(c)) bad.push(`${e.id}: command "${c}" is not a solgent subcommand`);
     for (const f of e.flags) if (!flags.has(f)) bad.push(`${e.id}: flag "${f}" is not accepted by the CLI`);
     for (const t of e.tools) if (!tools.has(t)) bad.push(`${e.id}: tool "${t}" is not an MCP tool`);
   }
@@ -64,11 +64,11 @@ test('forward (tools): every read-only MCP tool is referenced by at least one ap
   assert.equal(uncovered.length, 0, `read-only MCP tools with no app-help entry: ${uncovered.join(', ')}`);
 });
 
-test('forward (subcommands): every trenchscope subcommand is covered by at least one app-help entry', () => {
+test('forward (subcommands): every solgent subcommand is covered by at least one app-help entry', () => {
   const covered = new Set<string>();
   for (const e of loadAppHelp()) for (const c of e.commands) covered.add(c);
   const uncovered = appSubcommands().filter((c) => !covered.has(c));
-  assert.equal(uncovered.length, 0, `trenchscope subcommands with no app-help entry (add a topic in app-help-gen.ts): ${uncovered.join(', ')}`);
+  assert.equal(uncovered.length, 0, `solgent subcommands with no app-help entry (add a topic in app-help-gen.ts): ${uncovered.join(', ')}`);
 });
 
 test('forward (flags): every accepted CLI flag is covered by an entry or is on the internal allow-list', () => {

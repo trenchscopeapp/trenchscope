@@ -1,4 +1,4 @@
-// trenchscope — LIVE holder / rug SIGNALS engine (task-1404). Pure + deterministic.
+// solgent — LIVE holder / rug SIGNALS engine (task-1404). Pure + deterministic.
 //
 // The token screen used to read holders and safety ONCE, when you opened it. This engine turns a stream of
 // repeated OBSERVATIONS of a token's holder/rug state into SIGNAL events — the changes worth telling a trader

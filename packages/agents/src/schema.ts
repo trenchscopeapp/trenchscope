@@ -1,6 +1,6 @@
 // @dexterm/agents — a small, total JSON-schema checker for tool arguments (task-1345).
 //
-// Covers the subset the trenchscope tool table uses: object/string/integer/number/boolean, enum, minimum,
+// Covers the subset the solgent tool table uses: object/string/integer/number/boolean, enum, minimum,
 // maximum, maxLength, required, additionalProperties:false, nested objects. Anything the schema does
 // not mention is an error (schemas are closed: `additionalProperties` defaults to false for agent
 // calls even when a schema omits it). Pure and never throws.

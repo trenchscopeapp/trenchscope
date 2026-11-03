@@ -31,6 +31,6 @@ sources:
 date: 2026-10-16
 ---
 
-Your own KB entries and skills live in `~/.dexterm/kb/entries/<id>.md` and `~/.dexterm/skills/<name>.md` (same frontmatter as the bundled ones). `trenchscope kb|skill list|show|new|edit|check|reset|path`: `edit` copies the bundled file and opens your editor, `check` validates it, `reset` restores the bundled one. A skill is read-only guidance and may never name a trade/sign/arm tool.
+Your own KB entries and skills live in `~/.dexterm/kb/entries/<id>.md` and `~/.dexterm/skills/<name>.md` (same frontmatter as the bundled ones). `solgent kb|skill list|show|new|edit|check|reset|path`: `edit` copies the bundled file and opens your editor, `check` validates it, `reset` restores the bundled one. A skill is read-only guidance and may never name a trade/sign/arm tool.
 
-CLI: `trenchscope kb`, `trenchscope skill`.
+CLI: `solgent kb`, `solgent skill`.

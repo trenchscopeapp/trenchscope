@@ -1,4 +1,4 @@
-// trenchscope — launch bookkeeping in ~/.dexterm/state.json (task-1297): the first launch gets the full
+// solgent — launch bookkeeping in ~/.dexterm/state.json (task-1297): the first launch gets the full
 // glitch boot, every later launch a one-second boot (product decision, 2026-10-06). The directory is
 // the same one that holds the Helius key; this module only ever touches state.json and never reads
 // anything else from it. Any filesystem failure is swallowed: a missing or unwritable home just

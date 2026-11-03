@@ -1,4 +1,4 @@
-// trenchscope history recorder (lane R-01, AI-SUITE-DESIGN §4.1). One class, four jobs:
+// solgent history recorder (lane R-01, AI-SUITE-DESIGN §4.1). One class, four jobs:
 //   observe   rows the data layer already normalised (Store listener) -> token_snapshots on change,
 //             feed_members on entry / every few minutes. Zero requests.
 //   sweep     re-observe mints that left the screen at the 1 h / 2 h / 6 h / 24 h / 72 h horizons: one

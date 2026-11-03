@@ -273,7 +273,7 @@ export const SCHEMAS: Record<string, SchemaNode> = {
     scan: { type: 'object', additional: true },
     popups: { type: 'object', additional: false, props: { rain: { type: 'object', additional: false, props: { enabled: { type: 'boolean' }, speedScale: { type: 'number', min: 0, max: 4 }, density: { type: 'number', min: 0, max: 1 } } } } },
     /**
-     * The headless PAPER-trading bot (`trenchscope bot`). Strategy knobs only; every field is optional and falls
+     * The headless PAPER-trading bot (`solgent bot`). Strategy knobs only; every field is optional and falls
      * back to the conservative default in packages/cli/src/bot/config.ts. PAPER ONLY: there is no live, arm, key or
      * signer field here, and the bot's module graph cannot reach a signer. `/bot` is user-only (DENIED_FOR_MODELS).
      */
@@ -299,7 +299,7 @@ export const SCHEMAS: Record<string, SchemaNode> = {
       } },
       alerts: { type: 'object', additional: false, props: { entries: { type: 'boolean' }, exits: { type: 'boolean' } } },
     } },
-    /** Forward-compat bag: unknown sections from a newer trenchscope survive a downgrade here. */
+    /** Forward-compat bag: unknown sections from a newer solgent survive a downgrade here. */
     'x-unknown': { type: 'object', additional: true },
   } },
   capability: { type: 'string', enum: [
@@ -386,7 +386,7 @@ export interface DextermConfig {
   alerts?: AlertsConfig;
   scan?: Record<string, unknown>;
   popups?: { rain?: { enabled?: boolean; speedScale?: number; density?: number } };
-  /** The headless PAPER-trading bot's strategy (`trenchscope bot`); defaults in packages/cli/src/bot/config.ts. Paper only. */
+  /** The headless PAPER-trading bot's strategy (`solgent bot`); defaults in packages/cli/src/bot/config.ts. Paper only. */
   bot?: BotSettings;
   'x-unknown'?: Record<string, unknown>;
 }
@@ -567,7 +567,7 @@ export function migrate(raw: unknown): { config: DextermConfig; errors: SchemaEr
   let cur: Record<string, unknown> = raw && typeof raw === 'object' ? structuredClone(raw as Record<string, unknown>) : {};
   let v = out.from;
   if (!Number.isInteger(v) || v < 1) v = 1;
-  if (v > CONFIG_VERSION) throw new Error(`config version ${v} is newer than this trenchscope (${CONFIG_VERSION}); upgrade trenchscope or restore config.json.bak`);
+  if (v > CONFIG_VERSION) throw new Error(`config version ${v} is newer than this solgent (${CONFIG_VERSION}); upgrade solgent or restore config.json.bak`);
   while (v < CONFIG_VERSION) {
     const step = MIGRATIONS[v];
     if (!step) throw new Error(`no migration from v${v}`);

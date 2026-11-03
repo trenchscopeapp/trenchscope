@@ -1,4 +1,4 @@
-// trenchscope — turn a rule-engine alert / proposal into a firewalled AlertDelivery (task-1398). Pure.
+// solgent — turn a rule-engine alert / proposal into a firewalled AlertDelivery (task-1398). Pure.
 //
 // Untrusted text (a token symbol, and whatever the user put in the rule's alert text) is run through the
 // prompt firewall (control/bidi/ANSI stripped, URLs → [url], foreign base58 → [addr], wide glyphs → ▯,

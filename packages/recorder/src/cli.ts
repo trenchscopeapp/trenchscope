@@ -1,4 +1,4 @@
-// `trenchscope recorder <cmd>` / `dexterm-recorder <cmd>`: stats, label, prune, export. No network.
+// `solgent recorder <cmd>` / `dexterm-recorder <cmd>`: stats, label, prune, export. No network.
 import { writeFileSync } from 'node:fs';
 import { defaultDbPath } from '@dexterm/data';
 import { Recorder } from './recorder.ts';
@@ -10,12 +10,12 @@ export interface CliIo {
   env: NodeJS.ProcessEnv;
 }
 
-export const RECORDER_HELP = `trenchscope recorder: the history recorder's tables (snapshots, feed membership, outcomes)
+export const RECORDER_HELP = `solgent recorder: the history recorder's tables (snapshots, feed membership, outcomes)
 
-  trenchscope recorder stats  [--db PATH]                     rows, labels, bytes per snapshot, DB size
-  trenchscope recorder label  [--db PATH]                     label every due t0 anchor now (code only, no model)
-  trenchscope recorder prune  [--db PATH]                     run retention now (raw 7 d, 1/min after 24 h, columns 90 d)
-  trenchscope recorder export [--db PATH] [--out FILE] [--since T] [--until T] [--labelled-only] [--limit N]
+  solgent recorder stats  [--db PATH]                     rows, labels, bytes per snapshot, DB size
+  solgent recorder label  [--db PATH]                     label every due t0 anchor now (code only, no model)
+  solgent recorder prune  [--db PATH]                     run retention now (raw 7 d, 1/min after 24 h, columns 90 d)
+  solgent recorder export [--db PATH] [--out FILE] [--since T] [--until T] [--labelled-only] [--limit N]
                                                           eval export (T = ISO date or unix ms); stdout without --out
 
   --db defaults to DEXTERM_DB_PATH, else ~/.local/share/dexterm/dexterm.db. The recorder itself runs
@@ -48,7 +48,7 @@ export async function recorderCli(argv: string[], io: CliIo): Promise<number> {
   const { cmd, opts } = parse(argv);
   if (!cmd || cmd === 'help' || opts.help || opts.h) { io.stdout.write(RECORDER_HELP + '\n'); return cmd ? 0 : 2; }
   const path = typeof opts.db === 'string' ? opts.db : (io.env.DEXTERM_DB_PATH || defaultDbPath(io.env));
-  if (path === ':memory:') { io.stderr.write('trenchscope recorder: an in-memory DB has no history\n'); return 2; }
+  if (path === ':memory:') { io.stderr.write('solgent recorder: an in-memory DB has no history\n'); return 2; }
   let rec: Recorder | null = null;
   try {
     rec = new Recorder({ path });
@@ -92,10 +92,10 @@ export async function recorderCli(argv: string[], io: CliIo): Promise<number> {
       } else io.stdout.write(text + '\n');
       return 0;
     }
-    io.stderr.write(`trenchscope recorder: unknown command ${cmd}\n${RECORDER_HELP}\n`);
+    io.stderr.write(`solgent recorder: unknown command ${cmd}\n${RECORDER_HELP}\n`);
     return 2;
   } catch (err) {
-    io.stderr.write(`trenchscope recorder: ${err instanceof Error ? err.message : String(err)}\n`);
+    io.stderr.write(`solgent recorder: ${err instanceof Error ? err.message : String(err)}\n`);
     return 1;
   } finally {
     rec?.close();

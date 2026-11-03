@@ -1,4 +1,4 @@
-// `trenchscope recorder <cmd>` over a temp file DB, and the enable/disable resolution.
+// `solgent recorder <cmd>` over a temp file DB, and the enable/disable resolution.
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -23,7 +23,7 @@ test('recorder CLI: help, stats, label, prune, export on a file DB; refuses :mem
     rec.close();
     let x = io();
     assert.equal(await recorderCli([], x.io), 2);
-    assert.match(x.out.join(''), /trenchscope recorder stats/);
+    assert.match(x.out.join(''), /solgent recorder stats/);
     x = io();
     assert.equal(await recorderCli(['stats', '--db', db], x.io), 0);
     assert.match(x.out.join(''), /feed_members\s+2/);

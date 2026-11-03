@@ -1,4 +1,4 @@
-// task-1406: the MCP tool-call path's spectator sink. When the running trenchscope launches the MCP child with
+// task-1406: the MCP tool-call path's spectator sink. When the running solgent launches the MCP child with
 // DEXTERM_SPECTATOR_FILE, every tool call is emitted as a SpectatorEvent-shaped JSONL line the TUI tails
 // into its hub. The record only DESCRIBES a completed read/navigation call — it carries nothing an agent
 // could act on, and no money/UI mutation happens here.

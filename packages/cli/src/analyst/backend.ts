@@ -1,5 +1,5 @@
-// trenchscope analyst backend (task-1302): spawn the user's own `claude -p` with the trenchscope skills
-// (plugin dir), the analyst system prompt and the read-only `trenchscope mcp` server, then parse the
+// solgent analyst backend (task-1302): spawn the user's own `claude -p` with the solgent skills
+// (plugin dir), the analyst system prompt and the read-only `solgent mcp` server, then parse the
 // stream-json output into incremental events for the UI. SPEC §5.1 launch line, proven in task-1293's
 // run-skill.mjs.
 //

@@ -74,7 +74,7 @@ export function dextermHome(env: NodeJS.ProcessEnv = process.env): string {
 export const userKbDir = (home: string): string => path.join(home, 'kb', 'entries');
 export const userSkillsDir = (home: string): string => path.join(home, 'skills');
 export const userDir = (kind: ContentKind, home: string): string => (kind === 'kb' ? userKbDir(home) : userSkillsDir(home));
-/** Append-only record of `trenchscope kb|skill new/edit/reset` (what changed, sha before/after; never content). */
+/** Append-only record of `solgent kb|skill new/edit/reset` (what changed, sha before/after; never content). */
 export const contentJournalPath = (home: string): string => path.join(home, 'kb-skills.journal.jsonl');
 
 // ------------------------------------------------------------------ parsing
@@ -112,7 +112,7 @@ const MONEY_WORDS = new Set([
   'confirm', 'execute', 'submit', 'panic', 'cap', 'caps', 'mandate', 'mandates', 'approve', 'pay', 'payment', 'fund',
   'close', // task-1443: paper_close books a (simulated) sell — a skill may never name it
 ]);
-/** Tools that exist in trenchscope and are money-adjacent by name, refused even though the server knows them. */
+/** Tools that exist in solgent and are money-adjacent by name, refused even though the server knows them. */
 export const MONEY_TOOLS = ['open_ticket'] as const;
 const IDENT = /\b(?:mcp__[A-Za-z0-9-]+__)?[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)+\b/g;
 const SLASH_MONEY = /(?:^|[\s`(])\/(wallet|trade|swap|buy|sell|panic|arm|sign|send|mandate|plan)\b/gi;
@@ -206,7 +206,7 @@ export function checkSkill(raw: string, stem: string, readTools: readonly string
   // Invariant 1: `tools:` may only name read tools; nothing anywhere may name a money tool.
   for (const t of asList(meta.tools)) {
     if (isMoneyToolName(t, readTools) || /^mcp__/.test(t)) errors.push(`tools: "${t}" refused: a skill can never name a trade / sign / arm / ticket tool`);
-    else if (!readTools.includes(t)) errors.push(`tools: "${t}" is not a trenchscope read tool (read tools: ${readTools.join(', ')})`);
+    else if (!readTools.includes(t)) errors.push(`tools: "${t}" is not a solgent read tool (read tools: ${readTools.join(', ')})`);
   }
   const named = moneyToolMentions([body, ...Object.values(meta).flatMap(asList)].join('\n'), readTools);
   if (named.length) errors.push(`names a money tool (${named.slice(0, 5).join(', ')}): a skill is read-only guidance and may never name a trade / sign / arm / ticket tool`);
@@ -363,7 +363,7 @@ export function resetOverlayFile(kind: ContentKind, home: string, id: string, no
   return dest;
 }
 
-/** A starter file for `trenchscope kb new <id>` / `trenchscope skill new <name>`. */
+/** A starter file for `solgent kb new <id>` / `solgent skill new <name>`. */
 export function templateFor(kind: ContentKind, id: string, today = new Date().toISOString().slice(0, 10)): string {
   if (kind === 'kb') {
     return [

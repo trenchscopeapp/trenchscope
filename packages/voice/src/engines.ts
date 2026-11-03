@@ -36,7 +36,7 @@ export async function selectStt(choice: SttChoice = (process.env.DEXTERM_VOICE_S
 /**
  * Resolve the default `say` voice for this machine: the user's configured voice if it is installed and
  * safe, else a deep British male (Daniel first), never a novelty voice and never the OS system default.
- * Returns the full resolution (voice + why) so the controller and `trenchscope doctor` can show it.
+ * Returns the full resolution (voice + why) so the controller and `solgent doctor` can show it.
  */
 export async function resolveSayVoice(say: SayTts, configured?: string | null): Promise<VoiceResolution> {
   const installed = await say.listVoicesDetailed();
@@ -61,7 +61,7 @@ export async function selectTts(
   if (choice === 'espeak') { const e = new EspeakTts(espeakVoiceFor(configuredVoice) ?? undefined); return (await e.available()) ? e : null; }
 
   // On macOS, prefer Piper alan (neural) when the managed runtime is installed (task-1416:
-  // `trenchscope voice setup` → venv + model + afplay), else the built-in `say`. Off macOS, `say` does not
+  // `solgent voice setup` → venv + model + afplay), else the built-in `say`. Off macOS, `say` does not
   // exist — use the portable engines below. An explicit `choice==='say'` always skips Piper.
   if (choice === 'say' || (choice === 'auto' && process.platform === 'darwin')) {
     if (choice === 'auto') {

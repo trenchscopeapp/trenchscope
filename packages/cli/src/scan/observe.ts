@@ -1,4 +1,4 @@
-// trenchscope AI SCAN MODE (task-1324) — build ScanObservations from data the app ALREADY has. No network:
+// solgent AI SCAN MODE (task-1324) — build ScanObservations from data the app ALREADY has. No network:
 // the screener feed rows in memory, the DexScreener pair `Store.enrich` already cached under `ds:token`
 // (read with a plain Cache.get — the same read live/flow.ts does for the BUY/SELL FLOW panel), the open
 // token's loaded view (fast-lane price, candles) and existing LARP verdicts. Nothing here calls the HTTP

@@ -1,19 +1,19 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.trenchscopeapp/trenchscope",
-  "title": "trenchscope",
+  "name": "io.github.solgentapp/solgent",
+  "title": "solgent",
   "description": "Local Solana memecoin research, rug checks, LARP evidence, and holder analysis over MCP.",
   "repository": {
-    "url": "https://github.com/trenchscopeapp/trenchscope",
+    "url": "https://github.com/solgentapp/solgent",
     "source": "github"
   },
-  "websiteUrl": "https://github.com/trenchscopeapp/trenchscope#use-it-from-claude-or-codex",
-  "version": "0.1.5",
+  "websiteUrl": "https://github.com/solgentapp/solgent#use-it-from-claude-or-codex",
+  "version": "0.2.0",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "trenchscope",
-      "version": "0.1.5",
+      "identifier": "solgent",
+      "version": "0.2.0",
       "transport": {
         "type": "stdio"
       },

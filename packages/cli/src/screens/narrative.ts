@@ -1,5 +1,5 @@
-// trenchscope — NARRATIVE BOARD screen (key N, task-1356; AI-SUITE-DESIGN §7). What is running and what is
-// working across the tokens trenchscope has recorded: deterministic lexicon clustering, per-narrative volume /
+// solgent — NARRATIVE BOARD screen (key N, task-1356; AI-SUITE-DESIGN §7). What is running and what is
+// working across the tokens solgent has recorded: deterministic lexicon clustering, per-narrative volume /
 // new launches / runners / pace / "what is working" score. No model in the hot path; the board carries
 // its own limits (name-based, X/TG-only narratives missed, honest unclassified share). w flips 1h/24h,
 // M opens the HUD popup. The board is computed in state.ts (computeNarrativeView) on entry and the tick.

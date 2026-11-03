@@ -1,4 +1,4 @@
-// trenchscope T2 — the SIGNER channel protocol (task-1328, SPEC §6.5 "separate process / hard-API module").
+// solgent T2 — the SIGNER channel protocol (task-1328, SPEC §6.5 "separate process / hard-API module").
 //
 // The signer runs as its OWN PROCESS. The UI talks to it over the child's stdio pipes — a channel only
 // the spawning process holds — with every frame authenticated by an HMAC over a per-session secret the
@@ -22,7 +22,7 @@ export const MAX_BAD_FRAMES = 8;
 
 // task-1363 adds `fast` (the fast wallet's public status) and `fill` (build a DEVNET FILL for the fast wallet
 // from an armed order plan's leg). Still no sign/submit/setCaps, and NO create/export/import of the fast wallet:
-// it is created only by `trenchscope wallet fast create` on a TTY, and the signer only ever reads it.
+// it is created only by `solgent wallet fast create` on a TTY, and the signer only ever reads it.
 // task-1368 adds `quote`: the keyless, read-only Jupiter /quote for an order, fetched by the SIGNER's own HTTP
 // client so the LIVE ticket's preview, the signer's re-quote at ⏎ and the /swap build are paced through ONE rate
 // limiter (one process, one `jupiter` bucket) and a quote fetched for the preview is reused by the build a moment

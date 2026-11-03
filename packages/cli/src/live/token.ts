@@ -1,4 +1,4 @@
-// trenchscope — live token detail binding (task-1298). Loads everything the TOKEN screen shows from the
+// solgent — live token detail binding (task-1298). Loads everything the TOKEN screen shows from the
 // data layer, each panel independently, so one source being down leaves a caption, never a fake number:
 //   price / deltas / mcap / liq / vol / holders count / organic  ← Store.enrich (DexScreener + Jupiter)
 //   candles                                                      ← Shrine 1 s rows by mint (key), else GeckoTerminal

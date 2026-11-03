@@ -37,6 +37,6 @@ sources:
 date: 2026-10-16
 ---
 
-Press `t` to cycle themes (slate → cyberspace → midnight → ember → paper; slate is the default). `trenchscope theme list|show|init|check` manages your own themes in `~/.dexterm/themes/`; a shared theme cannot hide a warning or swap buy/sell colours (a contrast + hue guard). The analyst can propose a theme change you confirm with a keypress.
+Press `t` to cycle themes (slate → cyberspace → midnight → ember → paper; slate is the default). `solgent theme list|show|init|check` manages your own themes in `~/.dexterm/themes/`; a shared theme cannot hide a warning or swap buy/sell colours (a contrast + hue guard). The analyst can propose a theme change you confirm with a keypress.
 
-Keys: `t`. CLI: `trenchscope theme`.
+Keys: `t`. CLI: `solgent theme`.

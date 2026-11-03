@@ -1,6 +1,6 @@
 // task-1358 Tier 1 — workspaces in the app: switch (theme / intensity / screener / start screen / popups),
 // the ctrl+w chord + save-as input, slot picks, layout persistence through a real file, the morning HUD,
-// renderer numbers from a saved layout, the --workspace flag, the `trenchscope workspace` subcommand and the
+// renderer numbers from a saved layout, the --workspace flag, the `solgent workspace` subcommand and the
 // voice "show me everything" decision. Fixtures only; no network; DEXTERM_HOME is a temp dir throughout.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -175,7 +175,7 @@ test('--workspace: a one-shot frame applies the workspace; an unknown name is a 
   assert.ok(!existsSync(join(home, 'config.json')));
 });
 
-test('trenchscope workspace list | init | show | remove', async () => {
+test('solgent workspace list | init | show | remove', async () => {
   const home = tmp();
   const env = { DEXTERM_HOME: home };
   let io = fakeIo(env);

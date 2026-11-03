@@ -1,4 +1,4 @@
-// `trenchscope theme <list|show|init|check> …` and `trenchscope keymap [screen]` (task-1358 Tier 2). No network, no
+// `solgent theme <list|show|init|check> …` and `solgent keymap [screen]` (task-1358 Tier 2). No network, no
 // model, never touches a key file.
 //   theme list              built-ins + ~/.dexterm/themes/*.json + config.theme.user, with errors for bad ones
 //   theme show <name>       the resolved tokens (user theme merged over its base, overrides applied)
@@ -12,7 +12,7 @@ import { dextermHome, loadConfig, listUserThemes, resolveTheme, applyOverrides, 
 
 export interface ThemeIo { stdout: { write(s: string): unknown }; stderr: { write(s: string): unknown }; env: NodeJS.ProcessEnv }
 
-export const THEME_USAGE = `usage: trenchscope theme list | show <name> | init <name> [--extends ${BASE_THEMES.join('|')}] | check <file>
+export const THEME_USAGE = `usage: solgent theme list | show <name> | init <name> [--extends ${BASE_THEMES.join('|')}] | check <file>
   files: ~/.dexterm/themes/<name>.json = { "extends": "<built-in>", "tokens": { "<token>": "#rrggbb", "<ramp>": [4 × "#rrggbb"] } }
   guard: text/warn/up/down must keep a contrast floor against bg/panel; up stays green/cyan, down stays red/pink`;
 
@@ -21,7 +21,7 @@ const bases = THEMES as unknown as Record<string, ThemeDoc>;
 export async function themeCommand(argv: string[], io: ThemeIo): Promise<number> {
   const home = dextermHome(io.env);
   const [cmd, name] = argv;
-  const bad = (s: string): number => { io.stderr.write(`trenchscope theme: ${s}\n${THEME_USAGE}\n`); return 2; };
+  const bad = (s: string): number => { io.stderr.write(`solgent theme: ${s}\n${THEME_USAGE}\n`); return 2; };
   const cfg = loadConfig(home);
   switch (cmd) {
     case undefined: case 'list': {
@@ -41,14 +41,14 @@ export async function themeCommand(argv: string[], io: ThemeIo): Promise<number>
       let doc: ThemeDoc | null = bases[name] ?? null;
       if (!doc) {
         const t = listUserThemes(home, cfg.config).find((x) => x.name === name);
-        if (!t) { io.stderr.write(`trenchscope theme: no theme "${name}"\n`); return 1; }
-        if (t.error) { io.stderr.write(`trenchscope theme: ${name}: ${t.error}\n`); return 1; }
+        if (!t) { io.stderr.write(`solgent theme: no theme "${name}"\n`); return 1; }
+        if (t.error) { io.stderr.write(`solgent theme: ${name}: ${t.error}\n`); return 1; }
         const r = resolveTheme(t.doc, bases);
-        if (!r.theme) { io.stderr.write(`trenchscope theme: ${name} refused: ${r.errors.map((e) => `${e.path} ${e.msg}`).join('; ')}\n`); return 1; }
+        if (!r.theme) { io.stderr.write(`solgent theme: ${name} refused: ${r.errors.map((e) => `${e.path} ${e.msg}`).join('; ')}\n`); return 1; }
         doc = r.theme;
       }
       const o = applyOverrides(doc, cfg.config.theme?.overrides);
-      for (const e of o.errors) io.stderr.write(`trenchscope theme: override ignored: ${e.path} ${e.msg}\n`);
+      for (const e of o.errors) io.stderr.write(`solgent theme: override ignored: ${e.path} ${e.msg}\n`);
       io.stdout.write(JSON.stringify(o.theme, null, 2) + '\n');
       return 0;
     }
@@ -65,13 +65,13 @@ export async function themeCommand(argv: string[], io: ThemeIo): Promise<number>
       const { name: _n, ...body } = starterTheme(name, base as (typeof BASE_THEMES)[number]);
       void _n;
       writeFileSync(path, JSON.stringify(body, null, 2) + '\n', { mode: 0o600 });
-      io.stdout.write(`wrote ${path}\n  edit the tokens, then: trenchscope --theme ${name}  (or t in the app cycles to it)\n`);
+      io.stdout.write(`wrote ${path}\n  edit the tokens, then: solgent --theme ${name}  (or t in the app cycles to it)\n`);
       return 0;
     }
     case 'check': {
       if (!name) return bad('check needs a file');
       let raw: unknown;
-      try { raw = JSON.parse(readFileSync(name, 'utf8')); } catch (e) { io.stderr.write(`trenchscope theme: ${name}: ${(e as Error).message}\n`); return 1; }
+      try { raw = JSON.parse(readFileSync(name, 'utf8')); } catch (e) { io.stderr.write(`solgent theme: ${name}: ${(e as Error).message}\n`); return 1; }
       const doc = { name: 'check', ...(raw as object) } as UserTheme & { name: string };
       const errors = validate('userTheme', doc);
       const r = errors.length ? { theme: null, errors } : resolveTheme(doc, bases);
@@ -86,7 +86,7 @@ export async function themeCommand(argv: string[], io: ThemeIo): Promise<number>
 export async function keymapCommand(argv: string[], io: ThemeIo): Promise<number> {
   const home = dextermHome(io.env);
   const cfg = loadConfig(home);
-  for (const e of cfg.errors) io.stderr.write(`trenchscope keymap: config: ${e}\n`);
+  for (const e of cfg.errors) io.stderr.write(`solgent keymap: config: ${e}\n`);
   const r = applyKeymapConfig<AppAction>(DEFAULT_KEYMAP.bindings, cfg.config.keymap);
   const screen = argv[0] && /^[a-z]+$/.test(argv[0]) ? argv[0] : undefined;
   io.stdout.write(`${cfg.path}${cfg.missing ? ' (no config: defaults)' : ''} · config.keymap.global[action] = ["key", …] · config.keymap.screens[screen][action] = [...]\n`);

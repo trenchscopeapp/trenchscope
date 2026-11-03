@@ -1,4 +1,4 @@
-// trenchscope — the Notifier (task-1398). Holds the channel adapters and the pure routing, and delivers one
+// solgent — the Notifier (task-1398). Holds the channel adapters and the pure routing, and delivers one
 // AlertDelivery to every routed+available channel. It never throws and never logs a credential (a thrown
 // adapter error is caught and scrubbed with redactCreds). Build it from config + creds on disk with
 // `buildNotifier`, or inject your own adapters (the tests pass fakes) with `createNotifier`.

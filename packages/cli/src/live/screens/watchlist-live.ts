@@ -1,4 +1,4 @@
-// trenchscope — live WATCHLIST screen (task-1298): the layout of screens/watchlist.ts over the persisted list.
+// solgent — live WATCHLIST screen (task-1298): the layout of screens/watchlist.ts over the persisted list.
 // ALERTS shows the real event log; the right panel lists alert PROPOSALS (y arms, x dismisses) and the
 // armed rules, instead of the fixture "analyst digest" (Claude wiring is a later card).
 import {

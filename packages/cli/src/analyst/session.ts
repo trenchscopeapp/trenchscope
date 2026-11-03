@@ -1,4 +1,4 @@
-// trenchscope analyst session (task-1302, multi-turn in task-1303): a warm `claude -p` conversation.
+// solgent analyst session (task-1302, multi-turn in task-1303): a warm `claude -p` conversation.
 // The first turn runs a structured skill (token-dossier / rug-check / trench-scan); follow-up
 // questions resume the same session id (SPEC §5.1) so the model keeps context, and answer in prose.
 // The top-level fields always describe the *current* turn (what the renderer draws); completed turns

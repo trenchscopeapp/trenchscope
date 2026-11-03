@@ -146,7 +146,7 @@ export class SolanaWsClient {
     this.pending.clear();
     const ws = this.ws;
     this.ws = null;
-    try { ws?.close(1000, 'trenchscope stop'); } catch { /* already closed */ }
+    try { ws?.close(1000, 'solgent stop'); } catch { /* already closed */ }
   }
 
   /** Add an account to the desired set and subscribe it now if the socket is open. Idempotent. */

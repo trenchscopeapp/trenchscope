@@ -1,5 +1,5 @@
 // DEV HISTORY (0.1.5, task-1425): "has this deployer rugged before?" from dexterm's OWN recorded history, keyless.
-// The creator links come from the `creators` table (a keyless source naming the dev when trenchscope saw the coin), the
+// The creator links come from the `creators` table (a keyless source naming the dev when solgent saw the coin), the
 // outcomes from the recorder's code-only labeler (labels.ts: keyless-proxy tier), the dev-exit timing from the
 // recorded `dev_pct` series. Every number carries its source, sample size and age; no recorded prior launch is
 // `unknown`, never "clean". It is a risk flag from observed history, never a certificate.
@@ -17,7 +17,7 @@ const PREF_HORIZONS = [259200, 86400, 21600, 7200, 3600] as const;
 export const DEV_EXIT = { heldPct: 0.5, exitPct: 0.1 } as const;
 /** Prior rugs at/over this many = the `serial_rugger` flag (same threshold as the token-dossier pack). */
 export const SERIAL_RUGGER_MIN = 2;
-export const DEV_HISTORY_SOURCE = 'trenchscope recorder (keyless creator links + code-only outcome labels)';
+export const DEV_HISTORY_SOURCE = 'solgent recorder (keyless creator links + code-only outcome labels)';
 
 export interface CreatorLink { mint: string; creator: string; source: string; firstT: number; createdAt: number | null }
 
@@ -39,7 +39,7 @@ export interface DevHistoryReport {
   status: 'ok' | 'unknown';
   asOf: number;
   source: string;
-  /** Prior launches by this wallet that trenchscope recorded (the coin itself excluded). */
+  /** Prior launches by this wallet that solgent recorded (the coin itself excluded). */
   launches: { n: number; newestT: number | null; ageSec: number | null };
   /** Outcome labels among those launches (keyless-proxy tier; 72 h preferred). */
   labelled: { n: number; rug: number; dead: number; fade: number; flat: number; runner: number; horizon: string; tier: 'keyless-proxy'; newestT: number | null; ageSec: number | null };
@@ -62,7 +62,7 @@ const median = (xs: number[]): number | null => {
   return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
 };
 
-/** The creator trenchscope recorded for `mint`, or null. */
+/** The creator solgent recorded for `mint`, or null. */
 export function creatorOf(db: DatabaseSync, mint: string): CreatorLink | null {
   try {
     const r = db.prepare('SELECT mint, creator, source, first_t, created_at FROM creators WHERE mint = ?').get(mint) as { mint: string; creator: string; source: string; first_t: number; created_at: number | null } | undefined;

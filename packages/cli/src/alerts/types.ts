@@ -1,4 +1,4 @@
-// trenchscope — alert delivery types (task-1398). One normalised, already-firewalled alert; interchangeable
+// solgent — alert delivery types (task-1398). One normalised, already-firewalled alert; interchangeable
 // channel adapters; pure routing. The delivery layer only READS these values and hands them to a channel;
 // it imports nothing from trade/paper/executor/signer/wallet/mandate and has no arm/sign/confirm path.
 import type { AlertLevel } from '@dexterm/custom';

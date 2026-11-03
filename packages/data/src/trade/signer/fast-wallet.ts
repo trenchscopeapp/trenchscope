@@ -1,4 +1,4 @@
-// task-1363 — the capped FAST WALLET (SPEC §6.13.2 `wallet: 'fast'`): the one key trenchscope ever holds, and only
+// task-1363 — the capped FAST WALLET (SPEC §6.13.2 `wallet: 'fast'`): the one key solgent ever holds, and only
 // on DEVNET. Standing-mandate fills must run at machine speed, which a Phantom round-trip per fill cannot do,
 // so an armed mandate fires from this separate hot key instead of the user's main wallet. The main wallet is
 // never named by a mandate (the schema says `fast`), and this signer refuses to sign for any other public key.
@@ -6,7 +6,7 @@
 // Boundaries, by construction:
 //   * devnet only — the record carries `network: 'devnet'`; create/load refuse anything else, and the signer
 //     process only loads it when ITS RPC endpoint classifies as devnet (signer/main.ts). There is no mainnet path.
-//   * created only by `trenchscope wallet fast create` on a real TTY after a keypress; there is NO channel method
+//   * created only by `solgent wallet fast create` on a real TTY after a keypress; there is NO channel method
 //     to create, export, import or replace it (the signer protocol has `fast` = status and `fill` = build).
 //   * hard per-fill ceiling: a single fill may move at most FAST_MAX_SOL_PER_FILL SOL out of it (lamports
 //     bound at build and again on the signed bytes), on top of the signer's USD caps which this lane enforces
@@ -143,7 +143,7 @@ export class FastWalletStore {
    */
   create(opts: { network: string; now?: number }): FastWalletInfo {
     if (opts.network !== FAST_WALLET_NETWORK) throw new Error('fast wallet: devnet only — there is no mainnet fast wallet');
-    if (this.exists()) throw new Error(`fast wallet: ${this.path} already exists; \`trenchscope wallet fast remove\` first (after draining it)`);
+    if (this.exists()) throw new Error(`fast wallet: ${this.path} already exists; \`solgent wallet fast remove\` first (after draining it)`);
     const seed = randomBytes(32);
     const signer = new FastWalletSigner(seed);
     const rec: FastWalletRecord = { v: 1, network: FAST_WALLET_NETWORK, publicKey: signer.publicKey, seed: seed.toString('base64'), createdAt: opts.now ?? Date.now() };

@@ -1,4 +1,4 @@
-// trenchscope — task-1313 analyst round 2: ambient context injection, the split coin-list layout, and
+// solgent — task-1313 analyst round 2: ambient context injection, the split coin-list layout, and
 // the UI-action trust boundary (incl. a prompt-injection proof). Offline; no real `claude` spawn.
 // The three end-to-end pty proofs (A open_token, E filter, F results) run in the serial lane:
 // serial/task-1313-pty.test.ts (task-1424).

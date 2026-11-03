@@ -1,4 +1,4 @@
-// trenchscope paper bot: the live wiring. The keyless screener feed (the same one `record` and `watch` run,
+// solgent paper bot: the live wiring. The keyless screener feed (the same one `record` and `watch` run,
 // through the data layer's rate limiter and health gate), the keyless Jupiter swap QUOTE, the keyless Jupiter
 // SOL/USD price and a decimals lookup. Everything comes from '@dexterm/data/core', the trade-free entry: no
 // signer, live executor, swap build, rpc send or bridge module is in this file's import graph.

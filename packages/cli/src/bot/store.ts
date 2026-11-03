@@ -1,4 +1,4 @@
-// trenchscope paper bot: the ledger and the audit journal, in node:sqlite, in the SAME db file as the cache,
+// solgent paper bot: the ledger and the audit journal, in node:sqlite, in the SAME db file as the cache,
 // watchlist and recorder (one --db controls everything). Two tables:
 //
 //   bot_positions  one row per paper position (book, mint, entry, exit, PnL, last mark). A partial UNIQUE

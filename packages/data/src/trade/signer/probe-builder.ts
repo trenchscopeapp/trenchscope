@@ -1,10 +1,10 @@
-// trenchscope T2 — the DEVNET PROBE transaction builder (task-1328). Jupiter has no devnet, so the way to
+// solgent T2 — the DEVNET PROBE transaction builder (task-1328). Jupiter has no devnet, so the way to
 // prove the real signing path end to end on devnet — keypress → Phantom sign → decode/verify →
-// re-simulate → submit → confirm — without any value at risk is a transaction trenchscope builds itself:
+// re-simulate → submit → confirm — without any value at risk is a transaction solgent builds itself:
 // the wrap-and-unwrap shape a Jupiter swap uses around its route, with NO route:
 //
 //   AssociatedToken.CreateIdempotent(wallet's WSOL ATA)  ·  System.Transfer(wallet → WSOL ATA, 0.001 SOL)
-//   Token.SyncNative(WSOL ATA)  ·  Memo("trenchscope devnet probe")  ·  Token.CloseAccount(WSOL ATA → wallet)
+//   Token.SyncNative(WSOL ATA)  ·  Memo("solgent devnet probe")  ·  Token.CloseAccount(WSOL ATA → wallet)
 //
 // The close returns the lamports (and the ATA rent) to the wallet in the same transaction, so the only
 // SOL that leaves is the network fee. The signer's policy for the probe kind refuses any other shape, and
@@ -18,7 +18,7 @@ import { associatedTokenAddress, ASSOCIATED_TOKEN_PROGRAM, SYSTEM_PROGRAM, TOKEN
 import type { ProbeBuilder } from '../executor.ts';
 
 export const PROBE_LAMPORTS = 1_000_000n; // 0.001 SOL, wrapped then unwrapped in the same tx
-export const PROBE_MEMO = 'trenchscope devnet probe';
+export const PROBE_MEMO = 'solgent devnet probe';
 
 function shortvec(n: number): Buffer {
   const out: number[] = [];

@@ -1,4 +1,4 @@
-// task-1443 — the MCP side of agent paper trading. When the running trenchscope has the spectator view open and the
+// task-1443 — the MCP side of agent paper trading. When the running solgent has the spectator view open and the
 // user named an armed mandate for agent paper trading, it writes a rendezvous under ~/.dexterm; this resolves it
 // into a PaperAgentDesk the paper tools dispatch to. When the rendezvous is absent the resolver returns null and
 // the tools refuse — so agent paper trading is OFF by default and nothing here ever signs, sends or touches a
@@ -62,7 +62,7 @@ async function refreshSolUsd(data: DataLayer): Promise<void> {
 }
 
 /**
- * Resolve the paper agent desk for this `trenchscope mcp` process, or null when agent paper trading is disabled.
+ * Resolve the paper agent desk for this `solgent mcp` process, or null when agent paper trading is disabled.
  * Re-reads the rendezvous (mtime-cached) so enabling/disabling in the running app is picked up; the mandate
  * and the control state are re-read inside the desk on every call, not cached across journal changes.
  */

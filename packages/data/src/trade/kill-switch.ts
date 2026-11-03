@@ -1,10 +1,10 @@
-// trenchscope T1 — the PANIC kill switch (SPEC §6.4 "panic key", §6.5 `panic()`; task-1310 round 2).
+// solgent T1 — the PANIC kill switch (SPEC §6.4 "panic key", §6.5 `panic()`; task-1310 round 2).
 //
 // The cheapest safe version of the signer's panic path tonight: a marker file under ~/.dexterm. While
 // it exists, the live executor refuses every plan and every confirm, in EVERY process that reads it
-// (the file is re-read on each check, never cached), so `trenchscope wallet panic` from a second terminal
-// stops a trade that another trenchscope is about to sign. A file we cannot parse counts as ENGAGED
-// (fail closed). Releasing it (`trenchscope wallet resume`) requires a real TTY keypress — see the CLI.
+// (the file is re-read on each check, never cached), so `solgent wallet panic` from a second terminal
+// stops a trade that another solgent is about to sign. A file we cannot parse counts as ENGAGED
+// (fail closed). Releasing it (`solgent wallet resume`) requires a real TTY keypress — see the CLI.
 // This module holds no keys and performs no network I/O.
 
 import { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync } from 'node:fs';

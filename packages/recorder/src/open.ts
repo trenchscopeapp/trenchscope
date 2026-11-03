@@ -1,5 +1,5 @@
 // Shared read-only open for the recorder tables. Three consumers (the MCP `historyDb()`, `dexterm
-// narrative`, and now `trenchscope backtest` / the `rug_backtest` MCP tool) each opened a read-only
+// narrative`, and now `solgent backtest` / the `rug_backtest` MCP tool) each opened a read-only
 // DatabaseSync and inline-checked that `token_snapshots` exists before querying; this is that one check.
 //
 // It never creates the schema (read-only; the live Recorder owns writes) and returns null when the file

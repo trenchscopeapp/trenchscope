@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · solgent</title>
+<meta name="description" content="How to install, run and connect solgent: the screens and keys, the analyst, agent hookup, paper and live trading, data sources and troubleshooting.">
+<meta name="theme-color" content="#080a09">
+<meta property="og:type" content="website">
+<meta property="og:title" content="solgent docs">
+<meta property="og:description" content="Install, run and connect solgent, a terminal for the trenches.">
+<meta property="og:url" content="https://www.trenchscope.dev/docs">
+<meta property="og:image" content="https://www.trenchscope.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The solgent wordmark above a row of halftone keycaps.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trenchscope.dev/og.png">
+<meta name="twitter:site" content="@solgentapp">
+<link rel="canonical" href="https://www.trenchscope.dev/docs">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="assets/fonts/spline-sans-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/spline-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css?v=20261020-docs3">
+<link rel="stylesheet" href="docs.css?v=20261020-docs3">
+<script type="module" src="docs.js?v=20261020-docs3"></script>
+</head>
+<body class="docs-page">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar" data-nav-status="not-active">
+  <div class="wrap bar-in">
+    <a class="mark" href="/" aria-label="solgent, home">solgent</a>
+    <nav class="primary-nav nav__end" aria-label="Site">
+      <div class="nav__end-inner">
+        <ul id="primary-nav" class="nav__list" data-nav-list>
+          <li><a class="nav__link" href="/#tour">Tour</a></li>
+          <li><a class="nav__link" href="/#analyst">Analyst</a></li>
+          <li><a class="nav__link" href="/#keys">Keys</a></li>
+          <li><a class="nav__link" href="/#safety">Safety</a></li>
+          <li><a class="nav__link" href="/#sources">Sources</a></li>
+          <li><a class="nav__link" href="/docs" aria-current="page">Docs</a></li>
+        </ul>
+      </div>
+    </nav>
+    <button class="nav__hamburger" type="button" data-nav-control="toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation"><span>Menu</span><span class="nav__hamburger-icon" aria-hidden="true"><span></span><span></span></span></button>
+    <a class="xlink xlink-gh" href="https://github.com/solgentapp/solgent" target="_blank" rel="noopener" aria-label="solgent source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    <a class="xlink" href="https://x.com/solgentapp" target="_blank" rel="noopener" aria-label="solgent on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a class="btn btn-ink" href="#install">Install</a>
+  </div>
+</header>
+
+<main id="main" class="wrap docs">
+  <header class="docs-head">
+    <h1 class="docs-title">Using solgent<span class="pop">.</span></h1>
+    <p class="sub">Install it, run it, connect your agent. Everything here is also in the <a href="https://github.com/solgentapp/solgent#readme" target="_blank" rel="noopener">README</a> and <code>solgent --help</code>.</p>
+  </header>
+
+  <div class="docs-grid" data-toc-wrap>
+    <!-- table of contents, after Osmo's Table of Contents for Article: a sticky list beside the article with the current section lit -->
+    <details class="toc" data-toc open>
+      <summary class="toc-summary">On this page<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary>
+      <nav class="toc-list" aria-label="On this page" data-toc-list>
+        <a href="#install">Install</a>
+        <a href="#first-run">First run</a>
+        <a href="#screens">Screens</a>
+        <a href="#keys">Keys</a>
+        <a href="#analyst">The analyst</a>
+        <a href="#agents">Connect your agent</a>
+        <a href="#trading">Paper and live trading</a>
+        <a href="#data">Data and keys</a>
+        <a href="#privacy">What it sends and stores</a>
+        <a href="#customize">Make it yours</a>
+        <a href="#help">When something breaks</a>
+      </nav>
+    </details>
+
+    <article class="doc" data-toc-content>
+
+      <section id="install" aria-labelledby="h-install">
+        <h2 class="doc-h2" id="h-install">Install<span class="pop">.</span></h2>
+        <p>One line. You need a terminal; the installer handles Node.</p>
+        <h3>macOS and Linux</h3>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>curl -fsSL https://raw.githubusercontent.com/solgentapp/solgent/main/install.sh | bash</span></code></pre></div>
+        <h3>Windows <span class="h3-note">PowerShell</span></h3>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>irm https://raw.githubusercontent.com/solgentapp/solgent/main/install.ps1 | iex</span></code></pre></div>
+        <h3>With Node 22.18 or newer</h3>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>npm i -g solgent</span></code></pre></div>
+        <p>The installers are user-level: no <code>sudo</code> and no edits to your shell profile. On macOS and Linux a checksum-verified Node goes into <code>~/.dexterm/node</code> if yours is missing or too old. On Windows the installer offers Node LTS through <code>winget</code>. Read them first if you like: <a href="https://github.com/solgentapp/solgent/blob/main/install.sh" target="_blank" rel="noopener">install.sh</a>, <a href="https://github.com/solgentapp/solgent/blob/main/install.ps1" target="_blank" rel="noopener">install.ps1</a>.</p>
+        <h3>Try it before installing</h3>
+        <p>Sample data, nothing written to your machine:</p>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>npx solgent --fixtures</span></code></pre></div>
+        <h3>Let your agent install it</h3>
+        <p>Paste this into Claude Code, Codex or any coding agent:</p>
+        <div class="code code-prose" data-code><pre><code><span class="ln">Install solgent (https://github.com/solgentapp/solgent): run `npm i -g solgent` (if Node 22.18+ is missing, use the one-line installer from its README instead), then run `solgent doctor` and fix anything it reports, then connect its read-only MCP server to yourself with `solgent mcp install claude-code` (or `codex`). Tell me to run `solgent` in my terminal when you are done.</span></code></pre></div>
+      </section>
+
+      <section id="first-run" aria-labelledby="h-first-run">
+        <h2 class="doc-h2" id="h-first-run">First run<span class="pop">.</span></h2>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>solgent doctor</span><span class="ln" data-prompt>solgent</span></code></pre></div>
+        <p><code>doctor</code> checks Node, your terminal's colour support, the optional <code>claude</code> or <code>codex</code> CLI, the network and every data source, then prints the fix for anything missing. <code>solgent</code> opens the screener on live data. Every run starts on paper.</p>
+        <p>The first launch plays the full boot sequence; later ones take a second. Any key skips it, and <code>--no-boot</code> leaves it out.</p>
+        <p class="doc-note">The app needs a real terminal. For a single frame printed to stdout, use <code>solgent --screen screener</code>.</p>
+        <h3>Updates</h3>
+        <p><code>solgent update</code> checks npm and GitHub for a newer version and prints the upgrade command. It also checks once a day on start; <code>solgent update --off</code> turns that off.</p>
+      </section>
+
+      <section id="screens" aria-labelledby="h-screens">
+        <h2 class="doc-h2" id="h-screens">Screens<span class="pop">.</span></h2>
+        <div class="table-wrap">
+          <table class="table doc-table">
+            <thead><tr><th scope="col">Screen</th><th scope="col">What it shows</th><th scope="col">Key</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Screener</th><td>Hundreds of Solana pairs from public APIs. A simple split view to start; <kbd class="kbd">f</kbd> for the full table.</td><td><kbd class="kbd">1</kbd></td></tr>
+              <tr><th scope="row">New pairs</th><td>Launches and migrations as they land, with bonding progress.</td><td><kbd class="kbd">2</kbd></td></tr>
+              <tr><th scope="row">Watchlist</th><td>Coins you watch and their alerts, stored on your machine.</td><td><kbd class="kbd">3</kbd></td></tr>
+              <tr><th scope="row">Analyst</th><td>A chat with your own claude or codex login.</td><td><kbd class="kbd">4</kbd></td></tr>
+              <tr><th scope="row">Token</th><td>Price, candles, the trade tape or buy and sell flow, holders, mint and freeze authority, RugCheck and GoPlus reads, links, and a LARP check on the site and socials.</td><td><kbd class="kbd">enter</kbd></td></tr>
+              <tr><th scope="row">Positions</th><td>Your paper positions.</td><td><kbd class="kbd">P</kbd></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Filter, sort and presets</h3>
+        <p>Press <kbd class="kbd">/</kbd> in the screener and type plain thresholds:</p>
+        <div class="code" data-code><pre><code><span class="ln">vol24 &gt; 250K liq &gt; 50K age &lt; 30d launchpad:pump</span></code></pre></div>
+        <dl class="doc-defs">
+          <div><dt>Sort <kbd class="kbd">s</kbd></dt><dd>vol  liq  mcap  price  age  m5  h1  h6  h24  holders  org  top10  rug</dd></div>
+          <div><dt>Presets <kbd class="kbd">[</kbd><kbd class="kbd">]</kbd></dt><dd>trench  trending  runners  organic  graduating  smart  traded  new  boosted  all</dd></div>
+        </dl>
+        <p>The same work from the command line:</p>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>solgent --preset runners --filter "liq &gt; 50K" --sort h1:desc</span></code></pre></div>
+
+        <h3>Open any coin</h3>
+        <p>Press <kbd class="kbd">g</kbd> on any list or the token screen and paste a contract address, or a DexScreener, pump.fun, Solscan or Birdeye link. Pasting one into the screener's <kbd class="kbd">/</kbd> line or the analyst chat works too. A DexScreener link usually names the pool, so solgent finds its coin first.</p>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>solgent --screen token --mint &lt;CA or link&gt;</span></code></pre></div>
+      </section>
+
+      <section id="keys" aria-labelledby="h-keys">
+        <h2 class="doc-h2" id="h-keys">Keys<span class="pop">.</span></h2>
+        <p>Press <kbd class="kbd">?</kbd> on any screen for every key that works there. <code>solgent keymap</code> prints them all, and you can rebind them in <code>~/.dexterm/config.json</code>.</p>
+        <div class="keygroups">
+          <div class="keygroup">
+            <h3>Everywhere</h3>
+            <dl class="keys-dl">
+              <div><dt><kbd class="kbd">j</kbd><kbd class="kbd">k</kbd></dt><dd>move</dd></div>
+              <div><dt><kbd class="kbd">enter</kbd></dt><dd>open</dd></div>
+              <div><dt><kbd class="kbd">esc</kbd></dt><dd>back</dd></div>
+              <div><dt><kbd class="kbd">a</kbd></dt><dd>ask the analyst</dd></div>
+              <div><dt><kbd class="kbd">w</kbd></dt><dd>watch</dd></div>
+              <div><dt><kbd class="kbd">b</kbd></dt><dd>propose an alert</dd></div>
+              <div><dt><kbd class="kbd">$</kbd></dt><dd>price or market cap</dd></div>
+              <div><dt><kbd class="kbd">t</kbd></dt><dd>next theme</dd></div>
+              <div><dt><kbd class="kbd">E</kbd></dt><dd>export a PNG and report</dd></div>
+              <div><dt><kbd class="kbd">q</kbd></dt><dd>quit</dd></div>
+            </dl>
+          </div>
+          <div class="keygroup">
+            <h3>Screener</h3>
+            <dl class="keys-dl">
+              <div><dt><kbd class="kbd">/</kbd></dt><dd>filter</dd></div>
+              <div><dt><kbd class="kbd">\</kbd></dt><dd>clear the filter</dd></div>
+              <div><dt><kbd class="kbd">s</kbd></dt><dd>sort</dd></div>
+              <div><dt><kbd class="kbd">[</kbd><kbd class="kbd">]</kbd></dt><dd>presets</dd></div>
+              <div><dt><kbd class="kbd">f</kbd></dt><dd>simple or full table</dd></div>
+              <div><dt><kbd class="kbd">r</kbd></dt><dd>refresh</dd></div>
+            </dl>
+            <h3>Token</h3>
+            <dl class="keys-dl">
+              <div><dt><kbd class="kbd">1</kbd>…<kbd class="kbd">6</kbd></dt><dd>1m to 1d candles</dd></div>
+              <div><dt><kbd class="kbd">C</kbd></dt><dd>chart window</dd></div>
+              <div><dt><kbd class="kbd">y</kbd></dt><dd>copy the CA</dd></div>
+              <div><dt><kbd class="kbd">B</kbd><kbd class="kbd">S</kbd></dt><dd>paper buy or sell</dd></div>
+              <div><dt><kbd class="kbd">V</kbd></dt><dd>vet the product</dd></div>
+              <div><dt><kbd class="kbd">L</kbd></dt><dd>links</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="analyst" aria-labelledby="h-analyst">
+        <h2 class="doc-h2" id="h-analyst">The analyst<span class="pop">.</span></h2>
+        <p>Press <kbd class="kbd">a</kbd> and your own logged-in Claude Code or Codex reads the same tool results the screen shows, through solgent's read-only MCP server, and answers in plain language. Usage is billed to your account. Everything else works without it.</p>
+        <ul class="doc-list">
+          <li>Every answer is labelled model output, with the age of every number it used.</li>
+          <li>Token names, descriptions and fetched pages reach the model wrapped as untrusted text.</li>
+          <li>It has no build, sign or send tool. The most it can do is navigate and open a paper ticket.</li>
+        </ul>
+        <p>It uses <code>claude</code> if installed, else <code>codex</code>. Pick one with <code>--analyst-engine claude</code> or <code>codex</code>, or <code>/engine</code> in the chat.</p>
+      </section>
+
+      <section id="agents" aria-labelledby="h-agents">
+        <h2 class="doc-h2" id="h-agents">Connect your agent<span class="pop">.</span></h2>
+        <p>solgent ships a read-only MCP server: your agent gets the same token dossiers, holder, rug and LARP checks, candles and trades the screener shows. It has no tool that can build, sign or send a transaction.</p>
+        <h3>Claude Code</h3>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>claude mcp add solgent -- npx -y solgent mcp</span></code></pre></div>
+        <h3>Codex</h3>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>codex mcp add solgent -- npx -y solgent mcp</span></code></pre></div>
+        <h3>Claude Desktop, Cursor and others</h3>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>solgent mcp install claude-desktop</span></code></pre></div>
+        <p>Swap <code>claude-desktop</code> for <code>cursor</code>, <code>codex</code>, <code>claude-code</code> or <code>generic</code>. It asks before writing, backs up the old config and is safe to run twice. As a Claude Code plugin: <code>/plugin marketplace add solgentapp/solgent</code>, then <code>/plugin install solgent@solgent</code>.</p>
+        <h3>Claude.ai</h3>
+        <p>Open <b>Settings, Connectors, Add custom connector</b>, name it <code>Solgent</code> and use this URL:</p>
+        <div class="code" data-code><pre><code><span class="ln">https://trenchscope-mcp-production.up.railway.app/mcp</span></code></pre></div>
+        <p>Then ask <b>Show trending Solana tokens</b>, or <b>Open a dossier for this mint</b> with an address. No login or API key. The hosted server has 17 public analysis tools; screen navigation, paper trading and your history stay local. It shares a request budget, so a busy server answers HTTP 429 with <code>Retry-After</code>.</p>
+        <p><code>solgent mcp doctor</code> checks the connection.</p>
+      </section>
+
+      <section id="trading" aria-labelledby="h-trading">
+        <h2 class="doc-h2" id="h-trading">Paper and live trading<span class="pop">.</span></h2>
+        <p class="note note-warn"><b>Experimental.</b> Paper and live trading are the roughest parts and have known bugs. Do not rely on them yet. Nothing here is financial advice.</p>
+        <p>Every run starts on a simulated wallet priced from live Jupiter quotes. On a token, <kbd class="kbd">B</kbd> or <kbd class="kbd">S</kbd> opens a paper ticket and <kbd class="kbd">P</kbd> shows your positions.</p>
+        <h3>Going live</h3>
+        <p>Link a Phantom wallet first. solgent stores only its public key; you sign a message to prove it is yours, with no transaction.</p>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>solgent wallet link</span></code></pre></div>
+        <p>Then <kbd class="kbd">L</kbd> on a ticket flips it to LIVE. A separate signer process quotes, builds, simulates and checks the caps, and Phantom asks you to approve in your browser. It is devnet unless you start with <code>--mainnet</code>, which shows a red banner.</p>
+        <div class="table-wrap">
+          <table class="table doc-table">
+            <thead><tr><th scope="col">Cap</th><th scope="col">Flag</th><th scope="col">Default, ceiling</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Per trade</th><td><code>--max-usd</code></td><td>$5, $500</td></tr>
+              <tr><th scope="row">Per day</th><td><code>--daily-usd</code></td><td>$20, $2,000</td></tr>
+              <tr><th scope="row">SOL out per transaction</th><td><code>--max-sol-out</code></td><td>1, 5</td></tr>
+              <tr><th scope="row">Slippage</th><td><code>--max-slippage-bps</code></td><td>500, 1000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Raising a cap above its default needs <code>--mainnet</code>. <code>solgent wallet panic</code> disables live signing at once; <code>solgent wallet resume</code> turns it back on and needs a keypress. <code>--no-live</code> never starts the signer.</p>
+        <p>solgent never sees your private key or seed phrase, never signs without your keypress and your wallet's approval, and never gives the analyst or an agent a way to trade.</p>
+      </section>
+
+      <section id="data" aria-labelledby="h-data">
+        <h2 class="doc-h2" id="h-data">Data and keys<span class="pop">.</span></h2>
+        <p>Market data comes from public, keyless APIs, read from your machine. When a source fails, the cell says so instead of guessing.</p>
+        <p class="states"><span><code>unavailable</code> the source did not answer</span><span><code>needs key</code> the field wants a key you have not set</span></p>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th scope="col">Source</th><th scope="col">What it gives</th><th scope="col">Key</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">DexScreener</th><td>pairs, prices, volume, liquidity</td><td class="k-none">none</td></tr>
+              <tr><th scope="row">Jupiter</th><td>prices, token lists, paper quotes</td><td class="k-none">none</td></tr>
+              <tr><th scope="row">GeckoTerminal</th><td>candles and trades</td><td class="k-none">none</td></tr>
+              <tr><th scope="row">PumpPortal</th><td>launches and migrations, live</td><td class="k-none">none</td></tr>
+              <tr><th scope="row">RugCheck</th><td>mint, freeze and LP checks</td><td class="k-none">none</td></tr>
+              <tr><th scope="row">GoPlus</th><td>a second safety read</td><td class="k-none">none</td></tr>
+              <tr><th scope="row">Solana RPC</th><td>holders and on-chain reads</td><td>optional Helius</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Add a Helius key</h3>
+        <p>A free Helius key unlocks the ranked holder list, sniper and bundle scans and a faster on-chain lane. Keep it in a file, never in a command you share:</p>
+        <div class="code" data-code><pre><code><span class="ln" data-prompt>printf %s "&lt;your-key&gt;" &gt; ~/.dexterm/helius.key &amp;&amp; chmod 600 ~/.dexterm/helius.key</span></code></pre></div>
+        <p>Any read-only RPC works too: set <code>DEXTERM_RPC_URL</code>. <code>--max-credits</code> caps Helius credits for a run (default 5000) and <code>--max-requests</code> caps every live request.</p>
+      </section>
+
+      <section id="privacy" aria-labelledby="h-privacy">
+        <h2 class="doc-h2" id="h-privacy">What it sends and stores<span class="pop">.</span></h2>
+        <p>No account, no telemetry, no crash reports. Local servers bind <code>127.0.0.1</code> with per-use tickets.</p>
+        <h3>Over the network</h3>
+        <ul class="doc-list">
+          <li>Requests to the public data APIs: the addresses you look at, and your IP.</li>
+          <li>WebSocket subscriptions to the new-pairs feed and the RPC.</li>
+          <li>A token's website, read-only, only when you press a link key.</li>
+          <li>Your analyst prompts, through your own claude or codex login.</li>
+          <li>When you trade live: the signer's quote, price and RPC requests and the transaction your wallet signed.</li>
+          <li>A once-a-day version check: two anonymous requests to npm and GitHub. <code>solgent update --off</code> stops it.</li>
+        </ul>
+        <p><code>solgent doctor</code> lists every host and what it is for.</p>
+        <h3>On your machine</h3>
+        <p>A SQLite database with the cache, watchlist and paper wallet, a small state file in <code>~/.dexterm</code>, the optional RPC key, and, if you use them, plan and copy journals, the signer's ledgers and your linked wallet's public key. All of it is yours to delete.</p>
+      </section>
+
+      <section id="customize" aria-labelledby="h-customize">
+        <h2 class="doc-h2" id="h-customize">Make it yours<span class="pop">.</span></h2>
+        <div class="table-wrap">
+          <table class="table doc-table doc-table-prose">
+            <thead><tr><th scope="col">What</th><th scope="col">How</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Theme</th><td><code>--theme</code> mono, slate, cyberspace, midnight, ember or paper; <kbd class="kbd">t</kbd> cycles. <code>solgent theme init</code> starts your own.</td></tr>
+              <tr><th scope="row">Motion</th><td><code>--calm</code> for no motion, or <code>--intensity normal</code> or <code>fever</code>. <code>NO_COLOR</code> is honoured.</td></tr>
+              <tr><th scope="row">Price or market cap</th><td><kbd class="kbd">$</kbd> toggles and remembers it.</td></tr>
+              <tr><th scope="row">Keys</th><td><code>solgent keymap</code>, then overrides in <code>~/.dexterm/config.json</code>.</td></tr>
+              <tr><th scope="row">Alerts</th><td>Rules like <code>when … then alert</code> with <code>solgent rules</code>; delivery to desktop, Telegram or Discord with <code>solgent alerts</code>.</td></tr>
+              <tr><th scope="row">Workspaces</th><td><code>--workspace morning-hud</code>, or your own in <code>~/.dexterm/workspaces</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="help" aria-labelledby="h-help">
+        <h2 class="doc-h2" id="h-help">When something breaks<span class="pop">.</span></h2>
+        <dl class="faq">
+          <div><dt>Setup failed or a source is down</dt><dd>Run <code>solgent doctor</code>. It prints the exact fix for anything missing.</dd></div>
+          <div><dt>Your agent cannot see solgent</dt><dd>Run <code>solgent mcp doctor</code>.</dd></div>
+          <div><dt>A field says <code>needs key</code></dt><dd>It wants a Helius key. See <a href="#data">Data and keys</a>.</dd></div>
+          <div><dt>Your antivirus flagged a release</dt><dd>Every release ships checksums, a signed build attestation and third-party scan results. <a href="https://github.com/solgentapp/solgent/blob/main/docs/verify-your-download.md" target="_blank" rel="noopener">Verify your download</a>.</dd></div>
+          <div><dt>You found a bug</dt><dd><a href="https://github.com/solgentapp/solgent/issues" target="_blank" rel="noopener">Open an issue</a> with your <code>solgent doctor</code> output; it holds no secrets. Security problems go to the <a href="https://github.com/solgentapp/solgent/blob/main/SECURITY.md" target="_blank" rel="noopener">security policy</a>, not an issue.</dd></div>
+        </dl>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>solgent 0.1.5</span><span><a class="foot-link" href="/">home</a> · <a class="foot-link" href="/docs">docs</a></span><span class="foot-end">not financial advice<a class="xlink xlink-sm" href="https://github.com/solgentapp/solgent" target="_blank" rel="noopener" aria-label="solgent source on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a class="xlink xlink-sm" href="https://x.com/solgentapp" target="_blank" rel="noopener" aria-label="solgent on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></span>
+  </div>
+</footer>
+</body>
+</html>

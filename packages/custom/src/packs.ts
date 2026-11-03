@@ -3,7 +3,7 @@
 // A pack is a directory: pack.json + workspaces/ themes/ rules/ keymap.json widgets/<name>/{widget.json, *.html}.
 // Integrity is a lock file (sha256 per file + a pack hash); authenticity is an SSH signature over the lock
 // (`ssh-keygen -Y`, present on every macOS/Linux box, zero new dependencies); "reviewed" is a hash allow-list
-// trenchscope ships (the task-1301 trust page publishes the same list). Trust tiers decide DEFAULTS, never powers:
+// solgent ships (the task-1301 trust page publishes the same list). Trust tiers decide DEFAULTS, never powers:
 //   • rules from a reviewed/signed pack load enabled, from an unsigned pack disabled (the user enables each one);
 //   • a pack keymap is never merged at install — it is shown, and merged only by an explicit command;
 //   • a pack widget (an html page the popup host would serve) is registered DISABLED with no capabilities; the
@@ -110,7 +110,7 @@ export function readLock(dir: string): PackLock | null {
 export function checkIntegrity(dir: string): { ok: true; hash: string } | { ok: false; reason: string; changed?: string[]; missing?: string[]; added?: string[]; hash?: string } {
   let stored: PackLock | null;
   try { stored = readLock(dir); } catch (e) { return { ok: false, reason: (e as Error).message }; }
-  if (!stored) return { ok: false, reason: 'no pack.lock (run: trenchscope pack lock <dir>)' };
+  if (!stored) return { ok: false, reason: 'no pack.lock (run: solgent pack lock <dir>)' };
   let now: PackLock;
   try { now = computeLock(dir); } catch (e) { return { ok: false, reason: (e as Error).message }; }
   if (stored.hash !== now.hash) {
@@ -148,7 +148,7 @@ export function readManifest(dir: string): PackManifest {
   const errors = validate('packManifest', m);
   if (errors.length) throw new PackError(`pack.json invalid: ${errors.slice(0, 3).map((e) => `${e.path || '/'} ${e.msg}`).join('; ')}`, 'manifest');
   const man = m as PackManifest;
-  if (man.requires?.api !== undefined && man.requires.api > 1) throw new PackError(`pack.json needs api ${man.requires.api}; this trenchscope speaks api 1`, 'manifest');
+  if (man.requires?.api !== undefined && man.requires.api > 1) throw new PackError(`pack.json needs api ${man.requires.api}; this solgent speaks api 1`, 'manifest');
   const refs = [...(man.contents.workspaces ?? []), ...(man.contents.themes ?? []), ...(man.contents.rules ?? []), ...(man.contents.keymap ? [man.contents.keymap] : []), ...(man.contents.widgets ?? []).map((w) => `${w}/${WIDGET_MANIFEST}`)];
   for (const r of refs) if (!insidePack(dir, r)) throw new PackError(`pack.json references ${r}, which is missing or not a plain file inside the pack`, 'manifest');
   return man;
@@ -204,7 +204,7 @@ export function verifySignature(dir: string, opts: { allowedSigners: string; ide
   const lockPath = join(dir, PACK_LOCK), sigPath = join(dir, PACK_SIG);
   if (!existsSync(sigPath)) return { ok: false, reason: 'unsigned (no pack.lock.sig)' };
   if (!existsSync(lockPath)) return { ok: false, reason: 'no pack.lock' };
-  if (!existsSync(opts.allowedSigners)) return { ok: false, reason: `no pinned publisher keys (${basename(opts.allowedSigners)}); trenchscope pack trust <identity> "<pubkey>"` };
+  if (!existsSync(opts.allowedSigners)) return { ok: false, reason: `no pinned publisher keys (${basename(opts.allowedSigners)}); solgent pack trust <identity> "<pubkey>"` };
   if (!IDENTITY.test(opts.identity)) return { ok: false, reason: 'bad identity' };
   const r = spawnSync('ssh-keygen', ['-Y', 'verify', '-f', opts.allowedSigners, '-I', opts.identity, '-n', opts.namespace ?? PACK_NAMESPACE, '-s', sigPath], { input: readFileSync(lockPath), encoding: 'utf8', timeout: 10_000 });
   if (r.error) return { ok: false, reason: `ssh-keygen not available: ${r.error.message}` };
@@ -218,7 +218,7 @@ export function trustOf(x: { hash: string; signatureOk: boolean; reviewedHashes:
   return 'unsigned';
 }
 
-// ------------------------------------------------------------------ inspect (pure read; the install card + `trenchscope pack verify`)
+// ------------------------------------------------------------------ inspect (pure read; the install card + `solgent pack verify`)
 export interface PackRulesFile { path: string; rules: RuleJson[]; errors: Array<{ line: number; msg: string }> }
 export interface PackWidget { name: string; dir: string; manifest: WidgetManifest | null; pages: string[]; error?: string }
 export interface PackInspection {
@@ -303,7 +303,7 @@ export function inspectPack(dir: string, opts: { home?: string; reviewedHashes?:
       if (errors.length) throw new Error(`${errors[0].path || '/'} ${errors[0].msg}`);
       out.keymap = { path: rel, keymap: raw as KeymapConfig };
       const n = Object.keys((raw as KeymapConfig).global ?? {}).length + Object.values((raw as KeymapConfig).screens ?? {}).reduce((a, t) => a + Object.keys(t).length, 0);
-      warnings.push(`keymap: ${n} binding(s) are NOT merged on install — review with "trenchscope pack keymap ${manifest.name}" and merge explicitly`);
+      warnings.push(`keymap: ${n} binding(s) are NOT merged on install — review with "solgent pack keymap ${manifest.name}" and merge explicitly`);
     } catch (e) { out.keymap = { path: rel, keymap: null, error: (e as Error).message }; warnings.push(`${rel} refused: ${(e as Error).message}`); }
   }
   for (const wdir of manifest.contents.widgets ?? []) {
@@ -324,7 +324,7 @@ export function inspectPack(dir: string, opts: { home?: string; reviewedHashes?:
         entry.pages.push(`${wdir}/${w.page}`);
       }
       entry.manifest = wm;
-      warnings.push(`widget ${name}: ${wm.widgets.length} page(s) of html+js the popup host would serve (inline only, hash-allow-listed; no remote script, style, frame or import) — installed DISABLED; enable with "trenchscope pack widget ${manifest.name} ${name} --enable" after reading it`);
+      warnings.push(`widget ${name}: ${wm.widgets.length} page(s) of html+js the popup host would serve (inline only, hash-allow-listed; no remote script, style, frame or import) — installed DISABLED; enable with "solgent pack widget ${manifest.name} ${name} --enable" after reading it`);
     } catch (e) { entry.error = (e as Error).message; warnings.push(`widget ${name} refused: ${(e as Error).message}`); }
     out.widgets.push(entry);
   }
@@ -430,7 +430,7 @@ export function loadPacks(home: string, config: DextermConfig): LoadedPackConten
   const records = config.packs ?? [];
   for (const rec of records) {
     const dir = join(packsDir(home), `${rec.name}@${rec.version}`);
-    if (!existsSync(dir)) { out.errors.push(`pack ${rec.name}@${rec.version}: directory missing (trenchscope pack remove ${rec.name})`); continue; }
+    if (!existsSync(dir)) { out.errors.push(`pack ${rec.name}@${rec.version}: directory missing (solgent pack remove ${rec.name})`); continue; }
     let insp: PackInspection;
     try { insp = inspectPack(dir, { home, reviewedHashes: [] }); } catch (e) { out.errors.push(`pack ${rec.name}: ${(e as Error).message}`); continue; }
     if (!insp.integrity.ok || insp.integrity.hash !== rec.hash) { out.errors.push(`pack ${rec.name}: files changed since install (${insp.integrity.ok ? 'hash differs' : insp.integrity.reason}); skipped — re-install to accept`); continue; }
@@ -446,7 +446,7 @@ export function loadPacks(home: string, config: DextermConfig): LoadedPackConten
     for (const d of readdirSync(packsDir(home)).sort()) {
       const m = /^([a-z][a-z0-9-]{0,39})@(\d+\.\d+\.\d+)$/.exec(d);
       if (!m) { out.notes.push(`packs/${d}: not a pack directory name; ignored`); continue; }
-      if (!records.some((r) => r.name === m[1] && r.version === m[2])) out.notes.push(`packs/${d}: not installed (no config record); ignored — trenchscope pack add <dir> installs a pack`);
+      if (!records.some((r) => r.name === m[1] && r.version === m[2])) out.notes.push(`packs/${d}: not installed (no config record); ignored — solgent pack add <dir> installs a pack`);
     }
   } catch { /* no packs dir */ }
   return out;
@@ -497,7 +497,7 @@ export function exportPack(outDir: string, spec: ExportSpec): PackLock {
     (manifest.contents.themes ??= []).push(`themes/${name}.json`);
   }
   if (spec.rules?.length) {
-    const lines = ['# rules exported by trenchscope — one per line; parsed by the rules grammar, never eval\'d', ...spec.rules.map((r) => ruleTextOf(r))];
+    const lines = ['# rules exported by solgent — one per line; parsed by the rules grammar, never eval\'d', ...spec.rules.map((r) => ruleTextOf(r))];
     files.push(['rules/rules.rules', lines.join('\n') + '\n']);
     manifest.contents.rules = ['rules/rules.rules'];
   }

@@ -1,6 +1,6 @@
 ---
 id: narrative-board
-title: See the narrative board (trenchscope narrative)
+title: See the narrative board (solgent narrative)
 kind: app-help
 screen: trending
 feature: trending-board
@@ -27,6 +27,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope narrative [--window 1h|24h] [--summary]` prints the narrative board — what is trending across the recorded feed — with no network and no model. In-app it is the trending screen.
+`solgent narrative [--window 1h|24h] [--summary]` prints the narrative board — what is trending across the recorded feed — with no network and no model. In-app it is the trending screen.
 
-CLI: `trenchscope narrative`.
+CLI: `solgent narrative`.

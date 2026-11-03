@@ -33,6 +33,6 @@ sources:
 date: 2026-10-16
 ---
 
-A workspace saves a start screen, theme, intensity, screener preset/filter/sort, token panels and the HUD popups to open together. `ctrl+w` then `s` saves as; `w` lists; `n`/`N` cycle. `trenchscope workspace list|show|remove|init` manages them. The analyst can open a saved workspace for you.
+A workspace saves a start screen, theme, intensity, screener preset/filter/sort, token panels and the HUD popups to open together. `ctrl+w` then `s` saves as; `w` lists; `n`/`N` cycle. `solgent workspace list|show|remove|init` manages them. The analyst can open a saved workspace for you.
 
-Keys: `^W S`. CLI: `trenchscope workspace`.
+Keys: `^W S`. CLI: `solgent workspace`.

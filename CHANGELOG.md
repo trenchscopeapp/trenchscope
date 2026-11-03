@@ -2,6 +2,14 @@
 
 All notable changes to dexterm are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/) with the pre-1.0 caveat that minor versions may break things.
 
+## [0.2.0] - 2026-11-03
+
+The product is now **solgent** (formerly trenchscope). Install with `npm i -g solgent`; the source moved to github.com/solgentapp/solgent.
+
+### Changed
+
+- Renamed the command, npm package, MCP server and Claude plugin to `solgent`. The `trenchscope` and `dexterm` commands still work, the installers still read the old `TRENCHSCOPE_*` variables, and `solgent mcp install` points out an older `trenchscope` or `dexterm` entry in your agent config.
+
 ## [0.1.5] - 2026-10-18
 
 An agents-and-analyst release: let an agent you connected paper trade inside a mandate you armed, run the analyst on your own Codex login, and see a coin creator's recorded history. Trading remains experimental; agent trading is paper only, and this release does not enable mainnet trading.

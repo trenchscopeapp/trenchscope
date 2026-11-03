@@ -1,4 +1,4 @@
-// trenchscope — Watchlist + alerts log + analyst digest.
+// solgent — Watchlist + alerts log + analyst digest.
 // Cyberspace styling (task-1297): alert glyphs ▲/▼/✦/◆ beside the badges, claude notes and the digest
 // headline in coral, rain zones under the alerts and the digest, ▲ on holder deltas.
 import {

@@ -1,7 +1,7 @@
 // Tier 6 (task-1345): the worked demo is EXERCISED by the suite (bus-only, no spawned MCP child so the
 // test stays fast and offline) and its invariants asserted — proof the capture-ready demo still runs and
 // still refuses every malicious attempt. The full demo (`node packages/agents/demo/worked-demo.ts`) also
-// spawns the real `trenchscope mcp` stdio server to show Claude Code receiving the trench-scan skill over MCP.
+// spawns the real `solgent mcp` stdio server to show Claude Code receiving the trench-scan skill over MCP.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

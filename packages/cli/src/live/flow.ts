@@ -1,4 +1,4 @@
-// trenchscope — BUY/SELL FLOW for the live token screen (task-1323 item 6). Replaces the slow trade tape
+// solgent — BUY/SELL FLOW for the live token screen (task-1323 item 6). Replaces the slow trade tape
 // as the default lower-right panel with buy-vs-sell across timeframes, computed ONLY from data the app
 // already fetches — no new source, no extra request:
 //   1m              ← the GeckoTerminal trade tape TokenLive already polls (last 60 s, counted by side,

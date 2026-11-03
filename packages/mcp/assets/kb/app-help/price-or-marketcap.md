@@ -33,6 +33,6 @@ sources:
 date: 2026-10-16
 ---
 
-Press `$` to flip every price between USD price and MARKET CAP (screener, watchlist, new pairs, token, both charts, order-plan levels). Saved as `display.priceMode`; also `trenchscope display price|mcap` or `--price-mode`. A coin with no known supply stays on price and says so. The analyst can set this for you.
+Press `$` to flip every price between USD price and MARKET CAP (screener, watchlist, new pairs, token, both charts, order-plan levels). Saved as `display.priceMode`; also `solgent display price|mcap` or `--price-mode`. A coin with no known supply stays on price and says so. The analyst can set this for you.
 
-Keys: `$`. CLI: `trenchscope display`.
+Keys: `$`. CLI: `solgent display`.

@@ -100,7 +100,7 @@ test('fast wallet: devnet only, mode 600, never overwritten, the seed never leav
     assert.equal((signer as unknown as Record<string, unknown>).seed, undefined);
 
     // signs its own probe-shaped tx; the signature verifies against the stored public key with the real decoder
-    const unsigned = probeWire(compileProbeMessage(signer.publicKey, BLOCKHASH, 20_000_000n, 'trenchscope devnet fill plan_1:entry'));
+    const unsigned = probeWire(compileProbeMessage(signer.publicKey, BLOCKHASH, 20_000_000n, 'solgent devnet fill plan_1:entry'));
     const signed = await signer.signTransaction({ unsignedTxBase64: unsigned, expectPublicKey: signer.publicKey, label: 'fill' });
     const d = decodeTransaction(Buffer.from(signed.signedTxBase64, 'base64'));
     assert.equal(d.staticKeys[0], signer.publicKey);
@@ -168,7 +168,7 @@ test('fill: the signer builds a devnet fill for the fast wallet, the fast wallet
     const sent = decodeTransaction(Buffer.from(h.rpc.calls.submitted[0], 'base64'));
     assert.equal(sent.staticKeys[0], h.fastSigner!.publicKey);
     assert.equal(verifyEd25519(Buffer.from(base58Decode(h.fastSigner!.publicKey)), sent.message, sent.signatures[0]), true);
-    assert.ok(sent.instructions.some((ix) => ix.data.toString('utf8') === 'trenchscope devnet fill plan_1:entry'), 'the memo names the plan leg');
+    assert.ok(sent.instructions.some((ix) => ix.data.toString('utf8') === 'solgent devnet fill plan_1:entry'), 'the memo names the plan leg');
     // single use
     const again = await h.service.confirm({ hash: v.hash });
     assert.equal(again.kind, 'refused');
@@ -229,7 +229,7 @@ test('fill: refused on a mainnet signer (no fast wallet is ever loaded there), w
     await assert.rejects(n.service.fill(FILL), (e: unknown) => e instanceof SignerError && e.reason === 'no-fast-wallet');
     assert.equal(n.service.status().fastWallet, null);
     const f = await n.service.fast();
-    assert.equal(f.loaded, false); assert.match(f.reason ?? '', /trenchscope wallet fast create/);
+    assert.equal(f.loaded, false); assert.match(f.reason ?? '', /solgent wallet fast create/);
   } finally { n.done(); }
   assert.throws(() => parseFillParams(null), SignerError);
   assert.throws(() => parseFillParams({ ...FILL, ref: 'has space' }), /ref/);

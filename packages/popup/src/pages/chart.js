@@ -340,7 +340,7 @@
     const sym = String(vm.symbol || '?').replace(/^\$/, '');
     // task-1366: the title says when the axis is market cap (history scaled by the CURRENT supply) or why it is not
     titleEl.textContent = `$${sym} · ${S.interval || vm.interval || ''}${S.display.label ? ' · ' + S.display.label : ''}${vm.name ? ' · ' + String(vm.name).slice(0, 32) : ''}`;
-    document.title = `trenchscope · ${sym} · ${S.interval || ''}`;
+    document.title = `solgent · ${sym} · ${S.interval || ''}`;
     renderCoinImage(vm.image);
     const px = typeof vm.livePrice === 'number' && vm.livePrice > 0 ? vm.livePrice : vm.price;
     const ch = vm.chg && typeof vm.chg.h24 === 'number' ? vm.chg.h24 : null;

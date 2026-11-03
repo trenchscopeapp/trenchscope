@@ -28,6 +28,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope backtest --subject heuristic|skills|larp|pack_verdicts` scores a subject against the recorder's outcome-labelled history and prints honest metrics (precision/recall, Brier vs base rate, AUC, calibration) with leakage checks. With no labelled outcomes it says so and prints no metrics rather than fabricating any.
+`solgent backtest --subject heuristic|skills|larp|pack_verdicts` scores a subject against the recorder's outcome-labelled history and prints honest metrics (precision/recall, Brier vs base rate, AUC, calibration) with leakage checks. With no labelled outcomes it says so and prints no metrics rather than fabricating any.
 
-CLI: `trenchscope backtest`.
+CLI: `solgent backtest`.

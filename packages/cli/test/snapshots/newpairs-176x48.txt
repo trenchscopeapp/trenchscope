@@ -1,4 +1,4 @@
-  trenchscope ┃  1 Screener   2 New pairs ▌ 3 Watchlist   4 Analyst                           dexscreener · jup · gecko · rugcheck   SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
+  solgent ┃  1 Screener   2 New pairs ▌ 3 Watchlist   4 Analyst                               dexscreener · jup · gecko · rugcheck   SOL $120.73 ▼0.7%  ◉ live · calm  19:04:11
 
   New 20   Graduating 4   Migrated 1h 7   Trenches 3    min liq 5K · dev < 5% · no mint auth                                      ╭─ $CLAUDE ──────────────────────── 58s old ─╮
 ╭─ NEW PAIRS ────────────────────────────────────────────────────────────────── ws: pumpportal newToken · jup tokens/v2/recent ─╮ │ claude wif terminal                 PUMP   │

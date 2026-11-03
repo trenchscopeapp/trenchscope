@@ -100,7 +100,7 @@ test('main: --replay renders a frame from a recording without the network and ma
   const { fileURLToPath } = await import('node:url');
   const sample = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', 'data', 'fixtures', 'live-sample.json');
   const f = fakeIo({ DEXTERM_OFFLINE: '1' });
-  // `--db :memory:`: never open the user's real default database from a test (a running `trenchscope record run`
+  // `--db :memory:`: never open the user's real default database from a test (a running `solgent record run`
   // holding its write lock made this exit 2 with "database is locked" under the parallel suite).
   assert.equal(await main(['--screen', 'screener', '--replay', sample, '--width', '120', '--height', '40', '--plain', '--selected', '3', '--db', ':memory:'], f.io), 0);
   const { createReplayFeed, makeFeedState } = await import('../src/index.ts');
@@ -212,9 +212,9 @@ test('renders at the minimum supported size without throwing', () => {
 
 test('task-1376: --version and the help banner match packages/cli/package.json (release.yml refuses a tag that differs)', async () => {
   const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as { version: string };
-  assert.equal(pkg.version, '0.1.5');
+  assert.equal(pkg.version, '0.2.0');
   const v = fakeIo();
   assert.equal(await main(['--version'], v.io), 0);
   assert.equal(v.out(), `${pkg.version}\n`);
-  assert.ok(HELP.startsWith(`trenchscope ${pkg.version} `), 'the help banner names the package version');
+  assert.ok(HELP.startsWith(`solgent ${pkg.version} `), 'the help banner names the package version');
 });

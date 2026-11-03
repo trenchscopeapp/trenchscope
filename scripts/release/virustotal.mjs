@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// VirusTotal v3 client for trenchscope release artifacts (scripts/release/virustotal.mjs). Zero dependencies.
+// VirusTotal v3 client for solgent release artifacts (scripts/release/virustotal.mjs). Zero dependencies.
 //
 //   VT_API_KEY=… node scripts/release/virustotal.mjs scan --out <dir> [--rescan] <file>...
 //   node scripts/release/virustotal.mjs scan --out <dir> --fixtures <dir> <file>...     replay recorded responses, no network

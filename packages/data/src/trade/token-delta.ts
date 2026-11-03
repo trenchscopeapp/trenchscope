@@ -1,4 +1,4 @@
-// trenchscope T1/T2 — task-1337: the TOKEN-BALANCE DIFF (the round-3 verifier's "recommended next hardening").
+// solgent T1/T2 — task-1337: the TOKEN-BALANCE DIFF (the round-3 verifier's "recommended next hardening").
 //
 // The static policy fixes WHICH instructions a transaction may carry and binds the one Jupiter route to the
 // plan (amounts, the wallet's own token accounts, no fee). What it cannot see is what the route DOES once

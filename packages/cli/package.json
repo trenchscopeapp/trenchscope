@@ -1,12 +1,13 @@
 {
-  "name": "trenchscope",
-  "version": "0.1.5",
-  "mcpName": "io.github.trenchscopeapp/trenchscope",
-  "description": "trenchscope: a terminal for the trenches. Solana memecoin screener with a read-only MCP server for your own Claude or Codex",
-  "author": "trenchscope",
+  "name": "solgent",
+  "version": "0.2.0",
+  "mcpName": "io.github.solgentapp/solgent",
+  "description": "solgent: a terminal for the trenches. Solana memecoin screener with a read-only MCP server for your own Claude or Codex",
+  "author": "solgent",
   "license": "AGPL-3.0-only",
   "type": "module",
   "bin": {
+    "solgent": "dist/packages/cli/bin/solgent.mjs",
     "trenchscope": "dist/packages/cli/bin/trenchscope.mjs",
     "dexterm": "dist/packages/cli/bin/dexterm.mjs"
   },
@@ -35,13 +36,13 @@
     "codex",
     "rug-check"
   ],
-  "homepage": "https://github.com/trenchscopeapp/trenchscope#readme",
+  "homepage": "https://github.com/solgentapp/solgent#readme",
   "bugs": {
-    "url": "https://github.com/trenchscopeapp/trenchscope/issues"
+    "url": "https://github.com/solgentapp/solgent/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/trenchscopeapp/trenchscope.git"
+    "url": "git+https://github.com/solgentapp/solgent.git"
   },
   "devDependencies": {
     "@dexterm/agents": "0.0.1",

@@ -1,5 +1,5 @@
 // Voice-mode doctor checks (task-1282 scope item 4). Returns the same check shape the CLI doctor uses
-// so `trenchscope doctor` can render them inline. Everything the checks depend on (platform, which engines
+// so `solgent doctor` can render them inline. Everything the checks depend on (platform, which engines
 // resolved, whether swiftc / a whisper model / a mic tool are present) is injected, so the checks are
 // deterministic in tests and never spawn or hang. The guiding rule: if a component is missing, say
 // exactly what to install, and make clear voice DEGRADES TO TEXT rather than breaking the app.
@@ -52,14 +52,14 @@ export function voiceDoctor(deps: VoiceDoctorDeps): VoiceCheck[] {
     const win = deps.platform === 'win32';
     // Speech OUT off macOS: Piper (neural, preferred) → espeak-ng (baseline) → warn (task-1408).
     // NOTE: `apt install piper` on Debian is an UNRELATED gaming-mouse tool — never suggest it; the
-    // Piper TTS binary comes from the rhasspy/piper prebuilt release, the voice from `trenchscope voice download`.
+    // Piper TTS binary comes from the rhasspy/piper prebuilt release, the voice from `solgent voice download`.
     const piperRelease = 'github.com/rhasspy/piper/releases';
     const whisperRelease = 'github.com/ggml-org/whisper.cpp/releases';
     const piperReady = !!deps.piperPresent && !!deps.piperVoicePresent && !!deps.playerName;
     // What Piper is still missing (for an upgrade hint / the no-voice fix).
     const piperBits: string[] = [];
     if (!deps.piperPresent) piperBits.push(`the Piper binary (prebuilt from ${piperRelease} into \`~/.dexterm/piper/\`, NOT \`apt install piper\`)`);
-    if (!deps.piperVoicePresent) piperBits.push('the voice model (`trenchscope voice download piper-voice` — asks first, checksum-verified)');
+    if (!deps.piperVoicePresent) piperBits.push('the voice model (`solgent voice download piper-voice` — asks first, checksum-verified)');
     if (!deps.playerName) piperBits.push(win ? 'an audio player (ffplay from ffmpeg)' : 'an audio player (`sudo apt install alsa-utils` for aplay, or pulseaudio-utils for paplay)');
 
     if (piperReady) {
@@ -75,9 +75,9 @@ export function voiceDoctor(deps: VoiceDoctorDeps): VoiceCheck[] {
         detail: `spoken replies are off on ${deps.platform} until a speech engine is installed; the analyst still answers in text`,
         fix: win
           ? 'Install espeak-ng (`choco install espeak` or the espeak-ng release). For a neural voice, add Piper (prebuilt from '
-            + `${piperRelease}) + \`trenchscope voice download piper-voice\` + ffplay.`
+            + `${piperRelease}) + \`solgent voice download piper-voice\` + ffplay.`
           : 'Fastest: `sudo apt install espeak-ng`. Better (neural): install the Piper prebuilt binary from '
-            + `${piperRelease} into \`~/.dexterm/piper/\`, run \`trenchscope voice download piper-voice\`, and \`sudo apt install alsa-utils\` for a player. `
+            + `${piperRelease} into \`~/.dexterm/piper/\`, run \`solgent voice download piper-voice\`, and \`sudo apt install alsa-utils\` for a player. `
             + 'Do NOT `apt install piper` — on Debian that is an unrelated mouse tool.',
       });
     }
@@ -93,7 +93,7 @@ export function voiceDoctor(deps: VoiceDoctorDeps): VoiceCheck[] {
         name: 'Voice in', status: 'warn',
         detail: `speech-to-text is off (${bits.join(', ') || 'whisper not set up'}); you can still type questions — voice degrades to text`,
         fix: `Install whisper.cpp (not in Debian — use the prebuilt release from ${whisperRelease}) + a mic tool `
-          + '(`sudo apt install alsa-utils` for arecord, or sox), then `trenchscope voice download whisper` (asks first, checksum-verified).',
+          + '(`sudo apt install alsa-utils` for arecord, or sox), then `solgent voice download whisper` (asks first, checksum-verified).',
       });
     }
     if (win) {
@@ -133,14 +133,14 @@ export function voiceDoctor(deps: VoiceDoctorDeps): VoiceCheck[] {
       checks.push({
         name: 'Neural voice (Piper)', status: 'warn',
         detail: 'a higher-quality neural British voice is available but not set up; `say` is speaking for now',
-        fix: 'Run `trenchscope voice setup` to install it (asks first; a private Python runtime + a ~61 MB checksum-verified model; runs offline after, `trenchscope voice uninstall` removes it).',
+        fix: 'Run `solgent voice setup` to install it (asks first; a private Python runtime + a ~61 MB checksum-verified model; runs offline after, `solgent voice uninstall` removes it).',
       });
     }
   } else if (!macPiperReady) {
     checks.push({
       name: 'Voice out', status: 'warn',
       detail: 'macOS `say` not found; spoken replies are off, the analyst still answers in text',
-      fix: '`say` ships with macOS — if it is missing, reinstall the Command Line Tools (`xcode-select --install`). Or set up the neural voice: `trenchscope voice setup`.',
+      fix: '`say` ships with macOS — if it is missing, reinstall the Command Line Tools (`xcode-select --install`). Or set up the neural voice: `solgent voice setup`.',
     });
   }
 
@@ -160,7 +160,7 @@ export function voiceDoctor(deps: VoiceDoctorDeps): VoiceCheck[] {
       name: 'Voice in', status: 'warn',
       detail: `speech-to-text is off (${bits.join(', ')}); you can still type questions — voice degrades to text`,
       fix: 'Fastest free path: install Xcode command line tools for Apple Speech (`xcode-select --install`). '
-        + 'Or whisper: `brew install whisper-cpp sox`, then `trenchscope voice download whisper` (asks first, checksum-verified, writes '
+        + 'Or whisper: `brew install whisper-cpp sox`, then `solgent voice download whisper` (asks first, checksum-verified, writes '
         + '`~/.dexterm/models/ggml-base.en.bin`). Never use large-v3-turbo on a CPU-only Mac — it is unusably slow.',
     });
   }

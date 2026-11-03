@@ -1,4 +1,4 @@
-// trenchscope — app state consumed by the screens. Screens are pure render(canvas, state) functions;
+// solgent — app state consumed by the screens. Screens are pure render(canvas, state) functions;
 // renderFrame() draws the screen, the toast, then runs the effects post-pass (VISUAL-V2 §3).
 import {
   Canvas, THEMES, DEFAULT_THEME, applyFx, toast, makeVfx, setSources, marketActivity, candleActivity, isCalm,
@@ -61,7 +61,7 @@ export interface AiState {
 }
 
 export interface AppState {
-  /** trenchscope: the screener draws the simple split view instead of the full table (interactive default). */
+  /** solgent: the screener draws the simple split view instead of the full table (interactive default). */
   simple?: boolean;
   /** Seeded demo data. The screener reads `screener.rows` instead; the other screens still read this until D-05/D-10/D-11. */
   fx: Fixtures;
@@ -132,7 +132,7 @@ export interface AppState {
    * the notice) instead of being wiped by the next feed redraw.
    */
   pendingToast?: string | null;
-  /** task-1397: "trenchscope X is available" — shown once as a toast after the boot (update.ts startupCheck); null = none. */
+  /** task-1397: "solgent X is available" — shown once as a toast after the boot (update.ts startupCheck); null = none. */
   updateNotice?: string | null;
   /**
    * The mint the cursor is on, on the New pairs screen (task-1311, QA M8). New creates insert at the

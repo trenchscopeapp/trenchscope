@@ -1,6 +1,6 @@
 // task-1310 T1 — the loopback wallet bridge + a FAKE-PHANTOM end-to-end (no funds, no network, no real
 // wallet). A scripted node "wallet" acts exactly where Phantom would: it reads the page the bridge
-// served, produces a REAL Ed25519 signature over the trenchscope challenge (link) and echoes a signed-tx
+// served, produces a REAL Ed25519 signature over the solgent challenge (link) and echoes a signed-tx
 // blob (sign), and POSTs the result back. Proves: the full link + sign round trip, the Ed25519 proof
 // verifying, single-use token, Host/loopback gate, timeout, and replay refusal.
 // task-1424: a real loopback server raced against real timers, so the file runs in the serial lane. The
@@ -53,7 +53,7 @@ async function fakePhantomLink(url: string, kp: { pub: Buffer; priv: KeyObject }
   });
 }
 
-laneTest('e2e LINK: fake Phantom connect + signMessage proof verifies, trenchscope learns only the pubkey', {}, async () => {
+laneTest('e2e LINK: fake Phantom connect + signMessage proof verifies, solgent learns only the pubkey', {}, async () => {
   const kp = keypair();
   const bridge = new WalletBridge({ timeoutMs: 4000, open: (url) => { void fakePhantomLink(url, kp); } });
   const res = await bridge.link();

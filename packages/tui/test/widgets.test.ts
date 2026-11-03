@@ -175,7 +175,7 @@ test('header shows tabs, SOL, live marker and a zone-pinned clock; footer shows 
   const c = new Canvas(120, 3, T);
   header(c, { screen: 'newpairs', paused: false, sol: { price: 120.73, chg24: -0.67 }, now: new Date(Date.UTC(2026, 9, 5, 23, 4, 11)), timeZone: 'America/New_York' });
   const line = c.toPlain().split('\n')[0];
-  assert.match(line, /trenchscope ┃  1 Screener   2 New pairs ▌ 3 Watchlist   4 Analyst/);
+  assert.match(line, /solgent ┃  1 Screener   2 New pairs ▌ 3 Watchlist   4 Analyst/);
   assert.match(line, /SOL \$120\.73 ▼0\.7%  ◉ live  19:04:11$/);
   assert.ok(c.zone[c.idx(0, 1)] === 1 && c.zone[c.idx(70, 0)] === 1, 'header gap and the band under it are rain zones');
   assert.ok(c.headings.some((h) => h.y === 0 && h.x === 2), 'the logo is a heading');

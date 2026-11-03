@@ -1,4 +1,4 @@
-// trenchscope T1 — transaction DECODER + signer-side policy (SPEC §6.2 CL-04; task-1310 round 2, HIGH #1).
+// solgent T1 — transaction DECODER + signer-side policy (SPEC §6.2 CL-04; task-1310 round 2, HIGH #1).
 //
 // The executor used to bind the confirm to a hash of the tx bytes but never looked INSIDE them. A
 // hostile or changed Jupiter response could therefore hand us a transaction that moves something other
@@ -223,7 +223,7 @@ export type TxPolicyReason = 'program-not-allowed' | 'forbidden-instruction' | '
 export type TxPolicyResult = { ok: true } | { ok: false; reason: TxPolicyReason; message: string };
 
 /**
- * Jupiter v6 route-family instructions — the ONLY Jupiter instructions a trenchscope swap may carry, keyed by
+ * Jupiter v6 route-family instructions — the ONLY Jupiter instructions a solgent swap may carry, keyed by
  * Anchor discriminator (sha256("global:<name>")[0..8]; recomputed, and `route` matches the transaction
  * shape used throughout the T1 suite). Any other Jupiter instruction at the top level (claim,
  * set_token_ledger, create_token_account, …) is not a swap and is refused.
@@ -340,7 +340,7 @@ export function checkTxPolicy(tx: DecodedTransaction, userPublicKey: string, all
         if (owner !== userPublicKey) return refuse('forbidden-instruction', `instruction ${i}: ${name} for a foreign owner`);
         continue;
       }
-      // Everything else is never part of a swap trenchscope signs. The user's tokens move ONLY inside the
+      // Everything else is never part of a swap solgent signs. The user's tokens move ONLY inside the
       // route; a top-level Transfer/Burn is a drain whatever the rest of the transaction looks like.
       if (op === TOKEN_APPROVE || op === TOKEN_APPROVE_CHECKED) return refuse('forbidden-instruction', `instruction ${i}: token Approve (delegation) is never signed`);
       if (op === TOKEN_SET_AUTHORITY) return refuse('forbidden-instruction', `instruction ${i}: token SetAuthority is never signed`);
@@ -427,7 +427,7 @@ export function associatedTokenAddress(owner: string, mint: string, tokenProgram
  * `route` sell = [token_program, user_transfer_authority, user_source, user_destination, …];
  * `shared_accounts_route` buy = [token_program, program_authority, user_transfer_authority, source,
  * program_source, program_destination, destination, source_mint, destination_mint, platform_fee, …]).
- * The ExactOut family is NOT accepted: trenchscope only ever quotes ExactIn, so an exact-out route is a
+ * The ExactOut family is NOT accepted: solgent only ever quotes ExactIn, so an exact-out route is a
  * transaction we did not plan.
  */
 interface RouteLayout { authority: number; source: number; destination: number; platformFee: number }
@@ -466,7 +466,7 @@ export type SwapBindingResult = { ok: true; route: string; args: RouteArgs } | {
  *   * the route is an ExactIn family instruction with parseable args;
  *   * `in_amount`, `quoted_out_amount` and `slippage_bps` equal the plan's quote (a route sized to the
  *     user's whole balance, or re-priced, is refused);
- *   * `platform_fee_bps` is 0 and no platform-fee account is set (trenchscope takes no fee, SPEC §6.9);
+ *   * `platform_fee_bps` is 0 and no platform-fee account is set (solgent takes no fee, SPEC §6.9);
  *   * `user_transfer_authority` is the wallet; the SOURCE token account is the wallet's own associated
  *     token account for the INPUT mint (the sell leg can only spend the planned mint from the wallet's
  *     own account) and the DESTINATION is the wallet's own ATA for the OUTPUT mint (a buy can only land
@@ -500,7 +500,7 @@ export function checkSwapBinding(tx: DecodedTransaction, expect: SwapExpectation
   if (args.inAmount !== expect.inAmount) return refuse('quote-mismatch', `route in_amount ${args.inAmount} is not the plan's ${expect.inAmount}`);
   if (args.quotedOutAmount !== expect.outAmount) return refuse('quote-mismatch', `route quoted_out_amount ${args.quotedOutAmount} is not the plan's ${expect.outAmount}`);
   if (args.slippageBps !== expect.slippageBps) return refuse('quote-mismatch', `route slippage ${args.slippageBps} bps is not the plan's ${expect.slippageBps} bps`);
-  if (args.platformFeeBps !== 0) return refuse('forbidden-instruction', `route carries a ${args.platformFeeBps} bps platform fee; trenchscope takes no fee`);
+  if (args.platformFeeBps !== 0) return refuse('forbidden-instruction', `route carries a ${args.platformFeeBps} bps platform fee; solgent takes no fee`);
   const need = Math.max(layout.authority, layout.source, layout.destination, layout.platformFee) + 1;
   if (ix.accounts.length < need) return refuse('not-a-swap', `instruction ${i}: route has ${ix.accounts.length} accounts; ${name} needs ≥ ${need}`);
   const authority = keyAt(ix.accounts[layout.authority]);
@@ -511,7 +511,7 @@ export function checkSwapBinding(tx: DecodedTransaction, expect: SwapExpectation
   if (source === null || !sourceAtas.includes(source)) return refuse('forbidden-instruction', `route source ${short(source ?? undefined)} is not the wallet's ${short(expect.inputMint)} token account`);
   if (destination === null || !destAtas.includes(destination)) return refuse('forbidden-instruction', `route destination ${short(destination ?? undefined)} is not the wallet's ${short(expect.outputMint)} token account`);
   // "No platform fee account" is encoded as the program id itself in the optional slot.
-  if (platformFee !== JUPITER_V6_PROGRAM) return refuse('forbidden-instruction', `route names a platform-fee account ${short(platformFee ?? undefined)}; trenchscope takes no fee`);
+  if (platformFee !== JUPITER_V6_PROGRAM) return refuse('forbidden-instruction', `route names a platform-fee account ${short(platformFee ?? undefined)}; solgent takes no fee`);
 
   for (let j = 0; j < tx.instructions.length; j++) {
     const x = tx.instructions[j];

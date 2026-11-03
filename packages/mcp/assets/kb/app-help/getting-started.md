@@ -32,6 +32,6 @@ sources:
 date: 2026-10-16
 ---
 
-Run `trenchscope doctor` first: it checks Node, terminal colour, the claude CLI, each data source, the Helius key and a writable data dir, and prints the exact fix for anything not passing. Then run `dexterm` — the first launch shows a one-screen welcome; press any key to enter the live screener. Press `?` on any screen for that screen's full key list. Try `--fixtures` for an offline demo. `--version` prints the version; `--help` (or `-h`) prints usage.
+Run `solgent doctor` first: it checks Node, terminal colour, the claude CLI, each data source, the Helius key and a writable data dir, and prints the exact fix for anything not passing. Then run `dexterm` — the first launch shows a one-screen welcome; press any key to enter the live screener. Press `?` on any screen for that screen's full key list. Try `--fixtures` for an offline demo. `--version` prints the version; `--help` (or `-h`) prints usage.
 
-CLI: `trenchscope doctor`.
+CLI: `solgent doctor`.

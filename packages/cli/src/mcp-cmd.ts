@@ -1,11 +1,11 @@
-// `trenchscope mcp …` — the read-only MCP server plus one-command setup for any agent (task-1405).
+// `solgent mcp …` — the read-only MCP server plus one-command setup for any agent (task-1405).
 //
-//   trenchscope mcp                         run the read-only MCP server on stdio (what the analyst uses and
-//                                       what `claude mcp add trenchscope -- trenchscope mcp` wires up)
-//   trenchscope mcp install <client>        write/print the MCP config for a client (claude-code, claude-desktop,
+//   solgent mcp                         run the read-only MCP server on stdio (what the analyst uses and
+//                                       what `claude mcp add solgent -- solgent mcp` wires up)
+//   solgent mcp install <client>        write/print the MCP config for a client (claude-code, claude-desktop,
 //                                       cursor, codex, generic). Shows the exact change, asks first,
 //                                       is idempotent, and backs the file up before editing.
-//   trenchscope mcp doctor                  spawn the server over stdio, do the MCP handshake, and list the tools,
+//   solgent mcp doctor                  spawn the server over stdio, do the MCP handshake, and list the tools,
 //                                       prompts and resources the agent sees — proof the connection works.
 //
 // install writes nothing without consent: it prints the target file and the exact snippet, then (unless
@@ -25,16 +25,16 @@ import type { Io } from './main.ts';
 function flag(rest: string[], name: string): string | undefined { const i = rest.indexOf(name); return i >= 0 ? rest[i + 1] : undefined; }
 function has(rest: string[], name: string): boolean { return rest.includes(name); }
 
-/** The stdio command a client should run to reach this server. `trenchscope mcp` once trenchscope is on PATH. */
+/** The stdio command a client should run to reach this server. `solgent mcp` once solgent is on PATH. */
 export interface McpCommand { command: string; args: string[] }
 
-/** The name the server is registered under in each client's config (it was `dexterm` before the rename). */
-export const SERVER_KEY = 'trenchscope';
-const OLD_SERVER_KEY = 'dexterm';
+/** The name the server is registered under in each client's config (it was `trenchscope`, and `dexterm` before that). */
+export const SERVER_KEY = 'solgent';
+const OLD_SERVER_KEYS = ['trenchscope', 'dexterm'];
 
 export function defaultCommand(env: NodeJS.ProcessEnv, useNode: boolean): McpCommand {
-  if (!useNode) return { command: 'trenchscope', args: ['mcp'] };
-  // Fallback for when trenchscope is not on PATH: run this repo's server bin with the current node.
+  if (!useNode) return { command: 'solgent', args: ['mcp'] };
+  // Fallback for when solgent is not on PATH: run this repo's server bin with the current node.
   return { command: process.execPath, args: [mcpBinPath(), 'mcp'] };
 }
 
@@ -70,7 +70,7 @@ export const CLIENTS: readonly ClientSpec[] = [
   {
     id: 'claude-code', label: 'Claude Code', format: 'json', keyPath: 'mcpServers',
     path: (env) => join(env.DEXTERM_CWD || process.cwd(), '.mcp.json'),
-    note: 'project-scoped .mcp.json in the current directory; or run `claude mcp add trenchscope -- trenchscope mcp`.',
+    note: 'project-scoped .mcp.json in the current directory; or run `claude mcp add solgent -- solgent mcp`.',
   },
   {
     id: 'claude-desktop', label: 'Claude Desktop', format: 'json', keyPath: 'mcpServers',
@@ -96,7 +96,7 @@ export const CLIENTS: readonly ClientSpec[] = [
 
 export function clientById(id: string): ClientSpec | undefined { return CLIENTS.find((c) => c.id === id); }
 
-/** The JSON object a json-format client expects under its server map, for `trenchscope`. */
+/** The JSON object a json-format client expects under its server map, for `solgent`. */
 export function serverEntryJson(cmd: McpCommand): Record<string, unknown> {
   return { command: cmd.command, args: cmd.args };
 }
@@ -121,7 +121,7 @@ export function planJson(existingText: string | null, keyPath: string, entry: Re
   return { text: JSON.stringify(next, null, 2) + '\n', changed: was !== 'same', was };
 }
 
-/** Plan a TOML merge: append the trenchscope block when there is no [mcp_servers.trenchscope] yet; never clobber. */
+/** Plan a TOML merge: append the solgent block when there is no [mcp_servers.solgent] yet; never clobber. */
 export function planToml(existingText: string | null, block: string): { text: string; changed: boolean; was: 'absent' | 'same' | 'different'; conflict: boolean } {
   const cur = existingText ?? '';
   if (cur.includes(block.trim())) return { text: cur, changed: false, was: 'same', conflict: false };
@@ -150,7 +150,7 @@ async function install(rest: string[], io: Io): Promise<number> {
   const id = rest.find((a) => !a.startsWith('-'));
   const spec = id ? clientById(id) : undefined;
   if (!spec) {
-    errOut(`usage: trenchscope mcp install <${CLIENTS.map((c) => c.id).join('|')}> [--config FILE] [--print] [--node] [--yes]`);
+    errOut(`usage: solgent mcp install <${CLIENTS.map((c) => c.id).join('|')}> [--config FILE] [--print] [--node] [--yes]`);
     if (id) errOut(`unknown client "${id}". known: ${CLIENTS.map((c) => c.id).join(', ')}`);
     return 2;
   }
@@ -164,7 +164,7 @@ async function install(rest: string[], io: Io): Promise<number> {
 
   // The snippet we would add, always shown.
   const snippet = spec.format === 'toml' ? serverEntryToml(cmd) : JSON.stringify({ [spec.keyPath]: { [SERVER_KEY]: serverEntryJson(cmd) } }, null, 2);
-  out(`trenchscope MCP server for ${spec.label}:`);
+  out(`solgent MCP server for ${spec.label}:`);
   out('');
   out(indent(snippet));
   out('');
@@ -184,7 +184,7 @@ async function install(rest: string[], io: Io): Promise<number> {
     plan = spec.format === 'toml'
       ? planToml(existingText, serverEntryToml(cmd))
       : planJson(existingText, spec.keyPath, serverEntryJson(cmd));
-  } catch (e) { errOut(`trenchscope mcp install: ${(e as Error).message} (${target})`); return 1; }
+  } catch (e) { errOut(`solgent mcp install: ${(e as Error).message} (${target})`); return 1; }
 
   out('');
   out(`target: ${target}${existed ? '' : ' (new file)'}`);
@@ -193,11 +193,13 @@ async function install(rest: string[], io: Io): Promise<number> {
     return 0;
   }
   // An entry from before the rename is left alone (it may be customised); say so, so the server is not listed twice unawares.
-  if (existingText && (existingText.includes(`[mcp_servers.${OLD_SERVER_KEY}]`) || existingText.includes(`"${OLD_SERVER_KEY}":`))) {
-    out(`note: this config also has an older "${OLD_SERVER_KEY}" entry from before the rename; remove it if you do not want the server listed twice.`);
+  for (const old of OLD_SERVER_KEYS) {
+    if (existingText && (existingText.includes(`[mcp_servers.${old}]`) || existingText.includes(`"${old}":`))) {
+      out(`note: this config also has an older "${old}" entry from before the rename; remove it if you do not want the server listed twice.`);
+    }
   }
   if (!plan.changed) { out('already configured — nothing to change (idempotent).'); return 0; }
-  out(plan.was === 'different' ? 'this UPDATES the existing trenchscope entry.' : existed ? 'this ADDS a trenchscope entry (your other servers are preserved).' : 'this CREATES the config file with a trenchscope entry.');
+  out(plan.was === 'different' ? 'this UPDATES the existing solgent entry.' : existed ? 'this ADDS a solgent entry (your other servers are preserved).' : 'this CREATES the config file with a solgent entry.');
 
   if (!yes) {
     const ok = await readLineYesNo(io, 'write this change? [y/N] ');
@@ -209,9 +211,9 @@ async function install(rest: string[], io: Io): Promise<number> {
     if (existed) { const bak = backupPath(target); copyFileSync(target, bak); out(`backed up: ${bak}`); }
     writeFileSync(target, plan.text, { mode: 0o600 });
     out(`wrote ${target}.`);
-    out(`verify it: trenchscope mcp doctor`);
+    out(`verify it: solgent mcp doctor`);
     return 0;
-  } catch (e) { errOut(`trenchscope mcp install: could not write ${target}: ${(e as Error).message}`); return 1; }
+  } catch (e) { errOut(`solgent mcp install: could not write ${target}: ${(e as Error).message}`); return 1; }
 }
 
 function indent(s: string): string { return s.split('\n').map((l) => '  ' + l).join('\n'); }
@@ -224,18 +226,18 @@ interface Rpc { jsonrpc: '2.0'; id: number; method: string; params?: Record<stri
 async function doctor(rest: string[], io: Io): Promise<number> {
   const out = (s: string) => io.stdout.write(s + '\n');
   const errOut = (s: string) => io.stderr.write(s + '\n');
-  // Prefer the command install writes (`trenchscope mcp`); fall back to this repo's node bin when trenchscope is
+  // Prefer the command install writes (`solgent mcp`); fall back to this repo's node bin when solgent is
   // not on PATH (e.g. a dev checkout). Either way this is a real stdio child, not an in-process shortcut.
   const useNode = has(rest, '--node');
   const cmd = defaultCommand(io.env, useNode);
-  out(`trenchscope mcp doctor — spawning: ${cmd.command} ${cmd.args.join(' ')}`);
+  out(`solgent mcp doctor — spawning: ${cmd.command} ${cmd.args.join(' ')}`);
 
   const result = await probe(cmd, io.env).catch((e) => ({ error: (e as Error).message }));
   if ('error' in result && !useNode && /ENOENT|not found|spawn/i.test(result.error)) {
-    // trenchscope not on PATH: retry with the bundled node bin so doctor still verifies the server.
-    out(`(trenchscope not on PATH; retrying with this checkout's server)`);
+    // solgent not on PATH: retry with the bundled node bin so doctor still verifies the server.
+    out(`(solgent not on PATH; retrying with this checkout's server)`);
     const fallback = defaultCommand(io.env, true);
-    out(`trenchscope mcp doctor — spawning: ${fallback.command} ${fallback.args.join(' ')}`);
+    out(`solgent mcp doctor — spawning: ${fallback.command} ${fallback.args.join(' ')}`);
     const r2 = await probe(fallback, io.env).catch((e) => ({ error: (e as Error).message }));
     return report(r2, out, errOut);
   }
@@ -251,7 +253,7 @@ function report(r: ProbeResult, out: (s: string) => void, errOut: (s: string) =>
   out(`tools (${r.tools.length}): ${r.tools.join(', ')}`);
   out(`prompts/skills (${r.prompts.length}): ${r.prompts.join(', ') || '(none)'}`);
   out(`resources: ${r.resources}`);
-  out('the connection works; add it to your agent with `trenchscope mcp install <client>`.');
+  out('the connection works; add it to your agent with `solgent mcp install <client>`.');
   return 0;
 }
 
@@ -297,17 +299,17 @@ function probe(cmd: McpCommand, env: NodeJS.ProcessEnv): Promise<ProbeResult> {
   });
 }
 
-const USAGE = `trenchscope mcp [<command>]
-  (no command)              run the read-only MCP server on stdio (claude mcp add trenchscope -- trenchscope mcp)
+const USAGE = `solgent mcp [<command>]
+  (no command)              run the read-only MCP server on stdio (claude mcp add solgent -- solgent mcp)
   install <client>          write/print the MCP config for a client and verify what changes
                             clients: ${CLIENTS.map((c) => c.id).join(', ')}
                             --config FILE  write to a specific file (instead of the client's default)
                             --print        only print the snippet, never write
-                            --node         emit a "node <path> mcp" command (when trenchscope is not on PATH)
+                            --node         emit a "node <path> mcp" command (when solgent is not on PATH)
                             --yes          write without the confirmation prompt
   doctor                    spawn the server, do the MCP handshake, and list the tools/prompts/resources`;
 
-/** `trenchscope mcp …`. With no subcommand (or an arg the server consumes, e.g. --replay) it runs the server. */
+/** `solgent mcp …`. With no subcommand (or an arg the server consumes, e.g. --replay) it runs the server. */
 export async function runMcp(rest: string[], io: Io): Promise<number> {
   const sub = rest[0];
   if (sub === 'install') return install(rest.slice(1), io);

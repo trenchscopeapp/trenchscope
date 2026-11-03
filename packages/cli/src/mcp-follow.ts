@@ -1,6 +1,6 @@
 // `dexterm` TUI — follow an agent that is driving over MCP (task-1421, "see what your agent is doing").
 //
-// The running terminal can WATCH and visibly FOLLOW an agent connected through `trenchscope mcp` (Claude Code,
+// The running terminal can WATCH and visibly FOLLOW an agent connected through `solgent mcp` (Claude Code,
 // Cursor, Codex, Claude Desktop, …). That MCP server is a separate process the external client spawned, so
 // the app cannot set its env; instead this session, while it is open, writes the ~/.dexterm rendezvous the
 // server reads (packages/mcp spectator-sink) and tails the JSONL channel the server appends to. Each record
@@ -58,7 +58,7 @@ export interface McpFollowOptions {
   onControl?: (state: 'running' | 'paused' | 'takeover' | 'stopped') => void;
   /**
    * task-1443: a reduced snapshot of what this terminal shows (screen, visible rows, selection, the nav allow-list;
-   * never wallet, positions, tickets or settings). Published about once a second so an EXTERNAL `trenchscope mcp`
+   * never wallet, positions, tickets or settings). Published about once a second so an EXTERNAL `solgent mcp`
    * server can answer screen_state and validate view-only nav calls against it. Omitted → nothing is published.
    */
   snapshot?: () => Record<string, unknown>;
@@ -117,7 +117,7 @@ export class McpFollowSession {
     this.hub.on((ev) => this.follow.apply(ev));
   }
 
-  /** Arm the rendezvous (so a `trenchscope mcp` server starts emitting) and begin tailing. Idempotent. */
+  /** Arm the rendezvous (so a `solgent mcp` server starts emitting) and begin tailing. Idempotent. */
   async start(): Promise<void> {
     this.rearm();
     if (this.opts.stream) {

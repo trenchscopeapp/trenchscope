@@ -1,4 +1,4 @@
-// task-1361: the screener's p(rug) column — the H2-v0.1 heuristic (H1 before trenchscope) scored from the row, labelled as a model
+// task-1361: the screener's p(rug) column — the H2-v0.1 heuristic (H1 before solgent) scored from the row, labelled as a model
 // output (model id in the panel caption and the sort menu, data age in the spotlight), dashed when nothing
 // is scoreable, sortable safest-first.
 import { test } from 'node:test';

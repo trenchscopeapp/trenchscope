@@ -1,4 +1,4 @@
-// trenchscope popup — PACK WIDGET HTML (task-1358 r2). The two pure functions the host applies to a pack's widget page:
+// solgent popup — PACK WIDGET HTML (task-1358 r2). The two pure functions the host applies to a pack's widget page:
 //
 //   auditWidgetHtml(html)  the LOADERS a page may not contain, refused by name (at install in @dexterm/custom, at open in
 //                          the cli, at ticket issue here): the `__NONCE__` token, a <script> with src/href, any <link>,

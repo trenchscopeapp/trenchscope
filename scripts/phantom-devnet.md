@@ -1,11 +1,11 @@
-# trenchscope — real Phantom test, DEVNET first (task-1310 T1 → task-1328 T2)
+# solgent — real Phantom test, DEVNET first (task-1310 T1 → task-1328 T2)
 
 This is the manual test for the non-custodial trading path. **No private key ever enters dexterm.**
-trenchscope opens a page in your browser; Phantom (a browser extension) does the signing; trenchscope keeps
+solgent opens a page in your browser; Phantom (a browser extension) does the signing; solgent keeps
 only your public key, and a **separate signer process** (not the terminal UI) holds the caps, builds
 the transaction, verifies what Phantom returns, re-simulates it and submits it.
 
-Everything below runs from the root of a trenchscope checkout.
+Everything below runs from the root of a solgent checkout.
 
 Prereqs: Node 24+, and Phantom installed in your default browser with **Developer mode / devnet**
 enabled (Phantom → Settings → Developer Settings → Testnet Mode → Solana Devnet). Fund the devnet
@@ -24,16 +24,16 @@ node packages/cli/bin/dexterm.mjs wallet link
 or inside the app: type `/wallet link` on the screener's `/` line (or in the chat box).
 
 What happens:
-- trenchscope starts a one-shot server on `127.0.0.1:41291` (loopback only; a fixed port since task-1368 so
+- solgent starts a one-shot server on `127.0.0.1:41291` (loopback only; a fixed port since task-1368 so
   Phantom's per-origin trust carries from link to sign — random only if 41291 is busy, and then the page
   says so: Phantom will ask to connect once on that one-off port) with a single-use token, and opens your
   browser to it.
-- The page asks Phantom to **connect** and **sign a message** (a trenchscope nonce). No transaction, no
+- The page asks Phantom to **connect** and **sign a message** (a solgent nonce). No transaction, no
   funds, no approvals.
-- Phantom pops up → approve the signature. trenchscope verifies the Ed25519 proof and stores **only your
+- Phantom pops up → approve the signature. solgent verifies the Ed25519 proof and stores **only your
   public key** at `~/.dexterm/wallet-link.json`.
 
-Check / remove the link anytime: `trenchscope wallet status`, `trenchscope wallet unlink`, or `/wallet` /
+Check / remove the link anytime: `solgent wallet status`, `solgent wallet unlink`, or `/wallet` /
 `/wallet unlink` in the app. The link shows as `linked: <short>` in the ticket and portfolio banners.
 
 ---
@@ -49,7 +49,7 @@ disabled").
 Two separate things get tested on devnet, both with NO value at risk:
 
 - **The whole signing path** — keypress → Phantom sign → decode + signature verify → re-simulate →
-  submit → confirm — with the **devnet PROBE** (§3): a transaction trenchscope builds itself that wraps
+  submit → confirm — with the **devnet PROBE** (§3): a transaction solgent builds itself that wraps
   0.001 SOL into your own wrapped-SOL account and closes it back to you in the same transaction. The
   only SOL that leaves is the network fee. It goes through exactly the same signer code a swap does.
 - **Phantom's Lighthouse behaviour** — Phantom may append Lighthouse assertion instructions to what it
@@ -118,8 +118,8 @@ On devnet the plan says `the signer WILL REFUSE this plan: mainnet-not-enabled` 
 mainnet transaction). `Y` asks anyway and gets the same refusal back from the signer — nothing is
 signed. `esc` drops the plan.
 
-`/wallet panic` (or `trenchscope wallet panic` from any shell) disables signing everywhere at once;
-re-enabling needs a real keypress: `trenchscope wallet resume` in a terminal.
+`/wallet panic` (or `solgent wallet panic` from any shell) disables signing everywhere at once;
+re-enabling needs a real keypress: `solgent wallet resume` in a terminal.
 
 ---
 
@@ -127,13 +127,13 @@ re-enabling needs a real keypress: `trenchscope wallet resume` in a terminal.
 
 **There is no mainnet step in this round.** The heavy independent verification of T2 has not run.
 Do not pass `--mainnet` to anything for this test. When the maintainers clear a mainnet trial, the command
-will be `trenchscope --mainnet` (caps $5 per trade / $20 per day; raising them needs the flag and is
+will be `solgent --mainnet` (caps $5 per trade / $20 per day; raising them needs the flag and is
 capped at $500 / $2000), the banner turns red `⚠ LIVE · MAINNET — REAL FUNDS`, and the same ticket
 flow applies.
 
 ---
 
-## What trenchscope never does
+## What solgent never does
 
 - never asks for, stores, or logs a private key, seed phrase, or signature material (only your pubkey);
 - never signs or submits without your physical approval in Phantom;

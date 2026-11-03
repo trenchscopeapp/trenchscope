@@ -257,7 +257,7 @@ export function validateAnalystAction(raw: unknown, allow: ActionAllow): ActionR
  * Map a validated `config`-tier action to a `{section, key, value}` descriptor of the `config.json`
  * change it requests. Returns `null` for a `view`-tier action (nothing to persist). Pure and
  * dependency-free: the consumer builds the actual `PatchOp` (creating the parent section when it is
- * absent, exactly like the `trenchscope display` / `,` voice handlers), runs the config schema validator,
+ * absent, exactly like the `solgent display` / `,` voice handlers), runs the config schema validator,
  * and writes through `applyAndJournal` (actor `analyst`). `section`/`key` are fixed, never taken from
  * model input — only `value` comes from the (already-validated) action.
  */

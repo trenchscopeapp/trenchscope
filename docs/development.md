@@ -398,10 +398,10 @@ render `○ … needs key`, never a pass or a fail.
 Demo event keys on `--fixtures`: `n` new pair (datamosh + stutter + shake), `u` pump (gold rain,
 PUMPING band), `d` dump (red-shifted rain), `x` rug flag (full glitch).
 
-## Paper bot (`trenchscope bot`)
+## Paper bot (`solgent bot`)
 
 A headless PAPER-trading bot that measures whether the screener's signals make money, with zero risk, before
-anyone considers real auto-buys. `trenchscope bot run [--interval S] [--once|--ticks N] [--db PATH] [--verbose]`
+anyone considers real auto-buys. `solgent bot run [--interval S] [--once|--ticks N] [--db PATH] [--verbose]`
 loops over the live screener feed (the same keyless feed as `record` and `watch`). Each tick it marks every open
 paper position with a real Jupiter sell quote and exits on take-profit, stop-loss, the time stop, or when the coin's
 verdict turns AVOID, it gets the DEAD flag, or a mint / freeze authority appears; a coin with no sell route for 5
@@ -411,20 +411,20 @@ impact and the quoted slippage are in the number, plus a simulated 5 000 lamport
 priority fee; never a mid price. PnL is net SOL out minus SOL in, converted at the entry's SOL/USD.
 
 Two books share the feed, the caps and the exit rules: **strategy** (market filters + safety checks) and
-**baseline** (market filters only, safety verdict ignored). `trenchscope bot stats [--since 24h|7d|90m|all] [--json]`
+**baseline** (market filters only, safety verdict ignored). `solgent bot stats [--since 24h|7d|90m|all] [--json]`
 prints both and the difference, always with the sample size, labelled "paper, priced from live quotes, not financial
 advice", and says the result is not yet meaningful under 20 closed strategy trades. Ledger and journal live in the
 same SQLite db as everything else (`bot_positions`, `bot_journal`); a partial unique index allows one open position
 per (book, coin), so a crash or restart never double-books. Every entry, exit and skip is journaled with its reason,
 the full screener row the decision read, the quote, the fill and the config. Exit alerts (and entry alerts when
-enabled) go through the `trenchscope alerts` notifier channels.
+enabled) go through the `solgent alerts` notifier channels.
 
 Paper only, structurally: `packages/cli/test/bot-paper-guard.test.ts` parses the bot's whole import graph and fails
 if the signer, the live executor, the fast wallet, the bridge, the swap build or the rpc send path becomes reachable.
 The bot imports the data layer through `@dexterm/data/core` (the trade-free entry) and the bin shims route `bot`
 before the app loads.
 
-Strategy knobs, the `bot` section of `~/.dexterm/config.json` (all optional; `trenchscope bot config` prints the
+Strategy knobs, the `bot` section of `~/.dexterm/config.json` (all optional; `solgent bot config` prints the
 effective values):
 
 | Knob | Default | Meaning |

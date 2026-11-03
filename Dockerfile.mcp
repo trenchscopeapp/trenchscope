@@ -10,4 +10,4 @@ COPY --from=build --chown=node:node /app/packages/cli/dist ./dist
 COPY --from=build --chown=node:node /app/packages/cli/package.json ./package.json
 USER node
 EXPOSE 8080
-CMD ["node", "dist/packages/mcp/bin/trenchscope-http.mjs"]
+CMD ["node", "dist/packages/mcp/bin/solgent-http.mjs"]

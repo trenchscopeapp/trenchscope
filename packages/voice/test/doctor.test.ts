@@ -18,7 +18,7 @@ test('a healthy Mac with Apple Speech + say passes, no fix lines', () => {
 });
 
 test('task-1393: a resolved voice shows a "Default voice" pass line with the reason', () => {
-  const cs = voiceDoctor(deps({ resolvedVoice: 'Daniel', resolvedVoiceReason: 'Daniel — deep British male (trenchscope default)' }));
+  const cs = voiceDoctor(deps({ resolvedVoice: 'Daniel', resolvedVoiceReason: 'Daniel — deep British male (solgent default)' }));
   const dv = find(cs, /Default voice/)!;
   assert.equal(dv.status, 'pass');
   assert.match(dv.detail, /deep British male/);
@@ -33,7 +33,7 @@ test('task-1393: no safe voice (resolvedVoice null) warns with an install fix, n
 });
 
 test('task-1416 — macOS with Piper set up: Piper is the default, say is the fallback, never a fail', () => {
-  const cs = voiceDoctor(deps({ piperPresent: true, piperVoicePresent: true, playerName: 'afplay', resolvedVoice: 'Eddy (English (UK))', resolvedVoiceReason: 'Eddy — deep British male (trenchscope default)' }));
+  const cs = voiceDoctor(deps({ piperPresent: true, piperVoicePresent: true, playerName: 'afplay', resolvedVoice: 'Eddy (English (UK))', resolvedVoiceReason: 'Eddy — deep British male (solgent default)' }));
   const piper = find(cs, /Voice out \(Piper\)/)!;
   assert.equal(piper.status, 'pass');
   assert.match(piper.detail, /default/);
@@ -44,12 +44,12 @@ test('task-1416 — macOS with Piper set up: Piper is the default, say is the fa
   assert.ok(!cs.some((c) => c.status === 'fail'));
 });
 
-test('task-1416 — macOS without Piper: say is the default and a non-silent hint offers `trenchscope voice setup`', () => {
-  const cs = voiceDoctor(deps({ resolvedVoice: 'Eddy (English (UK))', resolvedVoiceReason: 'Eddy — deep British male (trenchscope default)' }));
+test('task-1416 — macOS without Piper: say is the default and a non-silent hint offers `solgent voice setup`', () => {
+  const cs = voiceDoctor(deps({ resolvedVoice: 'Eddy (English (UK))', resolvedVoiceReason: 'Eddy — deep British male (solgent default)' }));
   assert.equal(find(cs, /Default voice/)?.status, 'pass');
   const neural = find(cs, /Neural voice \(Piper\)/)!;
   assert.equal(neural.status, 'warn');
-  assert.match(neural.fix ?? '', /trenchscope voice setup/);
+  assert.match(neural.fix ?? '', /solgent voice setup/);
   assert.ok(!cs.some((c) => c.status === 'fail'));
 });
 
@@ -82,7 +82,7 @@ test('task-1408 — Linux espeak present, Piper not: espeak passes with an upgra
   const out = find(cs, /Voice out \(espeak/)!;
   assert.equal(out.status, 'pass');
   assert.match(out.detail, /Piper/);
-  assert.match(out.detail, /trenchscope voice download piper-voice/);
+  assert.match(out.detail, /solgent voice download piper-voice/);
   // `apt install piper` may appear ONLY as an explicit "NOT …" warning, never as a recommendation.
   const recommendsApt = (s: string) => /(?<!NOT `)apt install piper/.test(s);
   for (const c of cs) assert.ok(!recommendsApt(c.detail) && !recommendsApt(c.fix ?? ''), 'never recommend the unrelated apt piper');
@@ -94,13 +94,13 @@ test('task-1408 — Linux no engine: the fix warns AGAINST `apt install piper` a
   const fix = find(cs, /Voice out/)?.fix ?? '';
   assert.match(fix, /Do NOT `apt install piper`/);
   assert.match(fix, /rhasspy\/piper\/releases/);
-  assert.match(fix, /trenchscope voice download piper-voice/);
+  assert.match(fix, /solgent voice download piper-voice/);
 });
 
 test('task-1408 — Linux voice-in fix offers the checksum-verified download and the prebuilt whisper release (not Debian)', () => {
   const cs = voiceDoctor(deps({ platform: 'linux', espeakPresent: true, resolvedStt: null, whisperBinPresent: false, whisperModelPresent: false, micToolPresent: false }));
   const fix = find(cs, /Voice in/)?.fix ?? '';
-  assert.match(fix, /trenchscope voice download whisper/);
+  assert.match(fix, /solgent voice download whisper/);
   assert.match(fix, /not in Debian/);
   assert.match(fix, /whisper\.cpp\/releases/);
 });

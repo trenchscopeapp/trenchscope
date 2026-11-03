@@ -1,4 +1,4 @@
-// trenchscope — library surface of the CLI package (used by tests and tools).
+// solgent — library surface of the CLI package (used by tests and tools).
 export * from './state.ts';
 export * from './fixtures.ts';
 export {

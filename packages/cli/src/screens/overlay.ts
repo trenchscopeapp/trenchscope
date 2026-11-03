@@ -1,4 +1,4 @@
-// trenchscope — modal overlays (task-1305): the first-run WELCOME card (shown once, then reachable with
+// solgent — modal overlays (task-1305): the first-run WELCOME card (shown once, then reachable with
 // `?`) and the `?` HELP card that lists every key for the screen underneath it. Both are drawn last,
 // after the effects pass, so the card is crisp and no rain/scanline crosses it. Any key closes the
 // overlay; `?` toggles help.
@@ -106,7 +106,7 @@ function card(c: Canvas, want: { w: number; h: number }, title: string, caption:
 
 function renderWelcome(c: Canvas, state: AppState): void {
   const t = c.theme;
-  const box = card(c, { w: 72, h: 22 }, 'WELCOME TO TRENCHSCOPE', 'press any key to start');
+  const box = card(c, { w: 72, h: 22 }, 'WELCOME TO SOLGENT', 'press any key to start');
   if (!box) return;
   const bg = box.bg;
   let y = box.y;
@@ -132,7 +132,7 @@ function renderWelcome(c: Canvas, state: AppState): void {
   }
   gap();
   c.hline(box.x, y, box.w, { fg: mix(t.border, t.warn, 0.4), bg, soft: true }); y += 1;
-  line('Safety: trenchscope never signs, holds keys, or sends funds. Trading is PAPER (simulated).', { fg: t.warn, bg });
+  line('Safety: solgent never signs, holds keys, or sends funds. Trading is PAPER (simulated).', { fg: t.warn, bg });
   line('Nothing here is financial advice — do your own research.', { fg: t.warn, bg });
 }
 

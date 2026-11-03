@@ -1,10 +1,10 @@
-// trenchscope T2 — the signer CLIENT (task-1328): the UI's only handle on the signer process. It spawns the
+// solgent T2 — the signer CLIENT (task-1328): the UI's only handle on the signer process. It spawns the
 // signer as a child with piped stdio, hands it the session secret as the first stdin line, and sends
 // authenticated requests with per-call timeouts. Every failure is a REFUSAL (fail closed): a dead or
 // silent signer never becomes a "maybe it signed". The client never respawns a signer that died — LIVE
 // trading stays off for the rest of the run, and the user restarts dexterm.
 //
-// The client forwards exactly the argv the user started trenchscope with (caps flags, --mainnet, --rpc).
+// The client forwards exactly the argv the user started solgent with (caps flags, --mainnet, --rpc).
 // It cannot change caps afterwards: there is no such message.
 
 import { spawn, type ChildProcess } from 'node:child_process';

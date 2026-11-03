@@ -1,6 +1,6 @@
 ---
 id: connect-an-agent-registry
-title: Manage connected agents (trenchscope agent)
+title: Manage connected agents (solgent agent)
 kind: app-help
 screen: all
 feature: mcp
@@ -30,6 +30,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope agent add|list|rotate|remove|tier|pause|resume|kick|audit|packs` manages your bring-your-own-agent registry and the loopback bus; `trenchscope agent serve` runs a standalone bus on fixtures and `connect` attaches one. Every agent is untrusted and read-only: it can never sign, arm, raise a cap, touch keys or change network settings.
+`solgent agent add|list|rotate|remove|tier|pause|resume|kick|audit|packs` manages your bring-your-own-agent registry and the loopback bus; `solgent agent serve` runs a standalone bus on fixtures and `connect` attaches one. Every agent is untrusted and read-only: it can never sign, arm, raise a cap, touch keys or change network settings.
 
-CLI: `trenchscope agent`.
+CLI: `solgent agent`.

@@ -30,6 +30,72 @@
         ],
         "createdAt": "2026-10-19T20:05:42.063Z",
         "reason": "Agent: existing live playback status pips use the app green to distinguish running from paused; preserve the accepted terminal demo during this narrow FAQ/copy refinement"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "spline sans fallback",
+        "createdAt": "2026-10-20T05:19:45.947Z",
+        "reason": "Metric-matched fallback face for the self-hosted Spline fonts, added in 44bf56a to stop the font-swap layout shift (Lighthouse CLS 0.277); not a new brand font"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "spline sans mono fallback",
+        "createdAt": "2026-10-20T05:19:46.492Z",
+        "reason": "Metric-matched fallback face for the self-hosted Spline fonts, added in 44bf56a to stop the font-swap layout shift (Lighthouse CLS 0.277); not a new brand font"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "site/index.html"
+        ],
+        "createdAt": "2026-10-20T05:44:49.847Z",
+        "reason": "Agent: static finding reports 1.00x from the intentionally single-line .cmd command label (nowrap). Wrapped command recovery and config use 1.6 leading; body uses 1.65 and descriptions 1.55. Existing compact display headings were inspected at desktop and 390px. Preserve the reviewed terminal typography; no prose readability defect found."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "site/styles.css"
+        ],
+        "createdAt": "2026-10-20T05:52:29.532Z",
+        "reason": "Owner-approved green redesign (surface brief 2026-10-19; DESIGN.md: green glow on the live dot, progress line and pill underline only); docs page adds none"
+      },
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          "site/docs.html"
+        ],
+        "createdAt": "2026-10-20T05:54:05.671Z",
+        "reason": "False positive: the count is CLI flags (--mainnet, --fixtures, --max-usd) in a command reference; the page has no U+2014"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "site/docs.html"
+        ],
+        "createdAt": "2026-10-20T06:00:50.248Z",
+        "reason": "False positive from source-only layout guess: rendered URL scans of /docs at 1440 and 390 (review-site 2026-10-20T05-59) report no cramped padding; flagged divs are row separators inside 1.25rem-padded cards"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "site/styles.css"
+        ],
+        "createdAt": "2026-10-20T06:00:50.589Z",
+        "reason": "Homepage ASCII trench pan, owner-pinned background (surface brief 2026-10-19: keep the animated ASCII background); /docs does not render .ascii-bg"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "site/docs.html"
+        ],
+        "createdAt": "2026-10-20T06:09:04.378Z",
+        "reason": "False positive: the flagged pan animation is the homepage ASCII trench in shared styles.css; /docs has no .ascii-bg element, so nothing scrolls on this page"
       }
     ]
   }

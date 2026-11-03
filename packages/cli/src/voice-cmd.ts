@@ -1,7 +1,7 @@
-// `trenchscope voice …` (task-1408, task-1416): inspect the voice engines on this machine, download the two
+// `solgent voice …` (task-1408, task-1416): inspect the voice engines on this machine, download the two
 // optional voice models — whisper.cpp base.en (speech-in) and the Piper en_GB-alan-medium voice (neural
 // speech-out) — and SET UP the managed neural voice on macOS. Network use is OFF by default: this is the
-// only place trenchscope fetches a model or installs a runtime, it asks before it does, and it verifies the
+// only place solgent fetches a model or installs a runtime, it asks before it does, and it verifies the
 // voice model against a pinned checksum from the official source. Nothing here runs the signer, touches
 // keys, or changes trading behaviour.
 //
@@ -29,10 +29,10 @@ export interface VoiceCmdIo {
 
 export const VOICE_USAGE = [
   'usage:',
-  '  trenchscope voice [status]                 show the voice engines + which models are installed',
-  '  trenchscope voice setup [--yes]            set up the neural voice (Piper) on this machine (asks first)',
-  '  trenchscope voice uninstall [--purge-model] remove the managed neural-voice runtime',
-  '  trenchscope voice download <model> [--yes] download a voice model (asks first; checksum-verified)',
+  '  solgent voice [status]                 show the voice engines + which models are installed',
+  '  solgent voice setup [--yes]            set up the neural voice (Piper) on this machine (asks first)',
+  '  solgent voice uninstall [--purge-model] remove the managed neural-voice runtime',
+  '  solgent voice download <model> [--yes] download a voice model (asks first; checksum-verified)',
   '',
   '  models: whisper        whisper.cpp base.en  (speech-to-text, off macOS this is the default)',
   '          piper-voice    Piper en_GB-alan-medium (neural speech-out, the default speaking voice)',
@@ -73,7 +73,7 @@ function askYesNo(io: VoiceCmdIo, question: string): Promise<boolean> {
 async function printStatus(io: VoiceCmdIo): Promise<number> {
   const home = dextermHome(io.env);
   const reg = modelRegistry(home);
-  const lines: string[] = ['trenchscope voice', ''];
+  const lines: string[] = ['solgent voice', ''];
 
   if (process.platform === 'darwin') {
     const rt = await piperRuntimeStatus(home);
@@ -82,9 +82,9 @@ async function printStatus(io: VoiceCmdIo): Promise<number> {
     if (piperReady) {
       lines.push(`  speech-out  Piper ready (${DEFAULT_PIPER_VOICE}, neural, plays via ${player}) · fallback: macOS \`say\``);
     } else if (rt.pythonPresent || rt.modelInstalled) {
-      lines.push(`  speech-out  Piper partly set up (${rt.pythonPresent ? 'runtime ok' : 'no runtime'}, ${rt.modelInstalled ? 'model ok' : 'no model'}) — finish with \`trenchscope voice setup\` · now using macOS \`say\``);
+      lines.push(`  speech-out  Piper partly set up (${rt.pythonPresent ? 'runtime ok' : 'no runtime'}, ${rt.modelInstalled ? 'model ok' : 'no model'}) — finish with \`solgent voice setup\` · now using macOS \`say\``);
     } else {
-      lines.push('  speech-out  macOS `say` (built-in) · neural voice: run `trenchscope voice setup` · see `trenchscope doctor` for the resolved voice');
+      lines.push('  speech-out  macOS `say` (built-in) · neural voice: run `solgent voice setup` · see `solgent doctor` for the resolved voice');
     }
     lines.push('  speech-in   Apple Speech (swiftc) preferred, else whisper.cpp');
   } else {
@@ -100,7 +100,7 @@ async function printStatus(io: VoiceCmdIo): Promise<number> {
     const st = await modelStatus(spec);
     lines.push(`    ${st.installed ? '✓' : '·'} ${spec.id.padEnd(12)} ${spec.label}${st.installed ? ' (installed)' : ''}`);
   }
-  lines.push('', `  download a model: trenchscope voice download <whisper|piper-voice|all>`);
+  lines.push('', `  download a model: solgent voice download <whisper|piper-voice|all>`);
   io.stdout.write(lines.join('\n') + '\n');
   return 0;
 }
@@ -112,11 +112,11 @@ async function runDownload(io: VoiceCmdIo, which: string, yes: boolean): Promise
   const specs: ModelSpec[] = [];
   for (const id of ids) {
     const spec = reg[id];
-    if (!spec) { io.stderr.write(`trenchscope voice: unknown model ${JSON.stringify(id)}\n${VOICE_USAGE}\n`); return 2; }
+    if (!spec) { io.stderr.write(`solgent voice: unknown model ${JSON.stringify(id)}\n${VOICE_USAGE}\n`); return 2; }
     specs.push(spec);
   }
   if (!yes && !io.stdin.isTTY) {
-    io.stderr.write('trenchscope voice download: no interactive terminal to confirm; re-run with --yes to approve the download.\n');
+    io.stderr.write('solgent voice download: no interactive terminal to confirm; re-run with --yes to approve the download.\n');
     return 2;
   }
 
@@ -129,18 +129,18 @@ async function runDownload(io: VoiceCmdIo, which: string, yes: boolean): Promise
       });
       if (res.status === 'cancelled') return 1; // the user said no — stop here
     } catch (e) {
-      io.stderr.write(`trenchscope voice download ${spec.id}: ${(e as Error).message}\n`);
+      io.stderr.write(`solgent voice download ${spec.id}: ${(e as Error).message}\n`);
       anyFailed = true;
     }
   }
   return anyFailed ? 1 : 0;
 }
 
-/** `trenchscope voice setup`: build the managed neural-voice runtime (venv + model) on this machine. */
+/** `solgent voice setup`: build the managed neural-voice runtime (venv + model) on this machine. */
 async function runSetup(io: VoiceCmdIo, yes: boolean): Promise<number> {
   const home = dextermHome(io.env);
   if (!yes && !io.stdin.isTTY) {
-    io.stderr.write('trenchscope voice setup: no interactive terminal to confirm; re-run with --yes to approve the setup.\n');
+    io.stderr.write('solgent voice setup: no interactive terminal to confirm; re-run with --yes to approve the setup.\n');
     return 2;
   }
   // Let the user point setup at a specific interpreter (e.g. a pyenv/homebrew python) via DEXTERM_PYTHON.
@@ -155,12 +155,12 @@ async function runSetup(io: VoiceCmdIo, yes: boolean): Promise<number> {
   if (res.status === 'ok' || res.status === 'already') return 0;
   if (res.status === 'cancelled') return 1;
   // no-python / failed: print the exact fix line.
-  io.stderr.write(`trenchscope voice setup: ${res.status === 'no-python' ? 'no suitable Python 3 found' : 'setup failed'}.\n`);
+  io.stderr.write(`solgent voice setup: ${res.status === 'no-python' ? 'no suitable Python 3 found' : 'setup failed'}.\n`);
   if (res.fix) io.stderr.write(`  fix: ${res.fix}\n`);
   return 1;
 }
 
-/** `trenchscope voice uninstall`: remove the managed neural-voice runtime. */
+/** `solgent voice uninstall`: remove the managed neural-voice runtime. */
 async function runUninstall(io: VoiceCmdIo, purgeModel: boolean): Promise<number> {
   const home = dextermHome(io.env);
   const res = await uninstallPiperRuntime(home, { purgeModel });
@@ -169,7 +169,7 @@ async function runUninstall(io: VoiceCmdIo, purgeModel: boolean): Promise<number
   return 0;
 }
 
-/** `trenchscope voice …`. Returns the process exit code. */
+/** `solgent voice …`. Returns the process exit code. */
 export async function voiceCommand(argv: string[], io: VoiceCmdIo): Promise<number> {
   const yes = argv.includes('--yes') || argv.includes('-y');
   const purgeModel = argv.includes('--purge-model');
@@ -181,10 +181,10 @@ export async function voiceCommand(argv: string[], io: VoiceCmdIo): Promise<numb
   if (sub === 'uninstall' || sub === 'remove') return runUninstall(io, purgeModel);
   if (sub === 'download') {
     const which = rest[1];
-    if (!which) { io.stderr.write(`trenchscope voice download: name a model.\n${VOICE_USAGE}\n`); return 2; }
+    if (!which) { io.stderr.write(`solgent voice download: name a model.\n${VOICE_USAGE}\n`); return 2; }
     return runDownload(io, which, yes);
   }
   if (sub === '--help' || sub === '-h' || sub === 'help') { io.stdout.write(VOICE_USAGE + '\n'); return 0; }
-  io.stderr.write(`trenchscope voice: unknown subcommand ${JSON.stringify(sub)}\n${VOICE_USAGE}\n`);
+  io.stderr.write(`solgent voice: unknown subcommand ${JSON.stringify(sub)}\n${VOICE_USAGE}\n`);
   return 2;
 }

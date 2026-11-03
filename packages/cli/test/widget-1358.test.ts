@@ -82,14 +82,14 @@ test('install → DISABLED (no page served) → enable → the page is served fr
   assert.deepEqual(installedWidgets(state.custom).map((w) => [w.key, w.enabled]), [['example-widgets/movers', false]]);
   assert.equal(widgetEnabled(state.custom, 'example-widgets/movers'), false);
   let r = widgetPage(state.custom, 'example-widgets/movers');
-  assert.ok(!r.ok && /not enabled \(trenchscope pack widget example-widgets movers --enable\)/.test(r.reason), JSON.stringify(r));
+  assert.ok(!r.ok && /not enabled \(solgent pack widget example-widgets movers --enable\)/.test(r.reason), JSON.stringify(r));
   // the pack's own workspace lists the widget: planning skips it with the consent hint (a workspace cannot enable anything)
   const ws = state.custom.workspaces.find((w) => w.name === 'example-widgets/movers');
   assert.ok(ws && !ws.error);
   const st = { chartOpen: false, bubblesOpen: false, narrativeOpen: false, plansOpen: false, hasToken: false, widgetEnabled: (ref: string) => widgetEnabled(state.custom, ref), widgetOpen: () => false };
   let plan = planPopupOpens(ws!.workspace.popups!, st);
   assert.deepEqual(plan.widgets, []);
-  assert.deepEqual(plan.skipped, [{ kind: 'widget', why: 'example-widgets/movers is not enabled (trenchscope pack widget example-widgets movers --enable)' }]);
+  assert.deepEqual(plan.skipped, [{ kind: 'widget', why: 'example-widgets/movers is not enabled (solgent pack widget example-widgets movers --enable)' }]);
   assert.deepEqual(planPopupOpens([{ kind: 'widget', widget: 'example-widgets/movers' }], { ...st, widgetEnabled: undefined }).skipped[0].why, 'example-widgets/movers: widgets need live or replay mode');
   // consent
   f.reset();

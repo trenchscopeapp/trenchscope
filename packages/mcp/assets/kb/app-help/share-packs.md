@@ -1,6 +1,6 @@
 ---
 id: share-packs
-title: Share or install packs (trenchscope pack)
+title: Share or install packs (solgent pack)
 kind: app-help
 screen: all
 feature: packs
@@ -29,6 +29,6 @@ sources:
 date: 2026-10-16
 ---
 
-`trenchscope pack list|verify|add|remove|export|lock|sign|trust|signers|keymap|widget` shares themes, keymaps, rules and widgets as plain files with a sha256 lock and an optional ssh signature. A pack never runs code: widgets land disabled, unsigned rules load disabled, and a keymap merges only on the explicit command.
+`solgent pack list|verify|add|remove|export|lock|sign|trust|signers|keymap|widget` shares themes, keymaps, rules and widgets as plain files with a sha256 lock and an optional ssh signature. A pack never runs code: widgets land disabled, unsigned rules load disabled, and a keymap merges only on the explicit command.
 
-CLI: `trenchscope pack`.
+CLI: `solgent pack`.

@@ -1,5 +1,5 @@
 // task-1359: persist a settled LARP-detector verdict into the recorder's `verdicts` table (pack `larp-check`) so
-// `trenchscope backtest --subject larp` can later score it against the outcome labels. Before this, verdicts lived
+// `solgent backtest --subject larp` can later score it against the outcome labels. Before this, verdicts lived
 // only in memory (state.larpByMint) and no accuracy could ever be measured. Best-effort: no recorder, no table
 // or a failed write is a silent no-op — the analyst turn never depends on it.
 import { createHash } from 'node:crypto';

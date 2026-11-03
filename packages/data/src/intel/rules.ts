@@ -1,4 +1,4 @@
-// trenchscope WALLET + HOLDER INTELLIGENCE — the rules (task-1340, built from the task-1286 spike).
+// solgent WALLET + HOLDER INTELLIGENCE — the rules (task-1340, built from the task-1286 spike).
 //
 // Pure functions: raw chain facts in, labelled holders + clusters + sample-captioned insights out. No I/O, no
 // clock, no randomness, so a recording replays to the same picture and the tests can assert every rule.

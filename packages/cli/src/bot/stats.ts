@@ -1,4 +1,4 @@
-// trenchscope paper bot: the scoreboard (`trenchscope bot stats`). Pure over the ledger's positions.
+// solgent paper bot: the scoreboard (`solgent bot stats`). Pure over the ledger's positions.
 //
 // Honesty rules: every figure is labelled PAPER (priced from live quotes, not financial advice), the sample size
 // is always printed, and under MEANINGFUL_MIN closed trades the result is called not yet meaningful. PnL is the
@@ -125,7 +125,7 @@ function bookLines(s: BookStats): string[] {
 export function renderStats(s: BotStats): string {
   const window = s.since === null ? 'all time' : `since ${new Date(s.since).toISOString().slice(0, 16).replace('T', ' ')} UTC`;
   return [
-    `trenchscope paper bot: ${window}`,
+    `solgent paper bot: ${window}`,
     `(${s.label})`,
     s.sample,
     '',

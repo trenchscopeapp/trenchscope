@@ -32,7 +32,7 @@ const say = (v, text, level, secs = 3) => { v.toast = { text, level, until: v.fr
 // Each step may open a chapter (the site's section rail) and name the key a person would press.
 const TIMELINE = [
   { at: 0.0, chapter: ['boot', 'Launch'], do: (st) => { st.screen = 'boot'; st.boot = { t: 0 }; }, label: 'first launch: logo and the data sources come up' },
-  { at: 2.6, chapter: ['screener', 'Screener'], key: 'trenchscope', do: (st, ctx) => ctx.goto(st, 'screener', { selected: 0 }), label: 'blink to the screener' },
+  { at: 2.6, chapter: ['screener', 'Screener'], key: 'solgent', do: (st, ctx) => ctx.goto(st, 'screener', { selected: 0 }), label: 'blink to the screener' },
   { at: 3.9, key: 'j', do: (st) => { st.selected = 1; }, label: 'j' },
   { at: 4.4, key: 'j', do: (st) => { st.selected = 2; }, label: 'j' },
   { at: 4.9, key: 'j', do: (st) => { st.selected = 3; }, label: 'j (GIGA)' },

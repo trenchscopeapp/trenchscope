@@ -1,4 +1,4 @@
-// trenchscope — trade ticket screen (task-1310 T0 PAPER; task-1328 T2 LIVE). PAPER: a simulated buy/sell
+// solgent — trade ticket screen (task-1310 T0 PAPER; task-1328 T2 LIVE). PAPER: a simulated buy/sell
 // priced from a live keyless Jupiter quote, every frame labelled PAPER. LIVE: the same ticket in LIVE
 // mode — ⏎ asks the SIGNER PROCESS to quote → build → decode → simulate and shows the PLAN (what will be
 // signed, in/out, impact as a percent, fee, route, the signer's caps verdict); Y is the keypress; the
@@ -69,15 +69,15 @@ export function renderTicket(c: Canvas, state: AppState): void {
     : net === null
       ? ' ◉ LIVE — signer not reachable · nothing can be signed '
       : mainnet
-        ? ` ⚠ LIVE · MAINNET — REAL FUNDS · caps $${live?.signer?.caps.perTradeUsd ?? '?'}/trade $${live?.signer?.caps.dailyUsd ?? '?'}/day · Phantom signs · trenchscope holds no key `
-        : ` ◉ LIVE · DEVNET — real signing via Phantom · devnet funds only · trenchscope holds no key `;
+        ? ` ⚠ LIVE · MAINNET — REAL FUNDS · caps $${live?.signer?.caps.perTradeUsd ?? '?'}/trade $${live?.signer?.caps.dailyUsd ?? '?'}/day · Phantom signs · solgent holds no key `
+        : ` ◉ LIVE · DEVNET — real signing via Phantom · devnet funds only · solgent holds no key `;
   c.text(2, bannerY, banner, { fg: bannerColor, bg: mix(t.bg, bannerColor, mainnet ? 0.3 : 0.16), b: true });
   const linked = state.live?.linkedWallet;
   if (linked) c.textR(2, bannerY, c.w - 3, `linked: ${linked.publicKey.slice(0, 4)}…${linked.publicKey.slice(-4)} `, { fg: t.muted, bg: mix(t.bg, bannerColor, mainnet ? 0.3 : 0.16) });
   c.noRain(0, bannerY, c.w, 1);
   if (live && (live.signer?.panic || live.signer?.ledgerLocked)) {
     c.fill(0, bannerY + 1, c.w, 1, ' ', { bg: mix(t.bg, t.down, 0.3) });
-    c.text(2, bannerY + 1, ' ⛔ PANIC — live signing is disabled · re-enable only from a shell: trenchscope wallet resume ', { fg: t.down, bg: mix(t.bg, t.down, 0.3), b: true });
+    c.text(2, bannerY + 1, ' ⛔ PANIC — live signing is disabled · re-enable only from a shell: solgent wallet resume ', { fg: t.down, bg: mix(t.bg, t.down, 0.3), b: true });
     c.noRain(0, bannerY + 1, c.w, 1);
   }
 
@@ -174,7 +174,7 @@ export function renderTicket(c: Canvas, state: AppState): void {
   if (isLive) {
     kv(c, ix, y++, iw, bg, 'Signer', live?.signer ? `${live.signer.network.toUpperCase()} · ${live.signer.rpcHost} · pid ${live.signer.pid}` : (live?.error ?? 'not reachable'), t, live?.signer ? t.text : t.down);
     if (live?.signer) kv(c, ix, y++, iw, bg, 'Caps', `$${live.signer.caps.perTradeUsd}/trade · $${live.signer.caps.dailyUsd}/day · spent $${live.signer.spentTodayUsd.toFixed(2)} · impact ≤ ${live.signer.caps.maxPriceImpactPct}% · ≤ ${live.signer.caps.maxSolOut} SOL out`, t, t.muted);
-    kv(c, ix, y++, iw, bg, 'Wallet', live?.linked ? `${live.linked} (Phantom signs; trenchscope holds no key)` : 'none linked', t, live?.linked ? t.text : t.down);
+    kv(c, ix, y++, iw, bg, 'Wallet', live?.linked ? `${live.linked} (Phantom signs; solgent holds no key)` : 'none linked', t, live?.linked ? t.text : t.down);
   } else {
     kv(c, ix, y++, iw, bg, 'Paper balance', fmtSol(view.balanceSol), t, t.text);
   }

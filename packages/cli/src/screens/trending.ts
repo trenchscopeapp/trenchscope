@@ -1,4 +1,4 @@
-// trenchscope — TRENDING IN THE SPACE (screen T, task-1330; INTEGRATIONS-DESIGN §5.3, mockups trending-feed-*.txt).
+// solgent — TRENDING IN THE SPACE (screen T, task-1330; INTEGRATIONS-DESIGN §5.3, mockups trending-feed-*.txt).
 // Rank = velocity × credibility, computed locally from the keyless venues + whatever posts the feed holds.
 // Sub-panels: NARRATIVES (clusters by shared KOL threads + co-mention; label from the analyst/user, never a
 // single post) and NEWS (official RSS, "context, not signal"). `s` swaps NARRATIVES for the SOURCES panel

@@ -2,7 +2,7 @@
 // (rug-model.ts). Zero model cost, zero requests: it reads the numbers already on the row. It is a MODEL
 // OUTPUT, not a fact: every surface that shows it names the model and how old the row's data is.
 // H1 is a hand-written additive heuristic (not learned); a trained v1 only replaces it once the recorder
-// has enough labelled outcomes and `trenchscope backtest` says it is better (AI-SUITE-DESIGN §4.3).
+// has enough labelled outcomes and `solgent backtest` says it is better (AI-SUITE-DESIGN §4.3).
 // The rug model module directly (zero imports), not the packs barrel, so a read-only consumer (the paper bot)
 // does not load the packs' backtest modules and, through them, the data barrel.
 import { H2_FLAG_THRESHOLD, h2Model, type RugFeatures, type RugModel } from '@dexterm/packs/rug';

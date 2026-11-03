@@ -1,5 +1,5 @@
 import { posixPermissions } from '../../../scripts/test-support.ts';
-// task-1363 — `trenchscope wallet fast …`: the capped DEVNET fast wallet from a shell. Create needs a PHYSICAL TTY
+// task-1363 — `solgent wallet fast …`: the capped DEVNET fast wallet from a shell. Create needs a PHYSICAL TTY
 // keypress (a pipe/agent is refused), never overwrites, writes mode 600; status never prints the seed; airdrop
 // goes to the devnet faucet stand-in; remove refuses while funded unless --force and needs a keypress; --mainnet
 // is refused outright. Hermetic: a tmp fast-wallet path + a fake RPC, no network, no ~/.dexterm.

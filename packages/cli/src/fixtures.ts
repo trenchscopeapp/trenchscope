@@ -1,5 +1,5 @@
-// trenchscope — deterministic fixture data (seeded PRNG, no network). Ported from the prototype so
-// `trenchscope --screen <name> --fixtures` renders byte-identical frames. Shapes are the view rows
+// solgent — deterministic fixture data (seeded PRNG, no network). Ported from the prototype so
+// `solgent --screen <name> --fixtures` renders byte-identical frames. Shapes are the view rows
 // the screens consume today; D-03 maps @dexterm/data TokenSnapshot records onto them.
 // All names, mints and addresses are fictional.
 import type { Candle, Launchpad } from '@dexterm/data';

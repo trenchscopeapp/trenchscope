@@ -1,4 +1,4 @@
-// trenchscope — live binding for COPY TRADING Tier 1 (task-1360): the follow store + wallet tracker for this run.
+// solgent — live binding for COPY TRADING Tier 1 (task-1360): the follow store + wallet tracker for this run.
 // Live mode polls Helius history for every followed wallet (10 credits a call, through the data layer's limiter
 // and credit meter) and queues alerts the loop turns into toasts; fixtures / replay / keyless get the same store
 // with an honestly UNAVAILABLE tracker. Read-only: nothing here trades, signs or proposes.

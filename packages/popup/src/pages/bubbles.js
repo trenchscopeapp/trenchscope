@@ -191,8 +191,8 @@
   function setData(a) {
     vm = a;
     const sym = String(vm.symbol || '?').replace(/^\$/, '');
-    titleEl.textContent = `trenchscope · $${sym} · BUBBLE MAP`;
-    document.title = `trenchscope · ${sym} bubbles`;
+    titleEl.textContent = `solgent · $${sym} · BUBBLE MAP`;
+    document.title = `solgent · ${sym} bubbles`;
     depthEl.textContent = vm.state === 'ok' ? `${vm.depth || 'light'} scan${vm.via ? ` · ${vm.via}` : ''}` : '';
     if (vm.state === 'unavailable') banner(`bubble map unavailable: ${vm.reason || 'no holder source answered'}${vm.fix ? ` — ${vm.fix}` : ''}`, true);
     else if (vm.state === 'loading') banner('scanning holders…', false);

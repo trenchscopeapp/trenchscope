@@ -166,7 +166,7 @@ test('failure modes are typed and visible: 429 → rate-limited with reset; 401 
     // 401: the user revoked at x.com
     await r.clock.advance(86_400_000);
     r.mock.state.unauthorized = true;
-    await assert.rejects(() => r.api.me(), (e: unknown) => e instanceof XApiError && e.kind === 'unauthorized' && /trenchscope x login/.test(e.message));
+    await assert.rejects(() => r.api.me(), (e: unknown) => e instanceof XApiError && e.kind === 'unauthorized' && /solgent x login/.test(e.message));
     r.mock.state.unauthorized = false;
   } finally { await r.close(); }
   const free = await rig({ tier: 'free' });
@@ -243,7 +243,7 @@ test('XSource: polls the open token + manual KOL handles, resolves cashtags to b
     st = feed.status();
     assert.equal(st.xState, 'logged-out');
     assert.equal(st.sources[0].state, 'off');
-    assert.match(st.xDetail, /login revoked or expired at X · trenchscope x login/);
+    assert.match(st.xDetail, /login revoked or expired at X · solgent x login/);
     // tokens still on disk do NOT re-arm it; a fresh login (newer record) does
     await r.clock.advance(6_000);
     assert.equal(feed.status().xState, 'logged-out');

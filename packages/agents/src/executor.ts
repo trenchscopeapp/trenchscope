@@ -50,7 +50,7 @@ export interface BusFeed {
 }
 
 // ---------------------------------------------------------------------------------------------------
-// Fixtures: deterministic, offline, used by the bus tests, `trenchscope agent serve --fixtures` and the
+// Fixtures: deterministic, offline, used by the bus tests, `solgent agent serve --fixtures` and the
 // worked demo. Numbers are seeded and stable; symbols/names go through the firewall like live data.
 
 const FIXTURE_ROWS = [

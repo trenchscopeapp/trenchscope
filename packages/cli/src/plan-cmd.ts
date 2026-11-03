@@ -1,18 +1,18 @@
-// `trenchscope plan …` and `trenchscope mandate …` — typed order-plan + standing-mandate CLI (task-1355).
+// `solgent plan …` and `solgent mandate …` — typed order-plan + standing-mandate CLI (task-1355).
 //
-//   trenchscope plan propose --mint M --symbol S --size 20 --entry mc-below:300k [--tp mc-above:600k:50%]…
+//   solgent plan propose --mint M --symbol S --size 20 --entry mc-below:300k [--tp mc-above:600k:50%]…
 //                        [--stop mc-below:150k] [--decimals 6] [--supply 1b] [--slippage 300]
-//   trenchscope plan list [--json]
-//   trenchscope plan arm <planId> --mandate <id>     # requires a PHYSICAL keypress on a TTY (refuses pipes)
-//   trenchscope plan amend <planId> [--size 25] [--entry …] [--tp …]… [--stop …|none] [--slippage N]   # task-1363
-//   trenchscope plan cancel <planId>
-//   trenchscope plan journal [--verify] [--export]
-//   trenchscope mandate draft [--total 100] [--per-trade 20] [--per-coin 40] [--daily-loss 50]
+//   solgent plan list [--json]
+//   solgent plan arm <planId> --mandate <id>     # requires a PHYSICAL keypress on a TTY (refuses pipes)
+//   solgent plan amend <planId> [--size 25] [--entry …] [--tp …]… [--stop …|none] [--slippage N]   # task-1363
+//   solgent plan cancel <planId>
+//   solgent plan journal [--verify] [--export]
+//   solgent mandate draft [--total 100] [--per-trade 20] [--per-coin 40] [--daily-loss 50]
 //                         [--max-tier keypress|ptt-held|hands-free] [--ttl-hours 4]
-//   trenchscope mandate list [--json] | arm <id> | revoke <id>
+//   solgent mandate list [--json] | arm <id> | revoke <id>
 //
 // Arming is the only gate: `arm` reads ONE real keystroke in raw mode (ttyKeypress) and refuses a pipe,
-// a subprocess, a voice router or an agent — exactly like `trenchscope wallet resume`. Proposing never arms.
+// a subprocess, a voice router or an agent — exactly like `solgent wallet resume`. Proposing never arms.
 // Default runs are PAPER (no key, no wallet, no mainnet); the journal under ~/.dexterm/plans.journal is
 // the hash-chained audit log + recovery source.
 
@@ -39,7 +39,7 @@ function errMsg(e: unknown): string {
   return e instanceof Error ? e.message : String(e);
 }
 
-const PLAN_USAGE = `trenchscope plan <command>
+const PLAN_USAGE = `solgent plan <command>
   propose --mint M --size 20 --entry mc-below:300k [--symbol S] [--decimals 6] [--supply 1b]
           [--tp mc-above:600k:50%]… [--stop mc-below:150k] [--slippage 300] [--side buy|sell] [--json]
   list [--json]
@@ -50,7 +50,7 @@ const PLAN_USAGE = `trenchscope plan <command>
   cancel <planId>
   journal [--verify] [--export]`;
 
-const MANDATE_USAGE = `trenchscope mandate <command>
+const MANDATE_USAGE = `solgent mandate <command>
   draft [--total 100] [--per-trade 20] [--per-coin 40] [--daily-loss 50]
         [--max-tier keypress|ptt-held|hands-free] [--ttl-hours 4] [--json]
   list [--json]
@@ -65,9 +65,9 @@ export async function runPlan(rest: string[], io: Io): Promise<number> {
     switch (cmd) {
       case 'propose': {
         const mint = flag(rest, '--mint');
-        if (!mint) { errOut('trenchscope plan propose: --mint is required'); return 2; }
+        if (!mint) { errOut('solgent plan propose: --mint is required'); return 2; }
         const sizeStr = flag(rest, '--size');
-        if (!sizeStr) { errOut('trenchscope plan propose: --size is required (USD)'); return 2; }
+        if (!sizeStr) { errOut('solgent plan propose: --size is required (USD)'); return 2; }
         const entryStr = flag(rest, '--entry') ?? 'immediate';
         const supply = parseAmount(flag(rest, '--supply') ?? '1b');
         const input: PlanInput = {
@@ -83,7 +83,7 @@ export async function runPlan(rest: string[], io: Io): Promise<number> {
         if (has(rest, '--json')) { out(JSON.stringify({ id: plan.id, hash: plan.hash, readBack: svc.readBack(plan.id) })); return 0; }
         out(`proposed ${plan.id}`);
         out(`  ${svc.readBack(plan.id)}`);
-        out('  PROPOSAL only — not armed. Arm with: trenchscope plan arm ' + plan.id + ' --mandate <id>  (physical keypress)');
+        out('  PROPOSAL only — not armed. Arm with: solgent plan arm ' + plan.id + ' --mandate <id>  (physical keypress)');
         return 0;
       }
       case 'list': {
@@ -97,7 +97,7 @@ export async function runPlan(rest: string[], io: Io): Promise<number> {
       case 'arm': {
         const planId = rest[1];
         const mandateId = flag(rest, '--mandate');
-        if (!planId || !mandateId) { errOut('usage: trenchscope plan arm <planId> --mandate <id>'); return 2; }
+        if (!planId || !mandateId) { errOut('usage: solgent plan arm <planId> --mandate <id>'); return 2; }
         const svc = openService(rest, io);
         const plan = svc.engine.plan(planId);
         if (!plan) { errOut(`no such plan ${planId}`); return 1; }
@@ -115,25 +115,25 @@ export async function runPlan(rest: string[], io: Io): Promise<number> {
         // is the existing primitive: a mutated plan is a NEW plan (new id, new hash), the old proposal is
         // superseded, and nothing armed can be edited (cancel it first). Arming the new plan is a new keypress.
         const planId = rest[1];
-        if (!planId) { errOut('usage: trenchscope plan amend <planId> [--size USD] [--entry TRIGGER] [--tp EXIT]… [--stop TRIGGER|none] [--slippage BPS]'); return 2; }
+        if (!planId) { errOut('usage: solgent plan amend <planId> [--size USD] [--entry TRIGGER] [--tp EXIT]… [--stop TRIGGER|none] [--slippage BPS]'); return 2; }
         const patch: Record<string, unknown> = {};
         if (flag(rest, '--size')) patch.sizeUsd = parseAmount(flag(rest, '--size')!);
         if (flag(rest, '--entry')) patch.entry = parseTrigger(flag(rest, '--entry')!);
         if (flags(rest, '--tp').length) patch.exits = flags(rest, '--tp').map(parseExit);
         if (flag(rest, '--stop')) patch.stop = flag(rest, '--stop') === 'none' ? null : parseTrigger(flag(rest, '--stop')!);
         if (flag(rest, '--slippage')) patch.slippageBps = Number(flag(rest, '--slippage'));
-        if (!Object.keys(patch).length) { errOut('trenchscope plan amend: nothing to change (pass --size / --entry / --tp / --stop / --slippage)'); return 2; }
+        if (!Object.keys(patch).length) { errOut('solgent plan amend: nothing to change (pass --size / --entry / --tp / --stop / --slippage)'); return 2; }
         const svc = openService(rest, io);
         const next = svc.engine.amend(planId, patch, { by: 'user' });
         if (has(rest, '--json')) { out(JSON.stringify({ id: next.id, hash: next.hash, supersedes: planId, readBack: svc.readBack(next.id) })); return 0; }
         out(`amended: ${planId} → ${next.id} (superseded; every earlier confirmation is void)`);
         out(`  ${svc.readBack(next.id)}`);
-        out('  PROPOSAL only — not armed. Arm with: trenchscope plan arm ' + next.id + ' --mandate <id>  (physical keypress)');
+        out('  PROPOSAL only — not armed. Arm with: solgent plan arm ' + next.id + ' --mandate <id>  (physical keypress)');
         return 0;
       }
       case 'cancel': {
         const planId = rest[1];
-        if (!planId) { errOut('usage: trenchscope plan cancel <planId>'); return 2; }
+        if (!planId) { errOut('usage: solgent plan cancel <planId>'); return 2; }
         const svc = openService(rest, io);
         const status = svc.cancelPlan(planId, 'user');
         out(`${planId}: ${status}`);
@@ -151,7 +151,7 @@ export async function runPlan(rest: string[], io: Io): Promise<number> {
         return cmd ? 2 : 0;
     }
   } catch (e) {
-    errOut(`trenchscope plan: ${errMsg(e)}`);
+    errOut(`solgent plan: ${errMsg(e)}`);
     return 1;
   }
 }
@@ -174,7 +174,7 @@ export async function runMandate(rest: string[], io: Io): Promise<number> {
         if (has(rest, '--json')) { out(JSON.stringify({ id: m.id, budget: m.budget, maxTier: m.maxTier })); return 0; }
         out(`drafted ${m.id}`);
         out(`  total ${fmtUsd(m.budget.totalUsd)} · per-trade ${fmtUsd(m.budget.perTradeUsd)} · per-coin ${fmtUsd(m.budget.perCoinUsd)} · daily-loss ${fmtUsd(m.budget.dailyLossUsd)} · maxTier ${m.maxTier}`);
-        out('  DRAFT only — not armed. Arm with: trenchscope mandate arm ' + m.id + '  (physical keypress)');
+        out('  DRAFT only — not armed. Arm with: solgent mandate arm ' + m.id + '  (physical keypress)');
         return 0;
       }
       case 'list': {
@@ -187,7 +187,7 @@ export async function runMandate(rest: string[], io: Io): Promise<number> {
       }
       case 'arm': {
         const id = rest[1];
-        if (!id) { errOut('usage: trenchscope mandate arm <id>'); return 2; }
+        if (!id) { errOut('usage: solgent mandate arm <id>'); return 2; }
         const svc = openService(rest, io);
         const row = svc.listMandates().find((m) => m.id === id);
         if (!row) { errOut(`no such mandate ${id}`); return 1; }
@@ -202,7 +202,7 @@ export async function runMandate(rest: string[], io: Io): Promise<number> {
       }
       case 'revoke': {
         const id = rest[1];
-        if (!id) { errOut('usage: trenchscope mandate revoke <id>'); return 2; }
+        if (!id) { errOut('usage: solgent mandate revoke <id>'); return 2; }
         const svc = openService(rest, io);
         svc.revokeMandate(id, 'user');
         out(`revoked ${id}`);
@@ -213,7 +213,7 @@ export async function runMandate(rest: string[], io: Io): Promise<number> {
         return cmd ? 2 : 0;
     }
   } catch (e) {
-    errOut(`trenchscope mandate: ${errMsg(e)}`);
+    errOut(`solgent mandate: ${errMsg(e)}`);
     return 1;
   }
 }

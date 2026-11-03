@@ -1,4 +1,4 @@
-// trenchscope — RULES screen (ctrl+r, task-1358 Tier 3). The user's rules (`config.rules`): enabled, name, the
+// solgent — RULES screen (ctrl+r, task-1358 Tier 3). The user's rules (`config.rules`): enabled, name, the
 // condition, the actions, the source (user / pack / jarvis), fires in the last hour, last fired. Below it the
 // PROPOSALS pane (ticket/ask cards a rule produced — inert until the user acts on them, and even then the paper
 // ticket editor / the analyst is where anything happens) or the LOG of recent fires. Typing a rule shows a live
@@ -36,7 +36,7 @@ export function renderRules(c: Canvas, state: AppState): void {
   if (!rules.length) {
     c.text(box.x + 1, cy + 1, 'no rules yet.', { fg: t.muted, bg }); cy += 3;
     c.text(box.x + 1, cy, 'i                                 type a rule, e.g.  vol5m.velocity > 3 and cluster < 20 and liq > 25K for 2 ticks then alert(up, "surge") popup(chart)', { fg: t.dim, bg }, box.w - 2); cy += 1;
-    c.text(box.x + 1, cy, 'trenchscope rules add "<rule>"         the same from a shell · rules list | check | dry-run | remove | enable | disable', { fg: t.dim, bg }, box.w - 2); cy += 1;
+    c.text(box.x + 1, cy, 'solgent rules add "<rule>"         the same from a shell · rules list | check | dry-run | remove | enable | disable', { fg: t.dim, bg }, box.w - 2); cy += 1;
     c.text(box.x + 1, cy, 'fields: price mcap fdv liq vol5m vol1h vol24 holders org top10 dev lplocked bundled snipers cluster fresh mintable freezable age m5 h1 h6 h24 buys sells bonding', { fg: t.dim, bg }, box.w - 2); cy += 1;
     c.text(box.x + 1, cy, 'signals: <field>.velocity (× its own pace) · <field>.delta (change in the window) · tags: launchpad: flag: verified: sus:', { fg: t.dim, bg }, box.w - 2); cy += 2;
     c.text(box.x + 1, cy, 'every rule has a cooldown (10m) and a max/h (12, cap 120) · ticket/ask make PROPOSAL cards: you still size + confirm in the paper ticket', { fg: t.dim, bg, i: true }, box.w - 2);

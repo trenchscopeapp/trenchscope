@@ -28,4 +28,4 @@ sources:
 date: 2026-10-16
 ---
 
-trenchscope starts calm (no effects). Press `c` to toggle: rain, glitch, blink and scanlines on, then off again. Start calm with `--calm` (or `DEXTERM_CALM=1`); `--intensity normal|fever|off` picks a tier. The analyst can toggle calm for you.
+solgent starts calm (no effects). Press `c` to toggle: rain, glitch, blink and scanlines on, then off again. Start calm with `--calm` (or `DEXTERM_CALM=1`); `--intensity normal|fever|off` picks a tier. The analyst can toggle calm for you.

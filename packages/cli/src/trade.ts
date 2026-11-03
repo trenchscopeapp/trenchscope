@@ -1,4 +1,4 @@
-// trenchscope — PAPER trade ticket state machine (task-1310 T0, SPEC §6.1). Pure and TTY-free so the
+// solgent — PAPER trade ticket state machine (task-1310 T0, SPEC §6.1). Pure and TTY-free so the
 // ticket maths and the keypress confirm gate are unit-testable. The interactive loop and the live
 // binding drive this reducer and perform the side effects (quote fetch, executor.execute).
 //

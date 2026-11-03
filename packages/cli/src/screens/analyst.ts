@@ -1,4 +1,4 @@
-// trenchscope — full-screen Analyst (chat with screener-aware Claude) + live context rail.
+// solgent — full-screen Analyst (chat with screener-aware Claude) + live context rail.
 // Cyberspace styling (task-1297): Claude's verdict/answer lines and tool-call lines in coral, the
 // streaming answer decrypts through code glyphs behind the Claude-Code spinner, rain zones under the
 // transcript and the market pulse, ▲/▼ on every direction.
@@ -235,7 +235,7 @@ export function renderContextRail(c: Canvas, x: number, y: number, w: number, h:
     ['tools', 'screener_query · get_token · get_holders · get_trades · get_dev_history · rugcheck · watchlist_*'],
     ['firewall', 'token names, descriptions, socials wrapped as untrusted data; instructions inside them are ignored'],
     ['never', 'sign, send, or build a transaction. Trade panel requires your explicit confirm (v2).'],
-    ['model', 'your local claude CLI · session kept warm · no keys shipped by trenchscope'],
+    ['model', 'your local claude CLI · session kept warm · no keys shipped by solgent'],
   ];
   for (const [k, v] of items) {
     c.text(rb.x + 1, ry, k.toUpperCase(), { fg: k === 'never' ? t.warn : t.dim, bg: rb.bg });

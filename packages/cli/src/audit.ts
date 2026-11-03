@@ -1,4 +1,4 @@
-// trenchscope — the readability audit behind the contrast gate (VISUAL-V2 §6.4): WCAG contrast of every
+// solgent — the readability audit behind the contrast gate (VISUAL-V2 §6.4): WCAG contrast of every
 // hard cell against its own background with effects ON at a glitch frame. Used by test/contrast.test.ts
 // (the gate) and tools/contrast.mjs (the report).
 import { contrast } from '@dexterm/tui';

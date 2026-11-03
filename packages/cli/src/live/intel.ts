@@ -1,4 +1,4 @@
-// trenchscope — live binding for WALLET INTEL (task-1340): runs the data layer's WalletIntel scan for the token on
+// solgent — live binding for WALLET INTEL (task-1340): runs the data layer's WalletIntel scan for the token on
 // screen (light tier) or a watchlist coin (deep tier), keeps the result per mint, and builds the two view models
 // the bubble map is drawn from: the terminal screen's (tui BubbleVM) and the popup's (popup BubbleVM, text-only,
 // no keys). Every state is explicit: loading → ok (possibly degraded: keyless) → unavailable (with the reason and

@@ -1,4 +1,4 @@
-// trenchscope — the screener's view row. One shape for both data paths:
+// solgent — the screener's view row. One shape for both data paths:
 //   fromFixture()  maps the seeded FixtureToken (demo / snapshot parity with the prototype)
 //   fromSnapshot() maps @dexterm/data's EnrichedRow (the real store, D-02/D-04)
 // Live rows carry null where the keyless sources do not say (snipers, bundled, LP locked until

@@ -1,4 +1,4 @@
-// task-1443 — the rendezvous a running trenchscope writes so an EXTERNAL `trenchscope mcp` server (spawned by the
+// task-1443 — the rendezvous a running solgent writes so an EXTERNAL `solgent mcp` server (spawned by the
 // user's own agent: Claude Code, Cursor, a custom bot) may paper-trade inside an armed mandate.
 //
 // Agent paper trading is OFF unless the user turns it on. When the user starts the app with the spectator
@@ -137,7 +137,7 @@ export function loadMandateFromJournal(path: string, mandateId: string, clock: C
 }
 
 /**
- * A journal that may have several writers (one per `trenchscope mcp` process): it re-loads the chain from disk
+ * A journal that may have several writers (one per `solgent mcp` process): it re-loads the chain from disk
  * before every append so each event links to the true head. Append-only, 0600 directory, same hash chain and
  * `redact()` as the plans journal.
  */

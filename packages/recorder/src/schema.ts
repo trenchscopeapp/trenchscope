@@ -1,4 +1,4 @@
-// trenchscope history recorder: schema (lane R-01, AI-SUITE-DESIGN §4.1; prototyped in
+// solgent history recorder: schema (lane R-01, AI-SUITE-DESIGN §4.1; prototyped in
 // dexterm/research/task-1287/recorder/schema.sql). Lives in the app's SQLite file (the one `--db`
 // controls, next to the cache / watchlist / paper wallet tables) on node:sqlite, WAL mode.
 //
@@ -137,13 +137,13 @@ CREATE TABLE IF NOT EXISTS verdicts (
 );
 CREATE INDEX IF NOT EXISTS verdicts_mint_t ON verdicts (mint, t);
 
--- 0.1.5 dev history: which wallet created a coin, as a keyless source named it when trenchscope saw the coin
+-- 0.1.5 dev history: which wallet created a coin, as a keyless source named it when solgent saw the coin
 -- (Jupiter tokens v2 \`dev\`, a PumpPortal create, RugCheck new_tokens). First writer wins; never a guess.
 CREATE TABLE IF NOT EXISTS creators (
   mint        TEXT PRIMARY KEY,
   creator     TEXT NOT NULL,
   source      TEXT NOT NULL,             -- 'jupiter-tokens' | 'pumpportal' | 'rugcheck' | 'goplus'
-  first_t     INTEGER NOT NULL,          -- unix ms trenchscope first recorded the link
+  first_t     INTEGER NOT NULL,          -- unix ms solgent first recorded the link
   created_at  INTEGER                    -- the coin's creation time when the source gave one
 ) WITHOUT ROWID;
 CREATE INDEX IF NOT EXISTS creators_creator ON creators (creator, first_t);

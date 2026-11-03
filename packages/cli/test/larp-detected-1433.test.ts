@@ -47,7 +47,7 @@ test('eligible history writes private review drafts and PNG cards with timestamp
     const text = readFileSync(saved.drafts[0], 'utf8');
     assert.match(text, /graded HIGH RISK 98\/100 at 2026-10-11T12:00Z/);
     assert.match(text, /Same-dataset follow-up: 1\/2 met the condition \(50\.0%\); 1\/2 did not/);
-    assert.match(text, /Evidence: local trenchscope recorder; DexScreener \+ Jupiter; t0 data age 5d/);
+    assert.match(text, /Evidence: local solgent recorder; DexScreener \+ Jupiter; t0 data age 5d/);
     assert.match(text, /coin DDDD\.\.\.DDDD/);
     assert.doesNotMatch(text, new RegExp(mint('D')));
     assert.ok(decodePng(readFileSync(saved.cards[0])).w > 0);

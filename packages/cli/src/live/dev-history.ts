@@ -11,7 +11,7 @@ export interface DevLinked {
   fundedBy: string | null;
   /** A linked cluster (same funder / same-block bundle / transfers) the creator sits in, from the scan. */
   cluster: { name: string; kind: string; members: number; pct: number } | null;
-  /** Other wallets in that cluster that trenchscope has recorded launching coins, with their labelled rugs. */
+  /** Other wallets in that cluster that solgent has recorded launching coins, with their labelled rugs. */
   linkedCreators: number;
   linkedRugs: number;
   source: 'wallet-intel scan' | null;

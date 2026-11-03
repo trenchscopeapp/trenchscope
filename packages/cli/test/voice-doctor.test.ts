@@ -1,4 +1,4 @@
-// task-1282: the voice section is wired into `trenchscope doctor` via an injected voiceProbe, and it is
+// task-1282: the voice section is wired into `solgent doctor` via an injected voiceProbe, and it is
 // warn-only so a machine with no voice support never fails the doctor (it just degrades to text).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

@@ -71,7 +71,7 @@ export class LivePlanExecutor implements Executor {
     if (!this.signer.alive) return { ok: false, why: 'the signer process is not available' };
     let status; try { status = await this.signer.status(); } catch (e) { return { ok: false, why: `signer status: ${msg(e)}` }; }
     if (status.network !== 'devnet') return { ok: false, why: `the signer is on ${status.network}; live plan fills run on devnet only` };
-    if (status.panic || status.ledgerLocked) return { ok: false, why: 'live trading is panicked (trenchscope wallet resume)' };
+    if (status.panic || status.ledgerLocked) return { ok: false, why: 'live trading is panicked (solgent wallet resume)' };
     let fast; try { fast = await this.signer.fast(); } catch (e) { return { ok: false, why: `signer fast: ${msg(e)}` }; }
     if (!fast.loaded || !fast.publicKey) return { ok: false, why: fast.reason ?? 'no fast wallet is loaded in the signer' };
     return { ok: true, network: 'devnet', fastWallet: fast.publicKey, balanceLamports: fast.balanceLamports };

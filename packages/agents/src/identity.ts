@@ -1,10 +1,10 @@
 // @dexterm/agents — per-agent identity (task-1345).
 //
-// The user registers each agent once (`trenchscope agent add NAME --tier T`); the agent gets a bearer token
-// that is shown exactly once and stored only as a salted SHA-256 hash in `<trenchscope home>/agents.json`
-// (mode 0600). Every connection (bus `hello`, or a bridged `trenchscope mcp` child) presents the name and the
+// The user registers each agent once (`solgent agent add NAME --tier T`); the agent gets a bearer token
+// that is shown exactly once and stored only as a salted SHA-256 hash in `<solgent home>/agents.json`
+// (mode 0600). Every connection (bus `hello`, or a bridged `solgent mcp` child) presents the name and the
 // token; the registry verifies the hash with a constant-time compare and hands back the GRANTED tier.
-// The agent never states its own tier. Tokens are rotated with `trenchscope agent rotate NAME`; a rotated or
+// The agent never states its own tier. Tokens are rotated with `solgent agent rotate NAME`; a rotated or
 // removed token fails verification at once, so a kicked agent cannot reconnect with the old secret.
 
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
@@ -139,7 +139,7 @@ export class AgentRegistry {
   add(name: string, tier: Tier, opts: { note?: string; limits?: AgentLimits } = {}): { agent: AgentRecord; token: string } {
     if (!AGENT_NAME_RE.test(name)) throw new Error(`agent name must match ${AGENT_NAME_RE} (lowercase letters, digits, dashes; ≤ 24 chars)`);
     if (!isTier(tier)) throw new Error('tier must be observe, annotate or propose');
-    if (this.get(name)) throw new Error(`agent "${name}" already exists (rotate its token with: trenchscope agent rotate ${name})`);
+    if (this.get(name)) throw new Error(`agent "${name}" already exists (rotate its token with: solgent agent rotate ${name})`);
     if (this.agents.length >= MAX_AGENTS) throw new Error(`at most ${MAX_AGENTS} agents can be registered`);
     const token = newToken();
     const salt = randomBytes(12).toString('hex');

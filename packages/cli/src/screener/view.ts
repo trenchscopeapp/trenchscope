@@ -1,4 +1,4 @@
-// trenchscope — screener view-model (D-03): the state behind the screener screen and the pure
+// solgent — screener view-model (D-03): the state behind the screener screen and the pure
 // transitions the keys drive (filter editor, sort menu, preset cycling, selection). Rows come
 // from fixtures (demo / snapshot parity) or from the data-store feed; the screen only ever sees
 // `ScreenerRow`s plus the health gates that say which columns may be trusted.
@@ -57,7 +57,7 @@ export function feedCondition(sc: ScreenerState): { kind: FeedCondition; message
     return { kind: 'ratelimited', message: 'rate-limited by the data feed — backing off and retrying (press r to retry now)' };
   }
   if (/enotfound|econnrefused|eai_again|getaddrinfo|fetch failed|network|timeout|etimedout|socket|dns/.test(joined)) {
-    return { kind: 'offline', message: "offline — can't reach the data feed; retrying (press r to retry, or run `trenchscope doctor`)" };
+    return { kind: 'offline', message: "offline — can't reach the data feed; retrying (press r to retry, or run `solgent doctor`)" };
   }
   return { kind: 'connecting', message: 'connecting to the live feed…' };
 }

@@ -2,7 +2,7 @@
 // month (docs/helius/pricing.md). We budget it per day (1M / 30), count every request we send and
 // expose three levels: `ok`, `warn` at 50 % of the day, `degraded` at 90 % (the data layer then
 // switches Helius off for the day and the keyless sources take over). A hard per-run cap bounds
-// what one trenchscope process can spend however long it runs. Day totals persist in the SQLite cache
+// what one solgent process can spend however long it runs. Day totals persist in the SQLite cache
 // so restarts keep counting; the meter never sees, stores or prints the key.
 
 import type { Cache } from './cache.ts';

@@ -1,4 +1,4 @@
-// trenchscope popup — dock the chart window beside the terminal (task-1325).
+// solgent popup — dock the chart window beside the terminal (task-1325).
 //
 // macOS only (elsewhere every function degrades to "no docking": the shell's default geometry is used).
 //

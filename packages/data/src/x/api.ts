@@ -157,7 +157,7 @@ export class XApi {
     this.noteWindow(key, res);
     let body: Envelope<T> = {};
     try { body = JSON.parse(res.body) as Envelope<T>; } catch { body = {}; }
-    if (res.status === 401) { this.health?.record('x-api', { ok: false, status: 401, latencyMs: res.latencyMs }); throw new XApiError('unauthorized', 'X answered 401: the login was revoked or expired — run `trenchscope x login`', 401); }
+    if (res.status === 401) { this.health?.record('x-api', { ok: false, status: 401, latencyMs: res.latencyMs }); throw new XApiError('unauthorized', 'X answered 401: the login was revoked or expired — run `solgent x login`', 401); }
     if (res.status === 429) {
       const reset = Number(res.headers['x-rate-limit-reset']);
       const resetAt = Number.isFinite(reset) && reset > 0 ? reset * 1000 : this.clock.now() + 15 * 60_000;

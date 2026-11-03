@@ -1,5 +1,5 @@
 // task-1366 — the price display mode in the app: helpers (supply ratio, cells, fallback), the `$` key (persisted
-// through the journal), --price-mode, workspaces, `trenchscope display`. Fixtures only; DEXTERM_HOME is a temp dir.
+// through the journal), --price-mode, workspaces, `solgent display`. Fixtures only; DEXTERM_HOME is a temp dir.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
@@ -88,7 +88,7 @@ test('a workspace with priceMode switches the mode; one without keeps the curren
   assert.equal(state.priceMode, 'mcap');
 });
 
-test('trenchscope display shows and sets the saved mode; a bad mode exits 2', () => {
+test('solgent display shows and sets the saved mode; a bad mode exits 2', () => {
   const home = tmp();
   const a = bufIo({ DEXTERM_HOME: home });
   assert.equal(displayCommand([], a.io), 0);

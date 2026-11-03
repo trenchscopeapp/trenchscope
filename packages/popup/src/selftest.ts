@@ -1,4 +1,4 @@
-// trenchscope popup host — `trenchscope popup --self-test` (task-1290).
+// solgent popup host — `solgent popup --self-test` (task-1290).
 //
 // the tester may be on another machine with the Mac screen locked, so this does NOT block on a live
 // 60 fps display or a live hotkey press. It reports what it CAN measure headlessly — the shell choice, whether
@@ -179,7 +179,7 @@ export function renderSelfTest(r: SelfTestResult, color = false): string {
   const c = (code: string, s: string): string => (color ? `\x1b[${code}m${s}\x1b[0m` : s);
   const ok = (b: boolean): string => (b ? c('32', 'yes') : c('31', 'no'));
   const lines: string[] = [];
-  lines.push(c('1', 'trenchscope popup — self-test'));
+  lines.push(c('1', 'solgent popup — self-test'));
   lines.push(`  window shell      ${r.shell === 'wry' ? c('32', 'wry (frameless HUD)') : c('33', 'browser fallback')}  — ${r.reason}`);
   lines.push(`  display reachable ${ok(r.displayReachable)}`);
   lines.push(`  global hotkey     ${r.hotkey}  registered: ${ok(r.hotkeyRegistered)}`);

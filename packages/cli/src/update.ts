@@ -1,13 +1,13 @@
-// task-1397 — `trenchscope update` and the quiet startup notice.
+// task-1397 — `solgent update` and the quiet startup notice.
 //
-// The check is two anonymous GETs: the npm registry's `latest` for trenchscope and GitHub's latest published
-// release of trenchscopeapp/trenchscope. Both carry only fixed headers (no version, no OS, no ids, no cookies); nothing
+// The check is two anonymous GETs: the npm registry's `latest` for solgent and GitHub's latest published
+// release of solgentapp/solgent. Both carry only fixed headers (no version, no OS, no ids, no cookies); nothing
 // about the user or the machine is sent beyond the IP any request has. No telemetry.
 //
 // Startup: a live interactive run reads ~/.dexterm/update-check.json (no network) and shows one toast when a
 // newer version was seen; at most once a day it refreshes that file in the background (never blocks, never in
-// --fixtures/--replay, never with DEXTERM_OFFLINE/CI). Off switches: `trenchscope update --off`,
-// DEXTERM_NO_UPDATE_CHECK=1 or NO_UPDATE_NOTIFIER=1. `trenchscope update` itself never upgrades anything: it prints
+// --fixtures/--replay, never with DEXTERM_OFFLINE/CI). Off switches: `solgent update --off`,
+// DEXTERM_NO_UPDATE_CHECK=1 or NO_UPDATE_NOTIFIER=1. `solgent update` itself never upgrades anything: it prints
 // the exact command for how this copy was installed (npm, Homebrew, release tarball, git checkout).
 import { existsSync, mkdirSync, readFileSync, realpathSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -15,8 +15,8 @@ import { fileURLToPath } from 'node:url';
 import { dextermHome } from './boot-state.ts';
 import { VERSION } from './version.ts';
 
-export const NPM_PACKAGE = 'trenchscope';
-export const GITHUB_REPO = 'trenchscopeapp/trenchscope';
+export const NPM_PACKAGE = 'solgent';
+export const GITHUB_REPO = 'solgentapp/solgent';
 export const NPM_LATEST_URL = `https://registry.npmjs.org/${NPM_PACKAGE}/latest`;
 export const GITHUB_LATEST_URL = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
 export const RELEASES_URL = `https://github.com/${GITHUB_REPO}/releases`;
@@ -25,9 +25,9 @@ export const REQUEST_HEADERS: Readonly<Record<string, string>> = Object.freeze({
 export const CHECK_EVERY_MS = 24 * 60 * 60 * 1000;
 export const REQUEST_TIMEOUT_MS = 4000;
 export const UPDATE_FILE = 'update-check.json';
-export const UPDATE_USAGE = `usage: trenchscope update          check npm + GitHub now and print the upgrade command for this install
-       trenchscope update --off    turn the once-a-day startup check off (trenchscope update still works)
-       trenchscope update --on     turn it back on`;
+export const UPDATE_USAGE = `usage: solgent update          check npm + GitHub now and print the upgrade command for this install
+       solgent update --off    turn the once-a-day startup check off (solgent update still works)
+       solgent update --on     turn it back on`;
 
 // ---- versions ---------------------------------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ export function targetFor(kind: InstallKind, r: LatestResult): string | null {
 // ---- persisted state (~/.dexterm/update-check.json) -------------------------------------------------------
 
 export interface UpdateState {
-  /** false after `trenchscope update --off`. */
+  /** false after `solgent update --off`. */
   enabled: boolean;
   /** ms epoch of the last completed check (either source answered). */
   checkedAt: number | null;
@@ -197,20 +197,20 @@ export function writeUpdateState(env: NodeJS.ProcessEnv, s: UpdateState): void {
 
 const truthy = (v: string | undefined): boolean => !!v && v !== '0' && v.toLowerCase() !== 'false';
 
-/** Why the startup check is off, or null when it may run. `trenchscope update` itself ignores all but DEXTERM_OFFLINE. */
+/** Why the startup check is off, or null when it may run. `solgent update` itself ignores all but DEXTERM_OFFLINE. */
 export function startupCheckOff(env: NodeJS.ProcessEnv, s: UpdateState): string | null {
   if (truthy(env.DEXTERM_NO_UPDATE_CHECK)) return 'DEXTERM_NO_UPDATE_CHECK is set';
   if (truthy(env.NO_UPDATE_NOTIFIER)) return 'NO_UPDATE_NOTIFIER is set';
   if (truthy(env.DEXTERM_OFFLINE)) return 'DEXTERM_OFFLINE is set';
   if (truthy(env.CI)) return 'CI is set';
-  if (!s.enabled) return 'turned off with trenchscope update --off';
+  if (!s.enabled) return 'turned off with solgent update --off';
   return null;
 }
 
 /** The one-line notice for a cached result, or null. */
 export function noticeFor(current: string, latest: string | null): string | null {
   if (!latest || parseVersion(latest)?.pre.length || compareVersions(latest, current) <= 0) return null;
-  return `trenchscope ${bare(latest)} is available (you have ${bare(current)}) · run trenchscope update`;
+  return `solgent ${bare(latest)} is available (you have ${bare(current)}) · run solgent update`;
 }
 
 export interface StartupCheck {
@@ -246,7 +246,7 @@ export function startupCheck(env: NodeJS.ProcessEnv, opts: { now?: number; curre
   return { notice, refresh, cancel: () => ctl.abort() };
 }
 
-// ---- `trenchscope update` ---------------------------------------------------------------------------------------
+// ---- `solgent update` ---------------------------------------------------------------------------------------
 
 export interface UpdateIo { stdout: { write(s: string): unknown }; stderr: { write(s: string): unknown }; env: NodeJS.ProcessEnv }
 export interface UpdateDeps { fetchFn?: UpdateFetch; now?: number; current?: string; install?: InstallKind; root?: string; platform?: NodeJS.Platform }
@@ -256,28 +256,28 @@ export async function updateCommand(argv: string[], io: UpdateIo, deps: UpdateDe
   const env = io.env;
   if (arg === '-h' || arg === '--help' || arg === 'help') { io.stdout.write(UPDATE_USAGE + '\n'); return 0; }
   if (rest.length || (arg !== undefined && arg !== '--off' && arg !== '--on')) {
-    io.stderr.write(`trenchscope update: unknown argument ${JSON.stringify(String(rest[0] ?? arg).slice(0, 20))}\n${UPDATE_USAGE}\n`);
+    io.stderr.write(`solgent update: unknown argument ${JSON.stringify(String(rest[0] ?? arg).slice(0, 20))}\n${UPDATE_USAGE}\n`);
     return 2;
   }
   const state = readUpdateState(env);
   if (arg === '--off' || arg === '--on') {
-    try { writeUpdateState(env, { ...state, enabled: arg === '--on' }); } catch (e) { io.stderr.write(`trenchscope update: ${(e as Error).message}\n`); return 1; }
+    try { writeUpdateState(env, { ...state, enabled: arg === '--on' }); } catch (e) { io.stderr.write(`solgent update: ${(e as Error).message}\n`); return 1; }
     io.stdout.write(arg === '--off'
-      ? `startup update check: off (saved to ${updateStatePath(env)}). trenchscope update still checks when you run it.\n`
+      ? `startup update check: off (saved to ${updateStatePath(env)}). solgent update still checks when you run it.\n`
       : `startup update check: on (at most once a day; saved to ${updateStatePath(env)})\n`);
     return 0;
   }
-  if (truthy(env.DEXTERM_OFFLINE)) { io.stderr.write('trenchscope update: DEXTERM_OFFLINE is set; the check needs the network\n'); return 2; }
+  if (truthy(env.DEXTERM_OFFLINE)) { io.stderr.write('solgent update: DEXTERM_OFFLINE is set; the check needs the network\n'); return 2; }
 
   const current = deps.current ?? VERSION;
   const kind = deps.install ?? detectInstall();
   const r = await fetchLatest(deps.fetchFn);
   const line = (label: string, s: SourceResult): string => `  ${label.padEnd(20)} ${s.ok ? `${s.version.padEnd(10)} ${s.url}` : `unavailable (${s.error})`}\n`;
-  io.stdout.write(`trenchscope ${current} · installed via ${INSTALL_LABEL[kind]}\n`);
+  io.stdout.write(`solgent ${current} · installed via ${INSTALL_LABEL[kind]}\n`);
   io.stdout.write(line(`npm ${NPM_PACKAGE}`, r.npm));
   io.stdout.write(line('GitHub release', r.github));
   if (!r.npm.ok && !r.github.ok) {
-    io.stderr.write(`trenchscope update: could not reach npm or GitHub; check your connection, or see ${RELEASES_URL}\n`);
+    io.stderr.write(`solgent update: could not reach npm or GitHub; check your connection, or see ${RELEASES_URL}\n`);
     return 1;
   }
   const latest = newestOf(r);
@@ -289,12 +289,12 @@ export async function updateCommand(argv: string[], io: UpdateIo, deps: UpdateDe
       ? `You are on the newest version ${kind === 'npm' ? 'npm has' : 'the GitHub release has'} (${current}); ${latest} is out on the other channel and reaches yours shortly.\n`
       : `You are up to date (${current}).\n`);
   } else {
-    io.stdout.write(`\ntrenchscope ${target} is available. Upgrade with:\n\n`);
+    io.stdout.write(`\nsolgent ${target} is available. Upgrade with:\n\n`);
     for (const c of upgradeCommands(kind, target, { platform: deps.platform, root: deps.root })) io.stdout.write(`  ${c}\n`);
     io.stdout.write('\n');
     if (kind === 'tarball') io.stdout.write(`Verify the download first: ${RELEASES_URL}/tag/v${target} (docs/verify-your-download.md). Release notes: CHANGELOG.md.\n`);
   }
   const off = startupCheckOff(env, readUpdateState(env));
-  io.stdout.write(`startup check: ${off ? `off (${off})` : 'on, at most once a day; trenchscope update --off or DEXTERM_NO_UPDATE_CHECK=1 turns it off'}. No telemetry: two anonymous GETs (registry.npmjs.org, api.github.com).\n`);
+  io.stdout.write(`startup check: ${off ? `off (${off})` : 'on, at most once a day; solgent update --off or DEXTERM_NO_UPDATE_CHECK=1 turns it off'}. No telemetry: two anonymous GETs (registry.npmjs.org, api.github.com).\n`);
   return 0;
 }

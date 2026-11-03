@@ -26,4 +26,4 @@ sources:
 date: 2026-10-16
 ---
 
-Coin pictures render as real pixels in image-capable terminals (kitty/iTerm2/sixel) and as block art everywhere else. Turn them off with `--no-images` (or `DEXTERM_IMAGES=0`, or `enabled:false` in `~/.dexterm/images.json`). `trenchscope doctor` has a Coin images line that says which path you get.
+Coin pictures render as real pixels in image-capable terminals (kitty/iTerm2/sixel) and as block art everywhere else. Turn them off with `--no-images` (or `DEXTERM_IMAGES=0`, or `enabled:false` in `~/.dexterm/images.json`). `solgent doctor` has a Coin images line that says which path you get.

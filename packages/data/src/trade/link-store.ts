@@ -1,4 +1,4 @@
-// trenchscope T1 — the linked-wallet store. trenchscope persists ONLY the public key (an address; never a
+// solgent T1 — the linked-wallet store. solgent persists ONLY the public key (an address; never a
 // private key, seed or signature). Kept in a small JSON file outside any repo, mode 600 as
 // defence-in-depth even though a pubkey is public. The bridge (bridge.ts) produces the pubkey; this
 // just remembers it so the status bar can show "linked: <short>" and the executor knows the signer.

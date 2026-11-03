@@ -1,5 +1,8 @@
+.vercel
+.env*
 *.webp.json
 og.png.json
 *.svg.json
-.vercel
-.env*
+node_modules
+public
+server/generated

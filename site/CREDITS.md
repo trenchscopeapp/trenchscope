@@ -7,4 +7,4 @@
 - Fonts: Spline Sans and Spline Sans Mono (SIL Open Font License), latin subset self-hosted in `assets/fonts/`; JetBrains Mono (SIL Open Font License) loaded from Google Fonts for the terminal cells.
 - The device stage follows the owner's own Trial DeviceStage (`Projects/tape/components/docs/demos/device-stage.tsx`).
 - LobeHub Icons (`@lobehub/icons-static-svg` 1.95.1, MIT): the monochrome Claude, OpenAI (Codex), Cursor, Gemini and GitHub Copilot marks inlined in the agent hookup in `index.html`. Each mark belongs to its owner and is used only to name the agent it connects to.
-- Recraft (recraft.ai): vectorize trace behind `assets/brand/trenchscope-mark.svg` and the 180 px and larger icons.
+- Recraft (recraft.ai): vectorize trace behind `assets/brand/solgent-mark.svg` and the 180 px and larger icons.

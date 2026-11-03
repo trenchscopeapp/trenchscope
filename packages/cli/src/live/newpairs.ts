@@ -1,4 +1,4 @@
-// trenchscope — live NEW PAIRS binding (task-1298). Rows arrive by push from PumpPortal's free create stream
+// solgent — live NEW PAIRS binding (task-1298). Rows arrive by push from PumpPortal's free create stream
 // (one connection, reconnect with backoff, recordable and replayable) and are enriched by polling:
 //   Jupiter `recent` (15 s)       holders, organic, stats for mints Jupiter already indexed; also the fallback
 //                                 row source while PumpPortal is down (health registry)

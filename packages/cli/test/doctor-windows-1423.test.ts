@@ -1,4 +1,4 @@
-// task-1423: `trenchscope doctor` on Windows. PATH there is `;`-separated and commands carry an extension
+// task-1423: `solgent doctor` on Windows. PATH there is `;`-separated and commands carry an extension
 // (`claude.cmd` from npm, `claude.exe` from the native installer); a `:` split with bare names reported every
 // installed tool as missing. Runs on every OS: the platform is injected, the "PATH" is a temp dir.
 import { test } from 'node:test';

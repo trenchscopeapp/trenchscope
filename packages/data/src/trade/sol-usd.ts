@@ -1,4 +1,4 @@
-// trenchscope T1 — the SOL/USD price the signer prices a trade with (task-1310 round 2, HIGH #2).
+// solgent T1 — the SOL/USD price the signer prices a trade with (task-1310 round 2, HIGH #2).
 //
 // The USD caps are only as good as the SOL/USD number behind them: a stale or absurd price (say
 // $0.0001) makes a 100 SOL trade look like a cent. The executor therefore never takes a bare number.

@@ -1,6 +1,6 @@
 {
-  "name": "trenchscope",
-  "short_name": "trenchscope",
+  "name": "solgent",
+  "short_name": "solgent",
   "description": "A terminal for the trenches.",
   "start_url": "/",
   "display": "standalone",
