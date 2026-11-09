@@ -18,7 +18,7 @@
     "dexterm": "node packages/cli/bin/dexterm.mjs"
   },
   "devDependencies": {
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2",
     "typescript-parser": "npm:typescript@6.0.3"
   }
